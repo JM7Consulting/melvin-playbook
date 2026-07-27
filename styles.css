@@ -4144,31 +4144,126 @@ body.light-mode .crono-risk strong { color: #b91c1c; }
 }
 
 body.light-mode .obj-kit-toolbar {
-  background: rgba(255,255,255,0.92);
-  border-color: rgba(15,23,42,0.08);
+  background: rgba(255,255,255,0.96);
+  border-color: rgba(15,23,42,0.1);
 }
 body.light-mode .obj-search-wrap {
-  background: #F8FAFC;
-  border-color: rgba(15,23,42,0.1);
+  background: #F1F5F9;
+  border-color: rgba(15,23,42,0.12);
 }
 body.light-mode .obj-search { color: #0F172A; }
-body.light-mode .obj-filter { color: #64748B; background: #F8FAFC; border-color: rgba(15,23,42,0.1); }
+body.light-mode .obj-search::placeholder { color: #64748B; }
+body.light-mode .obj-search-ico { color: #64748B; opacity: 1; }
+body.light-mode .obj-filter {
+  color: #334155;
+  background: #F8FAFC;
+  border-color: rgba(15,23,42,0.12);
+}
+body.light-mode .obj-filter:hover {
+  color: #0F172A;
+  border-color: rgba(15,23,42,0.22);
+}
+body.light-mode .obj-filter.is-active {
+  color: #042f2e;
+  background: #14B8A6;
+  border-color: transparent;
+}
+body.light-mode .obj-kit-out .obj-filter.is-active {
+  color: #1c1917;
+  background: #F59E0B;
+}
+body.light-mode .obj-kit-kicker { color: #0F766E; }
+body.light-mode .obj-kit-out .obj-kit-kicker { color: #B45309; }
+body.light-mode .obj-kit-note { color: #475569; }
 body.light-mode .obj-card {
   background: #FFFFFF;
-  border-color: rgba(15,23,42,0.1);
-  box-shadow: 0 10px 24px rgba(15,23,42,0.06);
+  border-color: rgba(15,23,42,0.12);
+  box-shadow: 0 10px 24px rgba(15,23,42,0.07);
 }
+body.light-mode .obj-card-num {
+  color: #0F766E;
+  background: rgba(15, 118, 110, 0.1);
+  border-color: rgba(15, 118, 110, 0.28);
+}
+body.light-mode .obj-kit-out .obj-card-num {
+  color: #B45309;
+  background: rgba(180, 83, 9, 0.1);
+  border-color: rgba(180, 83, 9, 0.28);
+}
+body.light-mode .obj-card-kicker { color: #64748B; }
 body.light-mode .obj-card-said { color: #0F172A; }
-body.light-mode .obj-script p { color: #0F172A; }
+body.light-mode .obj-type-ok {
+  color: #047857;
+  background: rgba(16, 185, 129, 0.12);
+  border-color: rgba(4, 120, 87, 0.28);
+}
+body.light-mode .obj-type-kill {
+  color: #B91C1C;
+  background: rgba(239, 68, 68, 0.1);
+  border-color: rgba(185, 28, 28, 0.28);
+}
+body.light-mode .obj-type-neg {
+  color: #6D28D9;
+  background: rgba(139, 92, 246, 0.12);
+  border-color: rgba(109, 40, 217, 0.28);
+}
+body.light-mode .obj-type-stub {
+  color: #B45309;
+  background: rgba(245, 158, 11, 0.14);
+  border-color: rgba(180, 83, 9, 0.3);
+}
+body.light-mode .obj-dor {
+  color: #0E7490;
+  background: rgba(8, 145, 178, 0.1);
+  border-color: rgba(14, 116, 144, 0.28);
+}
+body.light-mode .obj-persona {
+  color: #334155;
+  background: rgba(100, 116, 139, 0.12);
+  border-color: rgba(71, 85, 105, 0.25);
+}
 body.light-mode .obj-script {
-  background: linear-gradient(135deg, rgba(15,118,110,0.1), rgba(15,118,110,0.03));
-  border-color: rgba(15,118,110,0.25);
+  background: linear-gradient(135deg, rgba(15,118,110,0.12), rgba(15,118,110,0.04));
+  border-color: rgba(15,118,110,0.28);
+  box-shadow: none;
+}
+body.light-mode .obj-script-empty {
+  background: linear-gradient(135deg, rgba(180,83,9,0.1), rgba(180,83,9,0.03));
+  border-color: rgba(180,83,9,0.28);
 }
 body.light-mode .obj-script-label { color: #0F766E; }
-body.light-mode .obj-box { background: #F8FAFC; }
-body.light-mode .obj-legend { background: #FFFFFF; border-color: rgba(15,23,42,0.08); }
-body.light-mode .obj-jump {
+body.light-mode .obj-script-empty .obj-script-label { color: #B45309; }
+body.light-mode .obj-script p { color: #0F172A; }
+body.light-mode .obj-box {
+  background: #F8FAFC;
+  border-color: rgba(15,23,42,0.08);
+}
+body.light-mode .obj-box-label { color: #64748B; }
+body.light-mode .obj-box p { color: #334155; }
+body.light-mode .obj-more {
+  background: #F8FAFC;
+  border-color: rgba(15,23,42,0.12);
+}
+body.light-mode .obj-more > summary { color: #475569; }
+body.light-mode .obj-more p { color: #334155; }
+body.light-mode .obj-fact {
+  background: rgba(15, 118, 110, 0.06);
+  border-color: rgba(15, 118, 110, 0.2);
+  color: #334155;
+}
+body.light-mode .obj-empty { color: #64748B; }
+body.light-mode .obj-legend {
   background: #FFFFFF;
   border-color: rgba(15,23,42,0.1);
   color: #475569;
+}
+body.light-mode .obj-jump {
+  background: #FFFFFF;
+  border-color: rgba(15,23,42,0.12);
+  color: #334155;
+}
+body.light-mode .obj-jump:hover {
+  color: #0F172A;
+  border-color: rgba(15, 118, 110, 0.35);
+  background: rgba(15, 118, 110, 0.06);
 }
