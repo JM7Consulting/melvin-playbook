@@ -353,17 +353,45 @@ const FLUXO_INBOUND_EDGES = [
 ];
 
 function fluxoRelRect(el, stage) {
-    const sr = stage.getBoundingClientRect();
-    const r = el.getBoundingClientRect();
+    // Layout offsets (ignore CSS transform:scale on zoom ancestors) so wires stay aligned.
+    let x = 0;
+    let y = 0;
+    let node = el;
+    while (node && node !== stage) {
+        x += node.offsetLeft;
+        y += node.offsetTop;
+        const parent = node.offsetParent;
+        if (!parent || (parent !== stage && !stage.contains(parent))) {
+            const sr = stage.getBoundingClientRect();
+            const r = el.getBoundingClientRect();
+            const scale = sr.width / Math.max(stage.clientWidth, 1);
+            return {
+                left: (r.left - sr.left) / scale,
+                top: (r.top - sr.top) / scale,
+                width: r.width / scale,
+                height: r.height / scale,
+                right: (r.right - sr.left) / scale,
+                bottom: (r.bottom - sr.top) / scale,
+                cx: (r.left - sr.left + r.width / 2) / scale,
+                cy: (r.top - sr.top + r.height / 2) / scale
+            };
+        }
+        node = parent;
+    }
+    const width = el.offsetWidth;
+    const height = el.offsetHeight;
+    // .fn uses translate(-50%, 0): layout left is the visual center X
+    const cx = x;
+    const cy = y + height / 2;
     return {
-        left: r.left - sr.left,
-        top: r.top - sr.top,
-        right: r.right - sr.left,
-        bottom: r.bottom - sr.top,
-        width: r.width,
-        height: r.height,
-        cx: r.left - sr.left + r.width / 2,
-        cy: r.top - sr.top + r.height / 2
+        left: cx - width / 2,
+        top: y,
+        right: cx + width / 2,
+        bottom: y + height,
+        width,
+        height,
+        cx,
+        cy
     };
 }
 
@@ -576,33 +604,67 @@ function drawFluxoInboundWires() {
 }
 
 const FLUXO_OUTBOUND_EDGES = [
-    { from: 'o_mapping', to: 'o_leads', color: '#60a5fa' },
-    { from: 'o_leads', to: 'o_icp' },
-    { from: 'o_icp', to: 'o_kill_join', label: 'NÃO', color: '#f87171', fromSide: 'left', toSide: 'right' },
-    { from: 'o_icp', to: 'o_redflag', label: 'SIM', color: '#34d399', fromSide: 'bottom', toSide: 'top' },
-    { from: 'o_redflag', to: 'o_kill_join', label: 'SIM', color: '#f87171', fromSide: 'left', toSide: 'right' },
-    { from: 'o_kill_join', to: 'o_descartar', color: '#f87171', fromSide: 'left', toSide: 'right' },
-    { from: 'o_redflag', to: 'o_persona', label: 'NÃO', color: '#34d399', fromSide: 'bottom', toSide: 'top' },
-    { from: 'o_persona', to: 'o_contato' },
-    { from: 'o_contato', to: 'o_cad_contato', label: 'NÃO', color: '#f87171', fromSide: 'left', toSide: 'top' },
-    { from: 'o_contato', to: 'o_mql', label: 'SIM', color: '#34d399', fromSide: 'right', toSide: 'top' },
-    { from: 'o_cad_contato', to: 'o_outra' },
-    { from: 'o_outra', to: 'o_persona', label: 'SIM', color: '#c084fc', dashed: true, fromSide: 'left', toSide: 'left', wing: 44 },
-    { from: 'o_outra', to: 'o_nutricao', label: 'NÃO', color: '#f87171', fromSide: 'left', toSide: 'right', busX: 0.30 },
-    { from: 'o_mql', to: 'o_agendou' },
+    /* Entrada A → Leads */
+    { from: 'o_a', to: 'o_leads', color: '#c084fc', fromSide: 'right', toSide: 'left' },
+    { from: 'o_leads', to: 'o_icp1' },
+
+    /* É ICP? (pré-contato) */
+    { from: 'o_icp1', to: 'o_encontrou', label: 'SIM', color: '#34d399', fromSide: 'bottom', toSide: 'top' },
+    { from: 'o_icp1', to: 'o_outra', label: 'NÃO', color: '#f87171', fromSide: 'left', toSide: 'top' },
+
+    /* Existe outra pessoa? */
+    { from: 'o_outra', to: 'o_encontrou', label: 'SIM', color: '#34d399', fromSide: 'right', toSide: 'left' },
+    { from: 'o_outra', to: 'o_c', label: 'NÃO', color: '#f87171', fromSide: 'right', toSide: 'left' },
+
+    /* Encontrou Persona? */
+    { from: 'o_encontrou', to: 'o_cad_contato', label: 'SIM', color: '#34d399', fromSide: 'bottom', toSide: 'top' },
+    { from: 'o_encontrou', to: 'o_outra', label: 'NÃO', color: '#f87171', fromSide: 'left', toSide: 'bottom' },
+
+    /* CS → B → Cadência Contato */
+    { from: 'o_fluxo_cs', to: 'o_b', color: '#22d3ee', fromSide: 'bottom', toSide: 'top' },
+    { from: 'o_b', to: 'o_cad_contato', color: '#22d3ee', fromSide: 'right', toSide: 'bottom' },
+
+    /* Conseguiu contato? */
+    { from: 'o_cad_contato', to: 'o_contato' },
+    { from: 'o_contato', to: 'o_c', label: 'NÃO', color: '#f87171', fromSide: 'right', toSide: 'left' },
+    { from: 'o_contato', to: 'o_icp2', label: 'SIM', color: '#34d399', fromSide: 'bottom', toSide: 'top' },
+
+    /* É ICP? (pós-contato) */
+    { from: 'o_icp2', to: 'o_descarte', label: 'NÃO', color: '#f87171', fromSide: 'left', toSide: 'right' },
+    { from: 'o_icp2', to: 'o_persona', label: 'SIM', color: '#34d399', fromSide: 'bottom', toSide: 'top' },
+
+    /* É Persona? */
+    { from: 'o_persona', to: 'o_c', label: 'NÃO', color: '#f87171', fromSide: 'right', toSide: 'left' },
+    { from: 'o_persona', to: 'o_mql', label: 'SIM', color: '#34d399', fromSide: 'bottom', toSide: 'top' },
+
+    /* MQL → Red flag? */
+    { from: 'o_mql', to: 'o_redflag' },
+    { from: 'o_redflag', to: 'o_descarte', label: 'SIM', color: '#f87171', fromSide: 'left', toSide: 'bottom' },
+    { from: 'o_redflag', to: 'o_agendou', label: 'NÃO', color: '#34d399', fromSide: 'bottom', toSide: 'top' },
+
+    /* Agendou reunião? */
+    { from: 'o_agendou', to: 'o_sql', label: 'SIM', color: '#34d399', fromSide: 'bottom', toSide: 'top' },
     { from: 'o_agendou', to: 'o_cad_agenda', label: 'NÃO', color: '#f87171', fromSide: 'left', toSide: 'top' },
-    { from: 'o_agendou', to: 'o_sql', label: 'SIM', color: '#34d399', fromSide: 'right', toSide: 'top' },
     { from: 'o_cad_agenda', to: 'o_agendou', color: '#fbbf24', dashed: true, fromSide: 'right', toSide: 'left' },
-    { from: 'o_sql', to: 'o_reuniao_q' },
-    { from: 'o_reuniao_q', to: 'o_noshow', label: 'NÃO', color: '#f87171', fromSide: 'left', toSide: 'top' },
-    { from: 'o_reuniao_q', to: 'o_reuniao_ok', label: 'SIM', color: '#34d399', fromSide: 'left', toSide: 'right' },
-    { from: 'o_reuniao_ok', to: 'o_possivel' },
-    { from: 'o_possivel', to: 'o_followup', label: 'NÃO', color: '#f87171', fromSide: 'left', toSide: 'top' },
-    { from: 'o_possivel', to: 'o_sal', label: 'SIM', color: '#34d399', fromSide: 'right', toSide: 'top' },
-    { from: 'o_sal', to: 'o_fechou' },
-    { from: 'o_fechou', to: 'o_followup', label: 'NÃO', color: '#f87171', dashed: true, fromSide: 'left', toSide: 'bottom' },
-    { from: 'o_fechou', to: 'o_contrato', label: 'SIM', color: '#34d399', fromSide: 'right', toSide: 'left' },
-    { from: 'o_contrato', to: 'o_onboarding', color: '#22d3ee' }
+    { from: 'o_cad_agenda', to: 'o_c', color: '#c084fc', fromSide: 'right', toSide: 'left' },
+
+    /* SQL → Closer */
+    { from: 'o_sql', to: 'o_reuniao_q', fromSide: 'right', toSide: 'left' },
+    { from: 'o_reuniao_q', to: 'o_reagendamento', label: 'NÃO', color: '#f87171', fromSide: 'left', toSide: 'right' },
+    { from: 'o_reuniao_q', to: 'o_possivel', label: 'SIM', color: '#34d399', fromSide: 'bottom', toSide: 'top' },
+    { from: 'o_reagendamento', to: 'o_agendou', color: '#fbbf24', dashed: true, fromSide: 'bottom', toSide: 'left' },
+
+    /* Possível fechamento? */
+    { from: 'o_possivel', to: 'o_c', label: 'NÃO', color: '#f87171', fromSide: 'right', toSide: 'left' },
+    { from: 'o_possivel', to: 'o_sal', label: 'SIM', color: '#34d399', fromSide: 'bottom', toSide: 'top' },
+    { from: 'o_sal', to: 'o_followup' },
+    { from: 'o_followup', to: 'o_fechou' },
+    { from: 'o_fechou', to: 'o_c', label: 'NÃO', color: '#f87171', fromSide: 'right', toSide: 'left' },
+    { from: 'o_fechou', to: 'o_contrato', label: 'SIM', color: '#34d399', fromSide: 'bottom', toSide: 'top' },
+    { from: 'o_contrato', to: 'o_onboarding', color: '#22d3ee', fromSide: 'left', toSide: 'right' },
+
+    /* Marketing C → nutrição */
+    { from: 'o_c', to: 'o_nutricao', color: '#94a3b8' }
 ];
 
 function drawFluxoOutboundWires() {
@@ -654,23 +716,36 @@ window.addEventListener('resize', refreshActiveFluxoWires);
     });
 })();
 
-/* Fluxo Inbound: zoom, pan, highlight de caminho */
-(() => {
-    const viewport = document.getElementById('fluxoInboundViewport');
-    const board = document.getElementById('fluxoInboundBoard');
-    const stage = document.getElementById('fluxoInboundStage');
-    const toolbar = document.getElementById('fluxoInboundToolbar');
-    const strip = document.getElementById('fluxoInboundPathStrip');
-    const stripText = document.getElementById('fluxoInboundPathText');
-    if (!viewport || !board || !stage) return;
+/* Fluxo boards: zoom/pan/highlight — zoom-safe (wires use layout offsets) */
+function initFluxoBoardUX(cfg) {
+    const viewport = document.getElementById(cfg.viewportId);
+    const zoomLayer = document.getElementById(cfg.zoomId);
+    const board = document.getElementById(cfg.boardId);
+    const stage = document.getElementById(cfg.stageId);
+    const toolbar = document.getElementById(cfg.toolbarId);
+    const strip = document.getElementById(cfg.stripId);
+    const stripText = document.getElementById(cfg.stripTextId);
+    const edges = cfg.edges;
+    const draw = cfg.draw;
+    const svgId = cfg.svgId;
+    if (!viewport || !zoomLayer || !board || !stage) return;
 
     let zoom = 1;
-    const applyZoom = () => {
-        board.style.transform = `scale(${zoom})`;
+
+    function applyZoom() {
+        zoomLayer.style.transform = `scale(${zoom})`;
+        // Keep scroll area matching visual size (scale doesn't change layout box)
+        const w = board.offsetWidth;
+        const h = board.offsetHeight;
+        zoomLayer.style.marginRight = `${Math.max(0, w * (zoom - 1))}px`;
+        zoomLayer.style.marginBottom = `${Math.max(0, h * (zoom - 1))}px`;
         const resetBtn = toolbar?.querySelector('[data-fluxo-zoom="reset"]');
         if (resetBtn) resetBtn.textContent = `${Math.round(zoom * 100)}%`;
-        requestAnimationFrame(drawFluxoInboundWires);
-    };
+        requestAnimationFrame(() => {
+            draw();
+            requestAnimationFrame(draw);
+        });
+    }
 
     toolbar?.addEventListener('click', (e) => {
         const btn = e.target.closest('[data-fluxo-zoom], [data-fluxo-fit], [data-fluxo-clear]');
@@ -686,20 +761,19 @@ window.addEventListener('resize', refreshActiveFluxoWires);
             return;
         }
         const mode = btn.getAttribute('data-fluxo-zoom');
-        if (mode === 'in') zoom = Math.min(1.6, zoom + 0.1);
-        if (mode === 'out') zoom = Math.max(0.55, zoom - 0.1);
+        if (mode === 'in') zoom = Math.min(1.55, +(zoom + 0.1).toFixed(2));
+        if (mode === 'out') zoom = Math.max(0.55, +(zoom - 0.1).toFixed(2));
         if (mode === 'reset') zoom = 1;
         applyZoom();
     });
 
-    // Pan by drag
     let panning = false;
     let startX = 0;
     let startY = 0;
     let scrollLeft = 0;
     let scrollTop = 0;
     viewport.addEventListener('pointerdown', (e) => {
-        if (e.target.closest('.fn')) return;
+        if (e.target.closest('.fn') || e.target.closest('.fluxo-tool')) return;
         panning = true;
         viewport.classList.add('is-panning');
         startX = e.clientX;
@@ -728,14 +802,13 @@ window.addEventListener('resize', refreshActiveFluxoWires);
     }
 
     function neighbors(id) {
-        const outs = FLUXO_INBOUND_EDGES.filter((e) => e.from === id).map((e) => e.to);
-        const ins = FLUXO_INBOUND_EDGES.filter((e) => e.to === id).map((e) => e.from);
+        const outs = edges.filter((e) => e.from === id).map((e) => e.to);
+        const ins = edges.filter((e) => e.to === id).map((e) => e.from);
         return [...new Set([...outs, ...ins])];
     }
 
     function clearFocus() {
         stage.classList.remove('is-focus');
-        stage.querySelectorAll('.fn.is-hot').forEach((n) => n.classList.remove('is-hot'));
         stage.querySelectorAll('.is-hot').forEach((n) => n.classList.remove('is-hot'));
         if (strip) strip.hidden = true;
     }
@@ -746,7 +819,7 @@ window.addEventListener('resize', refreshActiveFluxoWires);
         stage.querySelectorAll('.fn[data-fn]').forEach((el) => {
             el.classList.toggle('is-hot', hot.has(el.getAttribute('data-fn')));
         });
-        const svg = document.getElementById('fluxoInboundWires');
+        const svg = document.getElementById(svgId);
         svg?.querySelectorAll('path[data-edge-from], .wire-label-group').forEach((el) => {
             const a = el.getAttribute('data-edge-from');
             const b = el.getAttribute('data-edge-to');
@@ -754,7 +827,7 @@ window.addEventListener('resize', refreshActiveFluxoWires);
             el.classList.toggle('is-hot', on);
         });
         if (strip && stripText) {
-            const outs = FLUXO_INBOUND_EDGES.filter((e) => e.from === id)
+            const outs = edges.filter((e) => e.from === id)
                 .map((e) => `${e.label ? e.label + ' → ' : ''}${nodeLabel(e.to)}`)
                 .join(' · ');
             stripText.textContent = `${nodeLabel(id)}${outs ? ' — ' + outs : ''}`;
@@ -772,7 +845,34 @@ window.addEventListener('resize', refreshActiveFluxoWires);
     });
 
     strip?.querySelector('[data-fluxo-clear]')?.addEventListener('click', clearFocus);
-})();
+    applyZoom();
+}
+
+initFluxoBoardUX({
+    viewportId: 'fluxoInboundViewport',
+    zoomId: 'fluxoInboundZoom',
+    boardId: 'fluxoInboundBoard',
+    stageId: 'fluxoInboundStage',
+    toolbarId: 'fluxoInboundToolbar',
+    stripId: 'fluxoInboundPathStrip',
+    stripTextId: 'fluxoInboundPathText',
+    svgId: 'fluxoInboundWires',
+    edges: FLUXO_INBOUND_EDGES,
+    draw: drawFluxoInboundWires
+});
+
+initFluxoBoardUX({
+    viewportId: 'fluxoOutboundViewport',
+    zoomId: 'fluxoOutboundZoom',
+    boardId: 'fluxoOutboundBoard',
+    stageId: 'fluxoOutboundStage',
+    toolbarId: 'fluxoOutboundToolbar',
+    stripId: 'fluxoOutboundPathStrip',
+    stripTextId: 'fluxoOutboundPathText',
+    svgId: 'fluxoOutboundWires',
+    edges: FLUXO_OUTBOUND_EDGES,
+    draw: drawFluxoOutboundWires
+});
 
 /* Objeções kit: busca + filtros por página */
 function initObjKit(root) {
