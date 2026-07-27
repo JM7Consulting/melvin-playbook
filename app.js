@@ -456,6 +456,19 @@ function fluxoOrthoPath(a, b, fromSide, toSide, opts = {}) {
         const midY = (a.y + b.y) / 2;
         return `M ${a.x} ${a.y} L ${a.x} ${midY} L ${b.x} ${midY} L ${b.x} ${b.y}`;
     }
+    // Sobe/desce primeiro, depois horizontal (evita atravessar a espinha)
+    if (fromSide === 'right' && toSide === 'bottom') {
+        const midY = b.y;
+        return `M ${a.x} ${a.y} L ${a.x} ${midY} L ${b.x} ${midY} L ${b.x} ${b.y}`;
+    }
+    if (fromSide === 'bottom' && toSide === 'right') {
+        const midY = (a.y + b.y) / 2;
+        return `M ${a.x} ${a.y} L ${a.x} ${midY} L ${b.x} ${midY} L ${b.x} ${b.y}`;
+    }
+    if (fromSide === 'left' && toSide === 'bottom') {
+        const wing = Math.min(a.x, b.x) - (opts.wing || 28);
+        return `M ${a.x} ${a.y} L ${wing} ${a.y} L ${wing} ${b.y} L ${b.x} ${b.y}`;
+    }
     if ((fromSide === 'right' || fromSide === 'left') && (toSide === 'top' || toSide === 'bottom')) {
         return `M ${a.x} ${a.y} L ${b.x} ${a.y} L ${b.x} ${b.y}`;
     }
@@ -604,67 +617,70 @@ function drawFluxoInboundWires() {
 }
 
 const FLUXO_OUTBOUND_EDGES = [
-    /* Entrada A → Leads */
+    /* A → Leads (horizontal limpo) */
     { from: 'o_a', to: 'o_leads', color: '#c084fc', fromSide: 'right', toSide: 'left' },
     { from: 'o_leads', to: 'o_icp1' },
 
-    /* É ICP? (pré-contato) */
+    /* É ICP? — SIM desce · NÃO vai à direita para Existe outra pessoa? */
     { from: 'o_icp1', to: 'o_encontrou', label: 'SIM', color: '#34d399', fromSide: 'bottom', toSide: 'top' },
-    { from: 'o_icp1', to: 'o_outra', label: 'NÃO', color: '#f87171', fromSide: 'left', toSide: 'top' },
+    { from: 'o_icp1', to: 'o_outra', label: 'NÃO', color: '#f87171', fromSide: 'right', toSide: 'left' },
 
-    /* Existe outra pessoa? */
-    { from: 'o_outra', to: 'o_encontrou', label: 'SIM', color: '#34d399', fromSide: 'right', toSide: 'left' },
-    { from: 'o_outra', to: 'o_c', label: 'NÃO', color: '#f87171', fromSide: 'right', toSide: 'left' },
+    /* Existe outra pessoa? — SIM volta p/ Encontrou · NÃO → C1 (Marketing) */
+    { from: 'o_outra', to: 'o_encontrou', label: 'SIM', color: '#34d399', fromSide: 'bottom', toSide: 'right' },
+    { from: 'o_outra', to: 'o_c1', label: 'NÃO', color: '#f87171', fromSide: 'right', toSide: 'left' },
 
     /* Encontrou Persona? */
     { from: 'o_encontrou', to: 'o_cad_contato', label: 'SIM', color: '#34d399', fromSide: 'bottom', toSide: 'top' },
-    { from: 'o_encontrou', to: 'o_outra', label: 'NÃO', color: '#f87171', fromSide: 'left', toSide: 'bottom' },
+    { from: 'o_encontrou', to: 'o_outra', label: 'NÃO', color: '#f87171', fromSide: 'right', toSide: 'bottom' },
 
-    /* CS → B → Cadência Contato */
+    /* CS → B → entra na Cadência de Contato pela esquerda */
     { from: 'o_fluxo_cs', to: 'o_b', color: '#22d3ee', fromSide: 'bottom', toSide: 'top' },
-    { from: 'o_b', to: 'o_cad_contato', color: '#22d3ee', fromSide: 'right', toSide: 'bottom' },
+    { from: 'o_b', to: 'o_cad_contato', color: '#22d3ee', fromSide: 'right', toSide: 'left' },
 
-    /* Conseguiu contato? */
+    /* Conseguiu contato? — NÃO → C2 local · SIM desce */
     { from: 'o_cad_contato', to: 'o_contato' },
-    { from: 'o_contato', to: 'o_c', label: 'NÃO', color: '#f87171', fromSide: 'right', toSide: 'left' },
+    { from: 'o_contato', to: 'o_c2', label: 'NÃO', color: '#f87171', fromSide: 'right', toSide: 'left' },
     { from: 'o_contato', to: 'o_icp2', label: 'SIM', color: '#34d399', fromSide: 'bottom', toSide: 'top' },
 
-    /* É ICP? (pós-contato) */
+    /* É ICP? pós-contato — NÃO → Descarte (esquerda) */
     { from: 'o_icp2', to: 'o_descarte', label: 'NÃO', color: '#f87171', fromSide: 'left', toSide: 'right' },
     { from: 'o_icp2', to: 'o_persona', label: 'SIM', color: '#34d399', fromSide: 'bottom', toSide: 'top' },
 
-    /* É Persona? */
-    { from: 'o_persona', to: 'o_c', label: 'NÃO', color: '#f87171', fromSide: 'right', toSide: 'left' },
+    /* É Persona? — NÃO → C3 local */
+    { from: 'o_persona', to: 'o_c3', label: 'NÃO', color: '#f87171', fromSide: 'right', toSide: 'left' },
     { from: 'o_persona', to: 'o_mql', label: 'SIM', color: '#34d399', fromSide: 'bottom', toSide: 'top' },
 
-    /* MQL → Red flag? */
+    /* MQL → Red flag? — SIM sobe p/ Descarte · NÃO desce */
     { from: 'o_mql', to: 'o_redflag' },
     { from: 'o_redflag', to: 'o_descarte', label: 'SIM', color: '#f87171', fromSide: 'left', toSide: 'bottom' },
     { from: 'o_redflag', to: 'o_agendou', label: 'NÃO', color: '#34d399', fromSide: 'bottom', toSide: 'top' },
 
-    /* Agendou reunião? */
+    /* Agendou? — NÃO → cadência (esquerda) · SIM → SQL */
     { from: 'o_agendou', to: 'o_sql', label: 'SIM', color: '#34d399', fromSide: 'bottom', toSide: 'top' },
-    { from: 'o_agendou', to: 'o_cad_agenda', label: 'NÃO', color: '#f87171', fromSide: 'left', toSide: 'top' },
+    { from: 'o_agendou', to: 'o_cad_agenda', label: 'NÃO', color: '#f87171', fromSide: 'left', toSide: 'right' },
     { from: 'o_cad_agenda', to: 'o_agendou', color: '#fbbf24', dashed: true, fromSide: 'right', toSide: 'left' },
-    { from: 'o_cad_agenda', to: 'o_c', color: '#c084fc', fromSide: 'right', toSide: 'left' },
+    { from: 'o_cad_agenda', to: 'o_c_agenda', color: '#94a3b8', fromSide: 'bottom', toSide: 'top' },
 
-    /* SQL → Closer */
+    /* SQL → Closer (mesma altura) */
     { from: 'o_sql', to: 'o_reuniao_q', fromSide: 'right', toSide: 'left' },
+    /* NÃO sobe p/ Reagendamento (direita do Agendou) · volta ao Agendou */
     { from: 'o_reuniao_q', to: 'o_reagendamento', label: 'NÃO', color: '#f87171', fromSide: 'left', toSide: 'right' },
+    { from: 'o_reagendamento', to: 'o_agendou', color: '#fbbf24', dashed: true, fromSide: 'left', toSide: 'right' },
     { from: 'o_reuniao_q', to: 'o_possivel', label: 'SIM', color: '#34d399', fromSide: 'bottom', toSide: 'top' },
-    { from: 'o_reagendamento', to: 'o_agendou', color: '#fbbf24', dashed: true, fromSide: 'bottom', toSide: 'left' },
 
-    /* Possível fechamento? */
-    { from: 'o_possivel', to: 'o_c', label: 'NÃO', color: '#f87171', fromSide: 'right', toSide: 'left' },
+    /* Possível fechamento? — NÃO → C4 local */
+    { from: 'o_possivel', to: 'o_c4', label: 'NÃO', color: '#f87171', fromSide: 'right', toSide: 'left' },
     { from: 'o_possivel', to: 'o_sal', label: 'SIM', color: '#34d399', fromSide: 'bottom', toSide: 'top' },
     { from: 'o_sal', to: 'o_followup' },
     { from: 'o_followup', to: 'o_fechou' },
-    { from: 'o_fechou', to: 'o_c', label: 'NÃO', color: '#f87171', fromSide: 'right', toSide: 'left' },
+
+    /* Fechou? — NÃO → C5 local · SIM → Contrato → Onboarding */
+    { from: 'o_fechou', to: 'o_c5', label: 'NÃO', color: '#f87171', fromSide: 'right', toSide: 'left' },
     { from: 'o_fechou', to: 'o_contrato', label: 'SIM', color: '#34d399', fromSide: 'bottom', toSide: 'top' },
     { from: 'o_contrato', to: 'o_onboarding', color: '#22d3ee', fromSide: 'left', toSide: 'right' },
 
-    /* Marketing C → nutrição */
-    { from: 'o_c', to: 'o_nutricao', color: '#94a3b8' }
+    /* Só o C do topo liga visualmente à nutrição (demais C = mesmo conector no PDF) */
+    { from: 'o_c1', to: 'o_nutricao', color: '#94a3b8' }
 ];
 
 function drawFluxoOutboundWires() {

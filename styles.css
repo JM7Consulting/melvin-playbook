@@ -2061,7 +2061,12 @@ body.light-mode .gim-accordion.gim-dor-oculta {
 }
 .fluxo-stage-in { height: 1680px; }
 .fluxo-stage-out {
-    height: 2140px;
+    height: 2480px;
+}
+.fluxo-cs-band-out {
+    left: 0;
+    width: 25%;
+    top: 500px;
 }
 .fluxo-board-out {
     min-width: 1280px;
@@ -2077,12 +2082,6 @@ body.light-mode .gim-accordion.gim-dor-oculta {
 .fluxo-board-out .fluxo-lanes-bg .lane-bdr { background: rgba(168, 85, 247, 0.05); }
 .fluxo-board-out .fluxo-lanes-bg .lane-closer { background: rgba(250, 204, 21, 0.045); }
 .fluxo-board-out .fluxo-lanes-bg .lane-mkt { background: rgba(244, 114, 182, 0.05); }
-
-.fluxo-cs-band-out {
-    left: 0;
-    width: 25%;
-    top: 1160px;
-}
 
 .fluxo-zoom-layer {
     transform-origin: 0 0;

@@ -5308,41 +5308,50 @@
 
                         <svg class="fluxo-wires" id="fluxoOutboundWires" aria-hidden="true"></svg>
 
-                        <!-- ===== SDR (12.5%) + CS ===== -->
-                        <div class="fn fn-circle fn-connector" data-fn="o_a" style="left:12.5%; top:36px">A</div>
-                        <div class="fn fn-lane-tag fn-cs-tag" style="left:12.5%; top:1188px">CS</div>
-                        <div class="fn fn-box fn-subprocess fn-cs" data-fn="o_fluxo_cs" style="left:12.5%; top:1230px">Fluxo comercial CS</div>
-                        <div class="fn fn-circle fn-connector" data-fn="o_b" style="left:12.5%; top:1360px">B</div>
-                        <div class="fn fn-box fn-subprocess fn-cs" data-fn="o_onboarding" style="left:12.5%; top:1520px">Fluxo Onboarding</div>
+                        <!-- ===== SDR 12.5% + CS (faixa inferior da mesma coluna) ===== -->
+                        <div class="fn fn-circle fn-connector" data-fn="o_a" style="left:12.5%; top:48px" title="Entrada">A</div>
+                        <div class="fn fn-lane-tag fn-cs-tag" style="left:12.5%; top:520px">CS</div>
+                        <div class="fn fn-box fn-subprocess fn-cs" data-fn="o_fluxo_cs" style="left:12.5%; top:560px">Fluxo comercial CS</div>
+                        <div class="fn fn-circle fn-connector" data-fn="o_b" style="left:12.5%; top:690px" title="Conector B → Cadência de Contato">B</div>
+                        <div class="fn fn-box fn-subprocess fn-cs" data-fn="o_onboarding" style="left:12.5%; top:2320px">Fluxo Onboarding</div>
 
-                        <!-- ===== BDR (37.5%) — espinha ===== -->
-                        <div class="fn fn-box fn-start" data-fn="o_leads" style="left:37.5%; top:28px">Leads outbound</div>
-                        <div class="fn fn-diamond" data-fn="o_icp1" data-label="É ICP?" style="left:37.5%; top:120px"></div>
-                        <div class="fn fn-diamond" data-fn="o_outra" data-label="Existe outra pessoa?" style="left:26%; top:250px"></div>
-                        <div class="fn fn-diamond" data-fn="o_encontrou" data-label="Encontrou Persona?" style="left:37.5%; top:280px"></div>
-                        <div class="fn fn-box fn-warn" data-fn="o_cad_contato" style="left:37.5%; top:430px">Cadência de Contato Inicial e Nutrição</div>
-                        <div class="fn fn-diamond" data-fn="o_contato" data-label="Conseguiu contato?" style="left:37.5%; top:560px"></div>
-                        <div class="fn fn-diamond" data-fn="o_icp2" data-label="É ICP?" style="left:37.5%; top:700px"></div>
-                        <div class="fn fn-circle fn-danger" data-fn="o_descarte" style="left:24%; top:720px">Descarte</div>
-                        <div class="fn fn-diamond" data-fn="o_persona" data-label="É Persona?" style="left:37.5%; top:840px"></div>
-                        <div class="fn fn-box fn-ok" data-fn="o_mql" style="left:37.5%; top:980px">MQL - BDR<small>(pessoa e emp. ICP)</small></div>
-                        <div class="fn fn-diamond" data-fn="o_redflag" data-label="Red flag?" style="left:37.5%; top:1110px"></div>
-                        <div class="fn fn-box fn-warn" data-fn="o_reagendamento" style="left:26%; top:1110px">Cadências de Reagendamento</div>
-                        <div class="fn fn-diamond" data-fn="o_agendou" data-label="Agendou reunião?" style="left:37.5%; top:1260px"></div>
+                        <!-- ===== BDR espinha 37.5% ===== -->
+                        <div class="fn fn-box fn-start" data-fn="o_leads" style="left:37.5%; top:40px">Leads outbound</div>
+                        <div class="fn fn-diamond" data-fn="o_icp1" data-label="É ICP?" style="left:37.5%; top:150px"></div>
+                        <!-- Existe outra pessoa? à DIREITA da espinha (como no PDF) -->
+                        <div class="fn fn-diamond" data-fn="o_outra" data-label="Existe outra pessoa?" style="left:50%; top:150px"></div>
+                        <div class="fn fn-diamond" data-fn="o_encontrou" data-label="Encontrou Persona?" style="left:37.5%; top:310px"></div>
+                        <div class="fn fn-box fn-warn" data-fn="o_cad_contato" style="left:37.5%; top:460px">Cadência de Contato Inicial e Nutrição</div>
+                        <div class="fn fn-diamond" data-fn="o_contato" data-label="Conseguiu contato?" style="left:37.5%; top:620px"></div>
+                        <div class="fn fn-diamond" data-fn="o_icp2" data-label="É ICP?" style="left:37.5%; top:780px"></div>
+                        <!-- Descarte à ESQUERDA -->
+                        <div class="fn fn-circle fn-danger" data-fn="o_descarte" style="left:26%; top:780px">Descarte</div>
+                        <div class="fn fn-diamond" data-fn="o_persona" data-label="É Persona?" style="left:37.5%; top:940px"></div>
+                        <div class="fn fn-box fn-ok" data-fn="o_mql" style="left:37.5%; top:1100px">MQL - BDR<small>(pessoa e emp. ICP)</small></div>
+                        <div class="fn fn-diamond" data-fn="o_redflag" data-label="Red flag?" style="left:37.5%; top:1240px"></div>
+                        <div class="fn fn-diamond" data-fn="o_agendou" data-label="Agendou reunião?" style="left:37.5%; top:1400px"></div>
+                        <!-- Agendamento à ESQUERDA · Reagendamento à DIREITA -->
                         <div class="fn fn-box fn-warn" data-fn="o_cad_agenda" style="left:24%; top:1400px">Cadência de agendamento de reunião</div>
-                        <div class="fn fn-box fn-ok" data-fn="o_sql" style="left:37.5%; top:1440px">SQL - BDR<small>(reunião agendada)</small></div>
+                        <div class="fn fn-box fn-warn" data-fn="o_reagendamento" style="left:50%; top:1400px">Cadências de Reagendamento</div>
+                        <div class="fn fn-box fn-ok" data-fn="o_sql" style="left:37.5%; top:1580px">SQL - BDR<small>(reunião agendada)</small></div>
+                        <!-- C local sob cadência de agendamento (como no PDF) -->
+                        <div class="fn fn-circle fn-connector" data-fn="o_c_agenda" style="left:24%; top:1540px" title="C → Cadência de nutrição">C</div>
 
-                        <!-- ===== CLOSER (62.5%) ===== -->
-                        <div class="fn fn-diamond" data-fn="o_reuniao_q" data-label="Reunião realizada?" style="left:62.5%; top:1260px"></div>
-                        <div class="fn fn-diamond" data-fn="o_possivel" data-label="Possível fechamento?" style="left:62.5%; top:1420px"></div>
-                        <div class="fn fn-box fn-ok" data-fn="o_sal" style="left:62.5%; top:1580px">SAL - BDR<small>(forecast de venda)</small></div>
-                        <div class="fn fn-box fn-warn" data-fn="o_followup" style="left:62.5%; top:1710px">Cadência de follow up para fechamento</div>
-                        <div class="fn fn-diamond" data-fn="o_fechou" data-label="Fechou contrato?" style="left:62.5%; top:1840px"></div>
-                        <div class="fn fn-circle fn-end" data-fn="o_contrato" style="left:62.5%; top:1980px">Contrato fechado</div>
+                        <!-- ===== CLOSER 62.5% — alinhado com SQL (como no PDF) ===== -->
+                        <div class="fn fn-diamond" data-fn="o_reuniao_q" data-label="Reunião realizada?" style="left:62.5%; top:1580px"></div>
+                        <div class="fn fn-diamond" data-fn="o_possivel" data-label="Possível fechamento?" style="left:62.5%; top:1740px"></div>
+                        <div class="fn fn-box fn-ok" data-fn="o_sal" style="left:62.5%; top:1900px">SAL - BDR<small>(forecast de venda)</small></div>
+                        <div class="fn fn-box fn-warn" data-fn="o_followup" style="left:62.5%; top:2040px">Cadência de follow up para fechamento</div>
+                        <div class="fn fn-diamond" data-fn="o_fechou" data-label="Fechou contrato?" style="left:62.5%; top:2180px"></div>
+                        <div class="fn fn-circle fn-end" data-fn="o_contrato" style="left:62.5%; top:2320px">Contrato fechado</div>
 
-                        <!-- ===== MARKETING (87.5%) ===== -->
-                        <div class="fn fn-circle fn-connector" data-fn="o_c" style="left:87.5%; top:80px">C</div>
-                        <div class="fn fn-box fn-muted" data-fn="o_nutricao" style="left:87.5%; top:180px">Cadência de nutrição</div>
+                        <!-- ===== MARKETING 87.5% — vários C locais (igual draw.io) ===== -->
+                        <div class="fn fn-circle fn-connector" data-fn="o_c1" style="left:87.5%; top:48px" title="C → Cadência de nutrição">C</div>
+                        <div class="fn fn-box fn-muted" data-fn="o_nutricao" style="left:87.5%; top:140px">Cadência de nutrição</div>
+                        <div class="fn fn-circle fn-connector" data-fn="o_c2" style="left:87.5%; top:620px" title="C → Cadência de nutrição">C</div>
+                        <div class="fn fn-circle fn-connector" data-fn="o_c3" style="left:87.5%; top:940px" title="C → Cadência de nutrição">C</div>
+                        <div class="fn fn-circle fn-connector" data-fn="o_c4" style="left:87.5%; top:1740px" title="C → Cadência de nutrição">C</div>
+                        <div class="fn fn-circle fn-connector" data-fn="o_c5" style="left:87.5%; top:2180px" title="C → Cadência de nutrição">C</div>
                     </div>
                 </div>
                 </div>
@@ -5357,6 +5366,7 @@
                 <span><i class="lg-line lg-yes"></i> SIM</span>
                 <span><i class="lg-line lg-no"></i> NÃO</span>
                 <span><i class="lg-shape lg-sub"></i> Subfluxo</span>
+                <span><strong style="color:var(--text-main)">A / B / C</strong> = conectores (C → nutrição)</span>
             </div>
 
             <div class="fluxo-path-strip" id="fluxoOutboundPathStrip" hidden>
