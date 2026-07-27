@@ -868,37 +868,213 @@ initFluxoBoardUX({
     draw: drawFluxoInboundWires
 });
 
-/* Outbound: imagem oficial do PDF (fidelidade 1:1) + zoom/pan */
+/* Outbound: imagem oficial do PDF + hotspots para ver caminho */
 (() => {
     const viewport = document.getElementById('fluxoOutboundViewport');
     const zoomLayer = document.getElementById('fluxoOutboundZoom');
+    const stage = document.getElementById('fluxoOutboundStage');
     const img = document.getElementById('fluxoOutboundImg');
+    const hotsBox = document.getElementById('fluxoOutboundHots');
+    const svg = document.getElementById('fluxoOutboundPathSvg');
     const toolbar = document.getElementById('fluxoOutboundToolbar');
-    if (!viewport || !zoomLayer || !img) return;
+    const strip = document.getElementById('fluxoOutboundPathStrip');
+    const stripText = document.getElementById('fluxoOutboundPathText');
+    if (!viewport || !zoomLayer || !img || !hotsBox || !svg || !stage) return;
 
     const sources = {
         v2: 'assets/fluxo-outbound-oficial.png',
         v1: 'assets/fluxo-outbound-oficial-v1.png'
     };
+
+    // Hotspots + edges espelham o PDF v2 (só vizinhança imediata no clique)
+    const HOTS_V2 = [
+        { id: 'o_a', label: 'A', x: 12.5, y: 5.5 },
+        { id: 'o_leads', label: 'Leads outbound', x: 37.5, y: 5.2 },
+        { id: 'o_icp1', label: 'É ICP?', x: 37.5, y: 11.5 },
+        { id: 'o_outra', label: 'Existe outra pessoa?', x: 50, y: 11.5 },
+        { id: 'o_encontrou', label: 'Encontrou Persona?', x: 37.5, y: 18.5 },
+        { id: 'o_cad_contato', label: 'Cadência de Contato Inicial e Nutrição', x: 37.5, y: 25.5 },
+        { id: 'o_b', label: 'B', x: 12.5, y: 25.5 },
+        { id: 'o_fluxo_cs', label: 'Fluxo comercial CS', x: 12.5, y: 22 },
+        { id: 'o_contato', label: 'Conseguiu contato?', x: 37.5, y: 32 },
+        { id: 'o_c2', label: 'C', x: 87.5, y: 32 },
+        { id: 'o_icp2', label: 'É ICP?', x: 37.5, y: 39 },
+        { id: 'o_descarte', label: 'Descarte', x: 26, y: 39 },
+        { id: 'o_persona', label: 'É Persona?', x: 37.5, y: 46 },
+        { id: 'o_c3', label: 'C', x: 87.5, y: 46 },
+        { id: 'o_mql', label: 'MQL - BDR', x: 37.5, y: 53 },
+        { id: 'o_redflag', label: 'Red flag?', x: 37.5, y: 59.5 },
+        { id: 'o_agendou', label: 'Agendou reunião?', x: 37.5, y: 66.5 },
+        { id: 'o_cad_agenda', label: 'Cadência de agendamento de reunião', x: 24, y: 66.5 },
+        { id: 'o_reagendamento', label: 'Cadências de Reagendamento', x: 50, y: 66.5 },
+        { id: 'o_c_agenda', label: 'C', x: 24, y: 72 },
+        { id: 'o_sql', label: 'SQL - BDR', x: 37.5, y: 74 },
+        { id: 'o_reuniao_q', label: 'Reunião realizada?', x: 62.5, y: 74 },
+        { id: 'o_possivel', label: 'Possível fechamento?', x: 62.5, y: 80.5 },
+        { id: 'o_c4', label: 'C', x: 87.5, y: 80.5 },
+        { id: 'o_sal', label: 'SAL - BDR', x: 62.5, y: 86 },
+        { id: 'o_followup', label: 'Cadência de follow up para fechamento', x: 62.5, y: 90.5 },
+        { id: 'o_fechou', label: 'Fechou contrato?', x: 62.5, y: 95 },
+        { id: 'o_c5', label: 'C', x: 87.5, y: 95 },
+        { id: 'o_contrato', label: 'Contrato fechado', x: 62.5, y: 98.2 },
+        { id: 'o_onboarding', label: 'Fluxo Onboarding', x: 12.5, y: 98.2 },
+        { id: 'o_c1', label: 'C', x: 87.5, y: 4.5 },
+        { id: 'o_nutricao', label: 'Cadência de nutrição', x: 87.5, y: 9.5 }
+    ];
+
+    const EDGES_V2 = [
+        { from: 'o_a', to: 'o_leads', label: '' },
+        { from: 'o_leads', to: 'o_icp1', label: '' },
+        { from: 'o_icp1', to: 'o_encontrou', label: 'SIM' },
+        { from: 'o_icp1', to: 'o_outra', label: 'NÃO' },
+        { from: 'o_outra', to: 'o_encontrou', label: 'SIM' },
+        { from: 'o_outra', to: 'o_c1', label: 'NÃO' },
+        { from: 'o_c1', to: 'o_nutricao', label: '' },
+        { from: 'o_encontrou', to: 'o_cad_contato', label: 'SIM' },
+        { from: 'o_encontrou', to: 'o_outra', label: 'NÃO' },
+        { from: 'o_fluxo_cs', to: 'o_b', label: '' },
+        { from: 'o_b', to: 'o_cad_contato', label: '' },
+        { from: 'o_cad_contato', to: 'o_contato', label: '' },
+        { from: 'o_contato', to: 'o_icp2', label: 'SIM' },
+        { from: 'o_contato', to: 'o_c2', label: 'NÃO' },
+        { from: 'o_icp2', to: 'o_persona', label: 'SIM' },
+        { from: 'o_icp2', to: 'o_descarte', label: 'NÃO' },
+        { from: 'o_persona', to: 'o_mql', label: 'SIM' },
+        { from: 'o_persona', to: 'o_c3', label: 'NÃO' },
+        { from: 'o_mql', to: 'o_redflag', label: '' },
+        { from: 'o_redflag', to: 'o_agendou', label: 'NÃO' },
+        { from: 'o_redflag', to: 'o_descarte', label: 'SIM' },
+        { from: 'o_agendou', to: 'o_sql', label: 'SIM' },
+        { from: 'o_agendou', to: 'o_cad_agenda', label: 'NÃO' },
+        { from: 'o_cad_agenda', to: 'o_agendou', label: '' },
+        { from: 'o_cad_agenda', to: 'o_c_agenda', label: '' },
+        { from: 'o_sql', to: 'o_reuniao_q', label: '' },
+        { from: 'o_reuniao_q', to: 'o_possivel', label: 'SIM' },
+        { from: 'o_reuniao_q', to: 'o_reagendamento', label: 'NÃO' },
+        { from: 'o_reagendamento', to: 'o_agendou', label: '' },
+        { from: 'o_possivel', to: 'o_sal', label: 'SIM' },
+        { from: 'o_possivel', to: 'o_c4', label: 'NÃO' },
+        { from: 'o_sal', to: 'o_followup', label: '' },
+        { from: 'o_followup', to: 'o_fechou', label: '' },
+        { from: 'o_fechou', to: 'o_contrato', label: 'SIM' },
+        { from: 'o_fechou', to: 'o_c5', label: 'NÃO' },
+        { from: 'o_contrato', to: 'o_onboarding', label: '' }
+    ];
+
     let zoom = 1;
+    let pdfVer = 'v2';
+    const byId = Object.fromEntries(HOTS_V2.map((h) => [h.id, h]));
+
+    function buildHots() {
+        hotsBox.innerHTML = '';
+        HOTS_V2.forEach((h) => {
+            const btn = document.createElement('button');
+            btn.type = 'button';
+            btn.className = 'fluxo-pdf-hot';
+            btn.dataset.fn = h.id;
+            btn.title = h.label;
+            btn.setAttribute('aria-label', h.label);
+            btn.style.left = `${h.x}%`;
+            btn.style.top = `${h.y}%`;
+            hotsBox.appendChild(btn);
+        });
+    }
 
     function applyZoom() {
         zoomLayer.style.transform = `scale(${zoom})`;
-        const w = img.offsetWidth || img.naturalWidth || 1100;
-        const h = img.offsetHeight || img.naturalHeight || 1500;
+        const w = stage.offsetWidth || img.offsetWidth || 1100;
+        const h = stage.offsetHeight || img.offsetHeight || 1500;
         zoomLayer.style.marginRight = `${Math.max(0, w * (zoom - 1))}px`;
         zoomLayer.style.marginBottom = `${Math.max(0, h * (zoom - 1))}px`;
         const resetBtn = toolbar?.querySelector('[data-fluxo-zoom="reset"]');
         if (resetBtn) resetBtn.textContent = `${Math.round(zoom * 100)}%`;
+        syncSvgSize();
     }
 
+    function syncSvgSize() {
+        const w = stage.clientWidth;
+        const h = stage.clientHeight;
+        if (w < 10 || h < 10) return;
+        svg.setAttribute('viewBox', `0 0 ${w} ${h}`);
+        svg.setAttribute('width', w);
+        svg.setAttribute('height', h);
+    }
+
+    function clearFocus() {
+        stage.classList.remove('is-focus');
+        hotsBox.querySelectorAll('.is-hot').forEach((n) => n.classList.remove('is-hot'));
+        while (svg.firstChild) svg.removeChild(svg.firstChild);
+        if (strip) strip.hidden = true;
+    }
+
+    function neighbors(id) {
+        const outs = EDGES_V2.filter((e) => e.from === id).map((e) => e.to);
+        const ins = EDGES_V2.filter((e) => e.to === id).map((e) => e.from);
+        return [...new Set([...outs, ...ins])];
+    }
+
+    function pctToXY(h) {
+        const w = stage.clientWidth;
+        const ht = stage.clientHeight;
+        return { x: (h.x / 100) * w, y: (h.y / 100) * ht };
+    }
+
+    function focusNode(id) {
+        if (pdfVer !== 'v2') return;
+        const hot = new Set([id, ...neighbors(id)]);
+        stage.classList.add('is-focus');
+        hotsBox.querySelectorAll('.fluxo-pdf-hot').forEach((el) => {
+            el.classList.toggle('is-hot', hot.has(el.dataset.fn));
+        });
+
+        syncSvgSize();
+        while (svg.firstChild) svg.removeChild(svg.firstChild);
+        const NS = 'http://www.w3.org/2000/svg';
+        EDGES_V2.forEach((edge) => {
+            if (!(hot.has(edge.from) && hot.has(edge.to) && (edge.from === id || edge.to === id))) return;
+            const a = byId[edge.from];
+            const b = byId[edge.to];
+            if (!a || !b) return;
+            const p1 = pctToXY(a);
+            const p2 = pctToXY(b);
+            const midX = (p1.x + p2.x) / 2;
+            const midY = (p1.y + p2.y) / 2;
+            const path = document.createElementNS(NS, 'path');
+            // cotovelo ortogonal simples
+            const d = Math.abs(p2.x - p1.x) > Math.abs(p2.y - p1.y)
+                ? `M ${p1.x} ${p1.y} L ${midX} ${p1.y} L ${midX} ${p2.y} L ${p2.x} ${p2.y}`
+                : `M ${p1.x} ${p1.y} L ${p1.x} ${midY} L ${p2.x} ${midY} L ${p2.x} ${p2.y}`;
+            path.setAttribute('d', d);
+            svg.appendChild(path);
+        });
+
+        if (strip && stripText) {
+            const outs = EDGES_V2.filter((e) => e.from === id)
+                .map((e) => `${e.label ? e.label + ' → ' : ''}${byId[e.to]?.label || e.to}`)
+                .join(' · ');
+            stripText.textContent = `${byId[id]?.label || id}${outs ? ' — ' + outs : ''}`;
+            strip.hidden = false;
+        }
+    }
+
+    buildHots();
+    stage.dataset.pdfVer = 'v2';
+
     toolbar?.addEventListener('click', (e) => {
+        const clearBtn = e.target.closest('[data-fluxo-clear]');
+        if (clearBtn) {
+            clearFocus();
+            return;
+        }
         const pdfBtn = e.target.closest('[data-fluxo-pdf]');
         if (pdfBtn) {
             const key = pdfBtn.getAttribute('data-fluxo-pdf');
             if (sources[key]) {
+                pdfVer = key;
+                stage.dataset.pdfVer = key;
                 img.src = sources[key];
                 toolbar.querySelectorAll('[data-fluxo-pdf]').forEach((b) => b.classList.toggle('is-active', b === pdfBtn));
+                clearFocus();
                 zoom = 1;
                 img.onload = applyZoom;
             }
@@ -917,16 +1093,38 @@ initFluxoBoardUX({
         if (mode === 'out') zoom = Math.max(0.4, +(zoom - 0.15).toFixed(2));
         if (mode === 'reset') zoom = 1;
         applyZoom();
+        // redesigna highlight se ativo
+        const active = hotsBox.querySelector('.fluxo-pdf-hot.is-hot');
+        if (active && stage.classList.contains('is-focus')) {
+            focusNode(active.dataset.fn);
+        }
+    });
+
+    strip?.querySelector('[data-fluxo-clear]')?.addEventListener('click', clearFocus);
+
+    hotsBox.addEventListener('click', (e) => {
+        const hot = e.target.closest('.fluxo-pdf-hot');
+        if (!hot) return;
+        e.stopPropagation();
+        focusNode(hot.dataset.fn);
+    });
+
+    // clique fora limpa (sem iniciar pan)
+    stage.addEventListener('click', (e) => {
+        if (e.target.closest('.fluxo-pdf-hot')) return;
+        clearFocus();
     });
 
     let panning = false;
+    let moved = false;
     let startX = 0;
     let startY = 0;
     let scrollLeft = 0;
     let scrollTop = 0;
     viewport.addEventListener('pointerdown', (e) => {
-        if (e.target.closest('.fluxo-tool')) return;
+        if (e.target.closest('.fluxo-tool') || e.target.closest('.fluxo-pdf-hot')) return;
         panning = true;
+        moved = false;
         viewport.classList.add('is-panning');
         startX = e.clientX;
         startY = e.clientY;
@@ -936,8 +1134,11 @@ initFluxoBoardUX({
     });
     viewport.addEventListener('pointermove', (e) => {
         if (!panning) return;
-        viewport.scrollLeft = scrollLeft - (e.clientX - startX);
-        viewport.scrollTop = scrollTop - (e.clientY - startY);
+        const dx = e.clientX - startX;
+        const dy = e.clientY - startY;
+        if (Math.abs(dx) + Math.abs(dy) > 4) moved = true;
+        viewport.scrollLeft = scrollLeft - dx;
+        viewport.scrollTop = scrollTop - dy;
     });
     const endPan = () => {
         panning = false;
@@ -948,6 +1149,11 @@ initFluxoBoardUX({
 
     if (img.complete) applyZoom();
     else img.addEventListener('load', applyZoom);
+    window.addEventListener('resize', () => {
+        applyZoom();
+        const active = hotsBox.querySelector('.fluxo-pdf-hot.is-hot');
+        if (active && stage.classList.contains('is-focus')) focusNode(active.dataset.fn);
+    });
 })();
 
 /* Objeções kit: busca + filtros por página */

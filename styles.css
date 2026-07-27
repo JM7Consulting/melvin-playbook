@@ -2093,6 +2093,12 @@ body.light-mode .gim-accordion.gim-dor-oculta {
     background: #fff;
     border: 1px solid var(--border-color);
 }
+.fluxo-pdf-stage {
+    position: relative;
+    display: inline-block;
+    line-height: 0;
+    max-width: 100%;
+}
 .fluxo-pdf-img {
     display: block;
     width: min(1100px, 100%);
@@ -2101,6 +2107,60 @@ body.light-mode .gim-accordion.gim-dor-oculta {
     user-select: none;
     -webkit-user-drag: none;
     border-radius: 0;
+}
+.fluxo-pdf-wires,
+.fluxo-pdf-hots {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+}
+.fluxo-pdf-wires {
+    pointer-events: none;
+    z-index: 2;
+    overflow: visible;
+}
+.fluxo-pdf-hots {
+    z-index: 3;
+}
+.fluxo-pdf-hot {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    width: 7.2%;
+    height: 3.2%;
+    min-width: 44px;
+    min-height: 28px;
+    border-radius: 10px;
+    border: 1.5px solid transparent;
+    background: transparent;
+    cursor: pointer;
+    padding: 0;
+    transition: border-color 0.15s, background 0.15s, box-shadow 0.15s, opacity 0.15s;
+}
+.fluxo-pdf-hot:hover {
+    border-color: rgba(14, 165, 233, 0.55);
+    background: rgba(56, 189, 248, 0.12);
+}
+.fluxo-pdf-stage.is-focus .fluxo-pdf-hot {
+    opacity: 0.22;
+}
+.fluxo-pdf-stage.is-focus .fluxo-pdf-hot.is-hot {
+    opacity: 1;
+    border-color: rgba(16, 185, 129, 0.85);
+    background: rgba(16, 185, 129, 0.18);
+    box-shadow: 0 0 0 2px rgba(100, 252, 216, 0.35), 0 8px 20px rgba(0,0,0,0.18);
+}
+.fluxo-pdf-wires path {
+    fill: none;
+    stroke: #10b981;
+    stroke-width: 3;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    opacity: 0.92;
+    filter: drop-shadow(0 0 4px rgba(16, 185, 129, 0.45));
+}
+.fluxo-pdf-stage[data-pdf-ver="v1"] .fluxo-pdf-hots {
+    display: none;
 }
 body.light-mode .fluxo-pdf-wrap { background: #fff; }
 .fluxo-tool.is-active {
