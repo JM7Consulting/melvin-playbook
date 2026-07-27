@@ -251,12 +251,6 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
         closeMobileSidebar();
-        if (pageHash === '#fluxo-comerc-cs') {
-            requestAnimationFrame(() => {
-                drawFluxoCsWires();
-                requestAnimationFrame(drawFluxoCsWires);
-            });
-        }
         return true;
     }
 
@@ -694,23 +688,14 @@ const FLUXO_CS_EDGES = [
 ];
 
 function drawFluxoCsWires() {
-    drawFluxoDiagramWires('fluxoCsStage', 'fluxoCsWires', FLUXO_CS_EDGES, 'fluxo-cs-arrow');
+    /* Wire redraw aposentado — Fluxo CS usa PDF oficial (initFluxoPdfUX). */
 }
 
 function refreshActiveFluxoWires() {
-    if (document.getElementById('fluxo-comerc-cs')?.classList.contains('page-active')) {
-        drawFluxoCsWires();
-    }
+    /* no-op: In/Out/CS usam PDF UX */
 }
 
 window.addEventListener('resize', refreshActiveFluxoWires);
-
-(() => {
-    if (typeof ResizeObserver === 'undefined') return;
-    const ro = new ResizeObserver(refreshActiveFluxoWires);
-    const el = document.getElementById('fluxoCsStage');
-    if (el) ro.observe(el);
-})();
 
 /* Fluxo boards SVG (CS): zoom/pan/highlight */
 function initFluxoBoardUX(cfg) {
@@ -1284,6 +1269,29 @@ initFluxoPdfUX({
     },
     hots: { v2: FLUXO_OUTBOUND_PDF_HOTS, v1: [] },
     edges: { v2: FLUXO_OUTBOUND_PDF_EDGES, v1: [] }
+});
+
+/* CS: v1 = original PDF. v2 slot pronto (mesmo PNG até a revisão chegar). Path UX entra na v2. */
+const FLUXO_CS_PDF_HOTS = [];
+const FLUXO_CS_PDF_EDGES = [];
+
+initFluxoPdfUX({
+    viewportId: 'fluxoCsViewport',
+    zoomId: 'fluxoCsZoom',
+    stageId: 'fluxoCsStage',
+    imgId: 'fluxoCsImg',
+    hotsId: 'fluxoCsHots',
+    svgId: 'fluxoCsPathSvg',
+    toolbarId: 'fluxoCsToolbar',
+    stripId: 'fluxoCsPathStrip',
+    stripTextId: 'fluxoCsPathText',
+    defaultVer: 'v1',
+    sources: {
+        v2: 'assets/fluxo-cs-oficial.png',
+        v1: 'assets/fluxo-cs-oficial-v1.png'
+    },
+    hots: { v2: FLUXO_CS_PDF_HOTS, v1: [] },
+    edges: { v2: FLUXO_CS_PDF_EDGES, v1: [] }
 });
 
 /* Objeções kit: busca + filtros por página */

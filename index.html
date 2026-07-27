@@ -5415,65 +5415,55 @@
         </section>
         <section id="fluxo-comerc-cs" class="blueprint-page" style="padding: 40px; border-radius: 16px;">
 
-            <div class="cadencia-header-block" style="margin-bottom: 28px;">
+            <div class="cadencia-header-block" style="margin-bottom: 18px;">
                 <div class="cadencia-title-line" style="font-size: 1.8rem; color: #22d3ee;">♻️ FLUXO COMERCIAL CS</div>
-                <p class="cadencia-subtitle" style="padding-left: 0;">Expansão &amp; Retenção · Upsell, Cross-sell, Upgrade, alinhamento com Produto/TI e Warm Intro para o Closer.</p>
+                <p class="cadencia-subtitle" style="padding-left: 0;">Diagrama <strong>oficial</strong> do PDF Melvin (draw.io) — reprodução pixel-perfect, sem redesenho de setas. Expansão &amp; Retenção · Upsell, Cross-sell, Upgrade, TI/Produto e Warm Intro.</p>
+                <div class="gim-source-chip">Fonte: Fluxos comerciais — Comercial CS.drawio.pdf</div>
+                <p class="crono-card-note" style="margin-top:12px;margin-bottom:0;">Agora: <strong>v1 = original</strong> (mantido). Slot <strong>v2</strong> pronto — quando a revisão chegar, trocamos só o PNG e calibramos o clique-no-caminho.</p>
             </div>
 
-            <div class="fluxo-board-wrap">
-                <div class="fluxo-board" id="fluxoCsBoard">
+            <div class="fluxo-toolbar" id="fluxoCsToolbar">
+                <div class="fluxo-toolbar-left">
+                    <button type="button" class="fluxo-tool" data-fluxo-zoom="out" title="Diminuir">−</button>
+                    <button type="button" class="fluxo-tool" data-fluxo-zoom="reset" title="100%">100%</button>
+                    <button type="button" class="fluxo-tool" data-fluxo-zoom="in" title="Aumentar">+</button>
+                </div>
+                <div class="fluxo-toolbar-hint">Arraste para navegar · zoom na imagem oficial · clique-no-caminho ativa na v2</div>
+                <div class="fluxo-toolbar-right">
+                    <button type="button" class="fluxo-tool" data-fluxo-pdf="v2" title="v2 — aguardando PDF revisado (mesmo arquivo até chegar)">v2</button>
+                    <button type="button" class="fluxo-tool is-active" data-fluxo-pdf="v1" title="Original enviado (draw.io PDF)">v1</button>
+                    <button type="button" class="fluxo-tool" data-fluxo-fit title="Enquadrar">⊡ Enquadrar</button>
+                </div>
+            </div>
 
-                    <div class="fluxo-lane-heads">
-                        <div class="fluxo-lane-head lane-ti">TI / Produto</div>
-                        <div class="fluxo-lane-head lane-cs">CS</div>
-                        <div class="fluxo-lane-head lane-closer">Closer</div>
-                        <div class="fluxo-lane-head lane-bdr">BDR</div>
-                        <div class="fluxo-lane-head lane-mkt">Cliente</div>
-                    </div>
-
-                    <div class="fluxo-stage fluxo-stage-cs" id="fluxoCsStage">
-                        <div class="fluxo-lanes-bg" aria-hidden="true">
-                            <span class="lane-ti"></span><span class="lane-cs"></span><span class="lane-closer"></span><span class="lane-bdr"></span><span class="lane-mkt"></span>
-                        </div>
-
-                        <svg class="fluxo-wires" id="fluxoCsWires" aria-hidden="true"></svg>
-
-                        <!-- CS — espinha -->
-                        <div class="fn fn-box fn-start" data-fn="c_map" style="left:30%; top:24px">Mapeamento de Base<small>Onboarding · Territory · Pedido</small></div>
-                        <div class="fn fn-box fn-ok" data-fn="c_class" style="left:30%; top:120px">Classificação<small>Upgrade · Upsell · Cross-sell · Melhoria</small></div>
-                        <div class="fn fn-diamond" data-fn="c_escopo" data-label="Faz sentido?" style="left:30%; top:230px"></div>
-
-                        <div class="fn fn-box fn-danger" data-fn="c_devolver" style="left:90%; top:252px">Devolver ao cliente<small>com justificativa</small></div>
-
-                        <div class="fn fn-diamond" data-fn="c_custom" data-label="Customização?" style="left:30%; top:390px"></div>
-                        <div class="fn fn-box fn-warn" data-fn="c_esforco" style="left:10%; top:412px">Levantar esforço TI<small>escopo + esforço</small></div>
-
-                        <div class="fn fn-box fn-ok" data-fn="c_pre" style="left:30%; top:560px">Pré-Venda CS<small>Qualificação + Bitrix</small></div>
-                        <div class="fn fn-diamond" data-fn="c_lowtouch" data-label="Low-touch?" style="left:30%; top:680px"></div>
-
-                        <div class="fn fn-box fn-end" data-fn="c_fecha_cs" style="left:18%; top:850px">CS fecha direto<small>adição de licença</small></div>
-                        <div class="fn fn-box fn-end" data-fn="c_onb1" style="left:18%; top:960px">Fluxo Onboarding</div>
-
-                        <div class="fn fn-box fn-ok" data-fn="c_warm" style="left:42%; top:850px">Warm Intro<small>SQL-CS · Oportunidade Quente</small></div>
-
-                        <!-- BDR — proibido -->
-                        <div class="fn fn-box fn-muted fn-strike" data-fn="c_bdr_ref" style="left:70%; top:850px" title="Warm leads nunca vão ao BDR">Fila BDR<small>proibido para indicação</small></div>
-
-                        <!-- Closer -->
-                        <div class="fn fn-box fn-ok" data-fn="c_negocia" style="left:50%; top:1000px">Negociação de Base<small>Pipeline Expansão · SAL-CS</small></div>
-                        <div class="fn fn-diamond" data-fn="c_fechou" data-label="Fechou?" style="left:50%; top:1140px"></div>
-
-                        <div class="fn fn-box fn-end" data-fn="c_onb2" style="left:62%; top:1280px">Fluxo Onboarding</div>
-                        <div class="fn fn-box fn-danger" data-fn="c_churn" style="left:38%; top:1280px">Alerta Churn<small>devolve ao CS · &lt;24h</small></div>
+            <div class="fluxo-board-wrap fluxo-board-wrap-in fluxo-pdf-wrap" id="fluxoCsViewport">
+                <div class="fluxo-zoom-layer" id="fluxoCsZoom">
+                    <div class="fluxo-pdf-stage" id="fluxoCsStage" data-pdf-ver="v1">
+                        <img
+                            id="fluxoCsImg"
+                            class="fluxo-pdf-img"
+                            src="assets/fluxo-cs-oficial-v1.png"
+                            alt="Fluxo Comercial CS — diagrama oficial Melvin (original)"
+                            draggable="false"
+                            width="1189"
+                            height="1683"
+                        />
+                        <svg class="fluxo-pdf-wires" id="fluxoCsPathSvg" aria-hidden="true"></svg>
+                        <div class="fluxo-pdf-hots" id="fluxoCsHots" aria-hidden="false"></div>
                     </div>
                 </div>
             </div>
 
-            <div class="fluxo-legend">
-                <span><i class="lg-line lg-yes"></i> SIM / avança</span>
-                <span><i class="lg-line lg-no"></i> NÃO / bloqueio</span>
-                <span><i class="lg-line lg-main"></i> Fluxo CS</span>
-                <span><i class="lg-line lg-dash"></i> Rota proibida (BDR)</span>
+            <div class="fluxo-path-strip" id="fluxoCsPathStrip" hidden>
+                <strong>Caminho:</strong> <span id="fluxoCsPathText"></span>
+                <button type="button" class="fluxo-tool" data-fluxo-clear>Limpar</button>
+            </div>
+
+            <div class="fluxo-legend" style="margin-top:14px;">
+                <span><i class="lg-swatch lg-cs"></i> CS</span>
+                <span><i class="lg-swatch lg-closer"></i> Closer</span>
+                <span><i class="lg-swatch lg-bdr"></i> BDR (rota proibida p/ indicação)</span>
+                <span><i class="lg-swatch lg-mkt"></i> Cliente / TI</span>
             </div>
 
             <!-- 5 blocos Arquitetura (Gemini) -->
