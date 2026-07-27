@@ -3955,6 +3955,14 @@ body.light-mode .crono-risk strong { color: #b91c1c; }
   scroll-margin-top: 96px;
 }
 .obj-card.is-hidden { display: none; }
+.obj-card.is-jump-target {
+  outline: 2px solid rgba(100, 252, 216, 0.65);
+  box-shadow: 0 0 0 4px rgba(100, 252, 216, 0.18), 0 12px 28px rgba(0,0,0,0.18);
+}
+body.light-mode .obj-card.is-jump-target {
+  outline-color: rgba(15, 118, 110, 0.55);
+  box-shadow: 0 0 0 4px rgba(15, 118, 110, 0.12), 0 10px 24px rgba(15,23,42,0.07);
+}
 .obj-card-head {
   display: flex;
   gap: 12px;

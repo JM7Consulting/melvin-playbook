@@ -205,13 +205,23 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function forceScreenChange(hash) {
-        const targetSection = document.querySelector(hash);
+        const targetEl = document.querySelector(hash);
+        if (!targetEl) return false;
+
+        // Anchors inside a page (ex.: #obj-out-01) must keep the parent section visible
+        const targetSection = targetEl.matches('main > section')
+            ? targetEl
+            : targetEl.closest('main > section');
         if (!targetSection) return false;
 
+        const pageHash = targetSection.id ? `#${targetSection.id}` : hash;
+
         document.querySelectorAll('.nav-container a').forEach((l) => l.classList.remove('active'));
-        const activeMenuLink = document.querySelector(`.nav-container a[href="${hash}"]`);
+        const activeMenuLink =
+            document.querySelector(`.nav-container a[href="${pageHash}"]`) ||
+            document.querySelector(`.nav-container a[href="${hash}"]`);
         if (activeMenuLink) activeMenuLink.classList.add('active');
-        expandMenuForHash(hash);
+        expandMenuForHash(pageHash);
 
         allSections.forEach((sec) => {
             sec.style.display = 'none';
@@ -221,7 +231,7 @@ document.addEventListener('DOMContentLoaded', () => {
         targetSection.classList.add('page-active');
 
         if (breadcrumbText) {
-            if (hash === '#home-dashboard') {
+            if (pageHash === '#home-dashboard') {
                 breadcrumbText.innerText = 'Playbook Comercial';
             } else {
                 const titleEl = targetSection.querySelector('.cadencia-title-line, h2');
@@ -231,21 +241,29 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        if (targetEl !== targetSection) {
+            requestAnimationFrame(() => {
+                targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                targetEl.classList.add('is-jump-target');
+                setTimeout(() => targetEl.classList.remove('is-jump-target'), 1400);
+            });
+        } else {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
         closeMobileSidebar();
-        if (hash === '#fluxo-comerc-inbound') {
+        if (pageHash === '#fluxo-comerc-inbound') {
             requestAnimationFrame(() => {
                 drawFluxoInboundWires();
                 requestAnimationFrame(drawFluxoInboundWires);
             });
         }
-        if (hash === '#fluxo-comerc-outbound') {
+        if (pageHash === '#fluxo-comerc-outbound') {
             requestAnimationFrame(() => {
                 drawFluxoOutboundWires();
                 requestAnimationFrame(drawFluxoOutboundWires);
             });
         }
-        if (hash === '#fluxo-comerc-cs') {
+        if (pageHash === '#fluxo-comerc-cs') {
             requestAnimationFrame(() => {
                 drawFluxoCsWires();
                 requestAnimationFrame(drawFluxoCsWires);
