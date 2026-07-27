@@ -114,7 +114,7 @@
 
         .logo-toggle {
             cursor: pointer;
-            transition: transform 0.2s ease, filter 0.2s ease;
+            transition: transform 0.2s ease, filter 0.2s ease, opacity 0.2s ease;
             object-fit: contain;
         }
 
@@ -124,9 +124,24 @@
         aside.collapsed .logo-full { display: none; }
         aside.collapsed .logo-mini { display: block; }
 
-        .logo-toggle:hover {
+        /* Logo azul-escura some no aside escuro → versão clara no dark mode */
+        aside .logo-toggle,
+        aside .sidebar-footer img {
+            filter: brightness(0) invert(1);
+            opacity: 0.96;
+        }
+        aside .logo-toggle:hover {
             transform: scale(1.03);
-            filter: drop-shadow(0 0 8px var(--melvin-cyan));
+            filter: brightness(0) invert(1) drop-shadow(0 0 10px rgba(100, 252, 216, 0.65));
+            opacity: 1;
+        }
+        body.light-mode aside .logo-toggle,
+        body.light-mode aside .sidebar-footer img {
+            filter: none;
+            opacity: 1;
+        }
+        body.light-mode aside .logo-toggle:hover {
+            filter: drop-shadow(0 0 8px rgba(15, 118, 110, 0.35));
         }
 
         /* Busca rápida */
