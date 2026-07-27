@@ -257,12 +257,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 requestAnimationFrame(drawFluxoInboundWires);
             });
         }
-        if (pageHash === '#fluxo-comerc-outbound') {
-            requestAnimationFrame(() => {
-                drawFluxoOutboundWires();
-                requestAnimationFrame(drawFluxoOutboundWires);
-            });
-        }
         if (pageHash === '#fluxo-comerc-cs') {
             requestAnimationFrame(() => {
                 drawFluxoCsWires();
