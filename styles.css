@@ -3001,29 +3001,37 @@ body.light-mode .vh-day .d {
   box-shadow: 0 18px 40px rgba(0, 0, 0, 0.28);
 }
 .welcome-hero {
-  min-height: 220px;
+  min-height: 260px;
   display: flex;
   align-items: center;
   justify-content: center;
   background:
-    radial-gradient(ellipse 80% 120% at 70% 40%, rgba(100, 252, 216, 0.18), transparent 55%),
+    radial-gradient(ellipse 70% 90% at 50% 45%, rgba(100, 252, 216, 0.16), transparent 58%),
     linear-gradient(105deg, #071018 0%, #0B1F2A 42%, #0F3A32 78%, #0A2A24 100%);
-  padding: 48px 24px;
+  padding: 56px 28px;
 }
-.welcome-logo-frame {
-  background: rgba(7, 16, 24, 0.72);
-  border: 1px solid rgba(100, 252, 216, 0.28);
-  border-radius: 14px;
-  padding: 18px 36px;
-  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.04), 0 12px 40px rgba(0, 0, 0, 0.35);
+.welcome-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 18px;
+  padding: 10px 8px;
 }
-.welcome-logo {
+.welcome-mark {
   display: block;
-  height: 52px;
-  width: auto;
-  max-width: min(320px, 70vw);
-  object-fit: contain;
-  filter: drop-shadow(0 0 10px rgba(100, 252, 216, 0.25));
+  width: clamp(52px, 7vw, 72px);
+  height: auto;
+  flex-shrink: 0;
+  filter: drop-shadow(0 6px 18px rgba(0, 0, 0, 0.35));
+}
+.welcome-wordmark {
+  font-family: 'Manrope', 'Segoe UI', sans-serif;
+  font-size: clamp(2.4rem, 5.2vw, 3.55rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  color: #F4FBFF;
+  text-shadow: 0 2px 18px rgba(0, 0, 0, 0.35);
+  -webkit-font-smoothing: antialiased;
 }
 .welcome-body {
   padding: 56px 40px 64px;
@@ -3078,8 +3086,8 @@ body.light-mode .welcome-shell {
   border-color: rgba(15, 23, 42, 0.08);
 }
 @media (max-width: 720px) {
-  .welcome-hero { min-height: 180px; padding: 36px 16px; }
-  .welcome-logo { height: 40px; }
+  .welcome-hero { min-height: 200px; padding: 40px 16px; }
+  .welcome-brand { gap: 12px; }
   .welcome-body { padding: 40px 20px 48px; }
   .welcome-pill { width: 100%; max-width: 280px; }
 }
