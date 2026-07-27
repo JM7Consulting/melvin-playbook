@@ -613,3 +613,42 @@ window.addEventListener('resize', refreshActiveFluxoWires);
         if (el) ro.observe(el);
     });
 })();
+
+/* Objeções kit: busca + filtros por página */
+function initObjKit(root) {
+    if (!root) return;
+    const search = root.querySelector('.obj-search');
+    const filters = root.querySelectorAll('.obj-filter');
+    const cards = root.querySelectorAll('.obj-card');
+    const empty = root.querySelector('.obj-empty');
+    let activeFilter = 'all';
+
+    function apply() {
+        const q = (search?.value || '').trim().toLowerCase();
+        let visible = 0;
+        cards.forEach((card) => {
+            const type = card.getAttribute('data-obj-type') || '';
+            const hay = (card.getAttribute('data-obj-text') || card.textContent || '').toLowerCase();
+            const typeOk = activeFilter === 'all' || type === activeFilter;
+            const textOk = !q || hay.includes(q);
+            const show = typeOk && textOk;
+            card.classList.toggle('is-hidden', !show);
+            if (show) visible += 1;
+        });
+        if (empty) empty.hidden = visible > 0;
+    }
+
+    filters.forEach((btn) => {
+        btn.addEventListener('click', () => {
+            filters.forEach((b) => b.classList.remove('is-active'));
+            btn.classList.add('is-active');
+            activeFilter = btn.getAttribute('data-filter') || 'all';
+            apply();
+        });
+    });
+    if (search) {
+        search.addEventListener('input', apply);
+    }
+}
+
+document.querySelectorAll('.obj-kit-page').forEach(initObjKit);
