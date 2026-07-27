@@ -5274,7 +5274,8 @@
 
             <div class="cadencia-header-block" style="margin-bottom: 18px;">
                 <div class="cadencia-title-line" style="font-size: 1.8rem; color: #a78bfa;">FLUXO COMERCIAL OUTBOUND</div>
-                <p class="cadencia-subtitle" style="padding-left: 0;">Diagrama oficial (draw.io) — prospecção ativa BDR com multithreading de persona, handoff ao Closer e nutrição Marketing.</p>
+                <p class="cadencia-subtitle" style="padding-left: 0;">Diagrama <strong>oficial</strong> do PDF Melvin (draw.io) — reprodução pixel-perfect, sem redesenho de setas.</p>
+                <div class="gim-source-chip">Fonte: Fluxos comerciais — Comercial outbound.drawio.pdf</div>
             </div>
 
             <div class="fluxo-toolbar" id="fluxoOutboundToolbar">
@@ -5283,110 +5284,38 @@
                     <button type="button" class="fluxo-tool" data-fluxo-zoom="reset" title="100%">100%</button>
                     <button type="button" class="fluxo-tool" data-fluxo-zoom="in" title="Aumentar">+</button>
                 </div>
-                <div class="fluxo-toolbar-hint">Zoom seguro (setas recalculadas) · clique no nó para destacar · arraste para navegar</div>
+                <div class="fluxo-toolbar-hint">Arraste para navegar · zoom não altera o diagrama (imagem oficial)</div>
                 <div class="fluxo-toolbar-right">
+                    <button type="button" class="fluxo-tool is-active" data-fluxo-pdf="v2" title="Versão refinada do PDF">v2</button>
+                    <button type="button" class="fluxo-tool" data-fluxo-pdf="v1" title="Versão anterior no mesmo PDF">v1</button>
                     <button type="button" class="fluxo-tool" data-fluxo-fit title="Enquadrar">⊡ Enquadrar</button>
                 </div>
             </div>
 
-            <div class="fluxo-board-wrap fluxo-board-wrap-in" id="fluxoOutboundViewport">
+            <div class="fluxo-board-wrap fluxo-board-wrap-in fluxo-pdf-wrap" id="fluxoOutboundViewport">
                 <div class="fluxo-zoom-layer" id="fluxoOutboundZoom">
-                <div class="fluxo-board fluxo-board-out" id="fluxoOutboundBoard">
-
-                    <div class="fluxo-lane-heads fluxo-lane-heads-4">
-                        <div class="fluxo-lane-head lane-sdr">SDR</div>
-                        <div class="fluxo-lane-head lane-bdr">BDR</div>
-                        <div class="fluxo-lane-head lane-closer">Closer</div>
-                        <div class="fluxo-lane-head lane-mkt">Marketing</div>
-                    </div>
-
-                    <div class="fluxo-stage fluxo-stage-out" id="fluxoOutboundStage">
-                        <div class="fluxo-lanes-bg fluxo-lanes-bg-4" aria-hidden="true">
-                            <span class="lane-sdr"></span><span class="lane-bdr"></span><span class="lane-closer"></span><span class="lane-mkt"></span>
-                        </div>
-                        <div class="fluxo-cs-band fluxo-cs-band-out" aria-hidden="true"></div>
-
-                        <svg class="fluxo-wires" id="fluxoOutboundWires" aria-hidden="true"></svg>
-
-                        <!-- ===== SDR 12.5% + CS (faixa inferior da mesma coluna) ===== -->
-                        <div class="fn fn-circle fn-connector" data-fn="o_a" style="left:12.5%; top:48px" title="Entrada">A</div>
-                        <div class="fn fn-lane-tag fn-cs-tag" style="left:12.5%; top:520px">CS</div>
-                        <div class="fn fn-box fn-subprocess fn-cs" data-fn="o_fluxo_cs" style="left:12.5%; top:560px">Fluxo comercial CS</div>
-                        <div class="fn fn-circle fn-connector" data-fn="o_b" style="left:12.5%; top:690px" title="Conector B → Cadência de Contato">B</div>
-                        <div class="fn fn-box fn-subprocess fn-cs" data-fn="o_onboarding" style="left:12.5%; top:2320px">Fluxo Onboarding</div>
-
-                        <!-- ===== BDR espinha 37.5% ===== -->
-                        <div class="fn fn-box fn-start" data-fn="o_leads" style="left:37.5%; top:40px">Leads outbound</div>
-                        <div class="fn fn-diamond" data-fn="o_icp1" data-label="É ICP?" style="left:37.5%; top:150px"></div>
-                        <!-- Existe outra pessoa? à DIREITA da espinha (como no PDF) -->
-                        <div class="fn fn-diamond" data-fn="o_outra" data-label="Existe outra pessoa?" style="left:50%; top:150px"></div>
-                        <div class="fn fn-diamond" data-fn="o_encontrou" data-label="Encontrou Persona?" style="left:37.5%; top:310px"></div>
-                        <div class="fn fn-box fn-warn" data-fn="o_cad_contato" style="left:37.5%; top:460px">Cadência de Contato Inicial e Nutrição</div>
-                        <div class="fn fn-diamond" data-fn="o_contato" data-label="Conseguiu contato?" style="left:37.5%; top:620px"></div>
-                        <div class="fn fn-diamond" data-fn="o_icp2" data-label="É ICP?" style="left:37.5%; top:780px"></div>
-                        <!-- Descarte à ESQUERDA -->
-                        <div class="fn fn-circle fn-danger" data-fn="o_descarte" style="left:26%; top:780px">Descarte</div>
-                        <div class="fn fn-diamond" data-fn="o_persona" data-label="É Persona?" style="left:37.5%; top:940px"></div>
-                        <div class="fn fn-box fn-ok" data-fn="o_mql" style="left:37.5%; top:1100px">MQL - BDR<small>(pessoa e emp. ICP)</small></div>
-                        <div class="fn fn-diamond" data-fn="o_redflag" data-label="Red flag?" style="left:37.5%; top:1240px"></div>
-                        <div class="fn fn-diamond" data-fn="o_agendou" data-label="Agendou reunião?" style="left:37.5%; top:1400px"></div>
-                        <!-- Agendamento à ESQUERDA · Reagendamento à DIREITA -->
-                        <div class="fn fn-box fn-warn" data-fn="o_cad_agenda" style="left:24%; top:1400px">Cadência de agendamento de reunião</div>
-                        <div class="fn fn-box fn-warn" data-fn="o_reagendamento" style="left:50%; top:1400px">Cadências de Reagendamento</div>
-                        <div class="fn fn-box fn-ok" data-fn="o_sql" style="left:37.5%; top:1580px">SQL - BDR<small>(reunião agendada)</small></div>
-                        <!-- C local sob cadência de agendamento (como no PDF) -->
-                        <div class="fn fn-circle fn-connector" data-fn="o_c_agenda" style="left:24%; top:1540px" title="C → Cadência de nutrição">C</div>
-
-                        <!-- ===== CLOSER 62.5% — alinhado com SQL (como no PDF) ===== -->
-                        <div class="fn fn-diamond" data-fn="o_reuniao_q" data-label="Reunião realizada?" style="left:62.5%; top:1580px"></div>
-                        <div class="fn fn-diamond" data-fn="o_possivel" data-label="Possível fechamento?" style="left:62.5%; top:1740px"></div>
-                        <div class="fn fn-box fn-ok" data-fn="o_sal" style="left:62.5%; top:1900px">SAL - BDR<small>(forecast de venda)</small></div>
-                        <div class="fn fn-box fn-warn" data-fn="o_followup" style="left:62.5%; top:2040px">Cadência de follow up para fechamento</div>
-                        <div class="fn fn-diamond" data-fn="o_fechou" data-label="Fechou contrato?" style="left:62.5%; top:2180px"></div>
-                        <div class="fn fn-circle fn-end" data-fn="o_contrato" style="left:62.5%; top:2320px">Contrato fechado</div>
-
-                        <!-- ===== MARKETING 87.5% — vários C locais (igual draw.io) ===== -->
-                        <div class="fn fn-circle fn-connector" data-fn="o_c1" style="left:87.5%; top:48px" title="C → Cadência de nutrição">C</div>
-                        <div class="fn fn-box fn-muted" data-fn="o_nutricao" style="left:87.5%; top:140px">Cadência de nutrição</div>
-                        <div class="fn fn-circle fn-connector" data-fn="o_c2" style="left:87.5%; top:620px" title="C → Cadência de nutrição">C</div>
-                        <div class="fn fn-circle fn-connector" data-fn="o_c3" style="left:87.5%; top:940px" title="C → Cadência de nutrição">C</div>
-                        <div class="fn fn-circle fn-connector" data-fn="o_c4" style="left:87.5%; top:1740px" title="C → Cadência de nutrição">C</div>
-                        <div class="fn fn-circle fn-connector" data-fn="o_c5" style="left:87.5%; top:2180px" title="C → Cadência de nutrição">C</div>
-                    </div>
-                </div>
+                    <img
+                        id="fluxoOutboundImg"
+                        class="fluxo-pdf-img"
+                        src="assets/fluxo-outbound-oficial.png"
+                        alt="Fluxo Comercial Outbound — diagrama oficial Melvin"
+                        draggable="false"
+                        width="1784"
+                        height="2525"
+                    />
                 </div>
             </div>
 
-            <div class="fluxo-legend">
+            <div class="fluxo-legend" style="margin-top:14px;">
                 <span><i class="lg-swatch lg-sdr"></i> SDR</span>
                 <span><i class="lg-swatch lg-bdr"></i> BDR</span>
                 <span><i class="lg-swatch lg-closer"></i> Closer</span>
                 <span><i class="lg-swatch lg-mkt"></i> Marketing</span>
                 <span><i class="lg-swatch lg-cs"></i> CS</span>
-                <span><i class="lg-line lg-yes"></i> SIM</span>
-                <span><i class="lg-line lg-no"></i> NÃO</span>
-                <span><i class="lg-shape lg-sub"></i> Subfluxo</span>
-                <span><strong style="color:var(--text-main)">A / B / C</strong> = conectores (C → nutrição)</span>
+                <span><strong style="color:var(--text-main)">A / B / C</strong> = conectores do PDF</span>
             </div>
 
-            <div class="fluxo-path-strip" id="fluxoOutboundPathStrip" hidden>
-                <strong>Caminho:</strong> <span id="fluxoOutboundPathText"></span>
-                <button type="button" class="fluxo-tool" data-fluxo-clear>Limpar</button>
-            </div>
-
-            <div class="matrix-widget dash-matrix" style="margin-top: 22px; border-left: 4px solid #a78bfa;">
-                <div class="matrix-header" style="background: rgba(167, 139, 250, 0.08);">
-                    <div class="matrix-title" style="color: #c4b5fd;">Multithreading de persona</div>
-                </div>
-                <div class="matrix-content" style="padding: 18px;">
-                    <p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; margin: 0;">
-                        No PDF, <strong style="color: var(--text-main);">Existe outra pessoa?</strong> é o pivô: se a persona falha ou não há contato,
-                        o BDR busca outro contato na conta antes de mandar para <strong style="color: var(--text-main);">Cadência de nutrição</strong> (conector C).
-                    </p>
-                </div>
-            </div>
-
-            <div class="fluxo-links-bar" style="border-color: rgba(167, 139, 250, 0.35); background: rgba(167, 139, 250, 0.06);">
+            <div class="fluxo-links-bar" style="border-color: rgba(167, 139, 250, 0.35); background: rgba(167, 139, 250, 0.06); margin-top: 18px;">
                 <strong style="color: #a78bfa;">Playbooks conectados</strong>
                 <p>
                     <a href="#matriz-icp-out">Matriz ICP Outbound</a> ·

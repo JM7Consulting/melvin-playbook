@@ -713,9 +713,6 @@ function refreshActiveFluxoWires() {
     if (document.getElementById('fluxo-comerc-inbound')?.classList.contains('page-active')) {
         drawFluxoInboundWires();
     }
-    if (document.getElementById('fluxo-comerc-outbound')?.classList.contains('page-active')) {
-        drawFluxoOutboundWires();
-    }
     if (document.getElementById('fluxo-comerc-cs')?.classList.contains('page-active')) {
         drawFluxoCsWires();
     }
@@ -877,18 +874,87 @@ initFluxoBoardUX({
     draw: drawFluxoInboundWires
 });
 
-initFluxoBoardUX({
-    viewportId: 'fluxoOutboundViewport',
-    zoomId: 'fluxoOutboundZoom',
-    boardId: 'fluxoOutboundBoard',
-    stageId: 'fluxoOutboundStage',
-    toolbarId: 'fluxoOutboundToolbar',
-    stripId: 'fluxoOutboundPathStrip',
-    stripTextId: 'fluxoOutboundPathText',
-    svgId: 'fluxoOutboundWires',
-    edges: FLUXO_OUTBOUND_EDGES,
-    draw: drawFluxoOutboundWires
-});
+/* Outbound: imagem oficial do PDF (fidelidade 1:1) + zoom/pan */
+(() => {
+    const viewport = document.getElementById('fluxoOutboundViewport');
+    const zoomLayer = document.getElementById('fluxoOutboundZoom');
+    const img = document.getElementById('fluxoOutboundImg');
+    const toolbar = document.getElementById('fluxoOutboundToolbar');
+    if (!viewport || !zoomLayer || !img) return;
+
+    const sources = {
+        v2: 'assets/fluxo-outbound-oficial.png',
+        v1: 'assets/fluxo-outbound-oficial-v1.png'
+    };
+    let zoom = 1;
+
+    function applyZoom() {
+        zoomLayer.style.transform = `scale(${zoom})`;
+        const w = img.offsetWidth || img.naturalWidth || 1100;
+        const h = img.offsetHeight || img.naturalHeight || 1500;
+        zoomLayer.style.marginRight = `${Math.max(0, w * (zoom - 1))}px`;
+        zoomLayer.style.marginBottom = `${Math.max(0, h * (zoom - 1))}px`;
+        const resetBtn = toolbar?.querySelector('[data-fluxo-zoom="reset"]');
+        if (resetBtn) resetBtn.textContent = `${Math.round(zoom * 100)}%`;
+    }
+
+    toolbar?.addEventListener('click', (e) => {
+        const pdfBtn = e.target.closest('[data-fluxo-pdf]');
+        if (pdfBtn) {
+            const key = pdfBtn.getAttribute('data-fluxo-pdf');
+            if (sources[key]) {
+                img.src = sources[key];
+                toolbar.querySelectorAll('[data-fluxo-pdf]').forEach((b) => b.classList.toggle('is-active', b === pdfBtn));
+                zoom = 1;
+                img.onload = applyZoom;
+            }
+            return;
+        }
+        const btn = e.target.closest('[data-fluxo-zoom], [data-fluxo-fit]');
+        if (!btn) return;
+        if (btn.hasAttribute('data-fluxo-fit')) {
+            zoom = 1;
+            applyZoom();
+            viewport.scrollTo({ left: 0, top: 0, behavior: 'smooth' });
+            return;
+        }
+        const mode = btn.getAttribute('data-fluxo-zoom');
+        if (mode === 'in') zoom = Math.min(2.2, +(zoom + 0.15).toFixed(2));
+        if (mode === 'out') zoom = Math.max(0.4, +(zoom - 0.15).toFixed(2));
+        if (mode === 'reset') zoom = 1;
+        applyZoom();
+    });
+
+    let panning = false;
+    let startX = 0;
+    let startY = 0;
+    let scrollLeft = 0;
+    let scrollTop = 0;
+    viewport.addEventListener('pointerdown', (e) => {
+        if (e.target.closest('.fluxo-tool')) return;
+        panning = true;
+        viewport.classList.add('is-panning');
+        startX = e.clientX;
+        startY = e.clientY;
+        scrollLeft = viewport.scrollLeft;
+        scrollTop = viewport.scrollTop;
+        viewport.setPointerCapture?.(e.pointerId);
+    });
+    viewport.addEventListener('pointermove', (e) => {
+        if (!panning) return;
+        viewport.scrollLeft = scrollLeft - (e.clientX - startX);
+        viewport.scrollTop = scrollTop - (e.clientY - startY);
+    });
+    const endPan = () => {
+        panning = false;
+        viewport.classList.remove('is-panning');
+    };
+    viewport.addEventListener('pointerup', endPan);
+    viewport.addEventListener('pointercancel', endPan);
+
+    if (img.complete) applyZoom();
+    else img.addEventListener('load', applyZoom);
+})();
 
 /* Objeções kit: busca + filtros por página */
 function initObjKit(root) {

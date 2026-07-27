@@ -2089,6 +2089,30 @@ body.light-mode .gim-accordion.gim-dor-oculta {
     width: max-content;
 }
 
+.fluxo-pdf-wrap {
+    background: #fff;
+    border: 1px solid var(--border-color);
+}
+.fluxo-pdf-img {
+    display: block;
+    width: min(1100px, 100%);
+    height: auto;
+    max-width: none;
+    user-select: none;
+    -webkit-user-drag: none;
+    border-radius: 0;
+}
+body.light-mode .fluxo-pdf-wrap { background: #fff; }
+.fluxo-tool.is-active {
+    border-color: rgba(167, 139, 250, 0.55);
+    background: rgba(167, 139, 250, 0.18);
+    color: #e9d5ff;
+}
+body.light-mode .fluxo-tool.is-active {
+    color: #5B21B6;
+    background: rgba(167, 139, 250, 0.15);
+}
+
 /* focus highlight on any fluxo stage */
 .fluxo-stage.is-focus .fn { opacity: 0.38; filter: grayscale(0.35); }
 .fluxo-stage.is-focus .fn.is-hot {
