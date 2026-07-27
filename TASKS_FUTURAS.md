@@ -11,6 +11,9 @@ Estas páginas **não aparecem no menu lateral**, mas abrem se você digitar o h
 | Página | Atalho (barra de endereços) |
 |---|---|
 | **Plano de Ação** | `index.html#plano-acao` |
+| **Presales SDR (Rotina In)** | `index.html#presales-inbound` |
+| **Presales BDR (Rotina Out)** | `index.html#presales-outbound` |
+| **Rotina Closer** | `index.html#rotina-closer` |
 | **Arquivo GIM · Objeções (fonte)** | `index.html#gim-objecoes` |
 | *(ex.) Central de Comando antiga* | conteúdo substituído pela landing `#home-dashboard` |
 

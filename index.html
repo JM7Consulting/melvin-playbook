@@ -128,8 +128,7 @@
                         <a href="#wf-noshow-in"><span style="display:flex; gap:10px;"><span>👻</span> No Show</span><span class="dot dot-active"></span></a>
                         <a href="#wf-posreuniao-in"><span style="display:flex; gap:10px;"><span>🚀</span> Pós-reunião</span><span class="dot dot-active"></span></a>
 
-                        <div class="submenu-label">Rotina</div>
-                        <a href="#presales-inbound"><span style="display:flex; gap:10px;"><span>🎧</span> Presales (SDR)</span><span class="dot dot-active"></span></a>
+                        <!-- Rotina · Presales SDR: oculto do menu por hora — abrir com #presales-inbound -->
                     </div>
                 </div>
                 </div>
@@ -170,8 +169,7 @@
                         <a href="#wf-noshow-out"><span style="display:flex; gap:10px;"><span>👻</span> No Show</span><span class="dot dot-active"></span></a>
                         <a href="#wf-posreuniao-out"><span style="display:flex; gap:10px;"><span>🚀</span> Pós-reunião</span><span class="dot dot-active"></span></a>
 
-                        <div class="submenu-label">Rotina</div>
-                        <a href="#presales-outbound"><span style="display:flex; gap:10px;"><span>📞</span> Presales (BDR)</span><span class="dot dot-active"></span></a>
+                        <!-- Rotina · Presales BDR: oculto do menu por hora — abrir com #presales-outbound -->
                     </div>
                 </div>
                 </div>
@@ -188,7 +186,7 @@
                     <div class="submenu">
                         <div class="submenu-label">Processo de Vendas</div>
                         <a href="#funil-vendas"><span style="display:flex; gap:10px;"><span>💰</span> Funil de Vendas</span><span class="dot dot-active"></span></a>
-                        <a href="#rotina-closer"><span style="display:flex; gap:10px;"><span>⚙️</span> Rotina Closer</span><span class="dot dot-active"></span></a>
+                        <!-- Rotina Closer: oculto do menu por hora — abrir com #rotina-closer -->
                     </div>
                 </div>
 
@@ -255,8 +253,8 @@
                     <div class="welcome-pills">
                         <a href="#funil-inbound" class="welcome-pill">Esteira Inbound</a>
                         <a href="#funil-outbound" class="welcome-pill">Esteira Outbound</a>
-                        <a href="#presales-inbound" class="welcome-pill">Rotinas da Operação</a>
                         <a href="#matriz-swot" class="welcome-pill">Arsenal Comercial</a>
+                        <a href="#agenda-entregas" class="welcome-pill">Cronograma</a>
                     </div>
                 </div>
             </div>
@@ -4597,7 +4595,7 @@
         </section>
 
                 <!-- ROTINAS DA TROPA -->
-        <section id="presales-inbound" class="blueprint-page" style="padding: 40px; border-radius: 16px;">
+        <section id="presales-inbound" class="blueprint-page" style="padding: 40px; border-radius: 16px;" data-hidden-nav="true">
 
             <div class="cadencia-header-block" style="margin-bottom: 28px;">
                 <div class="cadencia-title-line" style="font-size: 1.8rem; color: #10b981;">🎧 Presales Inbound (SDR) • A Patrulha do SLA</div>
@@ -4675,7 +4673,7 @@
             </div>
         </section>
 
-        <section id="presales-outbound" class="blueprint-page" style="padding: 40px; border-radius: 16px;">
+        <section id="presales-outbound" class="blueprint-page" style="padding: 40px; border-radius: 16px;" data-hidden-nav="true">
 
             <div class="cadencia-header-block" style="margin-bottom: 28px;">
                 <div class="cadencia-title-line" style="font-size: 1.8rem; color: #a78bfa;">🎯 Presales Outbound (BDR) • Operação Sniper</div>
@@ -5197,7 +5195,7 @@
             </div>
         </section>
 
-        <section id="rotina-closer" class="blueprint-page" style="padding: 40px; border-radius: 16px;">
+        <section id="rotina-closer" class="blueprint-page" style="padding: 40px; border-radius: 16px;" data-hidden-nav="true">
 
             <div class="cadencia-header-block" style="margin-bottom: 28px;">
                 <div class="cadencia-title-line" style="font-size: 1.8rem; color: #fbbf24;">👔 Rotina Closer • Engenharia de Fechamento</div>
