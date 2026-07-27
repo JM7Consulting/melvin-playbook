@@ -635,6 +635,8 @@
             margin-left: var(--sidebar-expanded-width);
             padding: 40px;
             transition: margin-left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            min-width: 0;
+            overflow-x: hidden;
         }
 
         main.expanded {
@@ -994,6 +996,7 @@ body.light-mode .mb-gim { background: rgba(99, 102, 241, 0.12) !important; color
             display: flex;
             justify-content: space-between;
             align-items: center;
+            gap: 12px;
             background: var(--melvin-bg-card);
             border-bottom: 1px solid var(--border);
             padding: 12px 40px;
@@ -1001,6 +1004,9 @@ body.light-mode .mb-gim { background: rgba(99, 102, 241, 0.12) !important; color
             position: sticky;
             top: 0;
             z-index: 200;
+            width: auto;
+            max-width: 100%;
+            box-sizing: content-box;
         }
         
         .breadcrumb {
@@ -1012,13 +1018,23 @@ body.light-mode .mb-gim { background: rgba(99, 102, 241, 0.12) !important; color
             display: flex;
             align-items: center;
             gap: 8px;
+            min-width: 0;
+            flex: 1 1 auto;
+            overflow: hidden;
         }
-        .breadcrumb span { color: var(--melvin-cyan); font-weight: 800; }
+        .breadcrumb span {
+            color: var(--melvin-cyan);
+            font-weight: 800;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
         
         .topbar-actions {
             display: flex;
             align-items: center;
             gap: 12px;
+            flex: 0 0 auto;
         }
         
         .topbar-btn {
@@ -2086,7 +2102,8 @@ body.light-mode .gim-accordion.gim-dor-oculta {
 .fluxo-zoom-layer {
     transform-origin: 0 0;
     will-change: transform;
-    width: max-content;
+    width: 100%;
+    max-width: 100%;
 }
 
 .fluxo-pdf-wrap {
@@ -2095,15 +2112,17 @@ body.light-mode .gim-accordion.gim-dor-oculta {
 }
 .fluxo-pdf-stage {
     position: relative;
-    display: inline-block;
+    display: block;
     line-height: 0;
-    max-width: 100%;
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
 }
 .fluxo-pdf-img {
     display: block;
-    width: min(1100px, 100%);
+    width: 100%;
     height: auto;
-    max-width: none;
+    max-width: 100%;
     user-select: none;
     -webkit-user-drag: none;
     border-radius: 0;
@@ -2122,44 +2141,49 @@ body.light-mode .gim-accordion.gim-dor-oculta {
 }
 .fluxo-pdf-hots {
     z-index: 3;
+    pointer-events: none; /* clique vai no stage; hotspots só para highlight visual */
 }
 .fluxo-pdf-hot {
     position: absolute;
     transform: translate(-50%, -50%);
-    width: 7.2%;
-    height: 3.2%;
-    min-width: 44px;
-    min-height: 28px;
-    border-radius: 10px;
+    width: 11%;
+    height: 4.2%;
+    min-width: 56px;
+    min-height: 34px;
+    border-radius: 12px;
     border: 1.5px solid transparent;
     background: transparent;
     cursor: pointer;
     padding: 0;
+    pointer-events: none;
     transition: border-color 0.15s, background 0.15s, box-shadow 0.15s, opacity 0.15s;
 }
-.fluxo-pdf-hot:hover {
-    border-color: rgba(14, 165, 233, 0.55);
-    background: rgba(56, 189, 248, 0.12);
+.fluxo-pdf-stage:not(.is-focus) .fluxo-pdf-hot:hover,
+.fluxo-pdf-stage.is-focus .fluxo-pdf-hot.is-hot {
+    border-color: rgba(16, 185, 129, 0.85);
+    background: rgba(16, 185, 129, 0.16);
+    box-shadow: 0 0 0 2px rgba(100, 252, 216, 0.35), 0 8px 20px rgba(0,0,0,0.18);
+}
+.fluxo-pdf-stage.is-focus .fluxo-pdf-img {
+    filter: grayscale(0.25) brightness(0.92);
 }
 .fluxo-pdf-stage.is-focus .fluxo-pdf-hot {
-    opacity: 0.22;
+    opacity: 0.18;
 }
 .fluxo-pdf-stage.is-focus .fluxo-pdf-hot.is-hot {
     opacity: 1;
-    border-color: rgba(16, 185, 129, 0.85);
-    background: rgba(16, 185, 129, 0.18);
-    box-shadow: 0 0 0 2px rgba(100, 252, 216, 0.35), 0 8px 20px rgba(0,0,0,0.18);
 }
 .fluxo-pdf-wires path {
     fill: none;
-    stroke: #10b981;
-    stroke-width: 3;
+    stroke: #059669;
+    stroke-width: 4;
     stroke-linecap: round;
     stroke-linejoin: round;
-    opacity: 0.92;
-    filter: drop-shadow(0 0 4px rgba(16, 185, 129, 0.45));
+    opacity: 0.95;
+    filter: drop-shadow(0 0 5px rgba(16, 185, 129, 0.55));
 }
-.fluxo-pdf-stage[data-pdf-ver="v1"] .fluxo-pdf-hots {
+.fluxo-pdf-stage[data-pdf-ver="v1"] .fluxo-pdf-hots,
+.fluxo-pdf-stage[data-pdf-ver="v1"] .fluxo-pdf-wires {
     display: none;
 }
 body.light-mode .fluxo-pdf-wrap { background: #fff; }
