@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', () => {
+﻿document.addEventListener('DOMContentLoaded', () => {
     const menuToggleFull = document.getElementById('menuToggleFull');
     const menuToggleMini = document.getElementById('menuToggleMini');
     const sidebar = document.getElementById('sidebar');
@@ -232,7 +232,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (breadcrumbText) {
             if (pageHash === '#home-dashboard') {
-                breadcrumbText.innerText = 'Playbook Comercial';
+                breadcrumbText.innerText = 'RevOps Book';
             } else {
                 const titleEl = targetSection.querySelector('.cadencia-title-line, h2');
                 if (titleEl) {

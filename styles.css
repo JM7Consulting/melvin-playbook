@@ -1,4 +1,4 @@
-:root {
+﻿:root {
             /* Paleta Oficial MELVIN */
             --melvin-cyan: #64FCD8;        
             --melvin-cyan-dim: rgba(100, 252, 216, 0.08);
@@ -3626,7 +3626,7 @@ body.light-mode .vh-day .d {
   color: #FFFFFF;
 }
 
-/* ===== LANDING · Playbook Comercial MELVIN ===== */
+/* ===== LANDING · RevOps Book MELVIN ===== */
 .welcome-page {
   padding: 0 !important;
   margin: 0 !important;
