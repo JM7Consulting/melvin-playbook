@@ -312,30 +312,44 @@ function toggleLocalBlock(containerId, buttonEl) {
     }
 }
 
+/* Edges espelham o PDF "Fluxo Comercial INBOUND" (draw.io p.2) — sem inventar ramos */
 const FLUXO_INBOUND_EDGES = [
     { from: 'lead', to: 'icp' },
-    { from: 'icp', to: 'nao_icp', label: 'NÃO', color: '#f87171', fromSide: 'bottom', toSide: 'top' },
-    { from: 'icp', to: 'persona', label: 'SIM', color: '#34d399', fromSide: 'right', toSide: 'top' },
-    { from: 'nao_icp', to: 'descartar', color: '#f87171' },
-    { from: 'descartar', to: 'nutricao', color: '#94a3b8' },
-    { from: 'persona', to: 'contato' },
-    { from: 'contato', to: 'cad_contato', label: 'NÃO', color: '#f87171', fromSide: 'left', toSide: 'top' },
-    { from: 'contato', to: 'mql', label: 'SIM', color: '#34d399', fromSide: 'right', toSide: 'top' },
-    { from: 'cad_contato', to: 'outbound', color: '#c084fc', dashed: true, fromSide: 'right', toSide: 'left' },
+    { from: 'icp', to: 'cad_contato', label: 'SIM', color: '#34d399', fromSide: 'right', toSide: 'left' },
+    { from: 'icp', to: 'persona_mkt', label: 'NÃO', color: '#f87171', fromSide: 'bottom', toSide: 'top' },
+    { from: 'persona_mkt', to: 'descarte', label: 'NÃO', color: '#f87171', fromSide: 'right', toSide: 'top' },
+    { from: 'persona_mkt', to: 'nutricao', label: 'SIM', color: '#34d399', fromSide: 'bottom', toSide: 'top' },
+
+    { from: 'cad_contato', to: 'contato' },
+    { from: 'contato', to: 'outbound', label: 'NÃO', color: '#f87171', fromSide: 'right', toSide: 'left' },
+    { from: 'contato', to: 'icp_sdr', label: 'SIM', color: '#34d399', fromSide: 'bottom', toSide: 'top' },
+    { from: 'icp_sdr', to: 'descarte', label: 'NÃO', color: '#f87171', fromSide: 'left', toSide: 'right' },
+    { from: 'icp_sdr', to: 'persona_sdr', label: 'SIM', color: '#34d399', fromSide: 'bottom', toSide: 'top' },
+    { from: 'persona_sdr', to: 'outbound', label: 'NÃO', color: '#f87171', fromSide: 'right', toSide: 'left' },
+    { from: 'persona_sdr', to: 'mql', label: 'SIM', color: '#34d399', fromSide: 'bottom', toSide: 'top' },
+
     { from: 'mql', to: 'agendou' },
-    { from: 'agendou', to: 'cad_agenda', label: 'NÃO', color: '#f87171', fromSide: 'left', toSide: 'top' },
     { from: 'agendou', to: 'sql', label: 'SIM', color: '#34d399', fromSide: 'bottom', toSide: 'top' },
+    { from: 'agendou', to: 'cad_agenda', label: 'NÃO', color: '#f87171', fromSide: 'left', toSide: 'top' },
     { from: 'cad_agenda', to: 'agendou', color: '#fbbf24', dashed: true, fromSide: 'right', toSide: 'left' },
-    { from: 'sql', to: 'reuniao_q' },
-    { from: 'reuniao_q', to: 'noshow', label: 'NÃO', color: '#f87171', fromSide: 'left', toSide: 'top' },
-    { from: 'reuniao_q', to: 'reuniao_ok', label: 'SIM', color: '#34d399', fromSide: 'right', toSide: 'left' },
-    { from: 'reuniao_ok', to: 'possivel' },
-    { from: 'possivel', to: 'followup', label: 'NÃO', color: '#f87171', fromSide: 'left', toSide: 'top' },
-    { from: 'possivel', to: 'sal', label: 'SIM', color: '#34d399', fromSide: 'right', toSide: 'top' },
-    { from: 'sal', to: 'fechou' },
-    { from: 'fechou', to: 'followup', label: 'NÃO', color: '#f87171', dashed: true, fromSide: 'left', toSide: 'bottom' },
-    { from: 'fechou', to: 'contrato', label: 'SIM', color: '#34d399', fromSide: 'right', toSide: 'left' },
-    { from: 'contrato', to: 'onboarding', color: '#22d3ee' }
+    { from: 'cad_agenda', to: 'conn_a', color: '#94a3b8', fromSide: 'bottom', toSide: 'top' },
+    { from: 'conn_a', to: 'conn_a2', color: '#c084fc', dashed: true, fromSide: 'right', toSide: 'left' },
+    { from: 'conn_a2', to: 'outbound', color: '#c084fc', fromSide: 'bottom', toSide: 'top' },
+
+    { from: 'sql', to: 'reuniao_q', fromSide: 'right', toSide: 'left' },
+    { from: 'reuniao_q', to: 'reagendamento', label: 'NÃO', color: '#f87171', fromSide: 'left', toSide: 'right' },
+    { from: 'reuniao_q', to: 'possivel', label: 'SIM', color: '#34d399', fromSide: 'bottom', toSide: 'top' },
+    { from: 'reagendamento', to: 'agendou', color: '#fbbf24', dashed: true, fromSide: 'bottom', toSide: 'left' },
+
+    { from: 'possivel', to: 'outbound', label: 'NÃO', color: '#f87171', fromSide: 'right', toSide: 'left' },
+    { from: 'possivel', to: 'sal', label: 'SIM', color: '#34d399', fromSide: 'bottom', toSide: 'top' },
+    { from: 'sal', to: 'followup' },
+    { from: 'followup', to: 'fechou' },
+    { from: 'fechou', to: 'nutricao', label: 'NÃO', color: '#f87171', fromSide: 'left', toSide: 'right' },
+    { from: 'fechou', to: 'contrato', label: 'SIM', color: '#34d399', fromSide: 'bottom', toSide: 'top' },
+    { from: 'contrato', to: 'onboarding', color: '#22d3ee', fromSide: 'left', toSide: 'right' },
+    { from: 'fluxo_cs', to: 'sql', color: '#22d3ee', fromSide: 'top', toSide: 'bottom' },
+    { from: 'fluxo_cs', to: 'nutricao', color: '#94a3b8', dashed: true, fromSide: 'left', toSide: 'right' }
 ];
 
 function fluxoRelRect(el, stage) {
@@ -522,10 +536,17 @@ function drawFluxoDiagramWires(stageId, svgId, edges, markerPrefix) {
         if (edge.dashed) path.setAttribute('stroke-dasharray', '6 5');
         path.setAttribute('marker-end', `url(#${markerPrefix}-${markerKey})`);
         path.setAttribute('opacity', edge.dashed ? '0.8' : '0.95');
+        path.setAttribute('data-edge-from', edge.from);
+        path.setAttribute('data-edge-to', edge.to);
         svg.appendChild(path);
 
         if (edge.label) {
             const lp = fluxoLabelPoint(a, b, fromSide);
+            const group = document.createElementNS(NS, 'g');
+            group.setAttribute('class', 'wire-label-group');
+            group.setAttribute('data-edge-from', edge.from);
+            group.setAttribute('data-edge-to', edge.to);
+
             const bg = document.createElementNS(NS, 'rect');
             const tw = edge.label.length * 6.2 + 8;
             bg.setAttribute('x', lp.x - tw / 2);
@@ -534,7 +555,7 @@ function drawFluxoDiagramWires(stageId, svgId, edges, markerPrefix) {
             bg.setAttribute('height', 14);
             bg.setAttribute('rx', 3);
             bg.setAttribute('fill', 'rgba(15, 23, 42, 0.85)');
-            svg.appendChild(bg);
+            group.appendChild(bg);
 
             const label = document.createElementNS(NS, 'text');
             label.setAttribute('x', lp.x);
@@ -544,7 +565,8 @@ function drawFluxoDiagramWires(stageId, svgId, edges, markerPrefix) {
             label.setAttribute('fill', color);
             label.setAttribute('class', 'wire-label');
             label.textContent = edge.label;
-            svg.appendChild(label);
+            group.appendChild(label);
+            svg.appendChild(group);
         }
     });
 }
@@ -630,6 +652,126 @@ window.addEventListener('resize', refreshActiveFluxoWires);
         const el = document.getElementById(id);
         if (el) ro.observe(el);
     });
+})();
+
+/* Fluxo Inbound: zoom, pan, highlight de caminho */
+(() => {
+    const viewport = document.getElementById('fluxoInboundViewport');
+    const board = document.getElementById('fluxoInboundBoard');
+    const stage = document.getElementById('fluxoInboundStage');
+    const toolbar = document.getElementById('fluxoInboundToolbar');
+    const strip = document.getElementById('fluxoInboundPathStrip');
+    const stripText = document.getElementById('fluxoInboundPathText');
+    if (!viewport || !board || !stage) return;
+
+    let zoom = 1;
+    const applyZoom = () => {
+        board.style.transform = `scale(${zoom})`;
+        const resetBtn = toolbar?.querySelector('[data-fluxo-zoom="reset"]');
+        if (resetBtn) resetBtn.textContent = `${Math.round(zoom * 100)}%`;
+        requestAnimationFrame(drawFluxoInboundWires);
+    };
+
+    toolbar?.addEventListener('click', (e) => {
+        const btn = e.target.closest('[data-fluxo-zoom], [data-fluxo-fit], [data-fluxo-clear]');
+        if (!btn) return;
+        if (btn.hasAttribute('data-fluxo-clear')) {
+            clearFocus();
+            return;
+        }
+        if (btn.hasAttribute('data-fluxo-fit')) {
+            zoom = 1;
+            applyZoom();
+            viewport.scrollTo({ left: 0, top: 0, behavior: 'smooth' });
+            return;
+        }
+        const mode = btn.getAttribute('data-fluxo-zoom');
+        if (mode === 'in') zoom = Math.min(1.6, zoom + 0.1);
+        if (mode === 'out') zoom = Math.max(0.55, zoom - 0.1);
+        if (mode === 'reset') zoom = 1;
+        applyZoom();
+    });
+
+    // Pan by drag
+    let panning = false;
+    let startX = 0;
+    let startY = 0;
+    let scrollLeft = 0;
+    let scrollTop = 0;
+    viewport.addEventListener('pointerdown', (e) => {
+        if (e.target.closest('.fn')) return;
+        panning = true;
+        viewport.classList.add('is-panning');
+        startX = e.clientX;
+        startY = e.clientY;
+        scrollLeft = viewport.scrollLeft;
+        scrollTop = viewport.scrollTop;
+        viewport.setPointerCapture?.(e.pointerId);
+    });
+    viewport.addEventListener('pointermove', (e) => {
+        if (!panning) return;
+        viewport.scrollLeft = scrollLeft - (e.clientX - startX);
+        viewport.scrollTop = scrollTop - (e.clientY - startY);
+    });
+    const endPan = () => {
+        panning = false;
+        viewport.classList.remove('is-panning');
+    };
+    viewport.addEventListener('pointerup', endPan);
+    viewport.addEventListener('pointercancel', endPan);
+
+    function nodeLabel(id) {
+        const el = stage.querySelector(`[data-fn="${id}"]`);
+        if (!el) return id;
+        if (el.classList.contains('fn-diamond')) return el.getAttribute('data-label') || id;
+        return (el.textContent || id).replace(/\s+/g, ' ').trim();
+    }
+
+    function neighbors(id) {
+        const outs = FLUXO_INBOUND_EDGES.filter((e) => e.from === id).map((e) => e.to);
+        const ins = FLUXO_INBOUND_EDGES.filter((e) => e.to === id).map((e) => e.from);
+        return [...new Set([...outs, ...ins])];
+    }
+
+    function clearFocus() {
+        stage.classList.remove('is-focus');
+        stage.querySelectorAll('.fn.is-hot').forEach((n) => n.classList.remove('is-hot'));
+        stage.querySelectorAll('.is-hot').forEach((n) => n.classList.remove('is-hot'));
+        if (strip) strip.hidden = true;
+    }
+
+    function focusNode(id) {
+        const hot = new Set([id, ...neighbors(id)]);
+        stage.classList.add('is-focus');
+        stage.querySelectorAll('.fn[data-fn]').forEach((el) => {
+            el.classList.toggle('is-hot', hot.has(el.getAttribute('data-fn')));
+        });
+        const svg = document.getElementById('fluxoInboundWires');
+        svg?.querySelectorAll('path[data-edge-from], .wire-label-group').forEach((el) => {
+            const a = el.getAttribute('data-edge-from');
+            const b = el.getAttribute('data-edge-to');
+            const on = hot.has(a) && hot.has(b) && (a === id || b === id);
+            el.classList.toggle('is-hot', on);
+        });
+        if (strip && stripText) {
+            const outs = FLUXO_INBOUND_EDGES.filter((e) => e.from === id)
+                .map((e) => `${e.label ? e.label + ' → ' : ''}${nodeLabel(e.to)}`)
+                .join(' · ');
+            stripText.textContent = `${nodeLabel(id)}${outs ? ' — ' + outs : ''}`;
+            strip.hidden = false;
+        }
+    }
+
+    stage.addEventListener('click', (e) => {
+        const node = e.target.closest('.fn[data-fn]');
+        if (!node) {
+            clearFocus();
+            return;
+        }
+        focusNode(node.getAttribute('data-fn'));
+    });
+
+    strip?.querySelector('[data-fluxo-clear]')?.addEventListener('click', clearFocus);
 })();
 
 /* Objeções kit: busca + filtros por página */
