@@ -2094,14 +2094,16 @@ body.light-mode .gim-accordion.gim-dor-oculta {
 .fluxo-cs-band {
     position: absolute;
     left: 25%;
-    right: 25%;
+    width: 25%;
+    right: auto;
     top: 1200px;
     bottom: 24px;
     border-radius: 14px;
     border: 1px solid rgba(56, 189, 248, 0.28);
-    background: linear-gradient(180deg, rgba(14, 165, 233, 0.1), rgba(14, 165, 233, 0.04));
+    background: linear-gradient(180deg, rgba(14, 165, 233, 0.12), rgba(14, 165, 233, 0.05));
     pointer-events: none;
     z-index: 0;
+    box-sizing: border-box;
 }
 
 .fluxo-wires {
