@@ -5163,7 +5163,8 @@
 
             <div class="cadencia-header-block" style="margin-bottom: 18px;">
                 <div class="cadencia-title-line" style="font-size: 1.8rem; color: #10b981;">FLUXO COMERCIAL INBOUND</div>
-                <p class="cadencia-subtitle" style="padding-left: 0;">Diagrama oficial (draw.io) — passagem de bastão Marketing → SDR → Closer → BDR/CS, com gates SIM/NÃO idênticos ao PDF.</p>
+                <p class="cadencia-subtitle" style="padding-left: 0;">Diagrama <strong>oficial</strong> do PDF Melvin (draw.io) — reprodução pixel-perfect, sem redesenho de setas.</p>
+                <div class="gim-source-chip">Fonte: Fluxos comerciais — Comercial inbound.drawio.pdf</div>
             </div>
 
             <div class="fluxo-toolbar" id="fluxoInboundToolbar">
@@ -5172,86 +5173,44 @@
                     <button type="button" class="fluxo-tool" data-fluxo-zoom="reset" title="100%">100%</button>
                     <button type="button" class="fluxo-tool" data-fluxo-zoom="in" title="Aumentar">+</button>
                 </div>
-                <div class="fluxo-toolbar-hint">Passe o mouse nos nós · clique para destacar o caminho · arraste para navegar</div>
+                <div class="fluxo-toolbar-hint">Clique num bloco do diagrama para ver o caminho · arraste para navegar · zoom na imagem oficial</div>
                 <div class="fluxo-toolbar-right">
+                    <button type="button" class="fluxo-tool is-active" data-fluxo-pdf="v2" title="Versão refinada do PDF">v2</button>
+                    <button type="button" class="fluxo-tool" data-fluxo-pdf="v1" title="Versão anterior no mesmo PDF">v1</button>
                     <button type="button" class="fluxo-tool" data-fluxo-fit title="Enquadrar">⊡ Enquadrar</button>
                 </div>
             </div>
 
-            <div class="fluxo-board-wrap fluxo-board-wrap-in" id="fluxoInboundViewport">
+            <div class="fluxo-board-wrap fluxo-board-wrap-in fluxo-pdf-wrap" id="fluxoInboundViewport">
                 <div class="fluxo-zoom-layer" id="fluxoInboundZoom">
-                <div class="fluxo-board fluxo-board-in" id="fluxoInboundBoard">
-
-                    <div class="fluxo-lane-heads fluxo-lane-heads-4">
-                        <div class="fluxo-lane-head lane-mkt">Marketing</div>
-                        <div class="fluxo-lane-head lane-sdr">SDR</div>
-                        <div class="fluxo-lane-head lane-closer">Closer</div>
-                        <div class="fluxo-lane-head lane-bdr">BDR</div>
-                    </div>
-
-                    <div class="fluxo-stage fluxo-stage-in" id="fluxoInboundStage">
-                        <div class="fluxo-lanes-bg fluxo-lanes-bg-4" aria-hidden="true">
-                            <span class="lane-mkt"></span><span class="lane-sdr"></span><span class="lane-closer"></span><span class="lane-bdr"></span>
-                        </div>
-                        <div class="fluxo-cs-band" aria-hidden="true"></div>
-
-                        <svg class="fluxo-wires" id="fluxoInboundWires" aria-hidden="true"></svg>
-
-                        <!-- ===== MARKETING (12.5%) ===== -->
-                        <div class="fn fn-box fn-start" data-fn="lead" style="left:12.5%; top:28px" title="Entrada de demanda">Lead inbound</div>
-                        <div class="fn fn-diamond" data-fn="icp" data-label="É ICP?" style="left:12.5%; top:118px"></div>
-                        <div class="fn fn-diamond" data-fn="persona_mkt" data-label="É Persona?" style="left:12.5%; top:300px"></div>
-                        <div class="fn fn-circle fn-danger" data-fn="descarte" style="left:12.5%; top:470px">Descarte</div>
-                        <div class="fn fn-box fn-muted" data-fn="nutricao" style="left:12.5%; top:1280px">Cadência de nutrição</div>
-
-                        <!-- ===== SDR (37.5%) ===== -->
-                        <div class="fn fn-box fn-warn" data-fn="cad_contato" style="left:37.5%; top:28px">Cadência de tentativas de contato</div>
-                        <div class="fn fn-diamond" data-fn="contato" data-label="Conseguiu contato?" style="left:37.5%; top:150px"></div>
-                        <div class="fn fn-diamond" data-fn="icp_sdr" data-label="É ICP?" style="left:37.5%; top:300px"></div>
-                        <div class="fn fn-diamond" data-fn="persona_sdr" data-label="É Persona?" style="left:37.5%; top:450px"></div>
-                        <div class="fn fn-box fn-ok" data-fn="mql" style="left:37.5%; top:600px">MQL - SDR<small>(pessoa e emp. ICP)</small></div>
-                        <div class="fn fn-box fn-warn" data-fn="reagendamento" style="left:26%; top:700px">Cadências de Reagendamento</div>
-                        <div class="fn fn-diamond" data-fn="agendou" data-label="Agendou reunião?" style="left:37.5%; top:780px"></div>
-                        <div class="fn fn-box fn-warn" data-fn="cad_agenda" style="left:24%; top:920px">Cadência de agendamento de reunião</div>
-                        <div class="fn fn-circle fn-connector" data-fn="conn_a" style="left:24%; top:1060px">A</div>
-                        <div class="fn fn-box fn-ok" data-fn="sql" style="left:37.5%; top:1060px">SQL - SDR<small>(reunião agendada)</small></div>
-
-                        <!-- CS band — só na coluna SDR (25%–50%), sem invadir Closer/BDR -->
-                        <div class="fn fn-lane-tag fn-cs-tag" style="left:37.5%; top:1210px">CS</div>
-                        <div class="fn fn-box fn-subprocess fn-cs" data-fn="fluxo_cs" style="left:37.5%; top:1260px">Fluxo Comercial CS</div>
-                        <div class="fn fn-box fn-subprocess fn-cs" data-fn="onboarding" style="left:37.5%; top:1520px">Fluxo Onboarding CS</div>
-
-                        <!-- ===== CLOSER (62.5%) ===== -->
-                        <div class="fn fn-diamond" data-fn="reuniao_q" data-label="Reunião realizada?" style="left:62.5%; top:780px"></div>
-                        <div class="fn fn-diamond" data-fn="possivel" data-label="Possível fechamento?" style="left:62.5%; top:960px"></div>
-                        <div class="fn fn-box fn-ok" data-fn="sal" style="left:62.5%; top:1120px">SAL - SDR<small>(forecast de venda)</small></div>
-                        <div class="fn fn-box fn-warn" data-fn="followup" style="left:62.5%; top:1260px">Cadência de follow up para fechamento</div>
-                        <div class="fn fn-diamond" data-fn="fechou" data-label="Fechou contrato?" style="left:62.5%; top:1400px"></div>
-                        <div class="fn fn-circle fn-end" data-fn="contrato" style="left:62.5%; top:1550px">Contrato Fechado</div>
-
-                        <!-- ===== BDR (87.5%) ===== -->
-                        <div class="fn fn-circle fn-connector" data-fn="conn_a2" style="left:87.5%; top:80px">A</div>
-                        <div class="fn fn-box fn-subprocess fn-bdr" data-fn="outbound" style="left:87.5%; top:200px">Fluxo outbound</div>
+                    <div class="fluxo-pdf-stage" id="fluxoInboundStage">
+                        <img
+                            id="fluxoInboundImg"
+                            class="fluxo-pdf-img"
+                            src="assets/fluxo-inbound-oficial.png"
+                            alt="Fluxo Comercial Inbound — diagrama oficial Melvin"
+                            draggable="false"
+                            width="1784"
+                            height="2525"
+                        />
+                        <svg class="fluxo-pdf-wires" id="fluxoInboundPathSvg" aria-hidden="true"></svg>
+                        <div class="fluxo-pdf-hots" id="fluxoInboundHots" aria-hidden="false"></div>
                     </div>
                 </div>
-                </div>
-            </div>
-
-            <div class="fluxo-legend">
-                <span><i class="lg-swatch lg-mkt"></i> Marketing</span>
-                <span><i class="lg-swatch lg-sdr"></i> SDR</span>
-                <span><i class="lg-swatch lg-closer"></i> Closer</span>
-                <span><i class="lg-swatch lg-bdr"></i> BDR</span>
-                <span><i class="lg-swatch lg-cs"></i> CS</span>
-                <span><i class="lg-line lg-yes"></i> SIM</span>
-                <span><i class="lg-line lg-no"></i> NÃO</span>
-                <span><i class="lg-shape lg-dia"></i> Decisão</span>
-                <span><i class="lg-shape lg-sub"></i> Subfluxo</span>
             </div>
 
             <div class="fluxo-path-strip" id="fluxoInboundPathStrip" hidden>
                 <strong>Caminho:</strong> <span id="fluxoInboundPathText"></span>
                 <button type="button" class="fluxo-tool" data-fluxo-clear>Limpar</button>
+            </div>
+
+            <div class="fluxo-legend" style="margin-top:14px;">
+                <span><i class="lg-swatch lg-mkt"></i> Marketing</span>
+                <span><i class="lg-swatch lg-sdr"></i> SDR</span>
+                <span><i class="lg-swatch lg-closer"></i> Closer</span>
+                <span><i class="lg-swatch lg-bdr"></i> BDR</span>
+                <span><i class="lg-swatch lg-cs"></i> CS</span>
+                <span><strong style="color:var(--text-main)">A</strong> = conector do PDF</span>
             </div>
 
             <div class="fluxo-links-bar">

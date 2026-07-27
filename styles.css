@@ -633,10 +633,9 @@
         main {
             flex: 1;
             margin-left: var(--sidebar-expanded-width);
-            padding: 40px;
+            padding: 0 40px 40px; /* sem padding-top: topbar cola no topo */
             transition: margin-left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             min-width: 0;
-            overflow-x: hidden;
         }
 
         main.expanded {
@@ -1000,7 +999,7 @@ body.light-mode .mb-gim { background: rgba(99, 102, 241, 0.12) !important; color
             background: var(--melvin-bg-card);
             border-bottom: 1px solid var(--border);
             padding: 12px 40px;
-            margin: -40px -40px 35px -40px; /* Expande sobre o padding do main */
+            margin: 0 -40px 28px -40px; /* alinha com as laterais do main */
             position: sticky;
             top: 0;
             z-index: 200;
@@ -1535,10 +1534,10 @@ aside {
     .sidebar-overlay.visible { display: block; }
     main, main.expanded {
         margin-left: 0 !important;
-        padding: 72px 16px 28px;
+        padding: 56px 16px 28px;
     }
     .topbar {
-        margin: -40px -16px 24px -16px;
+        margin: 0 -16px 20px -16px;
         padding: 12px 16px 12px 56px;
     }
 }
@@ -2141,46 +2140,53 @@ body.light-mode .gim-accordion.gim-dor-oculta {
 }
 .fluxo-pdf-hots {
     z-index: 3;
-    pointer-events: none; /* clique vai no stage; hotspots só para highlight visual */
+    pointer-events: none;
 }
 .fluxo-pdf-hot {
     position: absolute;
     transform: translate(-50%, -50%);
-    width: 11%;
-    height: 4.2%;
-    min-width: 56px;
-    min-height: 34px;
+    width: 12%;
+    height: 4.6%;
+    min-width: 64px;
+    min-height: 36px;
     border-radius: 12px;
-    border: 1.5px solid transparent;
+    border: 2px solid transparent;
     background: transparent;
     cursor: pointer;
     padding: 0;
-    pointer-events: none;
-    transition: border-color 0.15s, background 0.15s, box-shadow 0.15s, opacity 0.15s;
+    pointer-events: auto;
+    transition: border-color 0.15s, background 0.15s, box-shadow 0.15s, opacity 0.15s, transform 0.15s;
 }
-.fluxo-pdf-stage:not(.is-focus) .fluxo-pdf-hot:hover,
-.fluxo-pdf-stage.is-focus .fluxo-pdf-hot.is-hot {
-    border-color: rgba(16, 185, 129, 0.85);
-    background: rgba(16, 185, 129, 0.16);
-    box-shadow: 0 0 0 2px rgba(100, 252, 216, 0.35), 0 8px 20px rgba(0,0,0,0.18);
+.fluxo-pdf-hot:hover {
+    border-color: rgba(14, 165, 233, 0.75);
+    background: rgba(56, 189, 248, 0.18);
 }
 .fluxo-pdf-stage.is-focus .fluxo-pdf-img {
-    filter: grayscale(0.25) brightness(0.92);
+    opacity: 0.38;
+    filter: grayscale(0.35) brightness(0.92);
+    transition: opacity 0.18s ease, filter 0.18s ease;
+}
+.fluxo-pdf-stage .fluxo-pdf-img {
+    transition: opacity 0.18s ease, filter 0.18s ease;
 }
 .fluxo-pdf-stage.is-focus .fluxo-pdf-hot {
-    opacity: 0.18;
+    opacity: 0.12;
 }
 .fluxo-pdf-stage.is-focus .fluxo-pdf-hot.is-hot {
     opacity: 1;
+    border-color: #059669;
+    background: rgba(16, 185, 129, 0.28);
+    box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.45), 0 10px 24px rgba(0,0,0,0.22);
+    z-index: 5;
 }
 .fluxo-pdf-wires path {
     fill: none;
-    stroke: #059669;
-    stroke-width: 4;
+    stroke: #047857;
+    stroke-width: 5;
     stroke-linecap: round;
     stroke-linejoin: round;
-    opacity: 0.95;
-    filter: drop-shadow(0 0 5px rgba(16, 185, 129, 0.55));
+    opacity: 1;
+    filter: drop-shadow(0 0 6px rgba(16, 185, 129, 0.75));
 }
 .fluxo-pdf-stage[data-pdf-ver="v1"] .fluxo-pdf-hots,
 .fluxo-pdf-stage[data-pdf-ver="v1"] .fluxo-pdf-wires {

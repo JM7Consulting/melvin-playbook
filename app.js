@@ -251,12 +251,6 @@ document.addEventListener('DOMContentLoaded', () => {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
         closeMobileSidebar();
-        if (pageHash === '#fluxo-comerc-inbound') {
-            requestAnimationFrame(() => {
-                drawFluxoInboundWires();
-                requestAnimationFrame(drawFluxoInboundWires);
-            });
-        }
         if (pageHash === '#fluxo-comerc-cs') {
             requestAnimationFrame(() => {
                 drawFluxoCsWires();
@@ -704,9 +698,6 @@ function drawFluxoCsWires() {
 }
 
 function refreshActiveFluxoWires() {
-    if (document.getElementById('fluxo-comerc-inbound')?.classList.contains('page-active')) {
-        drawFluxoInboundWires();
-    }
     if (document.getElementById('fluxo-comerc-cs')?.classList.contains('page-active')) {
         drawFluxoCsWires();
     }
@@ -717,13 +708,11 @@ window.addEventListener('resize', refreshActiveFluxoWires);
 (() => {
     if (typeof ResizeObserver === 'undefined') return;
     const ro = new ResizeObserver(refreshActiveFluxoWires);
-    ['fluxoInboundStage', 'fluxoOutboundStage', 'fluxoCsStage'].forEach((id) => {
-        const el = document.getElementById(id);
-        if (el) ro.observe(el);
-    });
+    const el = document.getElementById('fluxoCsStage');
+    if (el) ro.observe(el);
 })();
 
-/* Fluxo boards: zoom/pan/highlight — zoom-safe (wires use layout offsets) */
+/* Fluxo boards SVG (CS): zoom/pan/highlight */
 function initFluxoBoardUX(cfg) {
     const viewport = document.getElementById(cfg.viewportId);
     const zoomLayer = document.getElementById(cfg.zoomId);
@@ -741,7 +730,6 @@ function initFluxoBoardUX(cfg) {
 
     function applyZoom() {
         zoomLayer.style.transform = `scale(${zoom})`;
-        // Keep scroll area matching visual size (scale doesn't change layout box)
         const w = board.offsetWidth;
         const h = board.offsetHeight;
         zoomLayer.style.marginRight = `${Math.max(0, w * (zoom - 1))}px`;
@@ -855,128 +843,49 @@ function initFluxoBoardUX(cfg) {
     applyZoom();
 }
 
-initFluxoBoardUX({
-    viewportId: 'fluxoInboundViewport',
-    zoomId: 'fluxoInboundZoom',
-    boardId: 'fluxoInboundBoard',
-    stageId: 'fluxoInboundStage',
-    toolbarId: 'fluxoInboundToolbar',
-    stripId: 'fluxoInboundPathStrip',
-    stripTextId: 'fluxoInboundPathText',
-    svgId: 'fluxoInboundWires',
-    edges: FLUXO_INBOUND_EDGES,
-    draw: drawFluxoInboundWires
-});
-
-/* Outbound: imagem oficial do PDF + clique para ver caminho */
-(() => {
-    const viewport = document.getElementById('fluxoOutboundViewport');
-    const zoomLayer = document.getElementById('fluxoOutboundZoom');
-    const stage = document.getElementById('fluxoOutboundStage');
-    const img = document.getElementById('fluxoOutboundImg');
-    const hotsBox = document.getElementById('fluxoOutboundHots');
-    const svg = document.getElementById('fluxoOutboundPathSvg');
-    const toolbar = document.getElementById('fluxoOutboundToolbar');
-    const strip = document.getElementById('fluxoOutboundPathStrip');
-    const stripText = document.getElementById('fluxoOutboundPathText');
+/* PDF diagram boards: zoom/pan + click path highlight */
+function initFluxoPdfUX(cfg) {
+    const viewport = document.getElementById(cfg.viewportId);
+    const zoomLayer = document.getElementById(cfg.zoomId);
+    const stage = document.getElementById(cfg.stageId);
+    const img = document.getElementById(cfg.imgId);
+    const hotsBox = document.getElementById(cfg.hotsId);
+    const svg = document.getElementById(cfg.svgId);
+    const toolbar = document.getElementById(cfg.toolbarId);
+    const strip = document.getElementById(cfg.stripId);
+    const stripText = document.getElementById(cfg.stripTextId);
     if (!viewport || !zoomLayer || !img || !hotsBox || !svg || !stage) return;
 
-    const sources = {
-        v2: 'assets/fluxo-outbound-oficial.png',
-        v1: 'assets/fluxo-outbound-oficial-v1.png'
-    };
-
-    // Coordenadas % sobre a imagem oficial v2 (título incluso no PNG)
-    const HOTS_V2 = [
-        { id: 'o_a', label: 'A', x: 12.5, y: 11.2 },
-        { id: 'o_leads', label: 'Leads outbound', x: 37.5, y: 11.0 },
-        { id: 'o_c1', label: 'C', x: 87.5, y: 11.0 },
-        { id: 'o_nutricao', label: 'Cadência de nutrição', x: 87.5, y: 16.2 },
-        { id: 'o_icp1', label: 'É ICP?', x: 37.5, y: 17.0 },
-        { id: 'o_outra', label: 'Existe outra pessoa?', x: 52.5, y: 17.0 },
-        { id: 'o_encontrou', label: 'Encontrou Persona?', x: 37.5, y: 23.5 },
-        { id: 'o_fluxo_cs', label: 'Fluxo comercial CS', x: 12.5, y: 27.5 },
-        { id: 'o_b', label: 'B', x: 12.5, y: 31.5 },
-        { id: 'o_cad_contato', label: 'Cadência de Contato Inicial e Nutrição', x: 37.5, y: 30.5 },
-        { id: 'o_contato', label: 'Conseguiu contato?', x: 37.5, y: 37.0 },
-        { id: 'o_c2', label: 'C', x: 87.5, y: 37.0 },
-        { id: 'o_descarte', label: 'Descarte', x: 24.5, y: 43.5 },
-        { id: 'o_icp2', label: 'É ICP?', x: 37.5, y: 43.5 },
-        { id: 'o_persona', label: 'É Persona?', x: 37.5, y: 50.0 },
-        { id: 'o_c3', label: 'C', x: 87.5, y: 50.0 },
-        { id: 'o_mql', label: 'MQL - BDR', x: 37.5, y: 56.5 },
-        { id: 'o_redflag', label: 'Red flag?', x: 37.5, y: 62.5 },
-        { id: 'o_cad_agenda', label: 'Cadência de agendamento de reunião', x: 22.5, y: 69.0 },
-        { id: 'o_agendou', label: 'Agendou reunião?', x: 37.5, y: 69.0 },
-        { id: 'o_reagendamento', label: 'Cadências de Reagendamento', x: 55.0, y: 69.0 },
-        { id: 'o_c_agenda', label: 'C', x: 22.5, y: 74.5 },
-        { id: 'o_sql', label: 'SQL - BDR', x: 37.5, y: 76.0 },
-        { id: 'o_reuniao_q', label: 'Reunião realizada?', x: 62.5, y: 76.0 },
-        { id: 'o_possivel', label: 'Possível fechamento?', x: 62.5, y: 82.0 },
-        { id: 'o_c4', label: 'C', x: 87.5, y: 82.0 },
-        { id: 'o_sal', label: 'SAL - BDR', x: 62.5, y: 87.0 },
-        { id: 'o_followup', label: 'Cadência de follow up para fechamento', x: 62.5, y: 91.0 },
-        { id: 'o_fechou', label: 'Fechou contrato?', x: 62.5, y: 94.5 },
-        { id: 'o_c5', label: 'C', x: 87.5, y: 94.5 },
-        { id: 'o_contrato', label: 'Contrato fechado', x: 62.5, y: 97.5 },
-        { id: 'o_onboarding', label: 'Fluxo Onboarding', x: 12.5, y: 97.5 }
-    ];
-
-    const EDGES_V2 = [
-        { from: 'o_a', to: 'o_leads', label: '' },
-        { from: 'o_leads', to: 'o_icp1', label: '' },
-        { from: 'o_icp1', to: 'o_encontrou', label: 'SIM' },
-        { from: 'o_icp1', to: 'o_outra', label: 'NÃO' },
-        { from: 'o_outra', to: 'o_encontrou', label: 'SIM' },
-        { from: 'o_outra', to: 'o_c1', label: 'NÃO' },
-        { from: 'o_c1', to: 'o_nutricao', label: '' },
-        { from: 'o_encontrou', to: 'o_cad_contato', label: 'SIM' },
-        { from: 'o_encontrou', to: 'o_outra', label: 'NÃO' },
-        { from: 'o_fluxo_cs', to: 'o_b', label: '' },
-        { from: 'o_b', to: 'o_cad_contato', label: '' },
-        { from: 'o_cad_contato', to: 'o_contato', label: '' },
-        { from: 'o_contato', to: 'o_icp2', label: 'SIM' },
-        { from: 'o_contato', to: 'o_c2', label: 'NÃO' },
-        { from: 'o_icp2', to: 'o_persona', label: 'SIM' },
-        { from: 'o_icp2', to: 'o_descarte', label: 'NÃO' },
-        { from: 'o_persona', to: 'o_mql', label: 'SIM' },
-        { from: 'o_persona', to: 'o_c3', label: 'NÃO' },
-        { from: 'o_mql', to: 'o_redflag', label: '' },
-        { from: 'o_redflag', to: 'o_agendou', label: 'NÃO' },
-        { from: 'o_redflag', to: 'o_descarte', label: 'SIM' },
-        { from: 'o_agendou', to: 'o_sql', label: 'SIM' },
-        { from: 'o_agendou', to: 'o_cad_agenda', label: 'NÃO' },
-        { from: 'o_cad_agenda', to: 'o_agendou', label: '' },
-        { from: 'o_cad_agenda', to: 'o_c_agenda', label: '' },
-        { from: 'o_sql', to: 'o_reuniao_q', label: '' },
-        { from: 'o_reuniao_q', to: 'o_possivel', label: 'SIM' },
-        { from: 'o_reuniao_q', to: 'o_reagendamento', label: 'NÃO' },
-        { from: 'o_reagendamento', to: 'o_agendou', label: '' },
-        { from: 'o_possivel', to: 'o_sal', label: 'SIM' },
-        { from: 'o_possivel', to: 'o_c4', label: 'NÃO' },
-        { from: 'o_sal', to: 'o_followup', label: '' },
-        { from: 'o_followup', to: 'o_fechou', label: '' },
-        { from: 'o_fechou', to: 'o_contrato', label: 'SIM' },
-        { from: 'o_fechou', to: 'o_c5', label: 'NÃO' },
-        { from: 'o_contrato', to: 'o_onboarding', label: '' }
-    ];
-
+    const sources = cfg.sources || {};
+    const hotsByVer = cfg.hots || {};
+    const edgesByVer = cfg.edges || {};
     let zoom = 1;
-    let pdfVer = 'v2';
+    let pdfVer = cfg.defaultVer || 'v2';
     let activeId = null;
-    const byId = Object.fromEntries(HOTS_V2.map((h) => [h.id, h]));
-    const HIT_RADIUS = 7.5; // % — clique perto do bloco conta
+    const HIT_RADIUS = 9;
+
+    function currentHots() {
+        return hotsByVer[pdfVer] || hotsByVer.v2 || [];
+    }
+    function currentEdges() {
+        return edgesByVer[pdfVer] || edgesByVer.v2 || [];
+    }
+    function byIdMap() {
+        return Object.fromEntries(currentHots().map((h) => [h.id, h]));
+    }
 
     function buildHots() {
         hotsBox.innerHTML = '';
-        HOTS_V2.forEach((h) => {
-            const el = document.createElement('div');
-            el.className = 'fluxo-pdf-hot';
-            el.dataset.fn = h.id;
-            el.title = h.label;
-            el.style.left = `${h.x}%`;
-            el.style.top = `${h.y}%`;
-            hotsBox.appendChild(el);
+        currentHots().forEach((h) => {
+            const btn = document.createElement('button');
+            btn.type = 'button';
+            btn.className = 'fluxo-pdf-hot';
+            btn.dataset.fn = h.id;
+            btn.title = h.label;
+            btn.setAttribute('aria-label', h.label);
+            btn.style.left = `${h.x}%`;
+            btn.style.top = `${h.y}%`;
+            hotsBox.appendChild(btn);
         });
     }
 
@@ -1009,8 +918,9 @@ initFluxoBoardUX({
     }
 
     function neighbors(id) {
-        const outs = EDGES_V2.filter((e) => e.from === id).map((e) => e.to);
-        const ins = EDGES_V2.filter((e) => e.to === id).map((e) => e.from);
+        const edges = currentEdges();
+        const outs = edges.filter((e) => e.from === id).map((e) => e.to);
+        const ins = edges.filter((e) => e.to === id).map((e) => e.from);
         return [...new Set([...outs, ...ins])];
     }
 
@@ -1024,7 +934,7 @@ initFluxoBoardUX({
     function nearestHot(pctX, pctY) {
         let best = null;
         let bestDist = Infinity;
-        HOTS_V2.forEach((h) => {
+        currentHots().forEach((h) => {
             const d = Math.hypot(h.x - pctX, h.y - pctY);
             if (d < bestDist) {
                 bestDist = d;
@@ -1035,8 +945,9 @@ initFluxoBoardUX({
     }
 
     function focusNode(id) {
-        if (pdfVer !== 'v2') return;
+        if (!(hotsByVer[pdfVer] || []).length) return;
         activeId = id;
+        const byId = byIdMap();
         const hot = new Set([id, ...neighbors(id)]);
         stage.classList.add('is-focus');
         hotsBox.querySelectorAll('.fluxo-pdf-hot').forEach((el) => {
@@ -1046,7 +957,7 @@ initFluxoBoardUX({
         syncSvgSize();
         while (svg.firstChild) svg.removeChild(svg.firstChild);
         const NS = 'http://www.w3.org/2000/svg';
-        EDGES_V2.forEach((edge) => {
+        currentEdges().forEach((edge) => {
             if (!(hot.has(edge.from) && hot.has(edge.to) && (edge.from === id || edge.to === id))) return;
             const a = byId[edge.from];
             const b = byId[edge.to];
@@ -1064,7 +975,7 @@ initFluxoBoardUX({
         });
 
         if (strip && stripText) {
-            const outs = EDGES_V2.filter((e) => e.from === id)
+            const outs = currentEdges().filter((e) => e.from === id)
                 .map((e) => `${e.label ? e.label + ' → ' : ''}${byId[e.to]?.label || e.to}`)
                 .join(' · ');
             stripText.textContent = `${byId[id]?.label || id}${outs ? ' — ' + outs : ''}`;
@@ -1072,9 +983,16 @@ initFluxoBoardUX({
         }
     }
 
+    function hitFromEvent(e) {
+        const rect = stage.getBoundingClientRect();
+        if (rect.width < 10 || rect.height < 10) return null;
+        const pctX = ((e.clientX - rect.left) / rect.width) * 100;
+        const pctY = ((e.clientY - rect.top) / rect.height) * 100;
+        return nearestHot(pctX, pctY);
+    }
+
     buildHots();
-    stage.dataset.pdfVer = 'v2';
-    stage.style.cursor = 'crosshair';
+    stage.dataset.pdfVer = pdfVer;
 
     toolbar?.addEventListener('click', (e) => {
         const clearBtn = e.target.closest('[data-fluxo-clear]');
@@ -1091,9 +1009,9 @@ initFluxoBoardUX({
                 img.src = sources[key];
                 toolbar.querySelectorAll('[data-fluxo-pdf]').forEach((b) => b.classList.toggle('is-active', b === pdfBtn));
                 clearFocus();
+                buildHots();
                 zoom = 1;
                 img.onload = applyZoom;
-                stage.style.cursor = key === 'v2' ? 'crosshair' : 'grab';
             }
             return;
         }
@@ -1121,46 +1039,70 @@ initFluxoBoardUX({
     let startY = 0;
     let scrollLeft = 0;
     let scrollTop = 0;
+    let ignoreClick = false;
 
     viewport.addEventListener('pointerdown', (e) => {
         if (e.target.closest('.fluxo-tool')) return;
+        if (e.target.closest('.fluxo-pdf-hot')) {
+            // hotspot handles its own click; don't pan
+            ignoreClick = false;
+            moved = false;
+            return;
+        }
         panning = true;
         moved = false;
+        ignoreClick = false;
         viewport.classList.add('is-panning');
         startX = e.clientX;
         startY = e.clientY;
         scrollLeft = viewport.scrollLeft;
         scrollTop = viewport.scrollTop;
-        viewport.setPointerCapture?.(e.pointerId);
     });
     viewport.addEventListener('pointermove', (e) => {
         if (!panning) return;
         const dx = e.clientX - startX;
         const dy = e.clientY - startY;
-        if (Math.abs(dx) + Math.abs(dy) > 5) moved = true;
+        if (Math.abs(dx) + Math.abs(dy) > 6) moved = true;
         viewport.scrollLeft = scrollLeft - dx;
         viewport.scrollTop = scrollTop - dy;
     });
-    const endPan = () => {
+    viewport.addEventListener('pointerup', (e) => {
+        const wasPanning = panning;
+        const wasMoved = moved;
         panning = false;
         viewport.classList.remove('is-panning');
-    };
-    viewport.addEventListener('pointerup', endPan);
-    viewport.addEventListener('pointercancel', endPan);
+        if (!wasPanning || wasMoved) return;
+        if (e.target.closest('.fluxo-tool') || e.target.closest('.fluxo-pdf-hot')) return;
+        if (!(hotsByVer[pdfVer] || []).length) return;
+        const hit = hitFromEvent(e);
+        ignoreClick = true;
+        if (!hit) clearFocus();
+        else focusNode(hit.id);
+    });
+    viewport.addEventListener('pointercancel', () => {
+        panning = false;
+        viewport.classList.remove('is-panning');
+    });
+
+    hotsBox.addEventListener('click', (e) => {
+        const hot = e.target.closest('.fluxo-pdf-hot');
+        if (!hot) return;
+        e.preventDefault();
+        e.stopPropagation();
+        focusNode(hot.dataset.fn);
+    });
 
     stage.addEventListener('click', (e) => {
-        if (moved) return;
-        if (pdfVer !== 'v2') return;
-        const rect = stage.getBoundingClientRect();
-        if (rect.width < 10 || rect.height < 10) return;
-        const pctX = ((e.clientX - rect.left) / rect.width) * 100;
-        const pctY = ((e.clientY - rect.top) / rect.height) * 100;
-        const hit = nearestHot(pctX, pctY);
-        if (!hit) {
-            clearFocus();
+        if (ignoreClick) {
+            ignoreClick = false;
             return;
         }
-        focusNode(hit.id);
+        if (moved) return;
+        if (e.target.closest('.fluxo-pdf-hot')) return;
+        if (!(hotsByVer[pdfVer] || []).length) return;
+        const hit = hitFromEvent(e);
+        if (!hit) clearFocus();
+        else focusNode(hit.id);
     });
 
     if (img.complete) applyZoom();
@@ -1169,7 +1111,180 @@ initFluxoBoardUX({
         applyZoom();
         if (activeId && stage.classList.contains('is-focus')) focusNode(activeId);
     });
-})();
+}
+
+const FLUXO_INBOUND_PDF_HOTS = [
+    { id: 'lead', label: 'Lead inbound', x: 12.5, y: 11.0 },
+    { id: 'icp', label: 'É ICP?', x: 12.5, y: 17.5 },
+    { id: 'cad_contato', label: 'Cadência de tentativas de contato', x: 37.5, y: 11.0 },
+    { id: 'conn_a2', label: 'A', x: 87.5, y: 14.0 },
+    { id: 'outbound', label: 'Fluxo outbound', x: 87.5, y: 20.5 },
+    { id: 'persona_mkt', label: 'É Persona?', x: 12.5, y: 26.0 },
+    { id: 'contato', label: 'Conseguiu contato?', x: 37.5, y: 20.0 },
+    { id: 'descarte', label: 'Descarte', x: 12.5, y: 34.5 },
+    { id: 'icp_sdr', label: 'É ICP?', x: 37.5, y: 28.5 },
+    { id: 'persona_sdr', label: 'É Persona?', x: 37.5, y: 36.5 },
+    { id: 'mql', label: 'MQL - SDR', x: 37.5, y: 44.5 },
+    { id: 'reagendamento', label: 'Cadências de Reagendamento', x: 50.0, y: 52.0 },
+    { id: 'agendou', label: 'Agendou reunião?', x: 37.5, y: 52.0 },
+    { id: 'reuniao_q', label: 'Reunião realizada?', x: 62.5, y: 52.0 },
+    { id: 'cad_agenda', label: 'Cadência de agendamento de reunião', x: 24.0, y: 60.0 },
+    { id: 'possivel', label: 'Possível fechamento?', x: 62.5, y: 62.0 },
+    { id: 'conn_a', label: 'A', x: 24.0, y: 68.0 },
+    { id: 'sql', label: 'SQL - SDR', x: 37.5, y: 68.0 },
+    { id: 'sal', label: 'SAL - SDR', x: 62.5, y: 70.5 },
+    { id: 'followup', label: 'Cadência de follow up para fechamento', x: 62.5, y: 77.0 },
+    { id: 'fechou', label: 'Fechou contrato?', x: 62.5, y: 83.5 },
+    { id: 'nutricao', label: 'Cadência de nutrição', x: 12.5, y: 86.0 },
+    { id: 'contrato', label: 'Contrato Fechado', x: 62.5, y: 90.0 },
+    { id: 'fluxo_cs', label: 'Fluxo Comercial CS', x: 37.5, y: 90.0 },
+    { id: 'onboarding', label: 'Fluxo Onboarding CS', x: 37.5, y: 96.0 }
+];
+
+const FLUXO_INBOUND_PDF_EDGES = [
+    { from: 'lead', to: 'icp', label: '' },
+    { from: 'icp', to: 'cad_contato', label: 'SIM' },
+    { from: 'icp', to: 'persona_mkt', label: 'NÃO' },
+    { from: 'persona_mkt', to: 'descarte', label: 'NÃO' },
+    { from: 'persona_mkt', to: 'nutricao', label: 'SIM' },
+    { from: 'cad_contato', to: 'contato', label: '' },
+    { from: 'contato', to: 'outbound', label: 'NÃO' },
+    { from: 'contato', to: 'icp_sdr', label: 'SIM' },
+    { from: 'icp_sdr', to: 'descarte', label: 'NÃO' },
+    { from: 'icp_sdr', to: 'persona_sdr', label: 'SIM' },
+    { from: 'persona_sdr', to: 'outbound', label: 'NÃO' },
+    { from: 'persona_sdr', to: 'mql', label: 'SIM' },
+    { from: 'mql', to: 'agendou', label: '' },
+    { from: 'agendou', to: 'sql', label: 'SIM' },
+    { from: 'agendou', to: 'cad_agenda', label: 'NÃO' },
+    { from: 'cad_agenda', to: 'conn_a', label: '' },
+    { from: 'conn_a', to: 'conn_a2', label: '' },
+    { from: 'conn_a2', to: 'outbound', label: '' },
+    { from: 'sql', to: 'reuniao_q', label: '' },
+    { from: 'reuniao_q', to: 'reagendamento', label: 'NÃO' },
+    { from: 'reuniao_q', to: 'possivel', label: 'SIM' },
+    { from: 'reagendamento', to: 'agendou', label: '' },
+    { from: 'possivel', to: 'outbound', label: 'NÃO' },
+    { from: 'possivel', to: 'sal', label: 'SIM' },
+    { from: 'sal', to: 'followup', label: '' },
+    { from: 'followup', to: 'fechou', label: '' },
+    { from: 'fechou', to: 'nutricao', label: 'NÃO' },
+    { from: 'fechou', to: 'contrato', label: 'SIM' },
+    { from: 'contrato', to: 'onboarding', label: '' },
+    { from: 'fluxo_cs', to: 'nutricao', label: '' }
+];
+
+const FLUXO_OUTBOUND_PDF_HOTS = [
+    { id: 'o_a', label: 'A', x: 12.5, y: 11.2 },
+    { id: 'o_leads', label: 'Leads outbound', x: 37.5, y: 11.0 },
+    { id: 'o_c1', label: 'C', x: 87.5, y: 11.0 },
+    { id: 'o_nutricao', label: 'Cadência de nutrição', x: 87.5, y: 16.2 },
+    { id: 'o_icp1', label: 'É ICP?', x: 37.5, y: 17.0 },
+    { id: 'o_outra', label: 'Existe outra pessoa?', x: 52.5, y: 17.0 },
+    { id: 'o_encontrou', label: 'Encontrou Persona?', x: 37.5, y: 23.5 },
+    { id: 'o_fluxo_cs', label: 'Fluxo comercial CS', x: 12.5, y: 27.5 },
+    { id: 'o_b', label: 'B', x: 12.5, y: 31.5 },
+    { id: 'o_cad_contato', label: 'Cadência de Contato Inicial e Nutrição', x: 37.5, y: 30.5 },
+    { id: 'o_contato', label: 'Conseguiu contato?', x: 37.5, y: 37.0 },
+    { id: 'o_c2', label: 'C', x: 87.5, y: 37.0 },
+    { id: 'o_descarte', label: 'Descarte', x: 24.5, y: 43.5 },
+    { id: 'o_icp2', label: 'É ICP?', x: 37.5, y: 43.5 },
+    { id: 'o_persona', label: 'É Persona?', x: 37.5, y: 50.0 },
+    { id: 'o_c3', label: 'C', x: 87.5, y: 50.0 },
+    { id: 'o_mql', label: 'MQL - BDR', x: 37.5, y: 56.5 },
+    { id: 'o_redflag', label: 'Red flag?', x: 37.5, y: 62.5 },
+    { id: 'o_cad_agenda', label: 'Cadência de agendamento de reunião', x: 22.5, y: 69.0 },
+    { id: 'o_agendou', label: 'Agendou reunião?', x: 37.5, y: 69.0 },
+    { id: 'o_reagendamento', label: 'Cadências de Reagendamento', x: 55.0, y: 69.0 },
+    { id: 'o_c_agenda', label: 'C', x: 22.5, y: 74.5 },
+    { id: 'o_sql', label: 'SQL - BDR', x: 37.5, y: 76.0 },
+    { id: 'o_reuniao_q', label: 'Reunião realizada?', x: 62.5, y: 76.0 },
+    { id: 'o_possivel', label: 'Possível fechamento?', x: 62.5, y: 82.0 },
+    { id: 'o_c4', label: 'C', x: 87.5, y: 82.0 },
+    { id: 'o_sal', label: 'SAL - BDR', x: 62.5, y: 87.0 },
+    { id: 'o_followup', label: 'Cadência de follow up para fechamento', x: 62.5, y: 91.0 },
+    { id: 'o_fechou', label: 'Fechou contrato?', x: 62.5, y: 94.5 },
+    { id: 'o_c5', label: 'C', x: 87.5, y: 94.5 },
+    { id: 'o_contrato', label: 'Contrato fechado', x: 62.5, y: 97.5 },
+    { id: 'o_onboarding', label: 'Fluxo Onboarding', x: 12.5, y: 97.5 }
+];
+
+const FLUXO_OUTBOUND_PDF_EDGES = [
+    { from: 'o_a', to: 'o_leads', label: '' },
+    { from: 'o_leads', to: 'o_icp1', label: '' },
+    { from: 'o_icp1', to: 'o_encontrou', label: 'SIM' },
+    { from: 'o_icp1', to: 'o_outra', label: 'NÃO' },
+    { from: 'o_outra', to: 'o_encontrou', label: 'SIM' },
+    { from: 'o_outra', to: 'o_c1', label: 'NÃO' },
+    { from: 'o_c1', to: 'o_nutricao', label: '' },
+    { from: 'o_encontrou', to: 'o_cad_contato', label: 'SIM' },
+    { from: 'o_encontrou', to: 'o_outra', label: 'NÃO' },
+    { from: 'o_fluxo_cs', to: 'o_b', label: '' },
+    { from: 'o_b', to: 'o_cad_contato', label: '' },
+    { from: 'o_cad_contato', to: 'o_contato', label: '' },
+    { from: 'o_contato', to: 'o_icp2', label: 'SIM' },
+    { from: 'o_contato', to: 'o_c2', label: 'NÃO' },
+    { from: 'o_icp2', to: 'o_persona', label: 'SIM' },
+    { from: 'o_icp2', to: 'o_descarte', label: 'NÃO' },
+    { from: 'o_persona', to: 'o_mql', label: 'SIM' },
+    { from: 'o_persona', to: 'o_c3', label: 'NÃO' },
+    { from: 'o_mql', to: 'o_redflag', label: '' },
+    { from: 'o_redflag', to: 'o_agendou', label: 'NÃO' },
+    { from: 'o_redflag', to: 'o_descarte', label: 'SIM' },
+    { from: 'o_agendou', to: 'o_sql', label: 'SIM' },
+    { from: 'o_agendou', to: 'o_cad_agenda', label: 'NÃO' },
+    { from: 'o_cad_agenda', to: 'o_agendou', label: '' },
+    { from: 'o_cad_agenda', to: 'o_c_agenda', label: '' },
+    { from: 'o_sql', to: 'o_reuniao_q', label: '' },
+    { from: 'o_reuniao_q', to: 'o_possivel', label: 'SIM' },
+    { from: 'o_reuniao_q', to: 'o_reagendamento', label: 'NÃO' },
+    { from: 'o_reagendamento', to: 'o_agendou', label: '' },
+    { from: 'o_possivel', to: 'o_sal', label: 'SIM' },
+    { from: 'o_possivel', to: 'o_c4', label: 'NÃO' },
+    { from: 'o_sal', to: 'o_followup', label: '' },
+    { from: 'o_followup', to: 'o_fechou', label: '' },
+    { from: 'o_fechou', to: 'o_contrato', label: 'SIM' },
+    { from: 'o_fechou', to: 'o_c5', label: 'NÃO' },
+    { from: 'o_contrato', to: 'o_onboarding', label: '' }
+];
+
+initFluxoPdfUX({
+    viewportId: 'fluxoInboundViewport',
+    zoomId: 'fluxoInboundZoom',
+    stageId: 'fluxoInboundStage',
+    imgId: 'fluxoInboundImg',
+    hotsId: 'fluxoInboundHots',
+    svgId: 'fluxoInboundPathSvg',
+    toolbarId: 'fluxoInboundToolbar',
+    stripId: 'fluxoInboundPathStrip',
+    stripTextId: 'fluxoInboundPathText',
+    defaultVer: 'v2',
+    sources: {
+        v2: 'assets/fluxo-inbound-oficial.png',
+        v1: 'assets/fluxo-inbound-oficial-v1.png'
+    },
+    hots: { v2: FLUXO_INBOUND_PDF_HOTS, v1: [] },
+    edges: { v2: FLUXO_INBOUND_PDF_EDGES, v1: [] }
+});
+
+initFluxoPdfUX({
+    viewportId: 'fluxoOutboundViewport',
+    zoomId: 'fluxoOutboundZoom',
+    stageId: 'fluxoOutboundStage',
+    imgId: 'fluxoOutboundImg',
+    hotsId: 'fluxoOutboundHots',
+    svgId: 'fluxoOutboundPathSvg',
+    toolbarId: 'fluxoOutboundToolbar',
+    stripId: 'fluxoOutboundPathStrip',
+    stripTextId: 'fluxoOutboundPathText',
+    defaultVer: 'v2',
+    sources: {
+        v2: 'assets/fluxo-outbound-oficial.png',
+        v1: 'assets/fluxo-outbound-oficial-v1.png'
+    },
+    hots: { v2: FLUXO_OUTBOUND_PDF_HOTS, v1: [] },
+    edges: { v2: FLUXO_OUTBOUND_PDF_EDGES, v1: [] }
+});
 
 /* Objeções kit: busca + filtros por página */
 function initObjKit(root) {
