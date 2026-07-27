@@ -844,10 +844,31 @@ function initFluxoPdfUX(cfg) {
     const sources = cfg.sources || {};
     const hotsByVer = cfg.hots || {};
     const edgesByVer = cfg.edges || {};
+    const waitingEl = cfg.waitingId ? document.getElementById(cfg.waitingId) : null;
+    const waitingVers = cfg.waitingVers || [];
     let zoom = 1;
     let pdfVer = cfg.defaultVer || 'v2';
     let activeId = null;
     const HIT_RADIUS = 9;
+
+    function isWaitingVer(ver) {
+        return waitingVers.includes(ver);
+    }
+
+    function applyVersionUI() {
+        const waiting = isWaitingVer(pdfVer);
+        stage.dataset.pdfVer = pdfVer;
+        if (waitingEl) waitingEl.hidden = !waiting;
+        viewport.hidden = waiting;
+        if (strip) strip.hidden = true;
+        toolbar?.querySelectorAll('[data-fluxo-zoom], [data-fluxo-fit]').forEach((b) => {
+            b.disabled = waiting;
+        });
+        const hint = toolbar?.querySelector('.fluxo-toolbar-hint');
+        if (hint && cfg.waitingHint && cfg.readyHint) {
+            hint.textContent = waiting ? cfg.waitingHint : cfg.readyHint;
+        }
+    }
 
     function currentHots() {
         return hotsByVer[pdfVer] || hotsByVer.v2 || [];
@@ -977,7 +998,7 @@ function initFluxoPdfUX(cfg) {
     }
 
     buildHots();
-    stage.dataset.pdfVer = pdfVer;
+    applyVersionUI();
 
     toolbar?.addEventListener('click', (e) => {
         const clearBtn = e.target.closest('[data-fluxo-clear]');
@@ -988,20 +1009,25 @@ function initFluxoPdfUX(cfg) {
         const pdfBtn = e.target.closest('[data-fluxo-pdf]');
         if (pdfBtn) {
             const key = pdfBtn.getAttribute('data-fluxo-pdf');
-            if (sources[key]) {
-                pdfVer = key;
-                stage.dataset.pdfVer = key;
+            if (!key) return;
+            const waiting = isWaitingVer(key);
+            if (!waiting && !sources[key]) return;
+            pdfVer = key;
+            toolbar.querySelectorAll('[data-fluxo-pdf]').forEach((b) => b.classList.toggle('is-active', b === pdfBtn));
+            clearFocus();
+            applyVersionUI();
+            if (!waiting) {
                 img.src = sources[key];
-                toolbar.querySelectorAll('[data-fluxo-pdf]').forEach((b) => b.classList.toggle('is-active', b === pdfBtn));
-                clearFocus();
                 buildHots();
                 zoom = 1;
                 img.onload = applyZoom;
+                applyZoom();
             }
             return;
         }
+        if (isWaitingVer(pdfVer)) return;
         const btn = e.target.closest('[data-fluxo-zoom], [data-fluxo-fit]');
-        if (!btn) return;
+        if (!btn || btn.disabled) return;
         if (btn.hasAttribute('data-fluxo-fit')) {
             zoom = 1;
             applyZoom();
@@ -1271,7 +1297,7 @@ initFluxoPdfUX({
     edges: { v2: FLUXO_OUTBOUND_PDF_EDGES, v1: [] }
 });
 
-/* CS: v1 = original PDF. v2 slot pronto (mesmo PNG até a revisão chegar). Path UX entra na v2. */
+/* CS: v1 = original. v2 = página de espera até a revisão. */
 const FLUXO_CS_PDF_HOTS = [];
 const FLUXO_CS_PDF_EDGES = [];
 
@@ -1286,8 +1312,11 @@ initFluxoPdfUX({
     stripId: 'fluxoCsPathStrip',
     stripTextId: 'fluxoCsPathText',
     defaultVer: 'v1',
+    waitingId: 'fluxoCsWaiting',
+    waitingVers: ['v2'],
+    readyHint: 'Arraste para navegar · zoom na imagem oficial',
+    waitingHint: 'v2 em revisão — voltando para a página de espera',
     sources: {
-        v2: 'assets/fluxo-cs-oficial.png',
         v1: 'assets/fluxo-cs-oficial-v1.png'
     },
     hots: { v2: FLUXO_CS_PDF_HOTS, v1: [] },

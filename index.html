@@ -5419,7 +5419,7 @@
                 <div class="cadencia-title-line" style="font-size: 1.8rem; color: #22d3ee;">♻️ FLUXO COMERCIAL CS</div>
                 <p class="cadencia-subtitle" style="padding-left: 0;">Diagrama <strong>oficial</strong> do PDF Melvin (draw.io) — reprodução pixel-perfect, sem redesenho de setas. Expansão &amp; Retenção · Upsell, Cross-sell, Upgrade, TI/Produto e Warm Intro.</p>
                 <div class="gim-source-chip">Fonte: Fluxos comerciais — Comercial CS.drawio.pdf</div>
-                <p class="crono-card-note" style="margin-top:12px;margin-bottom:0;">Agora: <strong>v1 = original</strong> (mantido). Slot <strong>v2</strong> pronto — quando a revisão chegar, trocamos só o PNG e calibramos o clique-no-caminho.</p>
+                <p class="crono-card-note" style="margin-top:12px;margin-bottom:0;"><strong>v1</strong> = original no ar. <strong>v2</strong> = em revisão (página de espera até o PDF chegar).</p>
             </div>
 
             <div class="fluxo-toolbar" id="fluxoCsToolbar">
@@ -5428,12 +5428,19 @@
                     <button type="button" class="fluxo-tool" data-fluxo-zoom="reset" title="100%">100%</button>
                     <button type="button" class="fluxo-tool" data-fluxo-zoom="in" title="Aumentar">+</button>
                 </div>
-                <div class="fluxo-toolbar-hint">Arraste para navegar · zoom na imagem oficial · clique-no-caminho ativa na v2</div>
+                <div class="fluxo-toolbar-hint">Arraste para navegar · zoom na imagem oficial</div>
                 <div class="fluxo-toolbar-right">
-                    <button type="button" class="fluxo-tool" data-fluxo-pdf="v2" title="v2 — aguardando PDF revisado (mesmo arquivo até chegar)">v2</button>
+                    <button type="button" class="fluxo-tool" data-fluxo-pdf="v2" title="v2 em revisão — página de espera">v2</button>
                     <button type="button" class="fluxo-tool is-active" data-fluxo-pdf="v1" title="Original enviado (draw.io PDF)">v1</button>
                     <button type="button" class="fluxo-tool" data-fluxo-fit title="Enquadrar">⊡ Enquadrar</button>
                 </div>
+            </div>
+
+            <div class="fluxo-cs-waiting waiting-page" id="fluxoCsWaiting" hidden>
+                <div class="waiting-badge"><span class="pulse"></span> Em revisão</div>
+                <h2>Fluxo Comercial CS · v2</h2>
+                <p>Aguardando o PDF revisado. Enquanto isso, use a <strong>v1</strong> (original).</p>
+                <div class="waiting-meta">Revenue Operations Book · MELVIN</div>
             </div>
 
             <div class="fluxo-board-wrap fluxo-board-wrap-in fluxo-pdf-wrap" id="fluxoCsViewport">
