@@ -4233,9 +4233,12 @@ body.light-mode .welcome-logo-frame {
 
 .crono-golive-grid {
   display: grid;
-  grid-template-columns: 1fr 1.2fr;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 14px;
   margin-bottom: 14px;
+}
+@media (max-width: 1100px) {
+  .crono-golive-grid { grid-template-columns: 1fr; }
 }
 .crono-golive-card {
   padding: 18px;
