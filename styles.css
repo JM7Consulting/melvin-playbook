@@ -2291,8 +2291,9 @@ body.light-mode .pain-gim-widget .matrix-header {
 
 .pain-card-top {
     display: flex;
+    flex-direction: column;
     align-items: flex-start;
-    justify-content: space-between;
+    justify-content: flex-start;
     gap: 10px;
 }
 .pain-card-top h3 {
@@ -2301,21 +2302,26 @@ body.light-mode .pain-gim-widget .matrix-header {
     color: var(--text-main);
     line-height: 1.35;
     margin: 0;
+    width: 100%;
 }
 .pain-card-tags {
     display: flex;
     flex-wrap: wrap;
+    align-items: center;
     gap: 6px;
-    flex-shrink: 0;
+    width: 100%;
 }
 .pain-tag {
-    font-size: 0.65rem;
+    font-size: 0.62rem;
     font-weight: 800;
     letter-spacing: 0.04em;
     text-transform: uppercase;
     padding: 4px 8px;
     border-radius: 999px;
     border: 1px solid transparent;
+    white-space: nowrap;
+    line-height: 1.2;
+    flex: 0 0 auto;
 }
 .pain-tag-sangrenta {
     color: #fecaca;
