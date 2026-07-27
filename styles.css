@@ -2189,6 +2189,36 @@ body.light-mode .pain-gim-widget .matrix-header {
     margin-bottom: 10px;
 }
 .pain-map-out .pain-map-kicker { color: #fbbf24; }
+.pain-map-gim .pain-map-kicker { color: #a78bfa; }
+
+.pain-card-meta {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    margin: -4px 0 10px;
+    line-height: 1.4;
+}
+
+.pain-card details.pain-card-block {
+    cursor: pointer;
+}
+.pain-card details.pain-card-block > summary {
+    list-style: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+}
+.pain-card details.pain-card-block > summary::-webkit-details-marker { display: none; }
+.pain-card details.pain-card-block > summary::after {
+    content: '▾';
+    font-size: 0.75rem;
+    opacity: 0.7;
+}
+.pain-card details.pain-card-block[open] > summary::after { content: '▴'; }
+.pain-card details.pain-card-block > p {
+    margin-top: 8px;
+}
 
 .pain-map-hero {
     display: grid;
@@ -2406,6 +2436,12 @@ body.light-mode .pain-map-kicker {
 }
 body.light-mode .pain-map-out .pain-map-kicker {
     color: #B45309;
+}
+body.light-mode .pain-map-gim .pain-map-kicker {
+    color: #7c3aed;
+}
+body.light-mode .pain-card-meta {
+    color: #64748b;
 }
 body.light-mode .pain-map-footer {
     background: rgba(15, 23, 42, 0.03);
