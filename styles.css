@@ -48,7 +48,7 @@
             transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             display: flex;
             flex-direction: column;
-            padding: 18px 10px 0;
+            padding: 0;
             justify-content: flex-start;
             overflow: hidden;
             font-family: 'Manrope', 'Segoe UI', sans-serif;
@@ -73,7 +73,7 @@
             min-height: 0;
             overflow-x: hidden;
             overflow-y: auto;
-            padding-bottom: 12px;
+            padding: 12px 10px 12px;
             scrollbar-width: thin;
             scrollbar-color: rgba(100, 252, 216, 0.25) transparent;
         }
@@ -87,12 +87,19 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 8px 8px 18px;
+            padding: 10px 8px 16px;
             border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-            margin-bottom: 14px;
+            margin-bottom: 12px;
             width: 100%;
             min-height: 64px;
-            position: relative;
+            position: sticky;
+            top: -12px;
+            z-index: 8;
+            background:
+              linear-gradient(180deg, #0E151C 0%, #0A1015 100%);
+        }
+        body.light-mode .menu-header {
+            background: #FFFFFF;
         }
         .menu-header::after {
             content: '';
@@ -633,9 +640,11 @@
         main {
             flex: 1;
             margin-left: var(--sidebar-expanded-width);
-            padding: 0 40px 40px; /* sem padding-top: topbar cola no topo */
+            padding: 0 40px 40px;
             transition: margin-left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             min-width: 0;
+            position: relative;
+            z-index: 1;
         }
 
         main.expanded {
@@ -999,12 +1008,12 @@ body.light-mode .mb-gim { background: rgba(99, 102, 241, 0.12) !important; color
             background: var(--melvin-bg-card);
             border-bottom: 1px solid var(--border);
             padding: 12px 40px;
-            margin: 0 -40px 28px -40px; /* alinha com as laterais do main */
+            margin: 0 -40px 28px -40px;
             position: sticky;
             top: 0;
-            z-index: 200;
+            z-index: 50;
             width: auto;
-            max-width: 100%;
+            max-width: none;
             box-sizing: content-box;
         }
         
@@ -2145,11 +2154,11 @@ body.light-mode .gim-accordion.gim-dor-oculta {
 .fluxo-pdf-hot {
     position: absolute;
     transform: translate(-50%, -50%);
-    width: 12%;
-    height: 4.6%;
-    min-width: 64px;
-    min-height: 36px;
-    border-radius: 12px;
+    width: 9.5%;
+    height: 3.6%;
+    min-width: 52px;
+    min-height: 30px;
+    border-radius: 10px;
     border: 2px solid transparent;
     background: transparent;
     cursor: pointer;
