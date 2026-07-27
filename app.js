@@ -1324,3 +1324,16 @@ function initObjKit(root) {
 }
 
 document.querySelectorAll('.obj-kit-page').forEach(initObjKit);
+
+/* Funil Inbound: prévia enxuta (ocultar etapas candidatas) */
+(() => {
+    const btn = document.getElementById('funilInboundSlimToggle');
+    const grid = document.getElementById('funilInboundGrid');
+    if (!btn || !grid) return;
+    btn.addEventListener('click', () => {
+        const slim = grid.classList.toggle('is-slim-view');
+        btn.classList.toggle('is-active', slim);
+        btn.setAttribute('aria-pressed', slim ? 'true' : 'false');
+        btn.textContent = slim ? 'Mostrar etapas sugeridas' : 'Ocultar etapas sugeridas';
+    });
+})();

@@ -1702,9 +1702,19 @@
 				<p class="cadencia-subtitle">Etapas estratégicas integradas e desenhadas para o balanceamento de passagem de bastão operacional dentro do CRM.</p>
 			</div>
 
+			<div class="funil-slim-bar">
+				<p>
+					Etapas com tag <strong>Enxugar?</strong> são candidatas a sair do pipeline no cenário atual
+					(<strong>27/07/2026</strong>). Use o botão para pré-visualizar o funil sem elas.
+				</p>
+				<button type="button" class="funil-slim-btn" id="funilInboundSlimToggle" aria-pressed="false">
+					Ocultar etapas sugeridas
+				</button>
+			</div>
+
 			<!-- PIPELINE EM LINHA HORIZONTAL COMPLETA (PRINT 2 COM DESIGN DO PRINT 1) -->
 			<div class="funil-container-scroll">
-				<div class="funil-grid">
+				<div class="funil-grid" id="funilInboundGrid">
 					
 					<!-- ETAPA 01 -->
 					<div class="funil-column">
@@ -1724,7 +1734,7 @@
 					</div>
 
 					<!-- ETAPA 02 -->
-					<div class="funil-column">
+					<div class="funil-column funil-column--slim" data-funil-slim="1">
 						<div class="funil-column-header">
 							<div>
 								<h3>Pesquisa de Contato</h3>
@@ -1733,6 +1743,7 @@
 							<span class="funil-step-number">02</span>
 						</div>
 						<div class="inner-step-card">
+							<span class="tag-sub tag-slim">Enxugar?</span>
 							<span class="tag-sub tag-sdr">SDR / LDR</span>
 							<h4>Triagem de Fit Mínimo</h4>
 							<p>Enriquecimento de dados básicos da indústria antes do primeiro toque humano.</p>
@@ -1792,7 +1803,7 @@
 					</div>
 
 					<!-- ETAPA 06 -->
-					<div class="funil-column">
+					<div class="funil-column funil-column--slim" data-funil-slim="1">
 						<div class="funil-column-header">
 							<div>
 								<h3>Reagendamento</h3>
@@ -1801,6 +1812,7 @@
 							<span class="funil-step-number">06</span>
 						</div>
 						<div class="inner-step-card">
+							<span class="tag-sub tag-slim">Enxugar?</span>
 							<span class="tag-sub tag-sdr">SDR / Operação</span>
 							<h4>Régua de Salvamento</h4>
 							<p>Tratativa imediata para leads que solicitaram alteração de data antes do No-Show.</p>
@@ -1809,7 +1821,7 @@
 					</div>
 
 					<!-- ETAPA 07 -->
-					<div class="funil-column">
+					<div class="funil-column funil-column--slim" data-funil-slim="1">
 						<div class="funil-column-header">
 							<div>
 								<h3>Reunião Reagendada</h3>
@@ -1818,6 +1830,7 @@
 							<span class="funil-step-number">07</span>
 						</div>
 						<div class="inner-step-card">
+							<span class="tag-sub tag-slim">Enxugar?</span>
 							<span class="tag-sub tag-sdr">SDR</span>
 							<h4>Travamento de Slot 2</h4>
 							<p>Aplicação da régua secundária de confirmação para mitigar novas ausências.</p>
@@ -1843,7 +1856,7 @@
 					</div>
 
 					<!-- ETAPA 09 -->
-					<div class="funil-column">
+					<div class="funil-column funil-column--slim" data-funil-slim="1">
 						<div class="funil-column-header">
 							<div>
 								<h3>Contato Realizado</h3>
@@ -1852,6 +1865,7 @@
 							<span class="funil-step-number">09</span>
 						</div>
 						<div class="inner-step-card">
+							<span class="tag-sub tag-slim">Enxugar?</span>
 							<span class="tag-sub tag-cs">CS / RevOps</span>
 							<h4>Handoff para CS</h4>
 							<p>Contrato assinado, faturamento e setup ágil do software (diferencial MELVIN).</p>
@@ -1871,6 +1885,15 @@
 				<div class="matrix-content" id="directionContainer" style="padding: 20px; font-size: 0.9rem; line-height: 1.6;">
 					As etapas <strong>01 a 04</strong> operam como o motor de atração técnica ativa e passiva. Ao passar no Filtro 2 e gerar o agendamento (<strong>Etapa 05</strong>), as informações entram em sincronia direta com as frentes de fechamento e o pipeline do Closer (<strong>Etapas 08 e 09</strong>), reduzindo drasticamente o atrito e otimizando o Lead Time comercial focado na meta de 45 dias.
 				</div>
+			</div>
+
+			<div class="funil-slim-note">
+				<strong>Nota (27/07/2026):</strong>
+				no cenário atual, as etapas <strong>Pesquisa de Contato</strong>, <strong>Reagendamento</strong>,
+				<strong>Reunião Reagendada</strong> e <strong>Contato Realizado</strong> (marcadas com a tag amarela
+				<strong>Enxugar?</strong>) podem, sugestivamente, ficar de fora do pipeline para enxugar o funil —
+				sem perder a leitura do fluxo principal (Novo Lead → Contato Decisor → Nutrição → Reunião Agendada → Reunião Realizada).
+				O botão acima só simula essa visão; não altera o CRM.
 			</div>
 
 		</section>		

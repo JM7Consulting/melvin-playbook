@@ -895,6 +895,106 @@
 		.tag-sdr { background: rgba(56, 189, 248, 0.1); color: #38bdf8; }
 		.tag-closer { background: rgba(168, 85, 247, 0.1); color: #c084fc; }
 		.tag-cs { background: rgba(0, 102, 255, 0.1); color: #0066FF; }
+		.inner-step-card .tag-sub + .tag-sub {
+			margin-left: 6px;
+		}
+		.funil-column--slim {
+			border-color: rgba(251, 191, 36, 0.32);
+			background: rgba(251, 191, 36, 0.05);
+			box-shadow: inset 0 0 0 1px rgba(251, 191, 36, 0.08);
+		}
+		.funil-column--slim .funil-step-number {
+			background: rgba(251, 191, 36, 0.16);
+			color: #fbbf24;
+		}
+		.funil-slim-bar {
+			display: flex;
+			flex-wrap: wrap;
+			align-items: center;
+			justify-content: space-between;
+			gap: 12px;
+			margin: 0 0 16px;
+			padding: 12px 14px;
+			border-radius: 12px;
+			border: 1px solid rgba(251, 191, 36, 0.28);
+			background: rgba(251, 191, 36, 0.06);
+		}
+		.funil-slim-bar p {
+			margin: 0;
+			font-size: 0.82rem;
+			color: var(--text-muted);
+			line-height: 1.45;
+			max-width: 720px;
+		}
+		.funil-slim-bar strong { color: #fbbf24; }
+		.funil-slim-btn {
+			border: 1px solid rgba(251, 191, 36, 0.45);
+			background: rgba(251, 191, 36, 0.12);
+			color: #fde68a;
+			font-size: 0.78rem;
+			font-weight: 800;
+			letter-spacing: 0.02em;
+			padding: 9px 14px;
+			border-radius: 9px;
+			cursor: pointer;
+			white-space: nowrap;
+			transition: background 0.15s, border-color 0.15s, transform 0.15s;
+		}
+		.funil-slim-btn:hover {
+			background: rgba(251, 191, 36, 0.2);
+			border-color: rgba(251, 191, 36, 0.65);
+			transform: translateY(-1px);
+		}
+		.funil-slim-btn.is-active {
+			background: rgba(251, 191, 36, 0.28);
+			color: #fff7ed;
+		}
+		.funil-grid.is-slim-view {
+			min-width: 1180px;
+		}
+		.funil-grid.is-slim-view .funil-column--slim {
+			display: none;
+		}
+		.funil-slim-note {
+			margin-top: 16px;
+			padding: 16px 18px;
+			border-radius: 12px;
+			border: 1px dashed rgba(251, 191, 36, 0.35);
+			background: rgba(251, 191, 36, 0.04);
+			font-size: 0.86rem;
+			line-height: 1.55;
+			color: var(--text-muted);
+		}
+		.funil-slim-note strong { color: #fbbf24; }
+		body.light-mode .tag-slim {
+			background: rgba(245, 158, 11, 0.12);
+			color: #b45309;
+			border-color: rgba(245, 158, 11, 0.3);
+		}
+		body.light-mode .funil-column--slim {
+			border-color: rgba(245, 158, 11, 0.28);
+			background: rgba(245, 158, 11, 0.06);
+		}
+		body.light-mode .funil-column--slim .funil-step-number {
+			background: rgba(245, 158, 11, 0.14);
+			color: #b45309;
+		}
+		body.light-mode .funil-slim-bar,
+		body.light-mode .funil-slim-note {
+			background: rgba(245, 158, 11, 0.06);
+			border-color: rgba(245, 158, 11, 0.28);
+		}
+		body.light-mode .funil-slim-bar strong,
+		body.light-mode .funil-slim-note strong { color: #b45309; }
+		body.light-mode .funil-slim-btn {
+			background: rgba(245, 158, 11, 0.12);
+			border-color: rgba(245, 158, 11, 0.35);
+			color: #92400e;
+		}
+		body.light-mode .funil-slim-btn.is-active {
+			background: rgba(245, 158, 11, 0.22);
+			color: #78350f;
+		}
 		
 		/* --- ENGENHARIA DE TEMA CLARO (LIGHT MODE) REFINADO --- */
 		body.light-mode {
