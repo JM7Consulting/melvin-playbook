@@ -1645,9 +1645,10 @@ aside {
 
 .gim-profile-top {
     display: flex;
+    flex-direction: column;
     align-items: flex-start;
-    justify-content: space-between;
-    gap: 12px;
+    justify-content: flex-start;
+    gap: 10px;
     margin-bottom: 12px;
 }
 
@@ -1657,6 +1658,17 @@ aside {
     font-weight: 800;
     color: var(--text-main);
     line-height: 1.35;
+    margin: 0;
+    width: 100%;
+    padding-right: 0;
+}
+
+.gim-badge-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+    width: 100%;
 }
 
 .gim-meta {
@@ -1708,14 +1720,17 @@ aside {
 .gim-badge {
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     white-space: nowrap;
-    font-size: 0.68rem;
+    font-size: 0.64rem;
     font-weight: 800;
     text-transform: uppercase;
-    letter-spacing: 0.6px;
+    letter-spacing: 0.45px;
     padding: 5px 9px;
     border-radius: 999px;
     border: 1px solid transparent;
+    line-height: 1.2;
+    max-width: 100%;
 }
 
 .gim-badge-ok {
@@ -1740,6 +1755,29 @@ aside {
     color: #38bdf8;
     background: rgba(56, 189, 248, 0.1);
     border-color: rgba(56, 189, 248, 0.28);
+}
+
+.gim-badge-topdown {
+    color: #c4b5fd;
+    background: rgba(139, 92, 246, 0.14);
+    border-color: rgba(167, 139, 250, 0.38);
+}
+
+.gim-badge-bottomup {
+    color: #5eead4;
+    background: rgba(45, 212, 191, 0.12);
+    border-color: rgba(45, 212, 191, 0.36);
+}
+
+body.light-mode .gim-badge-topdown {
+    color: #6d28d9;
+    background: rgba(139, 92, 246, 0.12);
+    border-color: rgba(109, 40, 217, 0.28);
+}
+body.light-mode .gim-badge-bottomup {
+    color: #0f766e;
+    background: rgba(20, 184, 166, 0.12);
+    border-color: rgba(15, 118, 110, 0.28);
 }
 
 .gim-split {
