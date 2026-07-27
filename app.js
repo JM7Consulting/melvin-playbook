@@ -845,6 +845,7 @@ function initFluxoPdfUX(cfg) {
     const hotsByVer = cfg.hots || {};
     const edgesByVer = cfg.edges || {};
     const waitingEl = cfg.waitingId ? document.getElementById(cfg.waitingId) : null;
+    const liveEl = cfg.liveId ? document.getElementById(cfg.liveId) : null;
     const waitingVers = cfg.waitingVers || [];
     let zoom = 1;
     let pdfVer = cfg.defaultVer || 'v2';
@@ -859,8 +860,16 @@ function initFluxoPdfUX(cfg) {
         const waiting = isWaitingVer(pdfVer);
         stage.dataset.pdfVer = pdfVer;
         if (waitingEl) waitingEl.hidden = !waiting;
-        viewport.hidden = waiting;
+        if (liveEl) liveEl.hidden = waiting;
+        else viewport.hidden = waiting;
         if (strip) strip.hidden = true;
+        if (waiting) {
+            zoom = 1;
+            zoomLayer.style.transform = 'scale(1)';
+            zoomLayer.style.marginRight = '0px';
+            zoomLayer.style.marginBottom = '0px';
+            clearFocus();
+        }
         toolbar?.querySelectorAll('[data-fluxo-zoom], [data-fluxo-fit]').forEach((b) => {
             b.disabled = waiting;
         });
@@ -1313,9 +1322,10 @@ initFluxoPdfUX({
     stripTextId: 'fluxoCsPathText',
     defaultVer: 'v1',
     waitingId: 'fluxoCsWaiting',
+    liveId: 'fluxoCsLive',
     waitingVers: ['v2'],
     readyHint: 'Arraste para navegar · zoom na imagem oficial',
-    waitingHint: 'v2 em revisão — voltando para a página de espera',
+    waitingHint: 'v2 em revisão — clique em v1 para ver o original',
     sources: {
         v1: 'assets/fluxo-cs-oficial-v1.png'
     },

@@ -2336,6 +2336,14 @@ body.light-mode .gim-accordion.gim-dor-oculta {
     opacity: 0.35;
     cursor: not-allowed;
 }
+/* display:flex nos componentes sobrescreve [hidden] — forçar ocultação */
+.waiting-page[hidden],
+.fluxo-path-strip[hidden],
+.fluxo-pdf-wrap[hidden],
+#fluxoCsLive[hidden],
+#fluxoCsWaiting[hidden] {
+    display: none !important;
+}
 body.light-mode .fluxo-pdf-wrap { background: #fff; }
 .fluxo-tool.is-active {
     border-color: rgba(167, 139, 250, 0.55);
