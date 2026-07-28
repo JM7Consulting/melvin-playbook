@@ -5588,9 +5588,9 @@ Quando puder, confirme o recebimento ou me diga se prefere ajustar prazo/horári
 
             <div class="cadencia-header-block" style="margin-bottom: 18px;">
                 <div class="cadencia-title-line" style="font-size: 1.8rem; color: #22d3ee;">♻️ FLUXO COMERCIAL CS</div>
-                <p class="cadencia-subtitle" style="padding-left: 0;">Diagrama <strong>oficial</strong> do PDF Melvin (draw.io) — reprodução pixel-perfect, sem redesenho de setas. Expansão &amp; Retenção · Upsell, Cross-sell, Upgrade, TI/Produto e Warm Intro.</p>
-                <div class="gim-source-chip">Fonte: Fluxos comerciais — Comercial CS.drawio.pdf</div>
-                <p class="crono-card-note" style="margin-top:12px;margin-bottom:0;"><strong>v1</strong> = original no ar. <strong>v2</strong> = em revisão (página de espera até o PDF chegar).</p>
+                <p class="cadencia-subtitle" style="padding-left: 0;">Diagrama <strong>oficial</strong> do PDF Melvin (draw.io) — reprodução pixel-perfect, sem redesenho de setas. Expansão &amp; Retenção · Upsell, Cross-sell, Upgrade, TI e handoff Closer.</p>
+                <div class="gim-source-chip">Fonte: Fluxos comerciais — Comercial CS.drawio.pdf · v2</div>
+                <p class="crono-card-note" style="margin-top:12px;margin-bottom:0;"><strong>v2</strong> = versão final no ar. <strong>v1</strong> = original anterior (histórico).</p>
             </div>
 
             <div class="fluxo-toolbar" id="fluxoCsToolbar">
@@ -5599,30 +5599,23 @@ Quando puder, confirme o recebimento ou me diga se prefere ajustar prazo/horári
                     <button type="button" class="fluxo-tool" data-fluxo-zoom="reset" title="100%">100%</button>
                     <button type="button" class="fluxo-tool" data-fluxo-zoom="in" title="Aumentar">+</button>
                 </div>
-                <div class="fluxo-toolbar-hint">Arraste para navegar · zoom na imagem oficial</div>
+                <div class="fluxo-toolbar-hint">Arraste para navegar · zoom na imagem oficial · clique-no-caminho entra após calibração</div>
                 <div class="fluxo-toolbar-right">
-                    <button type="button" class="fluxo-tool" data-fluxo-pdf="v2" title="v2 em revisão — página de espera">v2</button>
-                    <button type="button" class="fluxo-tool is-active" data-fluxo-pdf="v1" title="Original enviado (draw.io PDF)">v1</button>
+                    <button type="button" class="fluxo-tool is-active" data-fluxo-pdf="v2" title="Versão final do PDF CS">v2</button>
+                    <button type="button" class="fluxo-tool" data-fluxo-pdf="v1" title="Original anterior (histórico)">v1</button>
                     <button type="button" class="fluxo-tool" data-fluxo-fit title="Enquadrar">⊡ Enquadrar</button>
                 </div>
-            </div>
-
-            <div class="fluxo-cs-waiting waiting-page" id="fluxoCsWaiting" hidden>
-                <div class="waiting-badge"><span class="pulse"></span> Em revisão</div>
-                <h2>Fluxo Comercial CS · v2</h2>
-                <p>Aguardando o PDF revisado. Enquanto isso, use a <strong>v1</strong> (original).</p>
-                <div class="waiting-meta">Revenue Operations Book · MELVIN</div>
             </div>
 
             <div id="fluxoCsLive">
             <div class="fluxo-board-wrap fluxo-board-wrap-in fluxo-pdf-wrap" id="fluxoCsViewport">
                 <div class="fluxo-zoom-layer" id="fluxoCsZoom">
-                    <div class="fluxo-pdf-stage" id="fluxoCsStage" data-pdf-ver="v1">
+                    <div class="fluxo-pdf-stage" id="fluxoCsStage" data-pdf-ver="v2">
                         <img
                             id="fluxoCsImg"
                             class="fluxo-pdf-img"
-                            src="assets/fluxo-cs-oficial-v1.png"
-                            alt="Fluxo Comercial CS — diagrama oficial Melvin (original)"
+                            src="assets/fluxo-cs-oficial.png"
+                            alt="Fluxo Comercial CS — diagrama oficial Melvin v2"
                             draggable="false"
                             width="1189"
                             height="1683"
@@ -5640,9 +5633,9 @@ Quando puder, confirme o recebimento ou me diga se prefere ajustar prazo/horári
 
             <div class="fluxo-legend" style="margin-top:14px;">
                 <span><i class="lg-swatch lg-cs"></i> CS</span>
+                <span><i class="lg-swatch lg-sdr"></i> TI</span>
+                <span><i class="lg-swatch lg-bdr"></i> BDR (lead desconhecido → Out)</span>
                 <span><i class="lg-swatch lg-closer"></i> Closer</span>
-                <span><i class="lg-swatch lg-bdr"></i> BDR (rota proibida p/ indicação)</span>
-                <span><i class="lg-swatch lg-mkt"></i> Cliente / TI</span>
             </div>
 
             <!-- 5 blocos Arquitetura (Gemini) -->

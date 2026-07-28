@@ -1306,7 +1306,7 @@ initFluxoPdfUX({
     edges: { v2: FLUXO_OUTBOUND_PDF_EDGES, v1: [] }
 });
 
-/* CS: v1 = original. v2 = página de espera até a revisão. */
+/* CS: v2 = PDF final; v1 = original histórico. Path UX após calibração. */
 const FLUXO_CS_PDF_HOTS = [];
 const FLUXO_CS_PDF_EDGES = [];
 
@@ -1320,13 +1320,11 @@ initFluxoPdfUX({
     toolbarId: 'fluxoCsToolbar',
     stripId: 'fluxoCsPathStrip',
     stripTextId: 'fluxoCsPathText',
-    defaultVer: 'v1',
-    waitingId: 'fluxoCsWaiting',
+    defaultVer: 'v2',
     liveId: 'fluxoCsLive',
-    waitingVers: ['v2'],
     readyHint: 'Arraste para navegar · zoom na imagem oficial',
-    waitingHint: 'v2 em revisão — clique em v1 para ver o original',
     sources: {
+        v2: 'assets/fluxo-cs-oficial.png',
         v1: 'assets/fluxo-cs-oficial-v1.png'
     },
     hots: { v2: FLUXO_CS_PDF_HOTS, v1: [] },
