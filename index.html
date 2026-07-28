@@ -1756,16 +1756,16 @@ Forte abraço!"
 			
 		</section>
         
-		<!-- PÁGINA INDEPENDENTE: FUNIL DE VENDAS (CLOSER) -->
+		<!-- PÁGINA INDEPENDENTE: FUNIL DE VENDAS (CLOSER) — Inbound + Outbound -->
 		<section id="funil-vendas">
 			
 			<!-- CABEÇALHO DA CADÊNCIA (ESTILO PRINT 1) -->
 			<div class="cadencia-header-block">
 				<div class="cadencia-title-line">💰 Funil de Vendas • Processo do Closer</div>
-				<p class="cadencia-subtitle">Etapas estratégicas do pipeline de vendas executadas pelo Closer para condução da proposta, negociação e fechamento de contratos da MELVIN.</p>
+				<p class="cadencia-subtitle">Pipeline <strong>único</strong> Inbound + Outbound. Etapas de <strong>ação</strong> (não de status): do SQL à passagem CLR→CSM. No-Show e Perdido são ramos/saídas — não colunas.</p>
 			</div>
 
-			<!-- PIPELINE EM LINHA HORIZONTAL COMPLETA (PRINT 1 DO CONTEXTO DE VENDAS) -->
+			<!-- PIPELINE EM LINHA HORIZONTAL COMPLETA -->
 			<div class="funil-container-scroll">
 				<div class="funil-grid">
 					
@@ -1774,15 +1774,15 @@ Forte abraço!"
 						<div class="funil-column-header">
 							<div>
 								<h3>Reunião Agendada</h3>
-								<p>Recebimento do Handoff</p>
+								<p>SQL · Entrada</p>
 							</div>
 							<span class="funil-step-number">01</span>
 						</div>
 						<div class="inner-step-card">
-							<span class="tag-sub tag-sdr">SDR / BDR</span>
-							<h4>Validação de Pré-Call</h4>
-							<p>Oportunidade caiu na agenda do Fabrício. Verificação dos dados de triagem e fit industrial.</p>
-							<div class="inner-step-meta"><span>SLA: Pré-reunião</span><span>CRM</span></div>
+							<span class="tag-sub tag-sdr">SDR / BDR → CLR</span>
+							<h4>Pré-Call &amp; Briefing</h4>
+							<p>Handoff In ou Out na agenda do Closer. Validar triagem, fit industrial e briefing. No-Show → régua de resgate (não vira etapa).</p>
+							<div class="inner-step-meta"><span>SLA: Pré-reunião</span><span>In + Out</span></div>
 						</div>
 					</div>
 
@@ -1790,16 +1790,16 @@ Forte abraço!"
 					<div class="funil-column">
 						<div class="funil-column-header">
 							<div>
-								<h3>No Show</h3>
-								<p>Controle de Ausência</p>
+								<h3>Diagnóstico / Demo</h3>
+								<p>Impacto na call</p>
 							</div>
 							<span class="funil-step-number">02</span>
 						</div>
 						<div class="inner-step-card">
-							<span class="tag-sub tag-sdr">SDR / Resgate</span>
-							<h4>Emergências na Planta</h4>
-							<p>Lead não compareceu à sala de demonstração devido a imprevistos técnicos no chão de fábrica.</p>
-							<div class="inner-step-meta"><span>Limite: 5 Dias</span><span>Fila</span></div>
+							<span class="tag-sub tag-closer">CLR</span>
+							<h4>Apresentação de Impacto</h4>
+							<p>Diagnóstico da planta (OS manuais, paradas, estoque) + demo da IA preditiva. Feedback pós-call (SLA 2h). Fit ok → avança; sem fit → saída Lost / nutrição.</p>
+							<div class="inner-step-meta"><span>Demo</span><span>Feedback 2h</span></div>
 						</div>
 					</div>
 
@@ -1807,16 +1807,16 @@ Forte abraço!"
 					<div class="funil-column">
 						<div class="funil-column-header">
 							<div>
-								<h3>Reunião Realizada</h3>
-								<p>Diagnóstico Técnico</p>
+								<h3>Proposta &amp; Negociação</h3>
+								<p>Ancoragem de valor</p>
 							</div>
 							<span class="funil-step-number">03</span>
 						</div>
 						<div class="inner-step-card">
-							<span class="tag-sub tag-closer">Closer / Fabrício</span>
-							<h4>Apresentação de Impacto</h4>
-							<p>Mapeamento das Ordens de Serviço manuais e demonstração da IA preditiva para cálculo de máquinas.</p>
-							<div class="inner-step-meta"><span>Meta: Coleta Dor</span><span>Demo</span></div>
+							<span class="tag-sub tag-closer">CLR</span>
+							<h4>Proposta + Tratativa</h4>
+							<p>Envio da proposta (ativos × técnicos) e contorno de objeções (CAPEX→OPEX, ERP, budget). Uma coluna — ciclo Melvin não exige separar entrega de negociação.</p>
+							<div class="inner-step-meta"><span>Ticket M.: R$3k</span><span>Valor</span></div>
 						</div>
 					</div>
 
@@ -1824,16 +1824,16 @@ Forte abraço!"
 					<div class="funil-column">
 						<div class="funil-column-header">
 							<div>
-								<h3>Proposta Entregue</h3>
-								<p>Apresentação Comercial</p>
+								<h3>Formalização</h3>
+								<p>Trâmites jurídicos</p>
 							</div>
 							<span class="funil-step-number">04</span>
 						</div>
 						<div class="inner-step-card">
-							<span class="tag-sub tag-closer">Closer</span>
-							<h4>Ancoragem de Valor</h4>
-							<p>Envio formal da proposta comercial baseada no volume de ativos e quantidade de técnicos da manutenção.</p>
-							<div class="inner-step-meta"><span>Ticket M.: R$3k</span><span>Proposta</span></div>
+							<span class="tag-sub tag-closer">CLR / Legal</span>
+							<h4>Assinatura de Contrato</h4>
+							<p>Proposta aceita. Coleta jurídica e assinatura digital do contrato de prestação de serviços.</p>
+							<div class="inner-step-meta"><span>SLA: Celeridade</span><span>DocuSign</span></div>
 						</div>
 					</div>
 
@@ -1841,16 +1841,16 @@ Forte abraço!"
 					<div class="funil-column">
 						<div class="funil-column-header">
 							<div>
-								<h3>Negociação</h3>
-								<p>Alinhamento de Barreiras</p>
+								<h3>Ganho</h3>
+								<p>Fechamento</p>
 							</div>
 							<span class="funil-step-number">05</span>
 						</div>
 						<div class="inner-step-card">
-							<span class="tag-sub tag-closer">Closer / Diretoria</span>
-							<h4>Tratativa de Objeções</h4>
-							<p>Contorno de travas de orçamento (CAPEX para OPEX) e alinhamento de autorizações de integração de ERP.</p>
-							<div class="inner-step-meta"><span>Meta: Defesa Valor</span><span>Contrato</span></div>
+							<span class="tag-sub tag-closer">CLR</span>
+							<h4>Won</h4>
+							<p>Contrato assinado / negócio ganho. Dispara preparação do handoff operacional para CS (não encerra o card ainda).</p>
+							<div class="inner-step-meta"><span>Won</span><span>→ CSM</span></div>
 						</div>
 					</div>
 
@@ -1858,32 +1858,15 @@ Forte abraço!"
 					<div class="funil-column">
 						<div class="funil-column-header">
 							<div>
-								<h3>Formalização</h3>
-								<p>Trâmites Jurídicos</p>
+								<h3>Passagem de Bastão</h3>
+								<p>Handoff operacional</p>
 							</div>
 							<span class="funil-step-number">06</span>
 						</div>
 						<div class="inner-step-card">
-							<span class="tag-sub tag-closer">Closer / Legal</span>
-							<h4>Assinatura de Contrato</h4>
-							<p>Proposta aceita. Coleta de dados jurídicos para emissão e assinatura digital do contrato de prestação de serviços.</p>
-							<div class="inner-step-meta"><span>SLA: Celeridade</span><span>DocuSign</span></div>
-						</div>
-					</div>
-
-					<!-- ETAPA 07 -->
-					<div class="funil-column">
-						<div class="funil-column-header">
-							<div>
-								<h3>Passagem de Bastão</h3>
-								<p>Handoff Operacional</p>
-							</div>
-							<span class="funil-step-number">07</span>
-						</div>
-						<div class="inner-step-card">
-							<span class="tag-sub tag-cs">Closer &rarr; CS</span>
-							<h4>Setup & Sucesso do Cliente</h4>
-							<p>Reunião de alinhamento com a equipe de CS para iniciar o processo de implementação ágil na planta industrial.</p>
+							<span class="tag-sub tag-cs">CLR → CSM</span>
+							<h4>Setup &amp; Sucesso do Cliente</h4>
+							<p>Alinhamento com CS para onboarding ágil na planta. Só então o card sai do funil do Closer.</p>
 							<div class="inner-step-meta"><span>Churn Alvo: 0,88%</span><span>Onboarding</span></div>
 						</div>
 					</div>
@@ -1898,7 +1881,7 @@ Forte abraço!"
 					<button class="section-toggle-btn" onclick="toggleLocalBlock('salesDirectionContainer', this)">Recolher</button>
 				</div>
 				<div class="matrix-content" id="salesDirectionContainer" style="padding: 20px; font-size: 0.9rem; line-height: 1.6;">
-					Este pipeline é focado integralmente na performance de fechamento do Closer (Fabrício). O controle rigoroso do tempo de passagem da etapa <strong>01 até a 07</strong> é vital para atingirmos a meta de RevOps de reduzir o <strong>Lead Time médio de 54 para 45 dias</strong>, otimizando o faturamento dentro do ciclo comercial que se encerra no dia 20 de cada mês.
+					Um único pipeline para leads <strong>Inbound e Outbound</strong> após o SQL. Foco na performance do Closer (Fabrício): controlar o tempo de passagem da etapa <strong>01 até a 06</strong> para reduzir o <strong>Lead Time médio de 54 para 45 dias</strong>, com ciclo comercial fechando no dia 20 de cada mês. <strong>No-Show</strong> e <strong>Perdido</strong> são ramos/saídas (réguas + motivo Lost), não etapas do funil.
 				</div>
 			</div>
 
@@ -2540,7 +2523,7 @@ Forte abraço!"
 				<div class="matrix-content" id="resultFilterContainer" style="padding: 20px; font-size: 0.9rem; line-height: 1.6;">
 					<p style="margin-bottom: 12px;">
 						<span class="badge" style="background: rgba(100, 252, 216, 0.1); color: var(--melvin-cyan); border: 1px solid var(--melvin-cyan);">ACEITO (&ge; 70 Pontos)</span> 
-						— O lead vira uma <strong>Oportunidade Real</strong>. Mover para a etapa <strong>Em Proposta</strong> no pipeline principal, gerando a pontuação/MQL válido e comissão futura do SDR.
+						— O lead vira uma <strong>Oportunidade Real</strong>. Mover para <strong>Proposta &amp; Negociação</strong> no <a href="#funil-vendas" style="color:var(--melvin-cyan);font-weight:700;">Funil de Vendas</a>, gerando a pontuação/MQL válido e comissão futura do SDR.
 					</p>
 					<p>
 						<span class="badge badge-alert">RECUSADO (&lt; 70 Pontos)</span> 
