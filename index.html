@@ -119,7 +119,7 @@
                         <div class="submenu-label">Pipeline</div>
                         <a href="#funil-inbound"><span style="display:flex; gap:10px;"><span>📊</span> Funil (Etapas)</span><span class="dot dot-active"></span></a>
                         <a href="#filtro-qualificacao-in"><span style="display:flex; gap:10px;"><span>⏳</span> Qualificação</span><span class="dot dot-active"></span></a>
-                        <a href="#feedback-reuniao-in"><span style="display:flex; gap:10px;"><span>💬</span> Feedback de Call</span><span class="dot dot-active"></span></a>
+                        <a href="#feedback-reuniao-in"><span style="display:flex; gap:10px;"><span>💬</span> Feedback de Reunião</span><span class="dot dot-active"></span></a>
 
                         <div class="submenu-label">Cadências</div>
                         <a href="#wf-contato-nutricao-in"><span style="display:flex; gap:10px;"><span>🔄</span> D1-D15 Contato &amp; Nutrição</span><span class="dot dot-active"></span></a>
@@ -160,7 +160,7 @@
                         <div class="submenu-label">Pipeline</div>
                         <a href="#funil-outbound"><span style="display:flex; gap:10px;"><span>📊</span> Funil (Etapas)</span><span class="dot dot-active"></span></a>
                         <a href="#filtro-qualificacao-out"><span style="display:flex; gap:10px;"><span>⏳</span> Qualificação</span><span class="dot dot-active"></span></a>
-                        <a href="#feedback-reuniao-out"><span style="display:flex; gap:10px;"><span>💬</span> Feedback de Call</span><span class="dot dot-pending"></span></a>
+                        <a href="#feedback-reuniao-out"><span style="display:flex; gap:10px;"><span>💬</span> Feedback de Reunião</span><span class="dot dot-active"></span></a>
 
                         <div class="submenu-label">Cadências</div>
                         <a href="#wf-contato-nutricao-out"><span style="display:flex; gap:10px;"><span>🔄</span> D1-D35 Prospecção Fria</span><span class="dot dot-active"></span></a>
@@ -327,8 +327,8 @@
                         <li style="display: flex; gap: 15px; align-items: flex-start;">
                             <span class="m-badge mb-sys" style="font-size: 0.8rem; padding: 4px 8px;">A.1</span>
                             <div>
-                                <strong style="color: var(--text-main); font-size: 1rem;">Feedback de Call Outbound</strong>
-                                <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 4px; line-height: 1.5;">Único item <em>dot-pending</em> no menu. Espelhar <a href="#feedback-reuniao-in" style="color:var(--melvin-cyan);font-weight:700;">#feedback-reuniao-in</a> em <a href="#feedback-reuniao-out" style="color:var(--melvin-cyan);font-weight:700;">#feedback-reuniao-out</a> (critérios de pontuação + SLA 2h Closer).</p>
+                                <strong style="color: var(--text-main); font-size: 1rem;">Feedback de Reunião Outbound</strong>
+                                <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 4px; line-height: 1.5;">Concluído — matriz Out no ar em <a href="#feedback-reuniao-out" style="color:var(--melvin-cyan);font-weight:700;">#feedback-reuniao-out</a> (espelho In adaptado a BDR + SLA 2h Closer).</p>
                             </div>
                         </li>
                         <li style="display: flex; gap: 15px; align-items: flex-start;">
@@ -438,7 +438,7 @@
                             <span class="m-badge mb-wa" style="font-size: 0.8rem; padding: 4px 8px;">D.2</span>
                             <div>
                                 <strong style="color: var(--text-main); font-size: 1rem;">Feedback Pós-Reunião (Closer · SLA 2h)</strong>
-                                <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 4px; line-height: 1.5;">Aplicar matriz de pontuação In (e Out quando A.1 estiver pronto). Atrelar KPI/comissão à higiene. Fontes: <a href="#feedback-reuniao-in" style="color:var(--melvin-cyan);font-weight:700;">Feedback In</a> · <a href="#rotina-closer" style="color:var(--melvin-cyan);font-weight:700;">Rotina Closer</a> · <a href="#funil-vendas" style="color:var(--melvin-cyan);font-weight:700;">Funil de Vendas</a>.</p>
+                                <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 4px; line-height: 1.5;">Aplicar matriz de pontuação In e Out. Atrelar KPI/comissão à higiene. Fontes: <a href="#feedback-reuniao-in" style="color:var(--melvin-cyan);font-weight:700;">Feedback In</a> · <a href="#feedback-reuniao-out" style="color:var(--melvin-cyan);font-weight:700;">Feedback Out</a> · <a href="#rotina-closer" style="color:var(--melvin-cyan);font-weight:700;">Rotina Closer</a> · <a href="#funil-vendas" style="color:var(--melvin-cyan);font-weight:700;">Funil de Vendas</a>.</p>
                             </div>
                         </li>
                         <li style="display: flex; gap: 15px; align-items: flex-start;">
@@ -870,7 +870,7 @@
 							<strong>Gaps de conteúdo (pós-revisão)</strong>
 						</div>
 						<ul>
-							<li><b>A.1 · P0</b> Feedback de Call Outbound — <a href="#feedback-reuniao-out">#feedback-reuniao-out</a></li>
+							<li><b>A.1 · P0</b> Feedback de Reunião Outbound — <a href="#feedback-reuniao-out">#feedback-reuniao-out</a> <em>(no ar)</em></li>
 							<li><b>A.2 · P1</b> Completar stubs em <a href="#matriz-objecoes-out">Objeções Outbound</a></li>
 							<li><b>A.3 · P2</b> Glossário GIM + descrição M&amp;A EAD (opcional)</li>
 						</ul>
@@ -2396,142 +2396,116 @@ Forte abraço!"
         </section>
         
 		<!-- PÁGINA INDEPENDENTE: FEEDBACK DE REUNIÃO (INBOUND) -->
-		<section id="feedback-reuniao-in">
-			
-			<!-- CABEÇALHO PERSONALIZADO (ESTILO PRINT 1) -->
-			<div class="cadencia-header-block">
-				<div class="cadencia-title-line">🔍 FILTRO: Feedback de Reunião (Auditoria de Qualidade)</div>
-				<p class="cadencia-subtitle">Matriz de pontuação pós-diagnóstico: o Closer valida os critérios da call e o sistema calcula se o lead se torna uma Oportunidade Real.</p>
-				
-				<div class="header-cards-grid">
-					<div class="h-card green-border">
-						<h4>👤 Quem Aplica</h4>
-						<p>Closer (Fabrício / CSR / Executivo de Vendas).</p>
+		<section id="feedback-reuniao-in" class="blueprint-page fb-audit-page">
+
+			<div class="fb-hero fb-hero--in">
+				<div class="fb-hero-copy">
+					<div class="fb-kicker">Inbound · Auditoria pós-diagnóstico</div>
+					<div class="cadencia-title-line fb-hero-title">Feedback de Reunião</div>
+					<p class="cadencia-subtitle" style="padding-left:0;max-width:48ch;">O Closer pontua a call em até <strong>2h</strong>. A soma decide se o lead vira Oportunidade Real no <a href="#funil-vendas" style="color:var(--melvin-cyan);font-weight:700;">Funil de Vendas</a> — ou volta ao SDR.</p>
+					<div class="fb-meta-row">
+						<span class="fb-chip">Closer · Fabrício</span>
+						<span class="fb-chip">SLA ≤ 2h</span>
+						<span class="fb-chip">Após Diagnóstico / Demo</span>
 					</div>
-					<div class="h-card blue-border">
-						<h4>⏱️ Quando Usar</h4>
-						<p>Obrigatoriamente nas primeiras <strong>2 horas</strong> após o término da reunião de diagnóstico.</p>
+				</div>
+				<div class="fb-gauge" aria-hidden="true">
+					<div class="fb-gauge-ring fb-gauge-ring--in">
+						<div class="fb-gauge-core">
+							<span class="fb-gauge-num">70</span>
+							<span class="fb-gauge-label">pts · corte</span>
+						</div>
 					</div>
-					<div class="h-card red-border">
-						<h4>📍 Etapa do Funil</h4>
-						<p>Etapa <strong>Feedback de Reunião</strong> do pipeline de transição no CRM / Bitrix.</p>
-					</div>
+					<p class="fb-gauge-cap">Máx. teórico 100 · Aceito ≥ 70</p>
 				</div>
 			</div>
 
-			<!-- TABELA CRITÉRIOS DE AUDITORIA DE REUNIÃO -->
-			<div class="matrix-widget">
-				<div class="matrix-header">
-					<div class="matrix-title">🎯 CRITÉRIOS DE PONTUAÇÃO E QUALIFICAÇÃO</div>
-					<button class="section-toggle-btn" onclick="toggleLocalBlock('feedbackAuditContainer', this)">Recolher</button>
-				</div>
-				<div class="matrix-content" id="feedbackAuditContainer">
-					<table class="matrix-table" style="text-align: left;">
-						<thead>
-							<tr>
-								<th class="col-channel" style="width: 60px; text-align: center;">ID</th>
-								<th style="width: 320px;">PERGUNTA DE AUDITORIA DO CLOSER</th>
-								<th>OPÇÕES DE RESPOSTA</th>
-								<th style="width: 120px; text-align: center;">PONTUAÇÃO</th>
-							</tr>
-						</thead>
-						<tbody>
-							<!-- PERGUNTA 1 -->
-							<tr>
-								<td style="text-align: center; font-weight: 700; background: #0D1217;">01</td>
-								<td><strong>Quem participou da reunião?</strong><br><small style="color: var(--text-muted);">Mapeamento do mapa de poder e decisores presentes.</small></td>
-								<td>
-									• Todos os decisores<br>
-									• Um dos decisores<br>
-									• Influenciador direto<br>
-									• Pessoa sem qualquer influência na decisão
-								</td>
-								<td style="text-align: center;">
-									<span class="m-badge mb-wa">25 PTS</span><br>
-									<span class="m-badge mb-call">20 PTS</span><br>
-									<span class="m-badge mb-mail">15 PTS</span><br>
-									<span class="m-badge mb-sys" style="background:rgba(255,255,255,0.05); color:var(--text-muted); border:none;">00 PTS</span>
-								</td>
-							</tr>
-							<!-- PERGUNTA 2 -->
-							<tr>
-								<td style="text-align: center; font-weight: 700; background: #0D1217;">02</td>
-								<td><strong>Qual o grau de interesse demonstrado?</strong><br><small style="color: var(--text-muted);">Validação térmica de engajamento com a demo.</small></td>
-								<td>
-									• Muito Interessado<br>
-									• Interessado<br>
-									• Um pouco curioso<br>
-									• Sem interesse
-								</td>
-								<td style="text-align: center;">
-									<span class="m-badge mb-wa">25 PTS</span><br>
-									<span class="m-badge mb-call">20 PTS</span><br>
-									<span class="m-badge mb-mail">15 PTS</span><br>
-									<span class="m-badge mb-sys" style="background:rgba(255,255,255,0.05); color:var(--text-muted); border:none;">00 PTS</span>
-								</td>
-							</tr>
-							<!-- PERGUNTA 3 -->
-							<tr>
-								<td style="text-align: center; font-weight: 700; background: #0D1217;">03</td>
-								<td><strong>Potencial de fechamento da empresa?</strong><br><small style="color: var(--text-muted);">Análise macro de Fit de ICP e maturidade de PCM.</small></td>
-								<td>
-									• Alto potencial<br>
-									• Médio potencial<br>
-									• Baixo potencial<br>
-									• Muito Baixo potencial<br>
-									• Não tem perfil
-								</td>
-								<td style="text-align: center;">
-									<span class="m-badge mb-wa">25 PTS</span><br>
-									<span class="m-badge mb-call">20 PTS</span><br>
-									<span class="m-badge mb-mail">15 PTS</span><br>
-									<span class="m-badge mb-sys">10 PTS</span><br>
-									<span class="m-badge mb-sys" style="background:rgba(255,255,255,0.05); color:var(--text-muted); border:none;">00 PTS</span>
-								</td>
-							</tr>
-							<!-- PERGUNTA 4 -->
-							<tr>
-								<td style="text-align: center; font-weight: 700; background: #0D1217;">04</td>
-								<td><strong>Lead possuía entendimento da ocorrência da reunião?</strong><br><small style="color: var(--text-muted);">Selo de Handoff limpo: o SDR alinhou a expectativa?</small></td>
-								<td>
-									• Sim<br>
-									• Não
-								</td>
-								<td style="text-align: center;">
-									<span class="m-badge mb-wa">25 PTS</span><br>
-									<span class="m-badge mb-mail">15 PTS</span>
-								</td>
-							</tr>
-							<!-- PERGUNTA 5 -->
-							<tr>
-								<td style="text-align: center; font-weight: 700; background: #0D1217;">05</td>
-								<td><strong>Observações do comercial:</strong></td>
-								<td colspan="2">
-									<div class="script-box" style="margin-top: 0; background: #090D10; min-height: 50px; border-left-color: var(--text-muted);">
-										[ Campo de texto aberto no CRM para registro de dores específicas, ferramentas concorrentes citadas ou travas de integração ]
-									</div>
-								</td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
+			<div class="fb-rail">
+				<article class="fb-q">
+					<div class="fb-q-head">
+						<span class="fb-q-id">01</span>
+						<div>
+							<h3>Quem participou da reunião?</h3>
+							<p>Mapa de poder e decisores presentes.</p>
+						</div>
+					</div>
+					<ul class="fb-opts">
+						<li><span>Todos os decisores</span><em>25</em></li>
+						<li><span>Um dos decisores</span><em>20</em></li>
+						<li><span>Influenciador direto</span><em>15</em></li>
+						<li class="is-zero"><span>Pessoa sem influência na decisão</span><em>00</em></li>
+					</ul>
+				</article>
+
+				<article class="fb-q">
+					<div class="fb-q-head">
+						<span class="fb-q-id">02</span>
+						<div>
+							<h3>Qual o grau de interesse demonstrado?</h3>
+							<p>Temperatura de engajamento com a demo.</p>
+						</div>
+					</div>
+					<ul class="fb-opts">
+						<li><span>Muito interessado</span><em>25</em></li>
+						<li><span>Interessado</span><em>20</em></li>
+						<li><span>Um pouco curioso</span><em>15</em></li>
+						<li class="is-zero"><span>Sem interesse</span><em>00</em></li>
+					</ul>
+				</article>
+
+				<article class="fb-q">
+					<div class="fb-q-head">
+						<span class="fb-q-id">03</span>
+						<div>
+							<h3>Potencial de fechamento da empresa?</h3>
+							<p>Fit de ICP Inbound e maturidade de PCM.</p>
+						</div>
+					</div>
+					<ul class="fb-opts">
+						<li><span>Alto potencial</span><em>25</em></li>
+						<li><span>Médio potencial</span><em>20</em></li>
+						<li><span>Baixo potencial</span><em>15</em></li>
+						<li><span>Muito baixo potencial</span><em>10</em></li>
+						<li class="is-zero"><span>Não tem perfil</span><em>00</em></li>
+					</ul>
+				</article>
+
+				<article class="fb-q">
+					<div class="fb-q-head">
+						<span class="fb-q-id">04</span>
+						<div>
+							<h3>O lead entendia o motivo da reunião?</h3>
+							<p>Selo de handoff limpo — o SDR alinhou a expectativa?</p>
+						</div>
+					</div>
+					<ul class="fb-opts fb-opts--duo">
+						<li><span>Sim</span><em>25</em></li>
+						<li><span>Não</span><em>15</em></li>
+					</ul>
+				</article>
+
+				<article class="fb-q fb-q--notes">
+					<div class="fb-q-head">
+						<span class="fb-q-id">05</span>
+						<div>
+							<h3>Observações do comercial</h3>
+							<p>Campo aberto no CRM — sem pontuação.</p>
+						</div>
+					</div>
+					<div class="fb-notes">
+						Dores específicas · ferramentas concorrentes · travas de integração · próximo passo combinado
+					</div>
+				</article>
 			</div>
 
-			<!-- RESULTADO DO FILTRO (ESTILO PRINT 1) -->
-			<div class="matrix-widget" style="border-color: rgba(255, 255, 255, 0.05); background: rgba(255, 215, 0, 0.01);">
-				<div class="matrix-header" style="border-bottom-color: rgba(255, 255, 255, 0.04);">
-					<div class="matrix-title" style="color: #FFD700;">💡 Resultado do Filtro (Regras de SLA)</div>
-					<button class="section-toggle-btn" onclick="toggleLocalBlock('resultFilterContainer', this)">Recolher</button>
+			<div class="fb-verdict">
+				<div class="fb-verdict-card is-pass">
+					<span class="fb-verdict-badge">Aceito · ≥ 70</span>
+					<p>Vira <strong>Oportunidade Real</strong>. Mover para <strong>Proposta &amp; Negociação</strong> no Funil de Vendas. Pontuação/MQL válido e comissão futura do <strong>SDR</strong>.</p>
 				</div>
-				<div class="matrix-content" id="resultFilterContainer" style="padding: 20px; font-size: 0.9rem; line-height: 1.6;">
-					<p style="margin-bottom: 12px;">
-						<span class="badge" style="background: rgba(100, 252, 216, 0.1); color: var(--melvin-cyan); border: 1px solid var(--melvin-cyan);">ACEITO (&ge; 70 Pontos)</span> 
-						— O lead vira uma <strong>Oportunidade Real</strong>. Mover para <strong>Proposta &amp; Negociação</strong> no <a href="#funil-vendas" style="color:var(--melvin-cyan);font-weight:700;">Funil de Vendas</a>, gerando a pontuação/MQL válido e comissão futura do SDR.
-					</p>
-					<p>
-						<span class="badge badge-alert">RECUSADO (&lt; 70 Pontos)</span> 
-						— O lead não possui maturidade ou decisores em mesa. O lead <strong>retorna para a custódia do SDR</strong> (Fila de Reaquecimento ou Descarte definitivo), com justificativa obrigatória gravada no sistema para auditoria de RevOps.
-					</p>
+				<div class="fb-verdict-card is-fail">
+					<span class="fb-verdict-badge">Recusado · &lt; 70</span>
+					<p>Sem maturidade ou decisor em mesa. Retorna à <strong>custódia do SDR</strong> (reaquecimento ou descarte) com justificativa obrigatória no CRM.</p>
 				</div>
 			</div>
 
@@ -3471,13 +3445,134 @@ Quando puder, confirme o recebimento ou me diga se prefere ajustar prazo/horári
                 </p>
             </div>
         </section>
-        <section id="feedback-reuniao-out" class="blueprint-page">
-            <div class="waiting-page">
-                <div class="waiting-badge"><span class="pulse"></span> Em construção</div>
-                <h2>Feedback de Reunião (Outbound)</h2>
-                <p>Aguardando Conteúdo Técnico...</p>
-                <div class="waiting-meta">Revenue Operations Book · MELVIN</div>
-            </div>
+        <section id="feedback-reuniao-out" class="blueprint-page fb-audit-page">
+
+			<div class="fb-hero fb-hero--out">
+				<div class="fb-hero-copy">
+					<div class="fb-kicker">Outbound · Auditoria pós-diagnóstico</div>
+					<div class="cadencia-title-line fb-hero-title">Feedback de Reunião</div>
+					<p class="cadencia-subtitle" style="padding-left:0;max-width:48ch;">Mesma matriz do Inbound, calibrada para conta fria / sinal Copilot. O Closer pontua em até <strong>2h</strong> e decide se segue no <a href="#funil-vendas" style="color:#c4b5fd;font-weight:700;">Funil de Vendas</a> — ou volta ao BDR.</p>
+					<div class="fb-meta-row">
+						<span class="fb-chip fb-chip--out">Closer · Fabrício</span>
+						<span class="fb-chip fb-chip--out">SLA ≤ 2h</span>
+						<span class="fb-chip fb-chip--out">Após Diagnóstico / Demo</span>
+					</div>
+				</div>
+				<div class="fb-gauge" aria-hidden="true">
+					<div class="fb-gauge-ring fb-gauge-ring--out">
+						<div class="fb-gauge-core">
+							<span class="fb-gauge-num">70</span>
+							<span class="fb-gauge-label">pts · corte</span>
+						</div>
+					</div>
+					<p class="fb-gauge-cap">Máx. teórico 100 · Aceito ≥ 70</p>
+				</div>
+			</div>
+
+			<p class="fb-adapt-note">
+				<strong>O que mudou vs Inbound:</strong> Q03 fala ICP Out / Tier 1 e sinal; Q04 audita briefing do <strong>BDR</strong> (não SDR); veredito devolve à custódia do <strong>BDR</strong> (multithreading / novo sinal). Mesmos pesos e corte 70.
+			</p>
+
+			<div class="fb-rail fb-rail--out">
+				<article class="fb-q">
+					<div class="fb-q-head">
+						<span class="fb-q-id fb-q-id--out">01</span>
+						<div>
+							<h3>Quem participou da reunião?</h3>
+							<p>Mapa de poder — a persona do sniper estava na call?</p>
+						</div>
+					</div>
+					<ul class="fb-opts">
+						<li><span>Todos os decisores</span><em>25</em></li>
+						<li><span>Um dos decisores</span><em>20</em></li>
+						<li><span>Influenciador direto</span><em>15</em></li>
+						<li class="is-zero"><span>Pessoa sem influência na decisão</span><em>00</em></li>
+					</ul>
+				</article>
+
+				<article class="fb-q">
+					<div class="fb-q-head">
+						<span class="fb-q-id fb-q-id--out">02</span>
+						<div>
+							<h3>Qual o grau de interesse demonstrado?</h3>
+							<p>Temperatura na demo — conta fria aqueceu?</p>
+						</div>
+					</div>
+					<ul class="fb-opts">
+						<li><span>Muito interessado</span><em>25</em></li>
+						<li><span>Interessado</span><em>20</em></li>
+						<li><span>Um pouco curioso</span><em>15</em></li>
+						<li class="is-zero"><span>Sem interesse</span><em>00</em></li>
+					</ul>
+				</article>
+
+				<article class="fb-q">
+					<div class="fb-q-head">
+						<span class="fb-q-id fb-q-id--out">03</span>
+						<div>
+							<h3>Potencial de fechamento da conta?</h3>
+							<p>Fit ICP Out · Tier 1 · o sinal do Copilot se sustentou?</p>
+						</div>
+					</div>
+					<ul class="fb-opts">
+						<li><span>Alto potencial (Tier 1 + sinal vivo)</span><em>25</em></li>
+						<li><span>Médio potencial</span><em>20</em></li>
+						<li><span>Baixo potencial</span><em>15</em></li>
+						<li><span>Muito baixo potencial</span><em>10</em></li>
+						<li class="is-zero"><span>Fora de perfil / Red Flag</span><em>00</em></li>
+					</ul>
+				</article>
+
+				<article class="fb-q">
+					<div class="fb-q-head">
+						<span class="fb-q-id fb-q-id--out">04</span>
+						<div>
+							<h3>O BDR entregou briefing limpo?</h3>
+							<p>Lead sabia o motivo da call? Sinal, dor e persona vieram no handoff?</p>
+						</div>
+					</div>
+					<ul class="fb-opts fb-opts--duo">
+						<li><span>Sim — briefing + expectativa ok</span><em>25</em></li>
+						<li><span>Não — handoff raso / lead perdido</span><em>15</em></li>
+					</ul>
+				</article>
+
+				<article class="fb-q fb-q--notes">
+					<div class="fb-q-head">
+						<span class="fb-q-id fb-q-id--out">05</span>
+						<div>
+							<h3>Observações do comercial</h3>
+							<p>Campo aberto no CRM — sem pontuação.</p>
+						</div>
+					</div>
+					<div class="fb-notes">
+						Sinal Copilot confirmado ou falso? · multithreading sugerido · concorrente · próximo passo · risco de churn de atenção
+					</div>
+				</article>
+			</div>
+
+			<div class="fb-verdict fb-verdict--out">
+				<div class="fb-verdict-card is-pass">
+					<span class="fb-verdict-badge">Aceito · ≥ 70</span>
+					<p>Vira <strong>Oportunidade Real</strong>. Mover para <strong>Proposta &amp; Negociação</strong> no Funil de Vendas. SQL válido e comissão futura do <strong>BDR</strong>.</p>
+				</div>
+				<div class="fb-verdict-card is-fail">
+					<span class="fb-verdict-badge">Recusado · &lt; 70</span>
+					<p>Retorna à <strong>custódia do BDR</strong>: multithreading (outra persona), nutrição ou novo sinal Copilot — com justificativa Lost/feedback no CRM.</p>
+				</div>
+			</div>
+
+			<div class="fluxo-links-bar" style="margin-top:28px;">
+				<strong>Conectado a</strong>
+				<p>
+					<a href="#feedback-reuniao-in">Feedback Inbound</a> ·
+					<a href="#funil-outbound">Funil Outbound</a> ·
+					<a href="#funil-vendas">Funil de Vendas</a> ·
+					<a href="#bdr-copilot">BDR Copilot</a> ·
+					<a href="#filtro-qualificacao-out">Qualificação Out</a>
+				</p>
+			</div>
+
         </section>
                 <section id="wf-contato-nutricao-out" class="blueprint-page" style="padding: 40px; border-radius: 16px;">
             <div class="cadencia-header-block">
@@ -5403,9 +5498,9 @@ Quando puder, confirme o recebimento ou me diga se prefere ajustar prazo/horári
                             </tr>
                             <tr>
                                 <td style="text-align: center; font-weight: 800;">03</td>
-                                <td><strong>Auditoria de Pipeline</strong><br><small style="color: var(--text-muted);">Feedback de Call</small></td>
+                                <td><strong>Auditoria de Pipeline</strong><br><small style="color: var(--text-muted);">Feedback de Reunião</small></td>
                                 <td style="text-align: center;"><span class="m-badge mb-mail">📊 SCORE</span></td>
-                                <td>Aplicar a Matriz de Pontuação pós-reunião (Feedback de Call). Se for Lost, registrar o motivo exato.</td>
+                                <td>Aplicar a Matriz de Pontuação pós-reunião (Feedback de Reunião). Se for Lost, registrar o motivo exato.</td>
                             </tr>
                             <tr>
                                 <td style="text-align: center; font-weight: 800;">04</td>
@@ -5422,7 +5517,7 @@ Quando puder, confirme o recebimento ou me diga se prefere ajustar prazo/horári
                 <strong style="color: #fbbf24; display: block; margin-bottom: 8px;">🔗 Módulos RevOps conectados</strong>
                 <p style="font-size: 0.88rem; color: var(--text-muted); line-height: 1.6; margin: 0;">
                     <a href="#funil-vendas" style="color: var(--melvin-cyan); font-weight: 700;">Funil de Vendas</a> ·
-                    <a href="#feedback-reuniao-in" style="color: var(--melvin-cyan); font-weight: 700;">Feedback de Call</a> ·
+                    <a href="#feedback-reuniao-in" style="color: var(--melvin-cyan); font-weight: 700;">Feedback de Reunião</a> ·
                     <a href="#wf-posreuniao-in" style="color: var(--melvin-cyan); font-weight: 700;">Pós-reunião</a> ·
                     <a href="#fluxo-comerc-cs" style="color: var(--melvin-cyan); font-weight: 700;">Fluxo CS (Warm)</a> ·
                     <a href="#matriz-objecoes-in" style="color: var(--melvin-cyan); font-weight: 700;">Objeções In</a> ·
@@ -5495,7 +5590,7 @@ Quando puder, confirme o recebimento ou me diga se prefere ajustar prazo/horári
                     <a href="#wf-contato-nutricao-in">D1–D15 Contato &amp; Nutrição</a> ·
                     <a href="#wf-noshow-in">No Show</a> ·
                     <a href="#wf-cancelamento-in">Cancelamento</a> ·
-                    <a href="#feedback-reuniao-in">Feedback de Call</a> ·
+                    <a href="#feedback-reuniao-in">Feedback de Reunião</a> ·
                     <a href="#fluxo-comerc-outbound">Fluxo Outbound</a> ·
                     <a href="#fluxo-comerc-cs">Fluxo CS</a> ·
                     <a href="#funil-vendas">Funil de Vendas</a>
