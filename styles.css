@@ -5697,3 +5697,90 @@ body.light-mode .fq-page .matrix-table thead th {
 }
 body.light-mode .fq-badge-orb span { color: #064e3b; }
 body.light-mode .fq-badge-orb--out span { color: #4c1d95; }
+/* fq-hero lane variants (Closer / CS / GIM / Diagnóstico) */
+.fq-hero--close {
+  border-color: rgba(251, 191, 36, 0.3);
+  background:
+    radial-gradient(900px 280px at 0% 0%, rgba(245, 158, 11, 0.16), transparent 55%),
+    radial-gradient(720px 260px at 100% 120%, rgba(251, 191, 36, 0.08), transparent 50%),
+    linear-gradient(135deg, rgba(22, 16, 8, 0.96), rgba(20, 16, 10, 0.9));
+}
+.fq-hero--close .fq-kicker { color: #fbbf24; }
+.fq-badge-orb--close {
+  background: linear-gradient(145deg, rgba(251, 191, 36, 0.28), rgba(245, 158, 11, 0.08));
+  border-color: rgba(251, 191, 36, 0.4);
+  box-shadow: 0 18px 40px rgba(245, 158, 11, 0.14);
+}
+.fq-badge-orb--close span { color: #fffbeb; }
+
+.fq-hero--cs {
+  border-color: rgba(34, 211, 238, 0.3);
+  background:
+    radial-gradient(900px 280px at 0% 0%, rgba(34, 211, 238, 0.16), transparent 55%),
+    radial-gradient(720px 260px at 100% 120%, rgba(6, 182, 212, 0.08), transparent 50%),
+    linear-gradient(135deg, rgba(8, 18, 24, 0.96), rgba(10, 20, 28, 0.9));
+}
+.fq-hero--cs .fq-kicker { color: #22d3ee; }
+.fq-badge-orb--cs {
+  background: linear-gradient(145deg, rgba(34, 211, 238, 0.28), rgba(6, 182, 212, 0.08));
+  border-color: rgba(34, 211, 238, 0.4);
+  box-shadow: 0 18px 40px rgba(6, 182, 212, 0.14);
+}
+.fq-badge-orb--cs span { color: #ecfeff; }
+
+.fq-hero--gim {
+  border-color: rgba(148, 163, 184, 0.28);
+  background:
+    radial-gradient(900px 280px at 0% 0%, rgba(100, 116, 139, 0.18), transparent 55%),
+    radial-gradient(720px 260px at 100% 120%, rgba(148, 163, 184, 0.08), transparent 50%),
+    linear-gradient(135deg, rgba(12, 14, 18, 0.96), rgba(14, 16, 22, 0.9));
+}
+.fq-hero--gim .fq-kicker { color: #94a3b8; }
+.fq-badge-orb--gim {
+  background: linear-gradient(145deg, rgba(148, 163, 184, 0.22), rgba(71, 85, 105, 0.1));
+  border-color: rgba(148, 163, 184, 0.35);
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.25);
+}
+.fq-badge-orb--gim span { color: #f1f5f9; }
+
+.fq-hero--diag {
+  border-color: rgba(248, 113, 113, 0.28);
+  background:
+    radial-gradient(900px 280px at 0% 0%, rgba(239, 68, 68, 0.14), transparent 55%),
+    radial-gradient(720px 260px at 100% 120%, rgba(251, 113, 133, 0.08), transparent 50%),
+    linear-gradient(135deg, rgba(22, 10, 12, 0.96), rgba(18, 12, 14, 0.9));
+}
+.fq-hero--diag .fq-kicker { color: #fca5a5; }
+.fq-badge-orb--diag {
+  background: linear-gradient(145deg, rgba(248, 113, 113, 0.25), rgba(239, 68, 68, 0.08));
+  border-color: rgba(248, 113, 113, 0.35);
+  box-shadow: 0 18px 40px rgba(239, 68, 68, 0.12);
+}
+.fq-badge-orb--diag span { color: #fef2f2; }
+
+.fq-header-extras {
+  margin-bottom: 22px;
+}
+.fq-header-extras .header-cards-grid { margin-top: 0 !important; }
+.fq-header-extras .gim-source-chip { margin-top: 0; }
+
+body.light-mode .fq-hero--close {
+  background: radial-gradient(900px 280px at 0% 0%, rgba(245, 158, 11, 0.1), transparent 55%), linear-gradient(135deg, #fffbeb, #fff7ed);
+  border-color: rgba(245, 158, 11, 0.25);
+}
+body.light-mode .fq-hero--cs {
+  background: radial-gradient(900px 280px at 0% 0%, rgba(34, 211, 238, 0.1), transparent 55%), linear-gradient(135deg, #ecfeff, #f0fdfa);
+  border-color: rgba(6, 182, 212, 0.25);
+}
+body.light-mode .fq-hero--gim {
+  background: radial-gradient(900px 280px at 0% 0%, rgba(100, 116, 139, 0.1), transparent 55%), linear-gradient(135deg, #f8fafc, #f1f5f9);
+  border-color: rgba(100, 116, 139, 0.25);
+}
+body.light-mode .fq-hero--diag {
+  background: radial-gradient(900px 280px at 0% 0%, rgba(239, 68, 68, 0.08), transparent 55%), linear-gradient(135deg, #fef2f2, #fff1f2);
+  border-color: rgba(239, 68, 68, 0.22);
+}
+body.light-mode .fq-badge-orb--close span { color: #92400e; }
+body.light-mode .fq-badge-orb--cs span { color: #155e75; }
+body.light-mode .fq-badge-orb--gim span { color: #334155; }
+body.light-mode .fq-badge-orb--diag span { color: #991b1b; }
