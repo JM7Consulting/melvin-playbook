@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
@@ -163,7 +163,7 @@
                         <a href="#feedback-reuniao-out"><span style="display:flex; gap:10px;"><span>💬</span> Feedback de Reunião</span><span class="dot dot-active"></span></a>
 
                         <div class="submenu-label">Cadências</div>
-                        <a href="#wf-contato-nutricao-out"><span style="display:flex; gap:10px;"><span>🔄</span> D1-D35 Prospecção Fria</span><span class="dot dot-active"></span></a>
+                        <a href="#wf-contato-nutricao-out"><span style="display:flex; gap:10px;"><span>🔄</span> D1-D35 Fria &amp; Nutrição Quente</span><span class="dot dot-active"></span></a>
                         <a href="#wf-confirmacao-out"><span style="display:flex; gap:10px;"><span>✅</span> Confirmação</span><span class="dot dot-active"></span></a>
                         <a href="#wf-cancelamento-out"><span style="display:flex; gap:10px;"><span>❌</span> Cancelamento</span><span class="dot dot-active"></span></a>
                         <a href="#wf-noshow-out"><span style="display:flex; gap:10px;"><span>👻</span> No Show</span><span class="dot dot-active"></span></a>
@@ -404,7 +404,7 @@
                             <span class="m-badge mb-call" style="font-size: 0.8rem; padding: 4px 8px;">C.3</span>
                             <div>
                                 <strong style="color: var(--text-main); font-size: 1rem;">Cadência D1–D35 + Multicanal</strong>
-                                <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 4px; line-height: 1.5;">Executar <a href="#wf-contato-nutricao-out" style="color:var(--melvin-cyan);font-weight:700;">D1–D35</a> e <a href="#cadencia-multicanal" style="color:var(--melvin-cyan);font-weight:700;">Cadência Multicanal</a>. Multithreading (teto 2–3 personas) antes de Nutrição 60–90d.</p>
+                                <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 4px; line-height: 1.5;">Executar <a href="#wf-contato-nutricao-out" style="color:var(--melvin-cyan);font-weight:700;">D1–D35 (Quente × Frio × Nutrição)</a> e <a href="#cadencia-multicanal" style="color:var(--melvin-cyan);font-weight:700;">Cadência Multicanal</a>. Multithreading (teto 2–3 personas) → Nutrição 60–90d.</p>
                             </div>
                         </li>
                         <li style="display: flex; gap: 15px; align-items: flex-start;">
@@ -1511,7 +1511,7 @@
 
 Aqui é {{2}}, da Melvin.
 
-Recebemos o preenchimento do seu formulário e estou entrando em contato para dar continuity à sua solicitação.
+Recebemos o preenchimento do seu formulário e estou entrando em contato para dar continuidade à sua solicitação.
 
 Pode me confirmar um horário melhor hoje para retornarmos este contato?"
                                         <span class="pitch-meta-vars">{{1}} nome · {{2}} SDR</span>
@@ -1569,7 +1569,7 @@ Pode me confirmar um horário melhor hoje para retornarmos este contato?"
 
 Ainda não conseguimos concluir o retorno da sua solicitação pelo formulário Melvin.
 
-Estou tentando contato novamente para dar continuity ao seu pedido.
+Estou tentando contato novamente para dar continuidade ao seu pedido.
 
 Se preferir, me indique um horário melhor hoje para retornarmos a ligação."
                                         <span class="pitch-meta-vars">{{1}} nome</span>
@@ -1600,7 +1600,7 @@ Se preferir, me indique um horário melhor hoje para retornarmos a ligação."
 
 Ainda não finalizamos o retorno da sua solicitação pelo formulário Melvin.
 
-Posso te ligar em um horário melhor hoje para darmos continuity ao seu pedido?"
+Posso te ligar em um horário melhor hoje para darmos continuidade ao seu pedido?"
                                         <span class="pitch-meta-vars">{{1}} nome · (humano: e-mail 30% acima)</span>
                                     </div>
                                 </td>
@@ -1644,7 +1644,7 @@ Um abraço!"
 
 Ainda não concluímos o retorno da sua solicitação pelo formulário Melvin.
 
-Posso te ligar amanhã para darmos continuity ao seu pedido? A ligação é rápida (cerca de 2 minutos)."
+Posso te ligar amanhã para darmos continuidade ao seu pedido? A ligação é rápida (cerca de 2 minutos)."
                                         <span class="pitch-meta-vars">{{1}} nome · (origem: IoT/IA adaptado)</span>
                                     </div>
                                     <div class="pitch-modern pitch-meta-utility">
@@ -2663,6 +2663,17 @@ Forte abraço!"
                                         <div class="pitch-title">💬 WA (Teaser / Case):</div>
                                         "Fala [Nome], tudo bem? Passando para confirmar nosso papo amanhã às [Hora]. Nosso especialista separou um material focado no seu segmento e vai te mostrar como a [Case: Samaria/Três Irmãos] acabou com as paradas inesperadas que conversamos. Até amanhã!"
                                     </div>
+                                    <div class="pitch-modern pitch-meta-utility">
+                                        <div class="pitch-title">💬 WA (Teaser / Confirmação D-1) <span class="pitch-meta-chip">Template Meta · UTILITY</span></div>
+                                        "Olá, {{1}}! Tudo bem?
+
+Passando para confirmar nossa reunião de amanhã às {{2}}. ✅
+
+Nosso especialista preparou um material focado no seu segmento.
+
+Até amanhã!"
+                                        <span class="pitch-meta-vars">{{1}} nome · {{2}} horário</span>
+                                    </div>
                                 </td>
                             </tr>
                             <tr>
@@ -2676,6 +2687,15 @@ Forte abraço!"
                                     <div class="pitch-modern" style="border-left-color: #f59e0b;">
                                         <div class="pitch-title" style="color: #f59e0b;">💬 WA (Lembrete Tático):</div>
                                         "[Nome], tudo pronto pra nossa call daqui a pouco às [Hora]? Te mandei o link no e-mail, mas segue ele aqui também pra facilitar o acesso pelo celular caso você esteja na fábrica: [Link]. Nos vemos em breve!"
+                                    </div>
+                                    <div class="pitch-modern pitch-meta-utility">
+                                        <div class="pitch-title">💬 WA (Lembrete H-2) <span class="pitch-meta-chip">Template Meta · UTILITY</span></div>
+                                        "{{1}}, lembrete: nossa reunião começa em cerca de 2 horas, às {{2}}. ✅
+
+Link da sala: {{3}}
+
+Nos vemos em breve!"
+                                        <span class="pitch-meta-vars">{{1}} nome · {{2}} horário · {{3}} link Meet</span>
                                     </div>
                                 </td>
                             </tr>
@@ -3545,7 +3565,7 @@ Quando puder, confirme o recebimento ou me diga se prefere ajustar prazo/horári
                     <a href="#jornada-conta" style="color: var(--melvin-cyan); font-weight: 700;">Jornada da Conta</a> ·
                     <a href="#matriz-icp-out" style="color: var(--melvin-cyan); font-weight: 700;">Matriz ICP Out</a> ·
                     <a href="#presales-outbound" style="color: var(--melvin-cyan); font-weight: 700;">Presales BDR</a> ·
-                    <a href="#wf-contato-nutricao-out" style="color: var(--melvin-cyan); font-weight: 700;">D1–D35 Prospecção Fria</a>
+                    <a href="#wf-contato-nutricao-out" style="color: var(--melvin-cyan); font-weight: 700;">D1–D35 Fria &amp; Nutrição Quente</a>
                 </p>
             </div>
         </section>
@@ -3678,110 +3698,106 @@ Quando puder, confirme o recebimento ou me diga se prefere ajustar prazo/horári
 			</div>
 
         </section>
-                <section id="wf-contato-nutricao-out" class="blueprint-page" style="padding: 40px; border-radius: 16px;">
+                                <section id="wf-contato-nutricao-out" class="blueprint-page" style="padding: 40px; border-radius: 16px;">
             <div class="fq-hero fq-hero--out">
                 <div class="fq-hero-copy">
                     <div class="fq-kicker">Outbound · Cadência</div>
-                    <div class="cadencia-title-line fq-hero-title">🎯 CADÊNCIA OUTBOUND: D1–D35 Prospecção Fria</div>
-                    <p class="cadencia-subtitle" style="padding-left:0;max-width:54ch;">Régua BDR Sniper em 3 fases: Blitz de abertura (D1–D13), Cerco Multicanal corporativo (D14–D27) e Break-up / arquivamento (D28–D35). Espelha a lógica Inbound de Contato &amp; Nutrição, com ritmo de conta fria e multithreading.</p>
+                    <div class="cadencia-title-line fq-hero-title">🎯 CADÊNCIA OUTBOUND: D1–D35 · Prospecção Fria &amp; Nutrição Quente</div>
+                    <p class="cadencia-subtitle" style="padding-left:0;max-width:54ch;">Dois trilhos na mesma régua: <strong>Quente</strong> (sinal Copilot · espinha Hardcore) e <strong>Frio</strong> (fit sem sinal). Depois, nutrição de valor até D35 e nurturing 60–90d. Princípios em <a href="#cadencia-multicanal" style="color:var(--melvin-cyan);font-weight:700;">Cadência Multicanal</a>.</p>
                 </div>
                 <div class="fq-badge-stack" aria-hidden="true">
                     <div class="fq-badge-orb fq-badge-orb--out"><span>D1</span><small>D35</small></div>
-                    <p class="fq-badge-cap">Prospecção Fria Sniper</p>
+                    <p class="fq-badge-cap">Fria + Quente · Sniper</p>
                 </div>
             </div>
 
+            <p style="font-size:0.82rem;color:var(--text-muted);margin:0 0 18px;line-height:1.55;max-width:70ch;"><strong style="color:#38bdf8;">Legenda Meta · WA Oficial:</strong> bloco azul = <em>UTILITY</em> (retorno, agenda, breakup pós-contato). Bloco roxo = <em>MARKETING</em> (abertura fria / nutrição de conteúdo). Script humano acima; template com <code>{{n}}</code> abaixo — submeter no Manager com a categoria correta.</p>
             <div class="fq-header-extras">
                 <div class="header-cards-grid">
                     <div class="h-card purple-border">
-                        <h4>⚙️ Gatilho Mestre</h4>
-                        <p><strong>Fase 1:</strong> Etapa 1 → Etapa 2 (após Filtro 1). <strong>Fase 2+:</strong> Etapa 2 → Etapa 3 (após Filtro 2 / contato já realizado).</p>
+                        <h4>🔥 Trilho Quente</h4>
+                        <p>Score Copilot ≥ 6 ou sinal humano confirmado. E-mail 1 = gancho do sinal. Canais condicionais. ~10 toques até D19.</p>
                     </div>
                     <div class="h-card orange-border">
-                        <h4>🎯 Objetivo RevOps</h4>
-                        <p>Abrir o decisor, qualificar com Filtro 2 / SPN e gerar reunião para o Closer — sem queimar domínio nem insistir além do ciclo.</p>
+                        <h4>🧊 Trilho Frio</h4>
+                        <p>Fit ICP sem sinal forte. Blitz leve + ângulos de dor Melvin. Sem L×3 no Dia 1. Multithreading antes de matar a conta.</p>
                     </div>
-                    <div class="h-card red-border">
-                        <h4>⏳ Descarte com disciplina</h4>
-                        <p>Fim do Ciclo 1 ou fim do Cerco sem resposta → motivo <em>“Tentativas de contato esgotadas”</em>. Conta pode voltar via novo sinal (BDR Copilot).</p>
+                    <div class="h-card green-border">
+                        <h4>🌡️ Nutrição Quente · D20–D35</h4>
+                        <p>Valor (não spam). Breakup → nurturing 60–90d. Reativa só com <strong>sinal novo</strong> (Copilot / Jornada).</p>
                     </div>
                 </div>
             </div>
 
             <div class="matrix-widget dash-matrix" style="margin-bottom: 28px;">
                 <div class="matrix-header" style="background: rgba(167, 139, 250, 0.08);">
-                    <div class="matrix-title" style="color: #a78bfa;">⚡ QUADRO RESUMO • RÉGUA OUTBOUND D1–D35</div>
+                    <div class="matrix-title" style="color: #a78bfa;">⚡ QUADRO RESUMO • D1–D35 (Quente × Frio × Nutrição)</div>
                 </div>
-                <div class="matrix-content">
-                    <table class="matrix-table">
+                <div class="matrix-content" style="overflow-x:auto;">
+                    <table class="matrix-table" style="min-width:980px;">
                         <thead>
                             <tr>
-                                <th class="col-channel">Canal / Fase</th>
-                                <th>D01–D02</th>
-                                <th>D04–D06</th>
-                                <th>D09–D12</th>
+                                <th class="col-channel">Trilho</th>
+                                <th>D1</th>
+                                <th>D4</th>
+                                <th>D7</th>
+                                <th>D10</th>
                                 <th>D13</th>
-                                <th>D14</th>
-                                <th>D15–D27</th>
-                                <th>D28–D34</th>
+                                <th>D16</th>
+                                <th>D19</th>
+                                <th>D20–D34</th>
                                 <th>D35</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td class="row-title">👤 BDR (Voz)</td>
-                                <td><span class="m-badge mb-call">📞 L×3/dia</span></td>
-                                <td><span class="m-badge mb-call">📞 L×2</span></td>
-                                <td><span class="m-badge mb-call">📞 L×2</span></td>
-                                <td>—</td>
-                                <td>—</td>
-                                <td><span class="m-badge mb-call">📞 Follow</span></td>
-                                <td><span class="m-badge mb-call">📞 CTA</span></td>
-                                <td>—</td>
+                                <td class="row-title">🔥 Quente</td>
+                                <td><span class="m-badge mb-mail">📩 E1 sinal</span><br><span class="m-badge mb-out">in LI</span></td>
+                                <td><span class="m-badge mb-call">📞 ≤90s</span></td>
+                                <td><span class="m-badge mb-mail">📩 Case</span></td>
+                                <td><span class="m-badge mb-wa">💬 Humano</span></td>
+                                <td><span class="m-badge mb-mail">📩 Inação</span></td>
+                                <td><span class="m-badge mb-call">📞 Posição</span></td>
+                                <td><span class="m-badge mb-mail">📩 Breakup</span></td>
+                                <td colspan="2" style="color:var(--text-muted);font-size:0.78rem;">→ Nutrição / Nurturing</td>
                             </tr>
                             <tr>
-                                <td class="row-title">💬 WhatsApp / LI</td>
+                                <td class="row-title">🧊 Frio</td>
+                                <td><span class="m-badge mb-mail">📩 Fit</span><br><span class="m-badge mb-call">📞 1×</span></td>
                                 <td><span class="m-badge mb-wa">💬 Dor</span></td>
+                                <td><span class="m-badge mb-call">📞</span></td>
                                 <td><span class="m-badge mb-wa">💬 Dor</span></td>
-                                <td><span class="m-badge mb-wa">💬 Breakup</span></td>
-                                <td>—</td>
-                                <td><span class="m-badge mb-out">in LI</span></td>
+                                <td><span class="m-badge mb-call">📞</span></td>
+                                <td><span class="m-badge mb-wa">💬 CTA</span></td>
+                                <td><span class="m-badge mb-sys">MT / Break</span></td>
+                                <td colspan="2" style="color:var(--text-muted);font-size:0.78rem;">→ Nutrição / Nurturing</td>
+                            </tr>
+                            <tr>
+                                <td class="row-title">🌡️ Nutrição</td>
+                                <td colspan="7" style="color:var(--text-muted);">—</td>
                                 <td><span class="m-badge mb-wa">💬 Valor</span></td>
-                                <td><span class="m-badge mb-wa">💬 Breakup</span></td>
-                                <td>—</td>
-                            </tr>
-                            <tr>
-                                <td class="row-title">📩 E-mail</td>
-                                <td><span class="m-badge mb-mail">📩 Auto</span></td>
-                                <td>—</td>
-                                <td>—</td>
-                                <td>—</td>
-                                <td><span class="m-badge mb-mail">📩 Auto</span></td>
-                                <td>—</td>
-                                <td>—</td>
-                                <td>—</td>
+                                <td><span class="m-badge mb-sys">Arquivo</span></td>
                             </tr>
                             <tr>
                                 <td class="row-title">⚙️ OPERAÇÃO</td>
-                                <td colspan="4" style="background: rgba(167,139,250,0.06); color: #a78bfa; font-weight: 700;">⚡ FASE 1 · BLITZ D1–D13 · Contato inicial</td>
-                                <td colspan="2" style="background: rgba(56,189,248,0.06); color: #38bdf8; font-weight: 700;">🔄 FASE 2 · CERCO D14–D27</td>
-                                <td colspan="2" style="background: rgba(248,113,113,0.06); color: #f87171; font-weight: 700;">🚪 FASE 3 · BREAK-UP D28–D35</td>
+                                <td colspan="7" style="background: rgba(167,139,250,0.06); color: #a78bfa; font-weight: 700;">FASE 1–2 · Abertura (Quente ou Frio)</td>
+                                <td colspan="2" style="background: rgba(52,211,153,0.06); color: #34d399; font-weight: 700;">FASE 3 · Nutrição Quente → 60–90d</td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
             </div>
 
-            <!-- ========== FASE 1 BLITZ ========== -->
+            <!-- ========== FASE 1 QUENTE ========== -->
             <div class="timeline-day-toggle-block">
                 <div class="timeline-section-title-container">
-                    <div class="timeline-section-title" style="color:#a78bfa;">⚡ FASE 1 · BLITZ — Contato Inicial (D1 a D13)</div>
+                    <div class="timeline-section-title" style="color:#a78bfa;">🔥 FASE 1 · TRILHO QUENTE — Sinal Copilot (D1 a D19)</div>
                     <button class="section-toggle-btn" id="toggleOutFase1Btn">Recolher</button>
                 </div>
                 <div class="timeline-wrapper" id="outFase1Container" style="overflow-x: auto;">
                     <div class="workflow-meta" style="border-color: rgba(167, 139, 250, 0.25);">
-                        <p><strong>Gatilho:</strong> Conversão Etapa 1 » Etapa 2 [após Filtro 1]</p>
-                        <p style="margin-top: 5px; color: var(--text-muted);"><strong>Objetivo:</strong> Contato inicial com o decisor. Abrir relacionamento e, se houver abertura, agendar reunião. Após resposta → executar perguntas do <a href="#filtro-qualificacao-out" style="color:var(--melvin-cyan);font-weight:700;">Filtro 2</a>.</p>
+                        <p><strong>Gatilho:</strong> Conta aprovada + score ≥ 6 + sinal confirmado (válido 5–10 dias úteis) · E-mail 1 rascunho do <a href="#bdr-copilot" style="color:var(--melvin-cyan);font-weight:700;">BDR Copilot</a>.</p>
+                        <p style="margin-top: 5px; color: var(--text-muted);"><strong>Regras:</strong> Canal condicional (não paralelo). CTA único por toque. Sem PDF genérico. Após resposta → Filtro 2 / SPN e agenda SQL.</p>
                     </div>
 
                     <table class="cadence-table-modern" style="min-width: 1100px;">
@@ -3798,164 +3814,122 @@ Quando puder, confirme o recebimento ou me diga se prefere ajustar prazo/horári
                         </thead>
                         <tbody>
                             <tr>
-                                <td style="font-weight: 800; color: #a78bfa;">Dia 1 · Start</td>
-                                <td>Auto</td>
-                                <td><span class="actor-badge actor-auto">🤖 AUTO</span></td>
-                                <td><span class="flag-badge flag-blue">Cadência E-mail</span></td>
-                                <td><span class="metric-sla">2 horas</span><span class="metric-sub">Inserção</span></td>
-                                <td><div class="channel-info"><span class="channel-icon">📩</span> E-mail Autom.</div></td>
-                                <td><div class="pitch-modern"><div class="pitch-title">📩 Inserção Cadência de E-mail</div>Consultar templates oficiais da operação. Disparo automático na entrada da régua.</div></td>
-                            </tr>
-                            <tr>
-                                <td style="font-weight: 800; color: #a78bfa;">Dia 1</td>
-                                <td style="font-weight:700;">1º</td>
+                                <td style="font-weight: 800; color: #a78bfa;">D1 · Start</td>
+                                <td>1º–2º</td>
                                 <td><span class="actor-badge actor-sdr">👤 BDR</span></td>
-                                <td><span class="flag-badge flag-red">SLA CRÍTICO</span><span class="flag-badge flag-yellow">Filtro 2</span></td>
-                                <td><span class="metric-sla">2 horas</span><span class="metric-sub">Pós e-mail</span></td>
-                                <td><div class="channel-info" style="color:#38bdf8;"><span class="channel-icon">📞</span> Ligação</div></td>
+                                <td><span class="flag-badge flag-yellow">Sinal</span><span class="flag-badge flag-blue">LI sem pitch</span></td>
+                                <td><span class="metric-sla">Mesmo dia</span><span class="metric-sub">Abertura</span></td>
                                 <td>
-                                    <div class="pitch-modern"><div class="pitch-title">📞 Pitch Base · Contato Inicial</div>
-                                    Olá [NOME CONTATO], tudo bem?<br>Sou [SEU NOME], da MELVIN. Liguei para dar sequência ao nosso contato e ver se você teve a oportunidade de analisar o e-mail que lhe enviei.<br><strong>Após a resposta → iniciar perguntas (Filtro 2).</strong></div>
+                                    <div class="channel-info" style="color:#c084fc;"><span class="channel-icon">in</span> LinkedIn</div>
+                                    <div class="channel-info"><span class="channel-icon">📩</span> E-mail 1</div>
+                                </td>
+                                <td>
+                                    <div class="pitch-modern"><div class="pitch-title">in LinkedIn · Conexão</div>Visualizar perfil 2–3× nos dias anteriores. Solicitação com nota curta (&lt;300 chars), <strong>sem pitch</strong>. E-mail 1 no mesmo dia — não depende de aceite LI.</div>
+                                    <div class="pitch-modern"><div class="pitch-title">📩 E-mail 1 · Gancho de sinal</div>≤ 6 linhas · 1 pergunta · sem PDF/link · assunto sem “proposta”. O sinal específico da conta é o gancho (vaga PCM, nova planta, parada, etc.). Revisar rascunho Copilot antes de enviar. Teto: 20 envios/dia.</div>
                                 </td>
                             </tr>
                             <tr>
-                                <td style="font-weight: 800;">Dia 1</td>
-                                <td style="font-weight:700;">2º</td>
-                                <td><span class="actor-badge actor-sdr">👤 BDR</span></td>
-                                <td><span class="flag-badge flag-green">Dor: Reativa</span></td>
-                                <td><span class="metric-sla">30 min</span><span class="metric-sub">Pós ligação</span></td>
-                                <td><div class="channel-info" style="color:#4ade80;"><span class="channel-icon">💬</span> WhatsApp</div></td>
-                                <td>
-                                    <div class="pitch-modern"><div class="pitch-title">💬 WA · Manutenção Reativa</div>
-                                    Olá, [NOME DO LEAD], tudo bem?<br>Sou o [SEU NOME] da MELVIN.<br>Tentei ligar há pouco. Vi que sua empresa é do setor de [SETOR DO LEAD] e sei que uma quebra inesperada de máquina pode causar um estrago na produção.<br>Como você trata situações de urgência? Tem um procedimento definido?</div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td style="font-weight: 800;">Dia 1</td>
+                                <td style="font-weight: 800;">D4</td>
                                 <td style="font-weight:700;">3º</td>
                                 <td><span class="actor-badge actor-sdr">👤 BDR</span></td>
-                                <td><span class="flag-badge flag-blue">Re-tentativa</span></td>
-                                <td><span class="metric-sla">4 horas</span><span class="metric-sub">Double tap</span></td>
+                                <td><span class="flag-badge flag-green">Posicionamento</span></td>
+                                <td><span class="metric-sla">+3 dias</span><span class="metric-sub">Sweet spot</span></td>
                                 <td><div class="channel-info" style="color:#38bdf8;"><span class="channel-icon">📞</span> Ligação</div></td>
-                                <td><div class="pitch-modern"><div class="pitch-title">📞 Pitch Base (retomada)</div>Mesmo pitch de contato inicial. Após resposta → Filtro 2.</div></td>
-                            </tr>
+                                <td>
+                                    <div class="pitch-modern"><div class="pitch-title">📞 Ligação ≤ 90s</div>Confirmar recebimento do e-mail e abrir conversa. <strong>Não vender pelo telefone.</strong> Se não atender: no mesmo dia, DM LinkedIn <em>ou</em> WhatsApp com ângulo de dor do segmento (canal condicional — nunca os dois juntos).</div>
+                                    <div class="pitch-modern"><div class="pitch-title">💬 WA / DM · Sem atendimento (humano)</div>
+                                    Olá [Nome], tudo bem? Sou [Seu Nome] da MELVIN. Tentei falar por telefone após o e-mail sobre [SINAL/Gatilho]. Sei que a planta corre — tem 2 min esta semana pra alinhar se isso faz sentido pra vocês?</div>
+                                    <div class="pitch-modern pitch-meta-utility">
+                                        <div class="pitch-title">💬 WA (Retorno pós-e-mail) <span class="pitch-meta-chip">Template Meta · UTILITY</span></div>
+                                        "Olá, {{1}}! Tudo bem?
 
+Aqui é {{2}}, da Melvin.
+
+Tentei contato por telefone após o e-mail sobre {{3}}.
+
+Pode me indicar um horário melhor nesta semana para retornarmos?"
+                                        <span class="pitch-meta-vars">{{1}} nome · {{2}} BDR · {{3}} sinal / tema do e-mail</span>
+                                    </div>
+                                </td>
+                            </tr>
                             <tr>
-                                <td style="font-weight: 800;">Dia 2</td>
-                                <td style="font-weight:700;">1º–3º</td>
+                                <td style="font-weight: 800;">D7</td>
+                                <td style="font-weight:700;">4º</td>
                                 <td><span class="actor-badge actor-sdr">👤 BDR</span></td>
-                                <td><span class="flag-badge flag-green">Dor: Controle</span></td>
-                                <td><span class="metric-sla">1 dia</span><span class="metric-sub">+ 30min WA + 4h L</span></td>
+                                <td><span class="flag-badge flag-blue">Prova social</span></td>
+                                <td><span class="metric-sla">+3 dias</span></td>
+                                <td><div class="channel-info"><span class="channel-icon">📩</span> E-mail 2</div></td>
                                 <td>
-                                    <div class="channel-info" style="color:#38bdf8;"><span class="channel-icon">📞</span> Ligação</div>
-                                    <div class="channel-info" style="color:#4ade80;"><span class="channel-icon">💬</span> WhatsApp</div>
-                                    <div class="channel-info" style="color:#38bdf8;"><span class="channel-icon">📞</span> Ligação</div>
-                                </td>
-                                <td>
-                                    <div class="pitch-modern"><div class="pitch-title">📞 Pitch Base</div>Sequência ao e-mail · abrir Filtro 2.</div>
-                                    <div class="pitch-modern"><div class="pitch-title">💬 WA · Falta de Controle</div>
-                                    Olá, [NOME DO LEAD]!<br>Tentei falar com você por telefone. Meu objetivo era ver como a falta de controle sobre o histórico dos equipamentos e as ordens de serviço é um problema para o controle da equipe e, com tantos assuntos pra controlar, esse é um que impacta bastante.<br>Como sua equipe lida com isso hoje?</div>
+                                    <div class="pitch-modern"><div class="pitch-title">📩 E-mail 2 · Case do segmento</div>Resultado de empresa similar / mesma dor. Sem case confirmado: benchmark setorial honesto. Ângulo Melvin: software + sensor próprio. CTA único: reunião 20 min <em>ou</em> uma pergunta de diagnóstico.</div>
                                 </td>
                             </tr>
-
                             <tr>
-                                <td style="font-weight: 800; color: var(--text-muted);">Dia 3</td>
-                                <td colspan="6" style="color: var(--text-muted); font-style: italic;">Sem toques — respiro tático (espelha espaçamento Inbound pós-Blitz inicial).</td>
-                            </tr>
-
-                            <tr>
-                                <td style="font-weight: 800;">Dia 4</td>
-                                <td style="font-weight:700;">1º–2º</td>
+                                <td style="font-weight: 800;">D10</td>
+                                <td style="font-weight:700;">5º</td>
                                 <td><span class="actor-badge actor-sdr">👤 BDR</span></td>
-                                <td><span class="flag-badge flag-yellow">Dor: Orçamento</span></td>
-                                <td><span class="metric-sla">2 dias</span><span class="metric-sub">+ 30min WA</span></td>
+                                <td><span class="flag-badge flag-green">Toque humano</span></td>
+                                <td><span class="metric-sla">+3 dias</span></td>
+                                <td><div class="channel-info" style="color:#4ade80;"><span class="channel-icon">💬</span> WhatsApp</div></td>
                                 <td>
-                                    <div class="channel-info" style="color:#38bdf8;"><span class="channel-icon">📞</span> Ligação</div>
-                                    <div class="channel-info" style="color:#4ade80;"><span class="channel-icon">💬</span> WhatsApp</div>
-                                </td>
-                                <td>
-                                    <div class="pitch-modern"><div class="pitch-title">📞 Pitch Base</div>Contato inicial · Filtro 2 se houver abertura.</div>
-                                    <div class="pitch-modern"><div class="pitch-title">💬 WA · Justificar Orçamento</div>
-                                    Olá, [NOME DO LEAD], tudo certo?<br>Sou o [SEU NOME] da MELVIN. Te enviei uma mensagem outro dia e entendo que a correria é grande, mas sem problemas.<br>Entendo também que, com a correria, é difícil justificar o valor do setor de manutenção para a diretoria, certo?<br>Você sente que sua área é vista mais como um custo do que um investimento estratégico?</div>
+                                    <div class="pitch-modern"><div class="pitch-title">💬 WA · Humano (≤3 linhas)</div>
+                                    [Nome], [Seu Nome] da MELVIN. Mandei um case de [SEGMENTO] por e-mail — faz eco com a operação de vocês em [SINAL/dor]? Se fizer, marco 20 min com o especialista.</div>
+                                    <div class="pitch-modern pitch-meta-utility">
+                                        <div class="pitch-title">💬 WA (Follow-up de conteúdo) <span class="pitch-meta-chip">Template Meta · UTILITY</span></div>
+                                        "Olá, {{1}}!
+
+{{2}} da Melvin por aqui.
+
+Enviei um material sobre {{3}} por e-mail.
+
+Faz sentido pra operação de vocês? Se sim, posso alinhar 20 minutos com nosso especialista."
+                                        <span class="pitch-meta-vars">{{1}} nome · {{2}} BDR · {{3}} tema / vertical</span>
+                                    </div>
                                 </td>
                             </tr>
-
                             <tr>
-                                <td style="font-weight: 800; color: var(--text-muted);">Dia 5</td>
-                                <td colspan="6" style="color: var(--text-muted); font-style: italic;">Sem toques.</td>
-                            </tr>
-
-                            <tr>
-                                <td style="font-weight: 800;">Dia 6</td>
-                                <td style="font-weight:700;">1º–2º</td>
+                                <td style="font-weight: 800;">D13</td>
+                                <td style="font-weight:700;">6º</td>
                                 <td><span class="actor-badge actor-sdr">👤 BDR</span></td>
-                                <td><span class="flag-badge flag-blue">Dor: Treinamento</span></td>
-                                <td><span class="metric-sla">2 dias</span><span class="metric-sub">+ 30min WA</span></td>
+                                <td><span class="flag-badge flag-yellow">Custo da inação</span></td>
+                                <td><span class="metric-sla">+3 dias</span></td>
+                                <td><div class="channel-info"><span class="channel-icon">📩</span> E-mail 3</div></td>
                                 <td>
-                                    <div class="channel-info" style="color:#38bdf8;"><span class="channel-icon">📞</span> Ligação</div>
-                                    <div class="channel-info" style="color:#4ade80;"><span class="channel-icon">💬</span> WhatsApp</div>
-                                </td>
-                                <td>
-                                    <div class="pitch-modern"><div class="pitch-title">📞 Pitch Base</div>Contato inicial · Filtro 2.</div>
-                                    <div class="pitch-modern"><div class="pitch-title">💬 WA · Falta de Treinamento</div>
-                                    Olá, [NOME DO LEAD]! [SEU NOME] da MELVIN por aqui novamente.<br>Passando para dizer que uma equipe bem treinada é o principal ativo de uma empresa — isso é quase indiscutível. Muitas empresas têm equipes boas, mas que não se comunicam ou usam ferramentas defasadas, gerando retrabalho e desgaste.<br>Separar 1 hora por semana para estudos é possível na sua empresa?</div>
+                                    <div class="pitch-modern"><div class="pitch-title">📩 E-mail 3 · Custo da inação</div>De “o que a Melvin faz” para “o que custa não resolver”. Pergunta de diagnóstico sem pressão. Oferece saída honesta (“se não for prioridade agora, sem problema”).</div>
                                 </td>
                             </tr>
-
                             <tr>
-                                <td style="font-weight: 800; color: var(--text-muted);">Dias 7–8</td>
-                                <td colspan="6" style="color: var(--text-muted); font-style: italic;">Sem toques — espaçamento antes do próximo bloco de pressão.</td>
-                            </tr>
-
-                            <tr>
-                                <td style="font-weight: 800;">Dia 9</td>
-                                <td style="font-weight:700;">1º–2º</td>
+                                <td style="font-weight: 800;">D16</td>
+                                <td style="font-weight:700;">7º</td>
                                 <td><span class="actor-badge actor-sdr">👤 BDR</span></td>
-                                <td><span class="flag-badge flag-green">Dor: Comunicação</span></td>
-                                <td><span class="metric-sla">3 dias</span><span class="metric-sub">+ 30min WA</span></td>
+                                <td><span class="flag-badge flag-red">Definir posição</span></td>
+                                <td><span class="metric-sla">+3 dias</span></td>
+                                <td><div class="channel-info" style="color:#38bdf8;"><span class="channel-icon">📞</span> Ligação</div></td>
                                 <td>
-                                    <div class="channel-info" style="color:#38bdf8;"><span class="channel-icon">📞</span> Ligação</div>
-                                    <div class="channel-info" style="color:#4ade80;"><span class="channel-icon">💬</span> WhatsApp</div>
-                                </td>
-                                <td>
-                                    <div class="pitch-modern"><div class="pitch-title">📞 Pitch Base</div>Contato inicial · Filtro 2.</div>
-                                    <div class="pitch-modern"><div class="pitch-title">💬 WA · Comunicação entre Setores</div>
-                                    Olá, [NOME DO LEAD], correria doida né?<br>Sei que é comum o gestor de manutenção ter uma comunicação difícil com a produção ou outras áreas. O resultado é sempre o mesmo: falta de alinhamento, informações desencontradas e prejuízos.<br>Vocês utilizam o WhatsApp para a comunicação ou possuem outro sistema interno?</div>
+                                    <div class="pitch-modern"><div class="pitch-title">📞 Ligação final</div>Obter uma das três: <strong>reunião</strong>, <strong>não agora</strong>, ou <strong>redirecionamento</strong> (outra persona). Não sair sem posição. Se reunião → Filtro 2 / briefing AE.</div>
                                 </td>
                             </tr>
-
                             <tr>
-                                <td style="font-weight: 800; color: var(--text-muted);">Dias 10–11</td>
-                                <td colspan="6" style="color: var(--text-muted); font-style: italic;">Sem toques.</td>
-                            </tr>
-
-                            <tr>
-                                <td style="font-weight: 800; color: #f59e0b;">Dia 12</td>
-                                <td style="font-weight:700;">1º–2º</td>
+                                <td style="font-weight: 800; color:#f59e0b;">D19</td>
+                                <td style="font-weight:700;">8º</td>
                                 <td><span class="actor-badge actor-sdr">👤 BDR</span></td>
-                                <td><span class="flag-badge flag-red">Break-up Ciclo 1</span></td>
-                                <td><span class="metric-sla">3 dias</span><span class="metric-sub">+ 30min WA</span></td>
+                                <td><span class="flag-badge flag-red">Breakup</span></td>
+                                <td><span class="metric-sla">+3 dias</span></td>
                                 <td>
-                                    <div class="channel-info" style="color:#38bdf8;"><span class="channel-icon">📞</span> Ligação</div>
+                                    <div class="channel-info"><span class="channel-icon">📩</span> E-mail</div>
                                     <div class="channel-info" style="color:#4ade80;"><span class="channel-icon">💬</span> WhatsApp</div>
                                 </td>
                                 <td>
-                                    <div class="pitch-modern"><div class="pitch-title">📞 Pitch Base</div>Última tentativa de abertura no Ciclo 1.</div>
-                                    <div class="pitch-modern" style="border-left-color:#f59e0b;"><div class="pitch-title" style="color:#f59e0b;">💬 WA · Despedida com CTA futuro</div>
-                                    Olá, [NOME DO LEAD]! [SEU NOME] da MELVIN pela última vez...<br>Tentei contato algumas vezes e percebi que sua agenda está super corrida — entendo que talvez este não seja o melhor momento de nos conhecermos.<br>De qualquer forma, me coloco à disposição para um bate-papo no futuro. Se precisar de algo relacionado à gestão de manutenção, pode contar conosco! Só responder esta mensagem, a qualquer momento.<br>Forte abraço e até breve!</div>
-                                </td>
-                            </tr>
+                                    <div class="pitch-modern" style="border-left-color:#f59e0b;"><div class="pitch-title" style="color:#f59e0b;">📩 / 💬 Breakup · Porta aberta</div>
+                                    Encerra sem pitch final. Preserva relacionamento. Conta → nurturing 60–90d (ou Fase 3 se ainda houver fit sem resposta clara).</div>
+                                    <div class="pitch-modern pitch-meta-utility">
+                                        <div class="pitch-title">💬 WA (Breakup / Arquivo) <span class="pitch-meta-chip">Template Meta · UTILITY</span></div>
+                                        "{{1}}, sem retorno sobre {{2}}, estou arquivando o acompanhamento por agora para não insistir. ✅
 
-                            <tr>
-                                <td style="font-weight: 800; color: #f87171;">FINAL · D13</td>
-                                <td>Close</td>
-                                <td><span class="actor-badge actor-sdr">👤 BDR</span></td>
-                                <td><span class="flag-badge flag-red">DESCARTE</span></td>
-                                <td><span class="metric-sla">1 dia</span><span class="metric-sub">Pós breakup</span></td>
-                                <td><div class="channel-info"><span class="channel-icon">🖥️</span> CRM / Bitrix</div></td>
-                                <td>
-                                    <div class="pitch-modern" style="border-left-color:#f87171;"><div class="pitch-title" style="color:#f87171;">🗑️ Descarte · Ciclo 1</div>
-                                    Se não recebeu nenhuma resposta até este momento e este for o <strong>CICLO 1</strong>, descarte o lead com o motivo: <strong>“Tentativas de contato esgotadas”</strong>.<br>Se houver segundo ciclo / nova persona (multithreading), seguir o RevOps de <a href="#presales-outbound" style="color:var(--melvin-cyan);font-weight:700;">Presales BDR</a> antes de matar a conta.</div>
+Se quiser retomar no futuro, basta responder esta mensagem.
+
+Forte abraço!"
+                                        <span class="pitch-meta-vars">{{1}} nome · {{2}} empresa / tema</span>
+                                    </div>
                                 </td>
                             </tr>
                         </tbody>
@@ -3963,16 +3937,16 @@ Quando puder, confirme o recebimento ou me diga se prefere ajustar prazo/horári
                 </div>
             </div>
 
-            <!-- ========== FASE 2 CERCO ========== -->
+            <!-- ========== FASE 2 FRIO ========== -->
             <div class="timeline-day-toggle-block" style="margin-top: 40px;">
                 <div class="timeline-section-title-container">
-                    <div class="timeline-section-title" style="color:#38bdf8;">🔄 FASE 2 · CERCO MULTICANAL CORPORATIVO (D14 a D27)</div>
+                    <div class="timeline-section-title" style="color:#38bdf8;">🧊 FASE 2 · TRILHO FRIO — Fit sem sinal forte (D1 a D19)</div>
                     <button class="section-toggle-btn" id="toggleOutFase2Btn">Recolher</button>
                 </div>
                 <div class="timeline-wrapper" id="outFase2Container" style="overflow-x: auto;">
                     <div class="workflow-meta" style="border-color: rgba(56, 189, 248, 0.25);">
-                        <p><strong>Gatilho:</strong> Conversão Etapa 2 » Etapa 3 [após Filtro 2] · Situação: nutrição de leads com contato já realizado.</p>
-                        <p style="margin-top: 5px; color: var(--text-muted);"><strong>Operação:</strong> Cancelar o Workflow da Fase 1 antes de iniciar. Conectar LinkedIn sem mensagem. Canais condicionais (WA <em>ou</em> LI) — alinhado à <a href="#cadencia-multicanal" style="color:var(--melvin-cyan);font-weight:700;">Cadência Multicanal</a>.</p>
+                        <p><strong>Gatilho:</strong> Empresa ICP + persona mapeada, <strong>sem</strong> sinal Copilot ≥ 6. Passou nos 3 gates do <a href="#filtro-qualificacao-out" style="color:var(--melvin-cyan);font-weight:700;">Filtro Out</a>.</p>
+                        <p style="margin-top: 5px; color: var(--text-muted);"><strong>Diferença vs Quente:</strong> abertura por fit/vertical (não por sinal). Densidade menor que a Blitz antiga — <strong>proibido L×3 no Dia 1</strong>. Ângulos de dor Melvin nos WA.</p>
                     </div>
 
                     <table class="cadence-table-modern" style="min-width: 1100px;">
@@ -3989,96 +3963,112 @@ Quando puder, confirme o recebimento ou me diga se prefere ajustar prazo/horári
                         </thead>
                         <tbody>
                             <tr>
-                                <td style="font-weight: 800; color:#38bdf8;">D14 · Início</td>
-                                <td>Auto + LI</td>
-                                <td><span class="actor-badge actor-auto">🤖 AUTO</span><br><span class="actor-badge actor-sdr">👤 BDR</span></td>
-                                <td><span class="flag-badge flag-blue">Cancelar WF1</span><span class="flag-badge flag-yellow">LinkedIn</span></td>
-                                <td><span class="metric-sla">2 horas</span><span class="metric-sub">E-mail + Conexão</span></td>
-                                <td>
-                                    <div class="channel-info"><span class="channel-icon">📩</span> E-mail Auto</div>
-                                    <div class="channel-info" style="color:#c084fc;"><span class="channel-icon">in</span> LinkedIn</div>
-                                </td>
-                                <td>
-                                    <div class="pitch-modern"><div class="pitch-title">📩 Inserção Cadência de E-mail</div>Consultar templates. Início do Workflow de Nutrição Outbound.</div>
-                                    <div class="pitch-modern"><div class="pitch-title">in LinkedIn · Conexão</div>Conexão inicial com o lead, <strong>sem mensagem</strong>.</div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td style="font-weight: 800;">D14 + 7d</td>
-                                <td style="font-weight:700;">1º</td>
+                                <td style="font-weight: 800; color:#38bdf8;">D1</td>
+                                <td style="font-weight:700;">1º–2º</td>
                                 <td><span class="actor-badge actor-sdr">👤 BDR</span></td>
-                                <td><span class="flag-badge flag-green">Dados = petróleo</span></td>
-                                <td><span class="metric-sla">7 dias</span></td>
-                                <td><div class="channel-info" style="color:#4ade80;"><span class="channel-icon">💬</span> WA ou LI</div></td>
+                                <td><span class="flag-badge flag-blue">Fit ICP</span></td>
+                                <td><span class="metric-sla">Mesmo dia</span></td>
                                 <td>
-                                    <div class="pitch-modern"><div class="pitch-title">💬 Template · Dados de manutenção</div>
-                                    Olá, [NOME LEAD]! Tudo bem?<br><br>Sou [SEU NOME] da MELVIN. Estava analisando algumas tendências e percebi que os dados de manutenção (histórico de falhas, horas de trabalho e vida útil de peças) são o novo petróleo.<br>Quando organizados, mostram exatamente onde sua operação pode economizar.<br><br>Como vocês têm gerado estes dados da sua equipe?</div>
+                                    <div class="channel-info"><span class="channel-icon">📩</span> E-mail</div>
+                                    <div class="channel-info" style="color:#38bdf8;"><span class="channel-icon">📞</span> Ligação 1×</div>
+                                </td>
+                                <td>
+                                    <div class="pitch-modern"><div class="pitch-title">📩 E-mail · Fit / vertical</div>Abertura por setor + hipótese de dor (não “conhece a Melvin?”). 1 CTA. Domínio: respeitar teto diário.</div>
+                                    <div class="pitch-modern"><div class="pitch-title">📞 Ligação · Contato inicial</div>Olá [Nome], sou [Seu Nome] da MELVIN. Liguei para dar sequência ao e-mail sobre gestão de manutenção em [SETOR]. <strong>Após resposta → Filtro 2.</strong> Uma ligação no dia — sem double-tap agressivo.</div>
                                 </td>
                             </tr>
                             <tr>
-                                <td style="font-weight: 800;">+ 1 dia</td>
-                                <td style="font-weight:700;">2º</td>
-                                <td><span class="actor-badge actor-sdr">👤 BDR</span></td>
-                                <td><span class="flag-badge flag-yellow">Follow call</span></td>
-                                <td><span class="metric-sla">1 dia</span></td>
-                                <td><div class="channel-info" style="color:#38bdf8;"><span class="channel-icon">📞</span> Ligação</div></td>
-                                <td>
-                                    <div class="pitch-modern"><div class="pitch-title">📞 Pitch · Decisão de reunião</div>
-                                    Olá [NOME], tudo bem?<br>Ontem lhe enviei uma mensagem com informações [CITAR A MENSAGEM] e meu contato é para conversarmos um pouco sobre o assunto, sem compromissos.<br>Me diz uma coisa: [PERGUNTA DE NECESSIDADE ligada à mensagem] e prossiga a conversa.</div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td style="font-weight: 800;">+ 5 dias</td>
+                                <td style="font-weight: 800;">D4</td>
                                 <td style="font-weight:700;">3º</td>
                                 <td><span class="actor-badge actor-sdr">👤 BDR</span></td>
-                                <td><span class="flag-badge flag-blue">Eficiência campo</span></td>
-                                <td><span class="metric-sla">5 dias</span></td>
-                                <td><div class="channel-info" style="color:#4ade80;"><span class="channel-icon">💬</span> WA ou LI</div></td>
+                                <td><span class="flag-badge flag-green">Dor: Reativa</span></td>
+                                <td><span class="metric-sla">+3 dias</span></td>
+                                <td><div class="channel-info" style="color:#4ade80;"><span class="channel-icon">💬</span> WhatsApp</div></td>
                                 <td>
-                                    <div class="pitch-modern"><div class="pitch-title">💬 Template · Tempo em burocracia</div>
-                                    Olá, [NOME LEAD]! [SEU NOME] da MELVIN.<br><br>Sua equipe gasta muito tempo no planejamento e na burocracia do trabalho, certo?<br><br>Li um estudo recente que mostrou que até 30% do tempo dos técnicos é gasto em tarefas que poderiam ser automatizadas. A manutenção preventiva é o segredo para ter mais tempo para o que realmente importa.<br><br>Pelo que conversamos, precisamos ajustar estes pontos aí na sua operação.<br>Posso te oferecer uma ajuda sobre isso? Não vou lhe cobrar nada, prometo!</div>
+                                    <div class="pitch-modern"><div class="pitch-title">💬 WA · Manutenção reativa</div>
+                                    Olá, [Nome], tudo bem? Sou [Seu Nome] da MELVIN. Tentei contato por e-mail/telefone. No setor de [SETOR], uma quebra inesperada dói na produção — como vocês tratam urgência hoje?</div>
+                                    <div class="pitch-modern pitch-meta-marketing">
+                                        <div class="pitch-title">💬 WA (Abertura / Dor operacional) <span class="pitch-meta-chip pitch-meta-chip--mkt">Template Meta · MARKETING</span></div>
+                                        "Olá, {{1}}! Tudo bem?
+
+Aqui é {{2}}, da Melvin.
+
+Trabalho com empresas de {{3}} que querem reduzir paradas inesperadas na manutenção.
+
+Tem um horário melhor esta semana para um papo rápido de 15 minutos?"
+                                        <span class="pitch-meta-vars">{{1}} nome · {{2}} BDR · {{3}} setor</span>
+                                    </div>
                                 </td>
                             </tr>
                             <tr>
-                                <td style="font-weight: 800;">+ 1 dia</td>
+                                <td style="font-weight: 800;">D7</td>
                                 <td style="font-weight:700;">4º</td>
                                 <td><span class="actor-badge actor-sdr">👤 BDR</span></td>
-                                <td><span class="flag-badge flag-yellow">Follow call</span></td>
-                                <td><span class="metric-sla">1 dia</span></td>
-                                <td><div class="channel-info" style="color:#38bdf8;"><span class="channel-icon">📞</span> Ligação</div></td>
-                                <td><div class="pitch-modern"><div class="pitch-title">📞 Pitch · Decisão de reunião</div>Citar mensagem anterior + pergunta de necessidade. Objetivo: gerar tomada de decisão para reunião.</div></td>
-                            </tr>
-                            <tr>
-                                <td style="font-weight: 800;">+ 7 dias</td>
-                                <td style="font-weight:700;">5º</td>
-                                <td><span class="actor-badge actor-sdr">👤 BDR</span></td>
-                                <td><span class="flag-badge flag-green">Ferramentas</span></td>
-                                <td><span class="metric-sla">7 dias</span></td>
-                                <td><div class="channel-info" style="color:#4ade80;"><span class="channel-icon">💬</span> WA ou LI</div></td>
+                                <td><span class="flag-badge flag-yellow">Dor: Controle</span></td>
+                                <td><span class="metric-sla">+3 dias</span></td>
                                 <td>
-                                    <div class="pitch-modern"><div class="pitch-title">💬 Template · Ferramentas defasadas</div>
-                                    Olá, [NOME LEAD]! [SEU NOME] da MELVIN.<br><br>É comum ver equipes de alta performance com ferramentas defasadas. A produtividade está ligada às ferramentas de gestão. Um sistema de gestão de manutenção pode ser a diferença entre um time reativo e um time com controle total.<br><br>Você chegou a testar no passado algum outro sistema para controlar esse tópico?</div>
+                                    <div class="channel-info" style="color:#38bdf8;"><span class="channel-icon">📞</span> Ligação</div>
+                                </td>
+                                <td>
+                                    <div class="pitch-modern"><div class="pitch-title">📞 Pitch · Histórico / OS</div>Ângulo: falta de controle sobre histórico de equipamentos e OS. Após abertura → Filtro 2.</div>
                                 </td>
                             </tr>
                             <tr>
-                                <td style="font-weight: 800;">+ 1 dia</td>
-                                <td style="font-weight:700;">6º</td>
+                                <td style="font-weight: 800;">D10</td>
+                                <td style="font-weight:700;">5º</td>
                                 <td><span class="actor-badge actor-sdr">👤 BDR</span></td>
-                                <td><span class="flag-badge flag-yellow">Follow call</span></td>
-                                <td><span class="metric-sla">1 dia</span></td>
-                                <td><div class="channel-info" style="color:#38bdf8;"><span class="channel-icon">📞</span> Ligação</div></td>
-                                <td><div class="pitch-modern"><div class="pitch-title">📞 Pitch · Decisão de reunião</div>Citar WA/LI + pergunta de necessidade. Sem compromisso.</div></td>
+                                <td><span class="flag-badge flag-yellow">Dor: Orçamento</span></td>
+                                <td><span class="metric-sla">+3 dias</span></td>
+                                <td><div class="channel-info" style="color:#4ade80;"><span class="channel-icon">💬</span> WhatsApp</div></td>
+                                <td>
+                                    <div class="pitch-modern"><div class="pitch-title">💬 WA · Manutenção como custo</div>
+                                    [Nome], [Seu Nome] da MELVIN. Com a correria, é difícil justificar manutenção pra diretoria — sua área é vista mais como custo do que investimento?</div>
+                                    <div class="pitch-modern pitch-meta-marketing">
+                                        <div class="pitch-title">💬 WA (Follow-up de valor) <span class="pitch-meta-chip pitch-meta-chip--mkt">Template Meta · MARKETING</span></div>
+                                        "Olá, {{1}}!
+
+{{2}} da Melvin.
+
+Retomando o contato sobre organização da manutenção em {{3}}.
+
+Faz sentido um papo curto esta semana?"
+                                        <span class="pitch-meta-vars">{{1}} nome · {{2}} BDR · {{3}} empresa</span>
+                                    </div>
+                                </td>
                             </tr>
                             <tr>
-                                <td style="font-weight: 800; color:#38bdf8;">Fecha Cerco · ~D27</td>
-                                <td style="font-weight:700;">7º</td>
+                                <td style="font-weight: 800;">D13–D16</td>
+                                <td style="font-weight:700;">6º–7º</td>
                                 <td><span class="actor-badge actor-sdr">👤 BDR</span></td>
-                                <td><span class="flag-badge flag-yellow">ROI / Lucro</span></td>
-                                <td><span class="metric-sla">5 dias</span></td>
-                                <td><div class="channel-info" style="color:#4ade80;"><span class="channel-icon">💬</span> WA ou LI</div></td>
+                                <td><span class="flag-badge flag-blue">Case / CTA</span></td>
+                                <td><span class="metric-sla">Espaçado</span></td>
                                 <td>
-                                    <div class="pitch-modern"><div class="pitch-title">💬 Template · Retorno financeiro</div>
-                                    Olá, [NOME LEAD]! Tudo certo? [SEU NOME] da MELVIN.<br><br>Você já calculou o valor de uma hora de máquina parada na sua operação? Um dos maiores desafios é a manutenção vista como custo, e não como setor que gera lucro. O segredo é mostrar, com dados, como o time evita perdas e aumenta o faturamento.<br><br>Acho que podemos marcar um horário para apresentarmos o que conversamos até hoje — o que você pensa sobre isso?</div>
+                                    <div class="channel-info" style="color:#38bdf8;"><span class="channel-icon">📞</span> Ligação</div>
+                                    <div class="channel-info" style="color:#4ade80;"><span class="channel-icon">💬</span> WhatsApp</div>
+                                </td>
+                                <td>
+                                    <div class="pitch-modern"><div class="pitch-title">📞 / 💬 Case vertical + micro-sim</div>Usar case Samaria / Três Irmãos conforme porte (<a href="#filtro-qualificacao-out" style="color:var(--melvin-cyan);font-weight:700;">Filtro Out · Case</a>). Pedir agenda ou referral.</div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="font-weight: 800; color:#f59e0b;">D19</td>
+                                <td style="font-weight:700;">Close</td>
+                                <td><span class="actor-badge actor-sdr">👤 BDR</span></td>
+                                <td><span class="flag-badge flag-red">MT ou Break</span></td>
+                                <td><span class="metric-sla">Ciclo 1</span></td>
+                                <td><div class="channel-info"><span class="channel-icon">🖥️</span> Bitrix</div></td>
+                                <td>
+                                    <div class="pitch-modern" style="border-left-color:#f59e0b;"><div class="pitch-title" style="color:#f59e0b;">🔀 Multithreading ou Breakup</div>
+                                    Sem persona certa → nova persona (teto 2–3) e novo E-mail 1. Esgotou → breakup + motivo <strong>“Tentativas de contato esgotadas”</strong> · nurturing 60–90d.</div>
+                                    <div class="pitch-modern pitch-meta-utility">
+                                        <div class="pitch-title">💬 WA (Breakup frio) <span class="pitch-meta-chip">Template Meta · UTILITY</span></div>
+                                        "{{1}}, sem retorno após algumas tentativas, estou pausando o contato por agora. ✅
+
+Se a prioridade mudar, é só responder esta mensagem.
+
+Abraço!"
+                                        <span class="pitch-meta-vars">{{1}} nome</span>
+                                    </div>
                                 </td>
                             </tr>
                         </tbody>
@@ -4086,19 +4076,19 @@ Quando puder, confirme o recebimento ou me diga se prefere ajustar prazo/horári
                 </div>
             </div>
 
-            <!-- ========== FASE 3 BREAKUP ========== -->
+            <!-- ========== FASE 3 NUTRIÇÃO + IF ========== -->
             <div class="timeline-day-toggle-block" style="margin-top: 40px;">
                 <div class="timeline-section-title-container">
-                    <div class="timeline-section-title" style="color:#f87171;">🚪 FASE 3 · BREAK-UP E ARQUIVAMENTO (D28 a D35)</div>
+                    <div class="timeline-section-title" style="color:#34d399;">🌡️ FASE 3 · NUTRIÇÃO QUENTE (D20 a D35) + IF de resposta</div>
                     <button class="section-toggle-btn" id="toggleOutFase3Btn">Recolher</button>
                 </div>
                 <div class="timeline-wrapper" id="outFase3Container" style="overflow-x: auto;">
-                    <div class="workflow-meta" style="border-color: rgba(248, 113, 113, 0.25);">
-                        <p><strong>Missão:</strong> Forçar CTA de reunião (agenda do Closer) e encerrar com porta aberta. Sem resposta → descarte limpo.</p>
-                        <p style="margin-top: 5px; color: var(--text-muted);"><strong>Handoff:</strong> Se agendar → briefing completo para o Closer (dores, touchpoints, canal de resposta) conforme <a href="#presales-outbound" style="color:var(--melvin-cyan);font-weight:700;">Presales BDR</a>.</p>
+                    <div class="workflow-meta" style="border-color: rgba(52, 211, 153, 0.3);">
+                        <p><strong>Quando usar:</strong> Fit ainda válido, sem reunião e sem “não agora” definitivo. Objetivo: manter temperatura com <strong>valor</strong> — não repetir o mesmo e-mail.</p>
+                        <p style="margin-top: 5px; color: var(--text-muted);"><strong>D35:</strong> Arquivar → nurturing 60–90 dias. Reativa só com <strong>sinal novo</strong> (<a href="#jornada-conta" style="color:var(--melvin-cyan);font-weight:700;">Jornada</a> / Copilot).</p>
                     </div>
 
-                    <table class="cadence-table-modern" style="min-width: 1100px;">
+                    <table class="cadence-table-modern" style="min-width: 1100px; margin-bottom: 24px;">
                         <thead>
                             <tr>
                                 <th style="width: 120px;">Fase / Dia</th>
@@ -4112,89 +4102,125 @@ Quando puder, confirme o recebimento ou me diga se prefere ajustar prazo/horári
                         </thead>
                         <tbody>
                             <tr>
-                                <td style="font-weight: 800; color:#f87171;">D28</td>
-                                <td style="font-weight:700;">8º</td>
+                                <td style="font-weight: 800; color:#34d399;">D22</td>
+                                <td style="font-weight:700;">1º</td>
                                 <td><span class="actor-badge actor-sdr">👤 BDR</span></td>
-                                <td><span class="flag-badge flag-red">CTA OBRIGATÓRIO</span></td>
-                                <td><span class="metric-sla">1 dia</span></td>
-                                <td><div class="channel-info" style="color:#38bdf8;"><span class="channel-icon">📞</span> Ligação</div></td>
+                                <td><span class="flag-badge flag-green">Valor / Case</span></td>
+                                <td><span class="metric-sla">~D22</span></td>
+                                <td><div class="channel-info" style="color:#4ade80;"><span class="channel-icon">💬</span> WhatsApp</div></td>
                                 <td>
-                                    <div class="pitch-modern"><div class="pitch-title">📞 Pitch + Assunção de agenda</div>
-                                    Abrir com citação da mensagem anterior + pergunta de necessidade.<br><br>
-                                    <strong>Finalize com:</strong><br>
-                                    Então, [NOME], conversei com meu gestor comercial e falei sobre as conversas das últimas semanas. Ele ficou ainda mais interessado em tornar a [NOME EMPRESA] um case de sucesso para nós — e nós para vocês.<br>
-                                    Como percebi que sempre conversamos [EM DIA X] por volta de [HORA Y], tomei a liberdade de reservar um horário na agenda do [VENDEDOR ABC] para [DIA/HORA]. A reunião dura no máximo 20 minutos. Não vamos lhe vender nada — vamos apresentar nosso negócio e deixar insights.<br>
-                                    Posso confirmar?<br>
-                                    <em>Hoje precisamos gerar CTA para agendar REUNIÃO.</em></div>
+                                    <div class="pitch-modern"><div class="pitch-title">💬 WA · Case / insight (humano)</div>
+                                    [Nome], [Seu Nome] da MELVIN. Separei um recorte de como [Case/vertical] reduziu corretivas com PCM no app — quer que eu te mostre em 20 min ou prefere só o resumo por aqui?</div>
+                                    <div class="pitch-modern pitch-meta-marketing">
+                                        <div class="pitch-title">💬 WA (Nutrição / Conteúdo) <span class="pitch-meta-chip pitch-meta-chip--mkt">Template Meta · MARKETING</span></div>
+                                        "Olá, {{1}}!
+
+{{2}} da Melvin.
+
+Separei um conteúdo sobre {{3}} que pode ajudar a operação de vocês.
+
+Prefere um resumo por aqui ou alinhamos 20 minutos?"
+                                        <span class="pitch-meta-vars">{{1}} nome · {{2}} BDR · {{3}} tema / case</span>
+                                    </div>
                                 </td>
                             </tr>
                             <tr>
-                                <td style="font-weight: 800;">D28 + 7d</td>
-                                <td style="font-weight:700;">9º</td>
+                                <td style="font-weight: 800;">D28</td>
+                                <td style="font-weight:700;">2º</td>
                                 <td><span class="actor-badge actor-sdr">👤 BDR</span></td>
-                                <td><span class="flag-badge flag-blue">Estoque / Materiais</span></td>
-                                <td><span class="metric-sla">7 dias</span></td>
-                                <td><div class="channel-info" style="color:#4ade80;"><span class="channel-icon">💬</span> WA ou LI</div></td>
+                                <td><span class="flag-badge flag-yellow">Diagnóstico</span></td>
+                                <td><span class="metric-sla">~D28</span></td>
+                                <td><div class="channel-info"><span class="channel-icon">📩</span> E-mail</div></td>
                                 <td>
-                                    <div class="pitch-modern"><div class="pitch-title">💬 Template · Estoque e suprimentos</div>
-                                    Olá, [NOME LEAD]! [SEU NOME] da MELVIN.<br><br>Estar com o estoque de peças em dia é crucial para evitar paradas. Falta ou excesso de suprimentos gera prejuízo.<br>Um software de gestão de manutenção organiza tarefas e ajuda a prever necessidades de peças — otimiza capital de giro e evita surpresas.<br><br>Vamos marcar um horário para conversarmos sobre isso?</div>
+                                    <div class="pitch-modern"><div class="pitch-title">📩 E-mail · Pergunta de diagnóstico</div>Uma pergunta só (estoque, OS manuais, histórico na cabeça). Sem anexo. CTA: call curta ou “me diga se não é prioridade”.</div>
                                 </td>
                             </tr>
                             <tr>
-                                <td style="font-weight: 800;">+ 1 dia</td>
-                                <td style="font-weight:700;">10º</td>
+                                <td style="font-weight: 800; color:#f59e0b;">D32</td>
+                                <td style="font-weight:700;">3º</td>
                                 <td><span class="actor-badge actor-sdr">👤 BDR</span></td>
-                                <td><span class="flag-badge flag-red">CTA OBRIGATÓRIO</span></td>
-                                <td><span class="metric-sla">1 dia</span></td>
-                                <td><div class="channel-info" style="color:#38bdf8;"><span class="channel-icon">📞</span> Ligação</div></td>
+                                <td><span class="flag-badge flag-red">Breakup suave</span></td>
+                                <td><span class="metric-sla">~D32</span></td>
+                                <td><div class="channel-info" style="color:#4ade80;"><span class="channel-icon">💬</span> WhatsApp</div></td>
                                 <td>
-                                    <div class="pitch-modern"><div class="pitch-title">📞 Pitch + Assunção de agenda (2ª onda)</div>
-                                    Mesma estrutura do 8º toque: citar mensagem · pergunta de necessidade · assumir horário do Closer · pedir confirmação.<br><em>Gerar CTA de reunião hoje.</em></div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td style="font-weight: 800; color:#f59e0b;">D34</td>
-                                <td style="font-weight:700;">11º</td>
-                                <td><span class="actor-badge actor-sdr">👤 BDR</span></td>
-                                <td><span class="flag-badge flag-red">Break-up final</span></td>
-                                <td><span class="metric-sla">5 dias</span></td>
-                                <td><div class="channel-info" style="color:#4ade80;"><span class="channel-icon">💬</span> WA ou LI</div></td>
-                                <td>
-                                    <div class="pitch-modern" style="border-left-color:#f59e0b;"><div class="pitch-title" style="color:#f59e0b;">💬 Despedida com CTA futuro</div>
-                                    Olá, [NOME DO LEAD]! [SEU NOME] da MELVIN pela última vez...<br>Tentei contato algumas vezes e percebi que sua agenda está super corrida — entendo que talvez este não seja o melhor momento.<br>Me coloco à disposição para um bate-papo no futuro. Se precisar de algo em gestão de manutenção, pode contar conosco! Só responder esta mensagem.<br>Forte abraço e até breve!</div>
+                                    <div class="pitch-modern" style="border-left-color:#f59e0b;"><div class="pitch-title" style="color:#f59e0b;">💬 WA · Último toque de valor</div>
+                                    [Nome], último toque por agora. Se a prioridade de manutenção digital mudar, é só responder — deixo a porta aberta.</div>
+                                    <div class="pitch-modern pitch-meta-utility">
+                                        <div class="pitch-title">💬 WA (Último toque) <span class="pitch-meta-chip">Template Meta · UTILITY</span></div>
+                                        "{{1}}, este é meu último contato por agora sobre {{2}}.
+
+Se a prioridade mudar, é só responder esta mensagem.
+
+Forte abraço!"
+                                        <span class="pitch-meta-vars">{{1}} nome · {{2}} tema / empresa</span>
+                                    </div>
                                 </td>
                             </tr>
                             <tr>
                                 <td style="font-weight: 800; color:#f87171;">D35 · FINAL</td>
                                 <td>Close</td>
                                 <td><span class="actor-badge actor-sdr">👤 BDR</span></td>
-                                <td><span class="flag-badge flag-red">DESCARTE</span></td>
-                                <td><span class="metric-sla">1 dia</span><span class="metric-sub">Arquivamento</span></td>
-                                <td><div class="channel-info"><span class="channel-icon">🖥️</span> CRM / Bitrix</div></td>
+                                <td><span class="flag-badge flag-red">Arquivo</span></td>
+                                <td><span class="metric-sla">D35</span></td>
+                                <td><div class="channel-info"><span class="channel-icon">🖥️</span> Bitrix</div></td>
                                 <td>
-                                    <div class="pitch-modern" style="border-left-color:#f87171;"><div class="pitch-title" style="color:#f87171;">🗑️ Descarte definitivo</div>
-                                    Se o lead não respondeu WhatsApp, e-mail ou LinkedIn e não atendeu (ou atendeu sem evolução), descarte com motivo: <strong>“Tentativas de contato esgotadas”</strong>.<br>
-                                    Conta pode reentrar via <a href="#bdr-copilot" style="color:var(--melvin-cyan);font-weight:700;">BDR Copilot</a> (novo sinal) ou nurturing marketing 60–90 dias — ver <a href="#jornada-conta" style="color:var(--melvin-cyan);font-weight:700;">Jornada da Conta</a>.</div>
+                                    <div class="pitch-modern" style="border-left-color:#f87171;"><div class="pitch-title" style="color:#f87171;">🗑️ Arquivar · Nurturing 60–90d</div>
+                                    Motivo: <strong>“Tentativas de contato esgotadas”</strong> (ou “Não é o momento”). Copilot continua monitorando — reativa só com sinal novo. Ver <a href="#jornada-conta" style="color:var(--melvin-cyan);font-weight:700;">Jornada da Conta</a>.</div>
                                 </td>
                             </tr>
                         </tbody>
                     </table>
+
+                    <div class="matrix-widget dash-matrix" style="border-left: 4px solid #a78bfa; margin-bottom: 0;">
+                        <div class="matrix-header" style="background: rgba(167, 139, 250, 0.08);">
+                            <div class="matrix-title" style="color: #a78bfa;">⚡ IF · O que fazer quando o prospect reage</div>
+                        </div>
+                        <div class="matrix-content">
+                            <table class="matrix-table" style="text-align:left; margin:0;">
+                                <thead>
+                                    <tr>
+                                        <th style="width:28%;">Sinal do lead</th>
+                                        <th>Ação BDR (Bitrix)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong style="color:#10b981;">✓ Resposta positiva / pergunta</strong></td>
+                                        <td>Responder em &lt; 2h com link de agenda. Confirmar dor e segmento. <strong>Parar cadência.</strong> Briefing completo ao AE/Closer (sinal, touchpoints, canal).</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong style="color:#f59e0b;">✗ “Não é o momento” / silêncio pós-breakup</strong></td>
+                                        <td>Nurturing 60–90d. Não reenviar o mesmo e-mail. Reativar só com sinal novo (Copilot).</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong style="color:#38bdf8;">↳ “Fale com outra pessoa”</strong></td>
+                                        <td>Ouro. Pedir nome/contato. Nova cadência referenciando quem redirecionou (teto 2–3 personas).</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong style="color:#c084fc;">→ “Me manda mais informações”</strong></td>
+                                        <td>Não enviar PDF genérico. 3 linhas + link reunião 20 min. Material completo na call, não antes.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </div>
 
             <div style="background: rgba(167, 139, 250, 0.08); border: 1px dashed rgba(167, 139, 250, 0.35); padding: 18px 20px; border-radius: 8px; margin-top: 28px;">
                 <strong style="color: #a78bfa; display: block; margin-bottom: 8px;">🔗 Módulos RevOps conectados</strong>
                 <p style="font-size: 0.88rem; color: var(--text-muted); line-height: 1.6; margin: 0;">
-                    <a href="#wf-contato-nutricao-in" style="color: var(--melvin-cyan); font-weight: 700;">D1–D15 Contato &amp; Nutrição (Inbound)</a> ·
-                    <a href="#cadencia-multicanal" style="color: var(--melvin-cyan); font-weight: 700;">Cadência Multicanal</a> ·
+                    <a href="#cadencia-multicanal" style="color: var(--melvin-cyan); font-weight: 700;">Cadência Multicanal (princípios)</a> ·
                     <a href="#bdr-copilot" style="color: var(--melvin-cyan); font-weight: 700;">BDR Copilot</a> ·
                     <a href="#jornada-conta" style="color: var(--melvin-cyan); font-weight: 700;">Jornada da Conta</a> ·
+                    <a href="#filtro-qualificacao-out" style="color: var(--melvin-cyan); font-weight: 700;">Qualificação Out</a> ·
+                    <a href="#funil-outbound" style="color: var(--melvin-cyan); font-weight: 700;">Funil Outbound</a> ·
                     <a href="#presales-outbound" style="color: var(--melvin-cyan); font-weight: 700;">Presales BDR</a> ·
-                    <a href="#matriz-icp-out" style="color: var(--melvin-cyan); font-weight: 700;">Matriz ICP Out</a>
+                    <a href="#wf-contato-nutricao-in" style="color: var(--melvin-cyan); font-weight: 700;">D1–D15 Inbound</a>
                 </p>
             </div>
         </section>
-        <section id="wf-confirmacao-out" class="blueprint-page" style="padding: 40px; border-radius: 16px;">
+<section id="wf-confirmacao-out" class="blueprint-page" style="padding: 40px; border-radius: 16px;">
             <div class="fq-hero fq-hero--out">
                 <div class="fq-hero-copy">
                     <div class="fq-kicker">Outbound · Workflow</div>
@@ -4334,6 +4360,17 @@ Quando puder, confirme o recebimento ou me diga se prefere ajustar prazo/horári
                                         <div class="pitch-title" style="color:#38bdf8;">📲 WA BDR (Double-Check de Agenda Fria):</div>
                                         "Oi, [Nome]! Aqui é o [Seu Nome] da MELVIN, nós falamos agora há pouco por telefone. Passando para formalizar que o nosso bate-papo ficou agendado para [Data] às [Horário], combinado? Acabei de te enviar o link do Google Meet no e-mail. Como mapeamos que a [Empresa] tem interesse em organizar as OS e reduzir as paradas inesperadas na planta, esse papo vai direto ao ponto. Se houver algum imprevisto na sua agenda até lá, me avisa por aqui!"
                                     </div>
+                                    <div class="pitch-modern pitch-meta-utility">
+                                        <div class="pitch-title">💬 WA (Confirmação de agenda) <span class="pitch-meta-chip">Template Meta · UTILITY</span></div>
+                                        "Oi, {{1}}! Aqui é {{2}}, da Melvin.
+
+Confirmando nossa reunião em {{3}} às {{4}}. ✅
+
+Enviei o link do Google Meet no seu e-mail.
+
+Se precisar remarcar, me avise por aqui."
+                                        <span class="pitch-meta-vars">{{1}} nome · {{2}} BDR · {{3}} data · {{4}} horário</span>
+                                    </div>
                                 </td>
                             </tr>
                             <!-- TOQUE 3 -->
@@ -4373,6 +4410,17 @@ Quando puder, confirme o recebimento ou me diga se prefere ajustar prazo/horári
                                         1️⃣ para CONFIRMAR<br>
                                         2️⃣ para REAGENDAR"
                                     </div>
+                                    <div class="pitch-modern pitch-meta-utility">
+                                        <div class="pitch-title">💬 WA IA (Lembrete H-2) <span class="pitch-meta-chip">Template Meta · UTILITY</span></div>
+                                        "Oi, {{1}}! Tudo bem?
+
+Lembrete: sua reunião com a Melvin acontece em 2 horas, às {{2}}. ✅
+
+Responda:
+1 — CONFIRMAR
+2 — REAGENDAR"
+                                        <span class="pitch-meta-vars">{{1}} nome · {{2}} horário</span>
+                                    </div>
                                 </td>
                             </tr>
                             <!-- HORA H -->
@@ -4399,7 +4447,7 @@ Quando puder, confirme o recebimento ou me diga se prefere ajustar prazo/horári
                 <strong style="color: #10b981; display: block; margin-bottom: 8px;">🔗 Módulos RevOps conectados</strong>
                 <p style="font-size: 0.88rem; color: var(--text-muted); line-height: 1.6; margin: 0;">
                     <a href="#wf-confirmacao-in" style="color: var(--melvin-cyan); font-weight: 700;">Confirmação Inbound</a> ·
-                    <a href="#wf-contato-nutricao-out" style="color: var(--melvin-cyan); font-weight: 700;">D1–D35 Prospecção Fria</a> ·
+                    <a href="#wf-contato-nutricao-out" style="color: var(--melvin-cyan); font-weight: 700;">D1–D35 Fria &amp; Nutrição Quente</a> ·
                     <a href="#presales-outbound" style="color: var(--melvin-cyan); font-weight: 700;">Presales BDR</a> ·
                     <a href="#wf-noshow-out" style="color: var(--melvin-cyan); font-weight: 700;">No-Show Outbound</a> ·
                     <a href="#wf-cancelamento-out" style="color: var(--melvin-cyan); font-weight: 700;">Cancelamento Outbound</a>
@@ -4512,6 +4560,17 @@ Quando puder, confirme o recebimento ou me diga se prefere ajustar prazo/horári
                                         <div class="pitch-title" style="color:#f59e0b;">🤖 WA IA W1 (Resgate Imediato Outbound):</div>
                                         "Poxa, [Nome], sem problema! Imprevistos de agenda acontecem o tempo todo. Lembrei que quando falamos por telefone você tinha interesse em mapear o cenário de manutenção da [Empresa]. Para não perdermos o fio, escolha um novo horário na agenda do nosso especialista por aqui: [Link]"
                                     </div>
+                                    <div class="pitch-modern pitch-meta-utility">
+                                        <div class="pitch-title">💬 WA (Remarcação pós-cancel) <span class="pitch-meta-chip">Template Meta · UTILITY</span></div>
+                                        "Entendido, {{1}}! 👍
+
+Sem problemas em remarcar.
+
+Segue o link com os horários disponíveis: {{2}}
+
+É só escolher o melhor momento."
+                                        <span class="pitch-meta-vars">{{1}} nome · {{2}} link de reagendamento</span>
+                                    </div>
                                 </td>
                             </tr>
                             <!-- TOQUE 2 -->
@@ -4526,6 +4585,15 @@ Quando puder, confirme o recebimento ou me diga se prefere ajustar prazo/horári
                                     <div class="pitch-modern" style="border-left-color:#38bdf8;">
                                         <div class="pitch-title" style="color:#38bdf8;">📲 WA BDR (Aproximação Humana Pós-Cold Call):</div>
                                         "Oi, [Nome]! Aqui é o [Seu Nome] da MELVIN — nós falamos na cold call há pouco. Vi que o horário do nosso estudo de cenário precisou ser movido. Sem pressão: prefere que eu te envie algumas opções de horário por aqui ou você já tem um dia/horário em mente?"
+                                    </div>
+                                    <div class="pitch-modern pitch-meta-utility">
+                                        <div class="pitch-title">💬 WA (Follow-up de remarcação) <span class="pitch-meta-chip">Template Meta · UTILITY</span></div>
+                                        "Oi, {{1}}! Aqui é {{2}}, da Melvin.
+
+Vi que o horário precisou ser movido.
+
+Prefere novas opções por aqui ou já tem um dia/horário em mente?"
+                                        <span class="pitch-meta-vars">{{1}} nome · {{2}} BDR</span>
                                     </div>
                                 </td>
                             </tr>
@@ -4562,6 +4630,15 @@ Quando puder, confirme o recebimento ou me diga se prefere ajustar prazo/horári
                                         <div class="pitch-title" style="color:#f87171;">🤖 WA IA W2 (Break-Up de Agenda Outbound):</div>
                                         "Oi, [Nome]. Como não conseguimos alinhar uma nova data para o estudo de cenário da [Empresa], vou encerrar o acompanhamento ativo por aqui. Caso queira retomar no futuro, o link da agenda continua disponível: [Link]. Sucesso na operação!"
                                     </div>
+                                    <div class="pitch-modern pitch-meta-utility">
+                                        <div class="pitch-title">💬 WA (Arquivo / Break-up agenda) <span class="pitch-meta-chip">Template Meta · UTILITY</span></div>
+                                        "{{1}}, sem retorno sobre o reagendamento da {{2}}, estou arquivando o acompanhamento por agora. ✅
+
+Se quiser remarcar no futuro, basta responder esta mensagem.
+
+Abraço!"
+                                        <span class="pitch-meta-vars">{{1}} nome · {{2}} empresa</span>
+                                    </div>
                                 </td>
                             </tr>
                         </tbody>
@@ -4575,7 +4652,7 @@ Quando puder, confirme o recebimento ou me diga se prefere ajustar prazo/horári
                     <a href="#wf-cancelamento-in" style="color: var(--melvin-cyan); font-weight: 700;">Cancelamento Inbound</a> ·
                     <a href="#wf-confirmacao-out" style="color: var(--melvin-cyan); font-weight: 700;">Confirmação Outbound</a> ·
                     <a href="#wf-noshow-out" style="color: var(--melvin-cyan); font-weight: 700;">No-Show Outbound</a> ·
-                    <a href="#wf-contato-nutricao-out" style="color: var(--melvin-cyan); font-weight: 700;">D1–D35 Prospecção Fria</a> ·
+                    <a href="#wf-contato-nutricao-out" style="color: var(--melvin-cyan); font-weight: 700;">D1–D35 Fria &amp; Nutrição Quente</a> ·
                     <a href="#presales-outbound" style="color: var(--melvin-cyan); font-weight: 700;">Presales BDR</a>
                 </p>
             </div>
@@ -4690,6 +4767,17 @@ Quando puder, confirme o recebimento ou me diga se prefere ajustar prazo/horári
                                         <div class="pitch-title" style="color:#f59e0b;">💬 WA BDR (Chasing e Alerta de Preocupação):</div>
                                         "[Nome], tudo bem? Nosso especialista já está te aguardando na sala virtual do Google Meet para darmos início ao estudo de cenário da [Empresa], conforme combinamos na nossa ligação. Deu algum problema de conexão ou travou o link por aí? Se precisar, segue o link seguro direto da sala para facilitar seu acesso: [Link]"
                                     </div>
+                                    <div class="pitch-modern pitch-meta-utility">
+                                        <div class="pitch-title">💬 WA (Chasing na sala) <span class="pitch-meta-chip">Template Meta · UTILITY</span></div>
+                                        "{{1}}, tudo bem?
+
+Nosso especialista já está na sala do Google Meet para a reunião da {{2}}.
+
+Link da sala: {{3}}
+
+Consegue entrar agora ou prefere remarcar?"
+                                        <span class="pitch-meta-vars">{{1}} nome · {{2}} empresa · {{3}} link Meet</span>
+                                    </div>
                                 </td>
                             </tr>
                             <!-- TOQUE 2 -->
@@ -4757,6 +4845,15 @@ Quando puder, confirme o recebimento ou me diga se prefere ajustar prazo/horári
                                         <div class="pitch-title" style="color:#f87171;">🤖 WA IA W2 (Break-Up Geral e Desengajamento):</div>
                                         "Oi, [Nome]. Como não tivemos retorno para reposicionar nosso papo sobre a gestão de manutenção da [Empresa], estou liberando permanentemente a vaga do nosso especialista no sistema e arquivando a oportunidade por aqui. Se o cenário mudar no futuro e você quiser retomar, saiba que a porta continua aberta e os horários atualizados ficam neste link: [Link]. Até logo!"
                                     </div>
+                                    <div class="pitch-modern pitch-meta-utility">
+                                        <div class="pitch-title">💬 WA (Break-Up No-Show Out) <span class="pitch-meta-chip">Template Meta · UTILITY</span></div>
+                                        "{{1}}, sem retorno para remarcar a reunião da {{2}}, estou liberando o horário e arquivando o acompanhamento. ✅
+
+Se quiser retomar, basta responder esta mensagem.
+
+Até logo!"
+                                        <span class="pitch-meta-vars">{{1}} nome · {{2}} empresa</span>
+                                    </div>
                                 </td>
                             </tr>
                         </tbody>
@@ -4770,7 +4867,7 @@ Quando puder, confirme o recebimento ou me diga se prefere ajustar prazo/horári
                     <a href="#wf-noshow-in" style="color: var(--melvin-cyan); font-weight: 700;">No Show Inbound</a> ·
                     <a href="#wf-confirmacao-out" style="color: var(--melvin-cyan); font-weight: 700;">Confirmação Outbound</a> ·
                     <a href="#wf-cancelamento-out" style="color: var(--melvin-cyan); font-weight: 700;">Cancelamento Outbound</a> ·
-                    <a href="#wf-contato-nutricao-out" style="color: var(--melvin-cyan); font-weight: 700;">D1–D35 Prospecção Fria</a> ·
+                    <a href="#wf-contato-nutricao-out" style="color: var(--melvin-cyan); font-weight: 700;">D1–D35 Fria &amp; Nutrição Quente</a> ·
                     <a href="#presales-outbound" style="color: var(--melvin-cyan); font-weight: 700;">Presales BDR</a>
                 </p>
             </div>
@@ -4896,6 +4993,17 @@ Quando puder, confirme o recebimento ou me diga se prefere ajustar prazo/horári
                                         <div class="pitch-title" style="color:#4ade80;">📲 WA Resumo Executivo:</div>
                                         "[Nome], o escopo técnico com as métricas de gestão de manutenção que validamos na nossa call acabou de chegar no seu e-mail corporativo. Consegue dar uma avaliada com o time de diretoria entre hoje e amanhã?"
                                     </div>
+                                    <div class="pitch-modern pitch-meta-utility">
+                                        <div class="pitch-title">💬 WA (Follow-up Pós-Call Out) <span class="pitch-meta-chip">Template Meta · UTILITY</span></div>
+                                        "{{1}}, tudo bem?
+
+Passando para registrar o follow-up da nossa reunião com a {{2}}. ✅
+
+Enviei o escopo técnico no seu e-mail.
+
+Quando puder, confirme o recebimento ou me diga se prefere ajustar o prazo deste retorno."
+                                        <span class="pitch-meta-vars">{{1}} nome · {{2}} empresa</span>
+                                    </div>
                                 </td>
                             </tr>
                             <!-- TOQUE 2 -->
@@ -4910,6 +5018,15 @@ Quando puder, confirme o recebimento ou me diga se prefere ajustar prazo/horári
                                     <div class="pitch-modern" style="border-left-color:#f59e0b;">
                                         <div class="pitch-title" style="color:#f59e0b;">💬 W1 (Plantão de Dúvidas Técnicas da IA):</div>
                                         "Oi, [Nome]! Tudo bem? Sou a assistente virtual da MELVIN. 🤖 Passando de forma breve para saber se surgiu alguma dúvida técnica por parte da sua equipe de TI ou da diretoria sobre o nosso modelo de implantação, o app para técnicos ou sobre a volumetria de ativos/OS do escopo. Fico à disposição por aqui se precisar fazer qualquer ajuste no desenho do projeto!"
+                                    </div>
+                                    <div class="pitch-modern pitch-meta-utility">
+                                        <div class="pitch-title">💬 WA (Plantão técnico) <span class="pitch-meta-chip">Template Meta · UTILITY</span></div>
+                                        "Oi, {{1}}! Tudo bem?
+
+Passando para saber se surgiu alguma dúvida técnica sobre o escopo da {{2}}.
+
+Se precisar de ajuste, responda esta mensagem que o time retorna."
+                                        <span class="pitch-meta-vars">{{1}} nome · {{2}} empresa</span>
                                     </div>
                                 </td>
                             </tr>
@@ -4965,6 +5082,15 @@ Quando puder, confirme o recebimento ou me diga se prefere ajustar prazo/horári
                                     <div class="pitch-modern" style="border-left-color:#f87171; margin-bottom: 12px;">
                                         <div class="pitch-title" style="color:#f87171;">🤖 WA IA W2 (Break-up de Fechamento Outbound):</div>
                                         "Oi, [Nome]. Como não tivemos retorno para darmos o próximo passo na gestão de manutenção da [Empresa], entendemos que a digitalização das OS e o aumento de disponibilidade da planta não estão no foco prioritário agora. Estou retirando os incentivos comerciais do sistema e devolvendo o slot de implantação para a fila. Um abraço!"
+                                    </div>
+                                    <div class="pitch-modern pitch-meta-utility">
+                                        <div class="pitch-title">💬 WA (Arquivo de proposta) <span class="pitch-meta-chip">Template Meta · UTILITY</span></div>
+                                        "{{1}}, sem retorno sobre a proposta da {{2}}, estou arquivando o acompanhamento por agora. ✅
+
+Se quiser retomar no futuro, basta responder esta mensagem.
+
+Um abraço!"
+                                        <span class="pitch-meta-vars">{{1}} nome · {{2}} empresa</span>
                                     </div>
                                     <div class="pitch-modern" style="border-left-color:#c084fc;">
                                         <div class="pitch-title" style="color:#c084fc;">📨 E-mail E2 (Encerramento):</div>

@@ -1,4 +1,4 @@
-﻿:root {
+:root {
             /* Paleta Oficial MELVIN */
             --melvin-cyan: #64FCD8;        
             --melvin-cyan-dim: rgba(100, 252, 216, 0.08);
@@ -1290,6 +1290,25 @@ body.light-mode .mb-gim { background: rgba(99, 102, 241, 0.12) !important; color
             border-color: rgba(2, 132, 199, 0.35);
             background: rgba(14, 165, 233, 0.08);
         }
+        .pitch-modern.pitch-meta-marketing {
+            border-left-color: #c084fc;
+            background: rgba(192, 132, 252, 0.06);
+        }
+        .pitch-meta-chip.pitch-meta-chip--mkt {
+            color: #c084fc;
+            border-color: rgba(192, 132, 252, 0.4);
+            background: rgba(192, 132, 252, 0.1);
+        }
+        body.light-mode .pitch-modern.pitch-meta-marketing {
+            background: rgba(168, 85, 247, 0.06);
+            border-left-color: #9333ea;
+        }
+        body.light-mode .pitch-meta-chip.pitch-meta-chip--mkt {
+            color: #7e22ce;
+            border-color: rgba(147, 51, 234, 0.35);
+            background: rgba(168, 85, 247, 0.08);
+        }
+
 
 
 /* --- ESTILOS DE COMPONENTES (antes inline nas seções) --- */
