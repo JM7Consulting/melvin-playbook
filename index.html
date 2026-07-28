@@ -196,8 +196,11 @@
                         <span class="arrow">▼</span>
                     </div>
                     <div class="submenu">
-                        <div class="submenu-label">Expansão de Base</div>
-                        <a href="#fluxo-comerc-cs"><span style="display:flex; gap:10px;"><span>➡️</span> Fluxo Comercial CS</span><span class="dot dot-active"></span></a>
+                        <div class="submenu-label">Posicionamento</div>
+                        <a href="#fluxo-comerc-cs"><span style="display:flex; gap:10px;"><span>➡️</span> Fluxo Comercial</span><span class="dot dot-active"></span></a>
+
+                        <div class="submenu-label">Pipeline</div>
+                        <a href="#funil-cs"><span style="display:flex; gap:10px;"><span>📊</span> Funil (Etapas)</span><span class="dot dot-active"></span></a>
                     </div>
                 </div>
                 </div>
@@ -5621,10 +5624,27 @@ Quando puder, confirme o recebimento ou me diga se prefere ajustar prazo/horári
                 <span><i class="lg-swatch lg-closer"></i> Closer</span>
             </div>
 
-            <!-- 5 blocos Arquitetura (Gemini) -->
-            <div class="cadencia-header-block" style="margin-top: 36px; margin-bottom: 18px;">
-                <div class="cadencia-title-line" style="font-size: 1.25rem; color: #22d3ee;">♻️ Arquitetura de Expansão (visão executiva)</div>
-                <p class="cadencia-subtitle" style="padding-left: 0;">Mesma lógica do diagrama, em blocos sequenciais para alinhamento de time.</p>
+            <div class="fluxo-links-bar">
+                <strong>Módulos RevOps conectados</strong>
+                <p>
+                    <a href="#funil-cs">Funil CS (Etapas)</a> ·
+                    <a href="#funil-vendas">Funil de Vendas</a> ·
+                    <a href="#funil-outbound">Funil Outbound</a> ·
+                    <a href="#fluxo-comerc-inbound">Fluxo Inbound</a> ·
+                    <a href="#fluxo-comerc-outbound">Fluxo Outbound</a>
+                </p>
+            </div>
+
+            </div><!-- /#fluxoCsLive -->
+
+        </section>
+
+        <!-- PÁGINA INDEPENDENTE: FUNIL CS (ETAPAS) — Expansão até handoff -->
+        <section id="funil-cs" class="blueprint-page">
+
+            <div class="cadencia-header-block">
+                <div class="cadencia-title-line" style="color: #22d3ee;">♻️ Funil CS · Etapas (Expansão de Base)</div>
+                <p class="cadencia-subtitle">Pipeline CRM do CSM até o handoff: Out (lead desconhecido), Vendas/Closer (SQL-CS) ou TI (melhoria sem custo). Etapas de <strong>ação</strong> — alinhado ao <a href="#fluxo-comerc-cs" style="color:var(--melvin-cyan);font-weight:700;">Fluxo Comercial CS v2</a>.</p>
             </div>
 
             <div class="funil-container-scroll">
@@ -5633,80 +5653,96 @@ Quando puder, confirme o recebimento ou me diga se prefere ajustar prazo/horári
                     <div class="funil-column">
                         <div class="funil-column-header">
                             <div>
-                                <h3>Geração da Demanda</h3>
-                                <p>CS</p>
+                                <h3>Mapear sinal</h3>
+                                <p>Origem da demanda</p>
                             </div>
                             <span class="funil-step-number">01</span>
                         </div>
                         <div class="inner-step-card">
-                            <span class="tag-sub tag-cs">CS · Contínuo</span>
-                            <h4>Mapeamento de Base</h4>
-                            <p>Identificação via Onboarding, Territory Plan ou pedido do cliente. Classificação em: Upgrade, Upsell, Cross-sell ou Melhoria.</p>
-                            <div class="inner-step-meta"><span>SLA: Contínuo</span><span>Base</span></div>
+                            <span class="tag-sub tag-cs">CSM</span>
+                            <h4>Onboarding · Territory · Cliente</h4>
+                            <p>Identificar via acompanhamento CS, onboarding, pedido do cliente ou Territory Plan. Classificar: Upgrade · Upsell · Cross-sell · Melhoria.</p>
+                            <div class="inner-step-meta"><span>SLA: Contínuo</span><span>Tipo</span></div>
                         </div>
                     </div>
 
                     <div class="funil-column">
                         <div class="funil-column-header">
                             <div>
-                                <h3>Triagem Técnica</h3>
-                                <p>CS &amp; TI</p>
+                                <h3>Entender necessidade</h3>
+                                <p>Descoberta</p>
                             </div>
                             <span class="funil-step-number">02</span>
                         </div>
                         <div class="inner-step-card">
-                            <span class="tag-sub tag-cs">CS / TI</span>
-                            <h4>Validação de Escopo</h4>
-                            <p>A necessidade faz sentido? Envolve customização? Se sim, levantar esforço com a TI. Se não faz sentido, devolver com justificativa ao cliente.</p>
-                            <div class="inner-step-meta"><span>Escopo</span><span>TI</span></div>
+                            <span class="tag-sub tag-cs">CSM</span>
+                            <h4>Necessidade conhecida?</h4>
+                            <p>Se não → aprofundar com o cliente (avaliação conjunta CS+TI quando preciso). Se não faz sentido → devolver com justificativa (saída).</p>
+                            <div class="inner-step-meta"><span>Fit</span><span>Cliente</span></div>
                         </div>
                     </div>
 
                     <div class="funil-column">
                         <div class="funil-column-header">
                             <div>
-                                <h3>Qualificação</h3>
-                                <p>Pré-venda CS</p>
+                                <h3>Validar TI</h3>
+                                <p>Escopo técnico</p>
                             </div>
                             <span class="funil-step-number">03</span>
                         </div>
                         <div class="inner-step-card">
-                            <span class="tag-sub tag-cs">CS</span>
-                            <h4>Pré-Venda (Qualificação CS)</h4>
-                            <p>CS qualifica e registra no Bitrix. Low-touch (licença) → CS fecha direto. Cross-sell/Upsell complexo → avança para Closer.</p>
-                            <div class="inner-step-meta"><span>Bitrix</span><span>Fit</span></div>
+                            <span class="tag-sub tag-cs">CSM + TI</span>
+                            <h4>SS/OS &amp; Esforço</h4>
+                            <p>Se depende de TI: abrir SS/OS no Melvin Suporte e levantar esforço. Sem custo ao cliente → backlog TI (saída). Com custo → segue comercial.</p>
+                            <div class="inner-step-meta"><span>TI</span><span>Custo?</span></div>
                         </div>
                     </div>
 
                     <div class="funil-column">
                         <div class="funil-column-header">
                             <div>
-                                <h3>Warm Intro</h3>
-                                <p>Rota expressa</p>
+                                <h3>Registrar Bitrix</h3>
+                                <p>Oportunidade</p>
                             </div>
                             <span class="funil-step-number">04</span>
                         </div>
                         <div class="inner-step-card">
-                            <span class="tag-sub tag-closer">CS → Closer</span>
-                            <h4>Passagem de Bastão (SQL-CS)</h4>
-                            <p>Indicações de novas plantas ou contatos desconhecidos NUNCA vão para o BDR. Vão direto à agenda do Closer como Oportunidade Quente.</p>
-                            <div class="inner-step-meta"><span>SQL-CS</span><span>&lt;24h</span></div>
+                            <span class="tag-sub tag-cs">CSM</span>
+                            <h4>CRM · Roteamento</h4>
+                            <p>Registrar a oportunidade. Lead <strong>desconhecido</strong> → sai para <a href="#funil-outbound" style="color:var(--melvin-cyan);font-weight:700;">Funil Outbound</a> (BDR). Lead conhecido → segue pré-venda.</p>
+                            <div class="inner-step-meta"><span>Bitrix</span><span>→ Out?</span></div>
                         </div>
                     </div>
 
                     <div class="funil-column">
                         <div class="funil-column-header">
                             <div>
-                                <h3>Closer</h3>
-                                <p>Execução de expansão</p>
+                                <h3>Pré-venda</h3>
+                                <p>Lead conhecido</p>
                             </div>
                             <span class="funil-step-number">05</span>
                         </div>
                         <div class="inner-step-card">
-                            <span class="tag-sub tag-closer">Closer</span>
-                            <h4>Negociação de Base</h4>
-                            <p>Pipeline exclusivo de Expansão (SAL-CS). Se Fechar → Onboarding. Se Perder → Alerta de Risco de Churn devolvido imediatamente ao CS.</p>
-                            <div class="inner-step-meta"><span>SAL-CS</span><span>Churn</span></div>
+                            <span class="tag-sub tag-cs">CSM</span>
+                            <h4>Validar oportunidade</h4>
+                            <p>Pré-venda com o cliente: confirmar dor, escopo e timing. Decidir se precisa de reunião comercial com o Closer.</p>
+                            <div class="inner-step-meta"><span>Validação</span><span>Warm</span></div>
+                        </div>
+                    </div>
+
+                    <div class="funil-column">
+                        <div class="funil-column-header">
+                            <div>
+                                <h3>SQL-CS / Handoff</h3>
+                                <p>→ Vendas</p>
+                            </div>
+                            <span class="funil-step-number">06</span>
+                        </div>
+                        <div class="inner-step-card">
+                            <span class="tag-sub tag-closer">CSM → CLR</span>
+                            <h4>Agenda &amp; SQL-CS</h4>
+                            <p>Agendar se necessário e marcar SQL-CS. Entrega no <a href="#funil-vendas" style="color:var(--melvin-cyan);font-weight:700;">Funil de Vendas</a> (Reunião Agendada). Fechou → Onboarding CS; perdeu → alerta de churn ao CSM.</p>
+                            <div class="inner-step-meta"><span>SQL-CS</span><span>&lt;24h</span></div>
                         </div>
                     </div>
 
@@ -5715,27 +5751,17 @@ Quando puder, confirme o recebimento ou me diga se prefere ajustar prazo/horári
 
             <div class="matrix-widget dash-matrix" style="margin-top: 28px; border-left: 4px solid #10b981;">
                 <div class="matrix-header" style="background: rgba(16, 185, 129, 0.08);">
-                    <div class="matrix-title" style="color: #34d399;">💡 Regra de Ouro: Indicações não são Cold Calls</div>
+                    <div class="matrix-title" style="color: #34d399;">💡 Regra de Ouro: Roteamento CS (v2)</div>
                 </div>
                 <div class="matrix-content" style="padding: 20px;">
                     <p style="font-size: 0.92rem; color: var(--text-muted); line-height: 1.65; margin: 0;">
-                        Qualquer novo contato ou unidade/filial indicada por um cliente ativo <strong style="color: var(--text-main);">não deve ser enviado ao fluxo de prospecção do BDR</strong>.
-                        Trata-se de um “Warm Lead” que possui alto nível de confiança transferida.
-                        O repasse deve ser feito diretamente para um Executivo de Vendas (Closer) com <strong style="color: var(--text-main);">SLA de atendimento inferior a 24 horas</strong>.
+                        <strong style="color: var(--text-main);">Lead desconhecido</strong> → <a href="#funil-outbound" style="color: var(--melvin-cyan); font-weight: 700;">Outbound / BDR</a>.
+                        <strong style="color: var(--text-main);">Lead conhecido</strong> (indicação / planta / contato da base) → pré-venda CS e handoff <strong style="color: var(--text-main);">SQL-CS</strong> ao Closer (não é cold call).
+                        Melhoria <strong style="color: var(--text-main);">sem custo</strong> → backlog TI, fora do funil comercial.
+                        Diagrama: <a href="#fluxo-comerc-cs" style="color: var(--melvin-cyan); font-weight: 700;">Fluxo Comercial CS</a>.
                     </p>
                 </div>
             </div>
-
-            <div style="background: rgba(34, 211, 238, 0.06); border: 1px dashed rgba(34, 211, 238, 0.35); padding: 20px; border-radius: 8px; margin-top: 24px;">
-                <strong style="color: #22d3ee; display: block; margin-bottom: 8px;">🔗 Módulos RevOps conectados</strong>
-                <p style="font-size: 0.88rem; color: var(--text-muted); line-height: 1.6; margin: 0;">
-                    <a href="#funil-vendas" style="color: var(--melvin-cyan); font-weight: 700;">Funil de Vendas (Closer)</a> ·
-                    <a href="#fluxo-comerc-inbound" style="color: var(--melvin-cyan); font-weight: 700;">Fluxo Inbound</a> ·
-                    <a href="#fluxo-comerc-outbound" style="color: var(--melvin-cyan); font-weight: 700;">Fluxo Outbound</a>
-                </p>
-            </div>
-
-            </div><!-- /#fluxoCsLive -->
 
         </section>
                 <section id="dores-ocultas-out" class="blueprint-page pain-map-page pain-map-out" style="padding: 40px; border-radius: 16px;">
