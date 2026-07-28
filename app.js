@@ -1,4 +1,4 @@
-﻿document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', () => {
     const menuToggleFull = document.getElementById('menuToggleFull');
     const menuToggleMini = document.getElementById('menuToggleMini');
     const sidebar = document.getElementById('sidebar');
@@ -157,6 +157,23 @@
     setupSectionToggle(document.getElementById('toggleOutCancBtn'), document.getElementById('outCancContainer'));
     setupSectionToggle(document.getElementById('toggleOutNoshowBtn'), document.getElementById('outNoshowContainer'));
     setupSectionToggle(document.getElementById('toggleOutPosBtn'), document.getElementById('outPosContainer'));
+
+    // Prototype · Cadence Runway jump highlight (Outbound only)
+    (function initCxRunway() {
+        const root = document.getElementById('wf-contato-nutricao-out');
+        if (!root || !root.classList.contains('cx-runway')) return;
+        const jumps = Array.from(root.querySelectorAll('.cx-jump-item'));
+        const phases = jumps.map((a) => document.querySelector(a.getAttribute('href'))).filter(Boolean);
+        if (!jumps.length || !('IntersectionObserver' in window)) return;
+        const io = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (!entry.isIntersecting) return;
+                const id = '#' + entry.target.id;
+                jumps.forEach((j) => j.classList.toggle('is-active', j.getAttribute('href') === id));
+            });
+        }, { rootMargin: '-30% 0px -55% 0px', threshold: 0.05 });
+        phases.forEach((p) => io.observe(p));
+    })();
 
     // Cronograma de Trabalho · tabs
     const cronoTabs = document.querySelectorAll('[data-crono-tab]');

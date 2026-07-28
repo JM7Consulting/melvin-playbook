@@ -3698,40 +3698,64 @@ Quando puder, confirme o recebimento ou me diga se prefere ajustar prazo/horári
 			</div>
 
         </section>
-                                <section id="wf-contato-nutricao-out" class="blueprint-page" style="padding: 40px; border-radius: 16px;">
-            <div class="fq-hero fq-hero--out">
-                <div class="fq-hero-copy">
-                    <div class="fq-kicker">Outbound · Cadência</div>
-                    <div class="cadencia-title-line fq-hero-title">🎯 CADÊNCIA OUTBOUND: D1–D35 · Prospecção Fria &amp; Nutrição Quente</div>
-                    <p class="cadencia-subtitle" style="padding-left:0;max-width:54ch;">Dois trilhos na mesma régua: <strong>Quente</strong> (sinal Copilot · espinha Hardcore) e <strong>Frio</strong> (fit sem sinal). Depois, nutrição de valor até D35 e nurturing 60–90d. Princípios em <a href="#cadencia-multicanal" style="color:var(--melvin-cyan);font-weight:700;">Cadência Multicanal</a>.</p>
-                </div>
-                <div class="fq-badge-stack" aria-hidden="true">
-                    <div class="fq-badge-orb fq-badge-orb--out"><span>D1</span><small>D35</small></div>
-                    <p class="fq-badge-cap">Fria + Quente · Sniper</p>
-                </div>
+                                <section id="wf-contato-nutricao-out" class="blueprint-page cx-runway" data-prototype="cadence-runway" style="padding: 40px; border-radius: 16px;">
+            <div class="cx-proto-banner" role="status">
+                <span class="cx-proto-dot" aria-hidden="true"></span>
+                <strong>PROTOTIPO · Cadence Runway</strong>
+                <span>Layout Outbound only · régua e fases preservadas · avalie antes de espelhar no Inbound</span>
             </div>
 
-            <p style="font-size:0.82rem;color:var(--text-muted);margin:0 0 18px;line-height:1.55;max-width:70ch;"><strong style="color:#38bdf8;">Legenda Meta · WA Oficial:</strong> bloco azul = <em>UTILITY</em> (retorno, agenda, breakup pós-contato). Bloco roxo = <em>MARKETING</em> (abertura fria / nutrição de conteúdo). Script humano acima; template com <code>{{n}}</code> abaixo — submeter no Manager com a categoria correta.</p>
-            <div class="fq-header-extras">
-                <div class="header-cards-grid">
-                    <div class="h-card purple-border">
-                        <h4>🔥 Trilho Quente</h4>
-                        <p>Score Copilot ≥ 6 ou sinal humano confirmado. E-mail 1 = gancho do sinal. Canais condicionais. ~10 toques até D19.</p>
-                    </div>
-                    <div class="h-card orange-border">
-                        <h4>🧊 Trilho Frio</h4>
-                        <p>Fit ICP sem sinal forte. Blitz leve + ângulos de dor Melvin. Sem L×3 no Dia 1. Multithreading antes de matar a conta.</p>
-                    </div>
-                    <div class="h-card green-border">
-                        <h4>🌡️ Nutrição Quente · D20–D35</h4>
-                        <p>Valor (não spam). Breakup → nurturing 60–90d. Reativa só com <strong>sinal novo</strong> (Copilot / Jornada).</p>
+            <header class="cx-hero">
+                <div class="cx-hero-copy">
+                    <p class="cx-kicker">Outbound · Cadência operacional</p>
+                    <h2 class="cx-title">D1–D35 · Prospecção Fria &amp; Nutrição Quente</h2>
+                    <p class="cx-lead">Dois trilhos na mesma régua: <strong>Quente</strong> (sinal Copilot) e <strong>Frio</strong> (fit sem sinal). Depois, nutrição de valor até D35 e nurturing 60–90d. Princípios em <a href="#cadencia-multicanal">Cadência Multicanal</a>.</p>
+                    <div class="cx-meta-strip">
+                        <span class="cx-meta-pill cx-meta-pill--util">UTILITY</span>
+                        <span class="cx-meta-pill cx-meta-pill--mkt">MARKETING</span>
+                        <span class="cx-meta-note">WA Oficial: humano acima · template Meta com <code>{{n}}</code> abaixo</span>
                     </div>
                 </div>
-            </div>
+                <div class="cx-hero-gauge" aria-hidden="true">
+                    <div class="cx-gauge-ring">
+                        <span class="cx-gauge-from">D1</span>
+                        <span class="cx-gauge-mid">RUNWAY</span>
+                        <span class="cx-gauge-to">D35</span>
+                    </div>
+                    <p class="cx-gauge-cap">Sniper · Quente × Frio</p>
+                </div>
+            </header>
 
-            <div class="matrix-widget dash-matrix" style="margin-bottom: 28px;">
-                <div class="matrix-header" style="background: rgba(167, 139, 250, 0.08);">
-                    <div class="matrix-title" style="color: #a78bfa;">⚡ QUADRO RESUMO • D1–D35 (Quente × Frio × Nutrição)</div>
+            <nav class="cx-jump" aria-label="Trilhos da cadência">
+                <a class="cx-jump-item cx-jump-item--hot" href="#out-fase-quente">
+                    <span class="cx-jump-ico">🔥</span>
+                    <span class="cx-jump-body">
+                        <strong>Trilho Quente</strong>
+                        <small>Copilot ≥ 6 · Hardcore · D1–D19</small>
+                    </span>
+                    <span class="cx-jump-go">Fase 1 →</span>
+                </a>
+                <a class="cx-jump-item cx-jump-item--cold" href="#out-fase-frio">
+                    <span class="cx-jump-ico">🧊</span>
+                    <span class="cx-jump-body">
+                        <strong>Trilho Frio</strong>
+                        <small>Fit ICP · dor Melvin · sem L×3</small>
+                    </span>
+                    <span class="cx-jump-go">Fase 2 →</span>
+                </a>
+                <a class="cx-jump-item cx-jump-item--warm" href="#out-fase-nutricao">
+                    <span class="cx-jump-ico">🌡️</span>
+                    <span class="cx-jump-body">
+                        <strong>Nutrição Quente</strong>
+                        <small>D20–D35 · valor → 60–90d</small>
+                    </span>
+                    <span class="cx-jump-go">Fase 3 →</span>
+                </a>
+            </nav>
+
+            <div class="matrix-widget dash-matrix cx-regua" style="margin-bottom: 28px;">
+                <div class="matrix-header cx-regua-head">
+                    <div class="matrix-title cx-regua-title"><span class="cx-regua-mark" aria-hidden="true"></span> RÉGUA D1–D35 · Quente × Frio × Nutrição</div>
                 </div>
                 <div class="matrix-content" style="overflow-x:auto;">
                     <table class="matrix-table" style="min-width:980px;">
@@ -3789,13 +3813,14 @@ Quando puder, confirme o recebimento ou me diga se prefere ajustar prazo/horári
             </div>
 
             <!-- ========== FASE 1 QUENTE ========== -->
-            <div class="timeline-day-toggle-block">
-                <div class="timeline-section-title-container">
-                    <div class="timeline-section-title" style="color:#a78bfa;">🔥 FASE 1 · TRILHO QUENTE — Sinal Copilot (D1 a D19)</div>
+            <div class="cx-phase cx-phase--hot timeline-day-toggle-block" id="out-fase-quente">
+                <div class="cx-phase-rail" aria-hidden="true"><span>01</span></div>
+                <div class="timeline-section-title-container cx-phase-head">
+                    <div class="timeline-section-title cx-phase-title">🔥 FASE 1 · TRILHO QUENTE — Sinal Copilot (D1 a D19)</div>
                     <button class="section-toggle-btn" id="toggleOutFase1Btn">Recolher</button>
                 </div>
-                <div class="timeline-wrapper" id="outFase1Container" style="overflow-x: auto;">
-                    <div class="workflow-meta" style="border-color: rgba(167, 139, 250, 0.25);">
+                <div class="timeline-wrapper cx-phase-body" id="outFase1Container" style="overflow-x: auto;">
+                    <div class="workflow-meta cx-phase-meta">
                         <p><strong>Gatilho:</strong> Conta aprovada + score ≥ 6 + sinal confirmado (válido 5–10 dias úteis) · E-mail 1 rascunho do <a href="#bdr-copilot" style="color:var(--melvin-cyan);font-weight:700;">BDR Copilot</a>.</p>
                         <p style="margin-top: 5px; color: var(--text-muted);"><strong>Regras:</strong> Canal condicional (não paralelo). CTA único por toque. Sem PDF genérico. Após resposta → Filtro 2 / SPN e agenda SQL.</p>
                     </div>
@@ -3938,13 +3963,14 @@ Forte abraço!"
             </div>
 
             <!-- ========== FASE 2 FRIO ========== -->
-            <div class="timeline-day-toggle-block" style="margin-top: 40px;">
-                <div class="timeline-section-title-container">
-                    <div class="timeline-section-title" style="color:#38bdf8;">🧊 FASE 2 · TRILHO FRIO — Fit sem sinal forte (D1 a D19)</div>
+            <div class="cx-phase cx-phase--cold timeline-day-toggle-block" id="out-fase-frio" style="margin-top: 40px;">
+                <div class="cx-phase-rail" aria-hidden="true"><span>02</span></div>
+                <div class="timeline-section-title-container cx-phase-head">
+                    <div class="timeline-section-title cx-phase-title">🧊 FASE 2 · TRILHO FRIO — Fit sem sinal forte (D1 a D19)</div>
                     <button class="section-toggle-btn" id="toggleOutFase2Btn">Recolher</button>
                 </div>
-                <div class="timeline-wrapper" id="outFase2Container" style="overflow-x: auto;">
-                    <div class="workflow-meta" style="border-color: rgba(56, 189, 248, 0.25);">
+                <div class="timeline-wrapper cx-phase-body" id="outFase2Container" style="overflow-x: auto;">
+                    <div class="workflow-meta cx-phase-meta">
                         <p><strong>Gatilho:</strong> Empresa ICP + persona mapeada, <strong>sem</strong> sinal Copilot ≥ 6. Passou nos 3 gates do <a href="#filtro-qualificacao-out" style="color:var(--melvin-cyan);font-weight:700;">Filtro Out</a>.</p>
                         <p style="margin-top: 5px; color: var(--text-muted);"><strong>Diferença vs Quente:</strong> abertura por fit/vertical (não por sinal). Densidade menor que a Blitz antiga — <strong>proibido L×3 no Dia 1</strong>. Ângulos de dor Melvin nos WA.</p>
                     </div>
@@ -4077,13 +4103,14 @@ Abraço!"
             </div>
 
             <!-- ========== FASE 3 NUTRIÇÃO + IF ========== -->
-            <div class="timeline-day-toggle-block" style="margin-top: 40px;">
-                <div class="timeline-section-title-container">
-                    <div class="timeline-section-title" style="color:#34d399;">🌡️ FASE 3 · NUTRIÇÃO QUENTE (D20 a D35) + IF de resposta</div>
+            <div class="cx-phase cx-phase--warm timeline-day-toggle-block" id="out-fase-nutricao" style="margin-top: 40px;">
+                <div class="cx-phase-rail" aria-hidden="true"><span>03</span></div>
+                <div class="timeline-section-title-container cx-phase-head">
+                    <div class="timeline-section-title cx-phase-title">🌡️ FASE 3 · NUTRIÇÃO QUENTE (D20 a D35) + IF de resposta</div>
                     <button class="section-toggle-btn" id="toggleOutFase3Btn">Recolher</button>
                 </div>
-                <div class="timeline-wrapper" id="outFase3Container" style="overflow-x: auto;">
-                    <div class="workflow-meta" style="border-color: rgba(52, 211, 153, 0.3);">
+                <div class="timeline-wrapper cx-phase-body" id="outFase3Container" style="overflow-x: auto;">
+                    <div class="workflow-meta cx-phase-meta">
                         <p><strong>Quando usar:</strong> Fit ainda válido, sem reunião e sem “não agora” definitivo. Objetivo: manter temperatura com <strong>valor</strong> — não repetir o mesmo e-mail.</p>
                         <p style="margin-top: 5px; color: var(--text-muted);"><strong>D35:</strong> Arquivar → nurturing 60–90 dias. Reativa só com <strong>sinal novo</strong> (<a href="#jornada-conta" style="color:var(--melvin-cyan);font-weight:700;">Jornada</a> / Copilot).</p>
                     </div>
@@ -4171,9 +4198,9 @@ Forte abraço!"
                         </tbody>
                     </table>
 
-                    <div class="matrix-widget dash-matrix" style="border-left: 4px solid #a78bfa; margin-bottom: 0;">
-                        <div class="matrix-header" style="background: rgba(167, 139, 250, 0.08);">
-                            <div class="matrix-title" style="color: #a78bfa;">⚡ IF · O que fazer quando o prospect reage</div>
+                    <div class="matrix-widget dash-matrix cx-if" style="margin-bottom: 0;">
+                        <div class="matrix-header cx-if-head">
+                            <div class="matrix-title cx-if-title">⚡ IF · O que fazer quando o prospect reage</div>
                         </div>
                         <div class="matrix-content">
                             <table class="matrix-table" style="text-align:left; margin:0;">
@@ -4207,16 +4234,16 @@ Forte abraço!"
                 </div>
             </div>
 
-            <div style="background: rgba(167, 139, 250, 0.08); border: 1px dashed rgba(167, 139, 250, 0.35); padding: 18px 20px; border-radius: 8px; margin-top: 28px;">
-                <strong style="color: #a78bfa; display: block; margin-bottom: 8px;">🔗 Módulos RevOps conectados</strong>
-                <p style="font-size: 0.88rem; color: var(--text-muted); line-height: 1.6; margin: 0;">
-                    <a href="#cadencia-multicanal" style="color: var(--melvin-cyan); font-weight: 700;">Cadência Multicanal (princípios)</a> ·
-                    <a href="#bdr-copilot" style="color: var(--melvin-cyan); font-weight: 700;">BDR Copilot</a> ·
-                    <a href="#jornada-conta" style="color: var(--melvin-cyan); font-weight: 700;">Jornada da Conta</a> ·
-                    <a href="#filtro-qualificacao-out" style="color: var(--melvin-cyan); font-weight: 700;">Qualificação Out</a> ·
-                    <a href="#funil-outbound" style="color: var(--melvin-cyan); font-weight: 700;">Funil Outbound</a> ·
-                    <a href="#presales-outbound" style="color: var(--melvin-cyan); font-weight: 700;">Presales BDR</a> ·
-                    <a href="#wf-contato-nutricao-in" style="color: var(--melvin-cyan); font-weight: 700;">D1–D15 Inbound</a>
+            <div class="cx-connect">
+                <strong>Módulos RevOps conectados</strong>
+                <p>
+                    <a href="#cadencia-multicanal">Cadência Multicanal</a>
+                    <a href="#bdr-copilot">BDR Copilot</a>
+                    <a href="#jornada-conta">Jornada da Conta</a>
+                    <a href="#filtro-qualificacao-out">Qualificação Out</a>
+                    <a href="#funil-outbound">Funil Outbound</a>
+                    <a href="#presales-outbound">Presales BDR</a>
+                    <a href="#wf-contato-nutricao-in">D1–D15 Inbound</a>
                 </p>
             </div>
         </section>
