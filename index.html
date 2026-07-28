@@ -1558,11 +1558,16 @@ Se preferir, me indique um horário melhor hoje para retornarmos a ligação."
                                 <td>
                                     <div class="channel-info" style="color: #38bdf8;"><span class="channel-icon">📞</span> Ligação Ativa</div>
                                     <div class="channel-info" style="color: #c084fc;"><span class="channel-icon">📩</span> E-mail Pessoal</div>
+                                    <div class="channel-info" style="color: #4ade80;"><span class="channel-icon">💬</span> WhatsApp</div>
                                 </td>
-                                <td>
-                                    <div class="pitch-modern">
-                                        <div class="pitch-title">📩 E-mail (SDR to Lead):</div>
-                                        "Assunto: Redução de 30% em Paradas (Case)\n\nOi [Nome]. Tentei contato ontem. Queria te mostrar como um cliente nosso da sua área reduziu 30% das paradas não programadas tirando o controle do papel. Tem 5 minutos na quinta-feira?"
+                                    <div class="pitch-modern pitch-meta-utility">
+                                        <div class="pitch-title">💬 WA (Prova Social / Retorno) <span class="pitch-meta-chip">Template Meta · UTILITY</span></div>
+                                        "Olá, {{1}}!
+
+Ainda não finalizamos o retorno da sua solicitação pelo formulário Melvin.
+
+Posso te ligar em um horário melhor hoje para darmos continuity ao seu pedido?"
+                                        <span class="pitch-meta-vars">{{1}} nome · (humano: e-mail 30% acima)</span>
                                     </div>
                                 </td>
                             </tr>
@@ -1590,14 +1595,32 @@ Se preferir, me indique um horário melhor hoje para retornarmos a ligação."
                                     </div>
                                     <div class="pitch-modern pitch-meta-utility">
                                         <div class="pitch-title">💬 WA (Break-Up Temporário) <span class="pitch-meta-chip">Template Meta · UTILITY</span></div>
-                                        "Olá, {{1}}!
+                                        "{{1}}, tudo bem?
 
-Mantemos sua solicitação pelo formulário Melvin em aberto.
+Como não tivemos continuidade no retorno da sua solicitação, estou encerrando este acompanhamento por agora. ✅
 
-Quando for conveniente, responda esta mensagem ou me indique um horário para retomarmos o retorno do seu pedido.
+Se quiser retomar no futuro, basta responder esta mensagem.
 
-Até breve."
+Um abraço!"
                                         <span class="pitch-meta-vars">{{1}} nome</span>
+                                    </div>
+                                    <div class="pitch-modern pitch-meta-utility">
+                                        <div class="pitch-title">💬 WA (Retorno / Slot amanhã) <span class="pitch-meta-chip">Template Meta · UTILITY</span></div>
+                                        "Oi, {{1}}!
+
+Ainda não concluímos o retorno da sua solicitação pelo formulário Melvin.
+
+Posso te ligar amanhã para darmos continuity ao seu pedido? A ligação é rápida (cerca de 2 minutos)."
+                                        <span class="pitch-meta-vars">{{1}} nome · (origem: IoT/IA adaptado)</span>
+                                    </div>
+                                    <div class="pitch-modern pitch-meta-utility">
+                                        <div class="pitch-title">💬 WA (Reforço de solicitação) <span class="pitch-meta-chip">Template Meta · UTILITY</span></div>
+                                        "Oi, {{1}}! ✅
+
+Passando para reforçar que sua solicitação pelo formulário Melvin segue em aberto.
+
+Quando puder, responda esta mensagem para retomarmos o retorno do seu pedido."
+                                        <span class="pitch-meta-vars">{{1}} nome · (origem: preditiva adaptado)</span>
                                     </div>
                                 </td>
                             </tr>
@@ -2803,7 +2826,7 @@ Um abraço!"
                             <tr>
                                 <td style="text-align: left; font-weight: 700; font-size: 0.8rem;"><span style="margin-right:8px;">💬</span> WhatsApp / Pitch</td>
                                 <td><span style="border: 1px solid rgba(74, 222, 128, 0.4); color: #4ade80; padding: 4px 12px; border-radius: 4px; font-size: 0.75rem; font-weight: 800; background: rgba(74, 222, 128, 0.05);">💬 W1 (Resgate)</span></td>
-                                <td style="color: var(--text-muted);">-</td>
+                                <td><span style="border: 1px solid rgba(56, 189, 248, 0.4); color: #38bdf8; padding: 4px 12px; border-radius: 4px; font-size: 0.75rem; font-weight: 800; background: rgba(56, 189, 248, 0.05);">💬 Meta UTILITY</span></td>
                                 <td><span style="border: 1px solid rgba(239, 68, 68, 0.4); color: #ef4444; padding: 4px 12px; border-radius: 4px; font-size: 0.75rem; font-weight: 800; background: rgba(239, 68, 68, 0.05);">💬 W2 (Break-up)</span></td>
                             </tr>
                             <tr>
@@ -2853,11 +2876,25 @@ Um abraço!"
                                 <td><span class="actor-badge actor-sdr">👤 SDR</span></td>
                                 <td><span class="flag-badge flag-blue">Ancoragem de Dor</span></td>
                                 <td><span class="metric-sla">+ 4 Horas</span><span class="metric-sub">Mesmo Dia</span></td>
-                                <td><div class="channel-info" style="color: #38bdf8;"><span class="channel-icon">📞</span> Ligação Ativa</div></td>
+                                <td>
+                                    <div class="channel-info" style="color: #38bdf8;"><span class="channel-icon">📞</span> Ligação Ativa</div>
+                                    <div class="channel-info" style="color: #4ade80;"><span class="channel-icon">💬</span> WhatsApp</div>
+                                </td>
                                 <td>
                                     <div class="pitch-modern">
                                         <div class="pitch-title">📞 Ligação (Entendimento):</div>
                                         Se não atender, não insistir. Se atender: "Oi [Nome], vi que não conseguiu entrar. A área de manutenção é assim mesmo. O que pegou por aí hoje? Vamos jogar essa call pra [Dia]?"
+                                    </div>
+                                    <div class="pitch-modern pitch-meta-utility">
+                                        <div class="pitch-title">💬 WA (Remarcação pós No-Show) <span class="pitch-meta-chip">Template Meta · UTILITY</span></div>
+                                        "E aí, {{1}}, tudo bem? 👍
+
+O horário reservado ficou sem participação, então liberamos a sala do Meet.
+
+Conseguimos remarcar para amanhã ou prefere {{2}}?
+
+Segue o link com os horários disponíveis: 🔗 {{3}}"
+                                        <span class="pitch-meta-vars">{{1}} nome · {{2}} dia alternativo · {{3}} link de reagendamento</span>
                                     </div>
                                 </td>
                             </tr>
@@ -2922,7 +2959,7 @@ Se quiser remarcar o retorno da sua solicitação, responda esta mensagem com um
                             </tr>
                             <tr>
                                 <td style="text-align: left; font-weight: 700; font-size: 0.8rem;"><span style="margin-right:8px;">💬</span> WhatsApp / Pitch</td>
-                                <td style="color: var(--text-muted);">-</td>
+                                <td><span style="border: 1px solid rgba(56, 189, 248, 0.4); color: #38bdf8; padding: 4px 12px; border-radius: 4px; font-size: 0.75rem; font-weight: 800; background: rgba(56, 189, 248, 0.05);">💬 Meta UTILITY</span></td>
                                 <td><span style="border: 1px solid rgba(74, 222, 128, 0.4); color: #4ade80; padding: 4px 12px; border-radius: 4px; font-size: 0.75rem; font-weight: 800; background: rgba(74, 222, 128, 0.05);">💬 W1 (Cobrança)</span></td>
                                 <td style="color: var(--text-muted);">-</td>
                             </tr>
@@ -2963,6 +3000,17 @@ Se quiser remarcar o retorno da sua solicitação, responda esta mensagem com um
                                     <div class="pitch-modern">
                                         <div class="pitch-title">📩 E-mail (Resumo SPN CC):</div>
                                         "Fala [Nome]. Excelente papo hoje. Conforme alinhamos, o seu principal desafio é [Problema mapeado na call] que hoje te custa horas de máquina parada. Com o app da MELVIN, seus técnicos resolvem isso direto na planta, exatamente como te mostrei no case da [Case]. Segue a proposta anexa. Fico no aguardo do nosso próximo passo na [Dia do Compromisso]."
+                                    </div>
+                                    <div class="pitch-modern pitch-meta-utility">
+                                        <div class="pitch-title">💬 WA (Follow-up Pós-Call) <span class="pitch-meta-chip">Template Meta · UTILITY</span></div>
+                                        "{{1}}, tudo bem?
+
+Passando para registrar o follow-up da nossa reunião com a {{2}}. ✅
+
+Próximo passo alinhado: {{3}}.
+
+Quando puder, confirme o recebimento ou me diga se prefere ajustar prazo/horário deste retorno."
+                                        <span class="pitch-meta-vars">{{1}} nome · {{2}} empresa · {{3}} próximo passo acordado</span>
                                     </div>
                                 </td>
                             </tr>
