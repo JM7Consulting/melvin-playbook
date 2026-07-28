@@ -267,32 +267,57 @@
             
             <div class="cadencia-header-block" style="margin-bottom: 35px;">
                 <div class="cadencia-title-line" style="font-size: 1.8rem; color: #f59e0b;">⚡ Plano de Ação • Go-Live RevOps MELVIN</div>
-                <p class="cadencia-subtitle" style="padding-left: 0;">Documentação RevOps já entregue (Inbound + Outbound + Máquina Copilot). Este plano prioriza <strong>fechamento de gaps</strong>, <strong>ativação operacional no Bitrix</strong> e <strong>governança contínua</strong> — sem reinventar o que o site já documenta.</p>
+                <p class="cadencia-subtitle" style="padding-left: 0;">Documentação RevOps já entregue. <strong>Agora (28–29/07):</strong> revisão geral do Outbound. <strong>Bitrix</strong> (In + Out) fica na fila — janela de <strong>3–5 dias</strong> só depois dessa revisão. Atualizado <strong>28/07/2026</strong>.</p>
                 
                 <div class="header-cards-grid" style="margin-top: 20px;">
+                    <div class="h-card green-border">
+                        <h4>🔍 Agora · Revisão Outbound</h4>
+                        <p>28–29/07 · validar funil, fluxo PDF, cadências D1–D35, réguas e kits com o time — antes de configurar CRM.</p>
+                    </div>
                     <div class="h-card red-border">
-                        <h4>🧩 Fase A · Gaps de Conteúdo</h4>
-                        <p>Fechar o que ainda está “Em construção” no livro: Feedback Out, Objeções GIM e itens opcionais.</p>
+                        <h4>🧩 Em seguida · Gaps (A)</h4>
+                        <p>Fechar o que a revisão apontar + Feedback Out, Objeções e itens opcionais.</p>
                     </div>
                     <div class="h-card blue-border">
-                        <h4>💻 Fase B · Go-Live Inbound</h4>
-                        <p>Ativar SLA &lt;15 min, Filtro SPN CC, D1–D15 e réguas de Confirmação / Cancelamento / No-Show / Pós.</p>
+                        <h4>💻 Na fila · Bitrix In (B)</h4>
+                        <p>Dentro da janela de 3–5 dias: SLA &lt;15 min, SPN, D1–D15 e réguas de agenda.</p>
                     </div>
                     <div class="h-card purple-border">
-                        <h4>🎯 Fase C · Go-Live Outbound</h4>
-                        <p>Ligar Copilot → Bitrix → D1–D35 + réguas Out. Listas Tier 1 e rotina BDR diária.</p>
+                        <h4>🎯 Na fila · Bitrix Out (C+D)</h4>
+                        <p>Mesma janela: Copilot → D1–D35, réguas Out, Lost, Feedback Closer 2h e CS.</p>
                     </div>
-                    <div class="h-card green-border">
-                        <h4>🔒 Fase D · Governança</h4>
-                        <p>Lost obrigatório, Feedback Closer (2h), CS e higiene de CRM — cultura dos próximos 30 dias.</p>
-                    </div>
+                </div>
+            </div>
+
+            <!-- AGORA: REVISÃO OUTBOUND -->
+            <div class="matrix-widget dash-matrix" style="margin-bottom: 30px; border-left: 4px solid #22d3ee;">
+                <div class="matrix-header" style="background: rgba(34, 211, 238, 0.08);">
+                    <div class="matrix-title" style="color: #22d3ee;">🔍 AGORA — Revisão Geral Outbound · 28–29/07</div>
+                </div>
+                <div class="matrix-content" style="padding: 20px;">
+                    <ul style="list-style: none; padding: 0; display: flex; flex-direction: column; gap: 15px;">
+                        <li style="display: flex; gap: 15px; align-items: flex-start;">
+                            <span class="m-badge mb-call" style="font-size: 0.8rem; padding: 4px 8px;">R.1</span>
+                            <div>
+                                <strong style="color: var(--text-main); font-size: 1rem;">Passar o livro Outbound ponta a ponta</strong>
+                                <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 4px; line-height: 1.5;">Funil Sniper · <a href="#fluxo-comerc-outbound" style="color:var(--melvin-cyan);font-weight:700;">Fluxo PDF Out</a> · <a href="#wf-contato-nutricao-out" style="color:var(--melvin-cyan);font-weight:700;">D1–D35</a> · réguas · kits de Objeções / battlecards. Listar o que muda no documento-mor.</p>
+                            </div>
+                        </li>
+                        <li style="display: flex; gap: 15px; align-items: flex-start;">
+                            <span class="m-badge mb-call" style="font-size: 0.8rem; padding: 4px 8px;">R.2</span>
+                            <div>
+                                <strong style="color: var(--text-main); font-size: 1rem;">Alinhar com liderança / BDR</strong>
+                                <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 4px; line-height: 1.5;">Confirmar o que fica, o que enxuga e o que ainda precisa de conteúdo — <strong>sem abrir configuração no Bitrix nesta etapa</strong>.</p>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
             </div>
 
             <!-- FASE A -->
             <div class="matrix-widget dash-matrix" style="margin-bottom: 30px; border-left: 4px solid #f59e0b;">
                 <div class="matrix-header" style="background: rgba(245, 158, 11, 0.05);">
-                    <div class="matrix-title" style="color: #f59e0b;">🅰️ FASE A — Fechar Gaps do Documento-Mor (pré go-live)</div>
+                    <div class="matrix-title" style="color: #f59e0b;">🅰️ FASE A — Fechar Gaps do Documento-Mor (pós-revisão · pré Bitrix)</div>
                 </div>
                 <div class="matrix-content" style="padding: 20px;">
                     <ul style="list-style: none; padding: 0; display: flex; flex-direction: column; gap: 15px;">
@@ -314,7 +339,7 @@
                             <span class="m-badge mb-sys" style="font-size: 0.8rem; padding: 4px 8px;">A.3</span>
                             <div>
                                 <strong style="color: var(--text-main); font-size: 1rem;">Backlog documental (opcional)</strong>
-                                <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 4px; line-height: 1.5;">Glossário GIM e descrição pendente em Produtos (M&amp;A EAD). Registrados em <code>TASKS_FUTURAS.md</code> — não bloqueiam go-live.</p>
+                                <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 4px; line-height: 1.5;">Glossário GIM e descrição pendente em Produtos (M&amp;A EAD). Registrados em <code>TASKS_FUTURAS.md</code> — não bloqueiam Bitrix.</p>
                             </div>
                         </li>
                     </ul>
@@ -324,7 +349,7 @@
             <!-- FASE B -->
             <div class="matrix-widget dash-matrix" style="margin-bottom: 30px; border-left: 4px solid var(--brand-alert);">
                 <div class="matrix-header" style="background: rgba(239, 68, 68, 0.05);">
-                    <div class="matrix-title" style="color: var(--brand-alert);">🅱️ FASE B — Go-Live Inbound (já documentado)</div>
+                    <div class="matrix-title" style="color: var(--brand-alert);">🅱️ FASE B — Config Bitrix Inbound · NA FILA (janela 3–5 dias · pós-revisão)</div>
                 </div>
                 <div class="matrix-content" style="padding: 20px;">
                     <ul style="list-style: none; padding: 0; display: flex; flex-direction: column; gap: 15px;">
@@ -356,7 +381,7 @@
             <!-- FASE C -->
             <div class="matrix-widget dash-matrix" style="margin-bottom: 30px; border-left: 4px solid var(--brand-blue);">
                 <div class="matrix-header" style="background: rgba(0, 102, 255, 0.05);">
-                    <div class="matrix-title" style="color: var(--brand-blue);">🅲 FASE C — Go-Live Máquina Outbound (prioridade de tração)</div>
+                    <div class="matrix-title" style="color: var(--brand-blue);">🅲 FASE C — Config Bitrix Outbound · NA FILA (mesma janela 3–5 dias)</div>
                 </div>
                 <div class="matrix-content" style="padding: 20px;">
                     <ul style="list-style: none; padding: 0; display: flex; flex-direction: column; gap: 15px;">
@@ -395,7 +420,7 @@
             <!-- FASE D -->
             <div class="matrix-widget dash-matrix" style="border-left: 4px solid #10b981;">
                 <div class="matrix-header" style="background: rgba(16, 185, 129, 0.05);">
-                    <div class="matrix-title" style="color: #10b981;">🅳 FASE D — Fechamento, CS &amp; Governança Contínua</div>
+                    <div class="matrix-title" style="color: #10b981;">🅳 FASE D — Fechamento, CS &amp; Governança · NA FILA (fecha a mesma janela Bitrix)</div>
                 </div>
                 <div class="matrix-content" style="padding: 20px;">
                     <ul style="list-style: none; padding: 0; display: flex; flex-direction: column; gap: 15px;">
@@ -425,9 +450,9 @@
             </div>
 
             <div style="background: rgba(245, 158, 11, 0.05); border: 1px dashed rgba(245, 158, 11, 0.3); padding: 25px; border-radius: 12px; margin-top: 40px; text-align: center;">
-                <h4 style="color: #f59e0b; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px;">⚠️ Diretriz do Soberano Operacional</h4>
+                <h4 style="color: #f59e0b; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px;">⚠️ Ordem correta</h4>
                 <p style="color: var(--text-muted); font-size: 0.95rem; max-width: 800px; margin: 0 auto; line-height: 1.6;">
-                    O livro está escrito. O risco agora é execução frouxa: CRM sem Lost, SLA &gt;15 min e Outbound sem sinal. Nos próximos 30 dias, liderança cobra o processo — não o “jeitinho”. Acompanhe entregas em <a href="#agenda-entregas" style="color:var(--melvin-cyan);font-weight:700;">Cronograma de Trabalho</a>.
+                    <strong style="color:var(--text-main);">Não configurar Bitrix ainda.</strong> Primeiro a revisão geral do Outbound (hoje e amanhã). Depois gaps que saírem dessa passagem. Só então a janela de <strong>3–5 dias</strong> para configurar In + Out no CRM. Acompanhe em <a href="#agenda-entregas" style="color:var(--melvin-cyan);font-weight:700;">Cronograma de Trabalho</a>.
                 </p>
             </div>
         </section>
