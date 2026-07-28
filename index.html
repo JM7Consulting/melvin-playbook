@@ -3052,8 +3052,8 @@ Quando puder, confirme o recebimento ou me diga se prefere ajustar prazo/horári
                 <section id="funil-outbound" class="blueprint-page">
 
             <div class="cadencia-header-block">
-                <div class="cadencia-title-line">🎯 Fluxo Comercial Outbound (Arquitetura Sniper)</div>
-                <p class="cadencia-subtitle">Diagrama tático de prospecção ativa, navegação de contas (Multithreading) e handoff para fechamento.</p>
+                <div class="cadencia-title-line">🎯 Funil Outbound · Etapas (Arquitetura Sniper)</div>
+                <p class="cadencia-subtitle">Pipeline CRM de prospecção ativa: inteligência → contato → valor (MQL) → agenda (SQL) → reunião realizada. Demo/proposta seguem no <a href="#funil-vendas" style="color:var(--melvin-cyan);font-weight:700;">Funil de Vendas</a>.</p>
             </div>
 
             <div class="funil-container-scroll">
@@ -3062,15 +3062,15 @@ Quando puder, confirme o recebimento ou me diga se prefere ajustar prazo/horári
                     <div class="funil-column">
                         <div class="funil-column-header">
                             <div>
-                                <h3>Inteligência BDR</h3>
-                                <p>O início correto</p>
+                                <h3>Inteligência</h3>
+                                <p>Lista &amp; mapeamento</p>
                             </div>
                             <span class="funil-step-number">01</span>
                         </div>
                         <div class="inner-step-card">
-                            <span class="tag-sub tag-sdr">BDR · Contínuo</span>
+                            <span class="tag-sub tag-sdr">LDR</span>
                             <h4>Account Mapping (Lista Tier 1)</h4>
-                            <p>Levantamento de empresas Enterprise (&gt;R$30M) via LinkedIn/Econodata. Proibido receber reciclagem de Inbound ou CS.</p>
+                            <p>Levantamento de empresas Enterprise (&gt;R$30M) via LinkedIn/Econodata. Proibido receber reciclagem de Inbound ou CS. Entrega a fila pronta para o BDR.</p>
                             <div class="inner-step-meta"><span>SLA: Contínuo</span><span>Tier 1</span></div>
                         </div>
                     </div>
@@ -3078,15 +3078,15 @@ Quando puder, confirme o recebimento ou me diga se prefere ajustar prazo/horári
                     <div class="funil-column">
                         <div class="funil-column-header">
                             <div>
-                                <h3>Prospecção</h3>
-                                <p>Contato ativo</p>
+                                <h3>Tentando Contato</h3>
+                                <p>Prospecção</p>
                             </div>
                             <span class="funil-step-number">02</span>
                         </div>
                         <div class="inner-step-card">
                             <span class="tag-sub tag-sdr">BDR</span>
                             <h4>Cadência Sniper</h4>
-                            <p>Cold Calling e Social Selling. Sem contato → Multithreading (outra persona na mesma empresa). Esgotou contatos → Nutrição Marketing.</p>
+                            <p>Cold Calling e Social Selling na régua D1–D35. Sem contato → Multithreading (outra persona na mesma empresa). Esgotou contatos → Nutrição Marketing. Gates ICP/Persona/Red Flag antes e durante o toque.</p>
                             <div class="inner-step-meta"><span>Cold + Social</span><span>MT</span></div>
                         </div>
                     </div>
@@ -3094,48 +3094,48 @@ Quando puder, confirme o recebimento ou me diga se prefere ajustar prazo/horári
                     <div class="funil-column">
                         <div class="funil-column-header">
                             <div>
-                                <h3>Qualificação</h3>
-                                <p>Filtros e Red Flags</p>
+                                <h3>Geração de Valor</h3>
+                                <p>MQL</p>
                             </div>
                             <span class="funil-step-number">03</span>
                         </div>
                         <div class="inner-step-card">
-                            <span class="tag-sub tag-sdr">BDR</span>
-                            <h4>Triagem &amp; Red Flags</h4>
-                            <p>Empresa é ICP? Persona é decisora? Existe Red Flag (falência, contrato SAP recente)? Com Red Flag → Descartar.</p>
-                            <div class="inner-step-meta"><span>ICP + Persona</span><span>Kill</span></div>
+                            <span class="tag-sub tag-sdr">BDR · MQL</span>
+                            <h4>Impacto &amp; SPN CC</h4>
+                            <p>Conversa viva: Situação, Problema, Necessidade e Case. O BDR entrega impacto da vertical e valida dor/fit antes de pedir a agenda.</p>
+                            <div class="inner-step-meta"><span>SPN</span><span>MQL</span></div>
                         </div>
                     </div>
 
                     <div class="funil-column">
                         <div class="funil-column-header">
                             <div>
-                                <h3>Compromisso</h3>
-                                <p>MQL → SQL</p>
+                                <h3>Reunião Agendada</h3>
+                                <p>SQL · Handoff</p>
                             </div>
                             <span class="funil-step-number">04</span>
                         </div>
                         <div class="inner-step-card">
-                            <span class="tag-sub tag-closer">BDR → Closer</span>
-                            <h4>Impacto &amp; Agenda</h4>
-                            <p>Aplicação do SPN (Case) e agendamento. Em No-Show → Régua de Resgate Sniper BDR.</p>
-                            <div class="inner-step-meta"><span>Handoff</span><span>Agenda</span></div>
+                            <span class="tag-sub tag-closer">BDR → CLR</span>
+                            <h4>Agenda &amp; Briefing</h4>
+                            <p>Compromisso de data/hora + convite. Briefing para o Closer. Em No-Show → Régua de Resgate Sniper (BDR).</p>
+                            <div class="inner-step-meta"><span>SQL</span><span>Handoff</span></div>
                         </div>
                     </div>
 
                     <div class="funil-column">
                         <div class="funil-column-header">
                             <div>
-                                <h3>Closer</h3>
-                                <p>Execução e fechamento</p>
+                                <h3>Reunião Realizada</h3>
+                                <p>Execução CLR</p>
                             </div>
                             <span class="funil-step-number">05</span>
                         </div>
                         <div class="inner-step-card">
-                            <span class="tag-sub tag-closer">Closer</span>
-                            <h4>Demo &amp; Feedback de Reunião</h4>
-                            <p>Closer avalia se o BDR trouxe a pessoa certa. Se sim → Oportunidade (pipeline). Fechou → CS Onboarding. Não fechou → Nutrição.</p>
-                            <div class="inner-step-meta"><span>Pipeline</span><span>CS</span></div>
+                            <span class="tag-sub tag-closer">CLR</span>
+                            <h4>Feedback &amp; Passagem</h4>
+                            <p>Closer avalia se o BDR trouxe a pessoa certa. Fit ok → entra no <a href="#funil-vendas" style="color:var(--melvin-cyan);font-weight:700;">Funil de Vendas</a>. Sem fit → Nutrição / Multithreading.</p>
+                            <div class="inner-step-meta"><span>Feedback</span><span>→ Vendas</span></div>
                         </div>
                     </div>
 
