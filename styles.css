@@ -1,4 +1,4 @@
-:root {
+﻿:root {
             /* Paleta Oficial MELVIN */
             --melvin-cyan: #64FCD8;        
             --melvin-cyan-dim: rgba(100, 252, 216, 0.08);
@@ -125,8 +125,7 @@
         aside.collapsed .logo-mini { display: block; }
 
         /* Logo azul-escura some no aside escuro → versão clara no dark mode */
-        aside .logo-toggle,
-        aside .sidebar-footer img {
+        aside .logo-toggle {
             filter: brightness(0) invert(1);
             opacity: 0.96;
         }
@@ -135,8 +134,7 @@
             filter: brightness(0) invert(1) drop-shadow(0 0 10px rgba(100, 252, 216, 0.65));
             opacity: 1;
         }
-        body.light-mode aside .logo-toggle,
-        body.light-mode aside .sidebar-footer img {
+        body.light-mode aside .logo-toggle {
             filter: none;
             opacity: 1;
         }
@@ -621,19 +619,28 @@
         aside.collapsed .footer-info-full { display: none; }
         aside.collapsed .footer-info-mini { display: block; }
 
-        .sidebar-footer img.logo-f-full { max-width: 110px; margin-bottom: 8px; }
-        .sidebar-footer img.logo-f-mini { width: 32px; height: 32px; margin-bottom: 6px; }
-
         .sidebar-footer p {
             font-size: 0.78rem;
             color: var(--text-muted);
             line-height: 1.4;
+            margin: 0;
         }
 
         .sidebar-footer p.book-title {
-            color: var(--brand-blue); 
-            margin-top: 2px;
-            font-weight: 500;
+            color: var(--brand-blue);
+            margin: 0 0 4px;
+            font-weight: 600;
+            font-size: 0.8rem;
+        }
+
+        aside.collapsed .sidebar-footer p.book-title {
+            font-size: 0.68rem;
+            letter-spacing: 0.02em;
+            line-height: 1.25;
+        }
+
+        aside.collapsed .sidebar-footer p {
+            font-size: 0.65rem;
         }
 
         body.light-mode .sidebar-footer {
