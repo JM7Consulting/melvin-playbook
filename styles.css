@@ -1,4 +1,4 @@
-﻿:root {
+:root {
             /* Paleta Oficial MELVIN */
             --melvin-cyan: #64FCD8;        
             --melvin-cyan-dim: rgba(100, 252, 216, 0.08);
@@ -5816,7 +5816,7 @@ body.light-mode .fq-badge-orb--diag span { color: #991b1b; }
    PROTOTYPE · Cadence Runway (Outbound D1–D35 only)
    Rollback: remove .cx-runway shell classes + this block
    ========================================================= */
-#wf-contato-nutricao-out.cx-runway {
+.cx-runway {
   --cx-hot: #f59e0b;
   --cx-cold: #22d3ee;
   --cx-warm: #34d399;
@@ -5831,7 +5831,7 @@ body.light-mode .fq-badge-orb--diag span { color: #991b1b; }
     radial-gradient(700px 300px at 50% 100%, rgba(52, 211, 153, 0.07), transparent 55%),
     linear-gradient(165deg, rgba(7, 12, 18, 0.98), rgba(10, 16, 24, 0.94));
 }
-#wf-contato-nutricao-out.cx-runway::before {
+.cx-runway::before {
   content: '';
   position: absolute;
   inset: 0;
@@ -5843,7 +5843,7 @@ body.light-mode .fq-badge-orb--diag span { color: #991b1b; }
   background-size: 48px 48px;
   mask-image: linear-gradient(180deg, rgba(0,0,0,0.55), transparent 88%);
 }
-#wf-contato-nutricao-out.cx-runway > * { position: relative; z-index: 1; }
+.cx-runway > * { position: relative; z-index: 1; }
 
 .cx-proto-banner {
   display: flex;
@@ -6071,7 +6071,7 @@ body.light-mode .fq-badge-orb--diag span { color: #991b1b; }
 .cx-jump-item--cold.is-active { background: rgba(34, 211, 238, 0.12); }
 .cx-jump-item--warm.is-active { background: rgba(52, 211, 153, 0.12); }
 
-#wf-contato-nutricao-out.cx-runway .cx-regua {
+.cx-runway .cx-regua {
   border: 1px solid rgba(34, 211, 238, 0.2);
   border-radius: 16px;
   background:
@@ -6080,14 +6080,14 @@ body.light-mode .fq-badge-orb--diag span { color: #991b1b; }
   overflow: hidden;
   animation: cx-fade-up 0.75s ease 0.18s both;
 }
-#wf-contato-nutricao-out.cx-runway .cx-regua-head {
+.cx-runway .cx-regua-head {
   background: linear-gradient(90deg, rgba(34, 211, 238, 0.1), rgba(245, 158, 11, 0.06), transparent) !important;
   border-bottom: 1px solid rgba(148, 163, 184, 0.1);
   display: flex;
   align-items: center;
   gap: 10px;
 }
-#wf-contato-nutricao-out.cx-runway .cx-regua-title {
+.cx-runway .cx-regua-title {
   color: #e2e8f0 !important;
   font-family: "Sora", Manrope, sans-serif;
   letter-spacing: 0.06em;
@@ -6102,10 +6102,10 @@ body.light-mode .fq-badge-orb--diag span { color: #991b1b; }
   background: linear-gradient(135deg, var(--cx-hot), var(--cx-cold));
   box-shadow: 0 0 12px rgba(34, 211, 238, 0.45);
 }
-#wf-contato-nutricao-out.cx-runway .cx-regua .matrix-content {
+.cx-runway .cx-regua .matrix-content {
   position: relative;
 }
-#wf-contato-nutricao-out.cx-runway .cx-regua .matrix-content::before {
+.cx-runway .cx-regua .matrix-content::before {
   content: 'D1 ──────── runway ──────── D35';
   display: block;
   padding: 8px 14px 0;
@@ -6115,12 +6115,12 @@ body.light-mode .fq-badge-orb--diag span { color: #991b1b; }
   text-transform: uppercase;
   color: rgba(148, 163, 184, 0.55);
 }
-#wf-contato-nutricao-out.cx-runway .cx-regua .matrix-table th {
+.cx-runway .cx-regua .matrix-table th {
   background: rgba(2, 8, 16, 0.55);
   color: #94a3b8;
   font-size: 0.68rem;
 }
-#wf-contato-nutricao-out.cx-runway .cx-regua .row-title {
+.cx-runway .cx-regua .row-title {
   font-family: "Sora", sans-serif;
   letter-spacing: 0.02em;
 }
@@ -6184,16 +6184,16 @@ body.light-mode .fq-badge-orb--diag span { color: #991b1b; }
 .cx-phase--cold .cx-phase-meta { border-color: rgba(34, 211, 238, 0.25) !important; }
 .cx-phase--warm .cx-phase-meta { border-color: rgba(52, 211, 153, 0.3) !important; }
 
-#wf-contato-nutricao-out.cx-runway .cx-if {
+.cx-runway .cx-if {
   border: 1px solid rgba(34, 211, 238, 0.22);
   border-radius: 14px;
   overflow: hidden;
   background: rgba(8, 18, 28, 0.65);
 }
-#wf-contato-nutricao-out.cx-runway .cx-if-head {
+.cx-runway .cx-if-head {
   background: linear-gradient(90deg, rgba(34, 211, 238, 0.12), transparent) !important;
 }
-#wf-contato-nutricao-out.cx-runway .cx-if-title {
+.cx-runway .cx-if-title {
   color: #67e8f9 !important;
   font-family: "Sora", Manrope, sans-serif;
 }
@@ -6264,14 +6264,14 @@ body.light-mode .fq-badge-orb--diag span { color: #991b1b; }
   }
 }
 
-body.light-mode #wf-contato-nutricao-out.cx-runway {
+body.light-mode .cx-runway:not(.cx-runway--in) {
   background:
     radial-gradient(1100px 420px at 8% -10%, rgba(245, 158, 11, 0.1), transparent 55%),
     radial-gradient(900px 380px at 92% 0%, rgba(14, 165, 233, 0.08), transparent 50%),
     linear-gradient(165deg, #f8fafc, #eef2f7);
   border-color: rgba(14, 165, 233, 0.2);
 }
-body.light-mode #wf-contato-nutricao-out.cx-runway::before { opacity: 0.2; }
+body.light-mode .cx-runway::before { opacity: 0.2; }
 body.light-mode .cx-title { color: #0f172a; }
 body.light-mode .cx-lead { color: #475569; }
 body.light-mode .cx-lead strong { color: #0f172a; }
@@ -6281,7 +6281,41 @@ body.light-mode .cx-phase { background: rgba(255,255,255,0.55); }
 body.light-mode .cx-connect a { background: #fff; color: #334155; }
 body.light-mode .cx-gauge-ring::before { background: linear-gradient(160deg, #fff, #f1f5f9); }
 body.light-mode .cx-gauge-mid { color: #0f172a; }
-body.light-mode #wf-contato-nutricao-out.cx-runway .cx-regua {
+body.light-mode .cx-runway .cx-regua {
   background: #fff;
 }
-body.light-mode #wf-contato-nutricao-out.cx-runway .cx-regua-title { color: #0f172a !important; }
+body.light-mode .cx-runway .cx-regua-title { color: #0f172a !important; }
+
+/* Inbound runway variant · emerald / melvin cyan */
+.cx-runway--in {
+  --cx-hot: #34d399;
+  --cx-cold: #22d3ee;
+  --cx-warm: #38bdf8;
+  border-color: rgba(52, 211, 153, 0.22);
+  background:
+    radial-gradient(1100px 420px at 8% -10%, rgba(52, 211, 153, 0.14), transparent 55%),
+    radial-gradient(900px 380px at 92% 0%, rgba(34, 211, 238, 0.1), transparent 50%),
+    radial-gradient(700px 300px at 50% 100%, rgba(56, 189, 248, 0.07), transparent 55%),
+    linear-gradient(165deg, rgba(6, 16, 14, 0.98), rgba(8, 18, 20, 0.94));
+}
+.cx-runway--in .cx-kicker { color: #6ee7b7; }
+.cx-runway--in .cx-phase--hot { border-color: rgba(52, 211, 153, 0.3); box-shadow: inset 3px 0 0 var(--cx-hot); }
+.cx-runway--in .cx-phase--hot .cx-phase-title { color: #6ee7b7 !important; }
+.cx-runway--in .cx-phase--hot .cx-phase-rail { background: linear-gradient(145deg, #6ee7b7, #34d399); }
+.cx-runway--in .cx-phase--warm { border-color: rgba(56, 189, 248, 0.3); box-shadow: inset 3px 0 0 var(--cx-warm); }
+.cx-runway--in .cx-phase--warm .cx-phase-title { color: #7dd3fc !important; }
+.cx-runway--in .cx-phase--warm .cx-phase-rail { background: linear-gradient(145deg, #7dd3fc, #38bdf8); }
+.cx-runway--in .cx-jump-item--hot { border-color: rgba(52, 211, 153, 0.3); }
+.cx-runway--in .cx-jump-item--hot:hover,
+.cx-runway--in .cx-jump-item--hot.is-active { background: rgba(52, 211, 153, 0.1); border-color: rgba(52, 211, 153, 0.55); }
+.cx-jump--2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+@media (max-width: 980px) {
+  .cx-jump--2 { grid-template-columns: 1fr; }
+}
+body.light-mode .cx-runway--in {
+  background:
+    radial-gradient(1100px 420px at 8% -10%, rgba(16, 185, 129, 0.1), transparent 55%),
+    radial-gradient(900px 380px at 92% 0%, rgba(14, 165, 233, 0.08), transparent 50%),
+    linear-gradient(165deg, #f0fdf9, #ecfeff);
+  border-color: rgba(16, 185, 129, 0.22);
+}

@@ -158,21 +158,36 @@ document.addEventListener('DOMContentLoaded', () => {
     setupSectionToggle(document.getElementById('toggleOutNoshowBtn'), document.getElementById('outNoshowContainer'));
     setupSectionToggle(document.getElementById('toggleOutPosBtn'), document.getElementById('outPosContainer'));
 
-    // Prototype · Cadence Runway jump highlight (Outbound only)
+    // Cadence Runway · jump highlight + expand collapsed phase on click
     (function initCxRunway() {
-        const root = document.getElementById('wf-contato-nutricao-out');
-        if (!root || !root.classList.contains('cx-runway')) return;
-        const jumps = Array.from(root.querySelectorAll('.cx-jump-item'));
-        const phases = jumps.map((a) => document.querySelector(a.getAttribute('href'))).filter(Boolean);
-        if (!jumps.length || !('IntersectionObserver' in window)) return;
-        const io = new IntersectionObserver((entries) => {
-            entries.forEach((entry) => {
-                if (!entry.isIntersecting) return;
-                const id = '#' + entry.target.id;
-                jumps.forEach((j) => j.classList.toggle('is-active', j.getAttribute('href') === id));
+        document.querySelectorAll('.cx-runway').forEach((root) => {
+            const jumps = Array.from(root.querySelectorAll('.cx-jump-item'));
+            if (!jumps.length) return;
+            const phases = jumps.map((a) => root.querySelector(a.getAttribute('href')) || document.querySelector(a.getAttribute('href'))).filter(Boolean);
+
+            jumps.forEach((j) => {
+                j.addEventListener('click', () => {
+                    const target = root.querySelector(j.getAttribute('href')) || document.querySelector(j.getAttribute('href'));
+                    if (!target) return;
+                    const body = target.querySelector('.cx-phase-body, .timeline-wrapper');
+                    const btn = target.querySelector('.section-toggle-btn');
+                    if (body && body.style.display === 'none') {
+                        body.style.display = 'block';
+                        if (btn) btn.textContent = 'Recolher';
+                    }
+                });
             });
-        }, { rootMargin: '-30% 0px -55% 0px', threshold: 0.05 });
-        phases.forEach((p) => io.observe(p));
+
+            if (!('IntersectionObserver' in window)) return;
+            const io = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (!entry.isIntersecting) return;
+                    const id = '#' + entry.target.id;
+                    jumps.forEach((j) => j.classList.toggle('is-active', j.getAttribute('href') === id));
+                });
+            }, { rootMargin: '-30% 0px -55% 0px', threshold: 0.05 });
+            phases.forEach((p) => io.observe(p));
+        });
     })();
 
     // Cronograma de Trabalho · tabs
