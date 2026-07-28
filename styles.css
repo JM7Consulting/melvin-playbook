@@ -1239,6 +1239,33 @@ body.light-mode .mb-gim { background: rgba(99, 102, 241, 0.12) !important; color
         .pitch-modern { background: rgba(0,0,0,0.2); border-left: 3px solid var(--melvin-cyan); padding: 12px; border-radius: 4px; font-size: 0.8rem; color: #cbd5e1; line-height: 1.5; white-space: pre-line; margin-bottom: 10px; }
         .pitch-modern:last-child { margin-bottom: 0; }
         .pitch-title { font-size: 0.75rem; font-weight: 800; color: white; margin-bottom: 6px; display: flex; align-items: center; gap: 6px; }
+        .pitch-modern.pitch-meta-utility {
+            border-left-color: #38bdf8;
+            background: rgba(56, 189, 248, 0.06);
+        }
+        .pitch-meta-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 0.62rem;
+            font-weight: 800;
+            letter-spacing: 0.6px;
+            text-transform: uppercase;
+            color: #38bdf8;
+            border: 1px solid rgba(56, 189, 248, 0.35);
+            background: rgba(56, 189, 248, 0.1);
+            padding: 2px 7px;
+            border-radius: 999px;
+            margin-left: 6px;
+            vertical-align: middle;
+        }
+        .pitch-meta-vars {
+            display: block;
+            margin-top: 8px;
+            font-size: 0.68rem;
+            color: var(--text-muted);
+            white-space: normal;
+        }
 
         /* Ajuste Light Mode para as Tabelas Modernas */
         body.light-mode .cadence-table-modern { background: #FFFFFF; border-color: rgba(15,23,42,0.15); box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
@@ -1247,6 +1274,15 @@ body.light-mode .mb-gim { background: rgba(99, 102, 241, 0.12) !important; color
         body.light-mode .metric-sla { color: #0F172A; }
         body.light-mode .pitch-modern { background: #F8FAFC; border-color: rgba(15,23,42,0.15); color: #334155; }
         body.light-mode .pitch-title { color: #0F172A; }
+        body.light-mode .pitch-modern.pitch-meta-utility {
+            background: rgba(14, 165, 233, 0.06);
+            border-left-color: #0284c7;
+        }
+        body.light-mode .pitch-meta-chip {
+            color: #0369a1;
+            border-color: rgba(2, 132, 199, 0.35);
+            background: rgba(14, 165, 233, 0.08);
+        }
 
 
 /* --- ESTILOS DE COMPONENTES (antes inline nas seções) --- */
