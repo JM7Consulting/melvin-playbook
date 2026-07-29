@@ -6496,11 +6496,20 @@ body.light-mode .jd-doc li { color: #334155; }
   align-items: stretch;
   gap: 12px;
   margin-bottom: 24px;
-  min-height: 168px;
+  /* Altura FIXA: aberta = fechada (não “pula” ao abrir a sanfona) */
+  height: 200px;
+  min-height: 200px;
+  max-height: 200px;
+}
+.ops-board.is-vault-open {
+  height: 200px;
+  min-height: 200px;
+  max-height: 200px;
 }
 .ops-board-live {
   flex: 1 1 auto;
   min-width: 0;
+  height: 100%;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 12px;
@@ -6510,13 +6519,14 @@ body.light-mode .jd-doc li { color: #334155; }
   flex: 1 1 38%;
 }
 
-/* Cofre: fechado = só o trilho (sem caixa vazia); aberto = sanfona */
+/* Cofre: fechado = só o trilho; aberto = sanfona — mesma altura do board */
 .ops-board-vault {
   display: flex;
   flex-direction: row;
   flex: 0 0 52px;
   width: 52px;
   max-width: 52px;
+  height: 100%;
   align-items: stretch;
   gap: 0;
   border-radius: 14px;
@@ -6547,6 +6557,7 @@ body.light-mode .jd-doc li { color: #334155; }
   width: 0;
   min-width: 0;
   max-width: 0;
+  height: 100%;
   opacity: 0;
   overflow: hidden;
   padding: 0;
@@ -6554,8 +6565,8 @@ body.light-mode .jd-doc li { color: #334155; }
   transition: flex-basis 0.35s ease, max-width 0.35s ease, opacity 0.25s ease, padding 0.35s ease;
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  justify-content: center;
+  gap: 6px;
+  justify-content: stretch;
 }
 .ops-board.is-vault-open .ops-vault-panel {
   flex: 1 1 auto;
@@ -6563,47 +6574,53 @@ body.light-mode .jd-doc li { color: #334155; }
   max-width: none;
   min-width: 0;
   opacity: 1;
-  padding: 12px 12px 12px 14px;
+  padding: 8px 10px;
   pointer-events: auto;
+  overflow: hidden;
 }
 
 .ops-vault-panel-intro {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 1px;
+  flex: 0 0 auto;
 }
 .ops-vault-panel-intro strong {
-  font-size: 0.78rem;
+  font-size: 0.68rem;
   font-weight: 800;
   color: #fbbf24;
   letter-spacing: 0.04em;
   text-transform: uppercase;
 }
 .ops-vault-panel-intro span {
-  font-size: 0.72rem;
+  font-size: 0.65rem;
   color: #94a3b8;
-  line-height: 1.4;
+  line-height: 1.3;
 }
 
 .ops-grid--vault {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 10px;
+  gap: 8px;
   margin: 0;
+  flex: 1 1 auto;
+  min-height: 0;
+  align-items: stretch;
 }
 
-/* Trilho: uma linha vertical limpa + hint horizontal */
+/* Trilho: uma linha vertical limpa + hint horizontal — altura = board */
 .ops-vault-rail {
   appearance: none;
   flex: 0 0 52px;
   width: 52px;
+  height: 100%;
   align-self: stretch;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 14px;
-  padding: 14px 0;
+  gap: 12px;
+  padding: 10px 0;
   cursor: pointer;
   font-family: inherit;
   color: #fbbf24;
@@ -6646,7 +6663,7 @@ body.light-mode .jd-doc li { color: #334155; }
   display: flex;
   flex-direction: column;
   gap: 4px;
-  padding: 14px 14px;
+  padding: 12px 12px;
   border-radius: 14px;
   text-decoration: none;
   border: 1px solid rgba(148, 163, 184, 0.18);
@@ -6654,29 +6671,32 @@ body.light-mode .jd-doc li { color: #334155; }
   transition: transform 0.15s ease, border-color 0.15s ease, background 0.15s ease, padding 0.25s ease;
   position: relative;
   min-width: 0;
+  height: 100%;
+  box-sizing: border-box;
+  justify-content: center;
 }
 .ops-card:hover {
   transform: translateY(-2px);
   border-color: rgba(245, 158, 11, 0.45);
   background: rgba(245, 158, 11, 0.08);
 }
-.ops-card-ico { font-size: 1.1rem; }
+.ops-card-ico { font-size: 1.05rem; }
 .ops-card strong {
   font-family: "Sora", Manrope, sans-serif;
-  font-size: 0.88rem;
+  font-size: 0.84rem;
   color: #f1f5f9;
   line-height: 1.25;
 }
-.ops-card small { font-size: 0.72rem; color: #64748b; line-height: 1.35; }
+.ops-card small { font-size: 0.7rem; color: #64748b; line-height: 1.3; }
 
 .ops-board.is-vault-open .ops-card {
-  padding: 12px 11px;
+  padding: 10px 9px;
 }
 .ops-board.is-vault-open .ops-card strong {
-  font-size: 0.8rem;
+  font-size: 0.76rem;
 }
 .ops-board.is-vault-open .ops-card small {
-  font-size: 0.68rem;
+  font-size: 0.64rem;
 }
 
 .ops-card--live {
@@ -6707,7 +6727,8 @@ body.light-mode .jd-doc li { color: #334155; }
   background: rgba(2, 8, 16, 0.28);
   border-color: rgba(148, 163, 184, 0.16);
   border-style: dashed;
-  padding-top: 28px;
+  padding-top: 24px;
+  justify-content: flex-start;
 }
 .ops-card--vault:hover {
   border-style: solid;
@@ -6717,16 +6738,16 @@ body.light-mode .jd-doc li { color: #334155; }
 .ops-card--vault strong { color: #cbd5e1; }
 .ops-vault-badge {
   position: absolute;
-  top: 8px;
-  right: 8px;
-  font-size: 0.58rem;
+  top: 6px;
+  right: 6px;
+  font-size: 0.55rem;
   font-weight: 800;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: #fbbf24;
   background: rgba(245, 158, 11, 0.12);
   border: 1px solid rgba(245, 158, 11, 0.25);
-  padding: 2px 6px;
+  padding: 2px 5px;
   border-radius: 999px;
 }
 
@@ -6746,38 +6767,44 @@ body.light-mode .jd-doc li { color: #334155; }
   font-size: 0.8rem;
 }
 
-/* Info no hero (espaço do meio) */
+/* Info no hero — compacto */
 .ops-page .ops-hero.fq-hero {
-  grid-template-columns: minmax(200px, 1.1fr) minmax(240px, 1.15fr) auto;
-  gap: 18px;
-  align-items: stretch;
+  grid-template-columns: minmax(180px, 1.2fr) minmax(200px, 0.85fr) auto;
+  gap: 14px;
+  align-items: center;
+  padding: 20px 22px;
 }
 .ops-help--hero {
   position: relative;
   z-index: 1;
   margin: 0;
-  padding: 14px 16px;
+  padding: 8px 10px;
   align-self: center;
+  max-width: 280px;
   background: rgba(15, 23, 42, 0.45);
   border-color: rgba(148, 163, 184, 0.22);
+  border-radius: 10px;
 }
-.ops-help--hero p { margin: 0 0 6px; font-size: 0.82rem; }
+.ops-help--hero p {
+  margin: 0 0 4px;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+}
 .ops-help--hero ul {
-  margin: 0 0 10px;
-  padding-left: 1rem;
-  font-size: 0.78rem;
-  line-height: 1.45;
+  margin: 0 0 6px;
+  padding-left: 0.95rem;
+  font-size: 0.68rem;
+  line-height: 1.35;
 }
 .ops-help--hero .ops-exit-btn {
   width: 100%;
   text-align: center;
+  font-size: 0.65rem;
+  padding: 5px 8px;
+  border-radius: 6px;
 }
 
-/* Fechado: trilho com a mesma altura dos cards */
-.ops-board:not(.is-vault-open) .ops-board-vault,
-.ops-board:not(.is-vault-open) .ops-vault-rail {
-  min-height: 100%;
-}
 .ops-exit-btn {
   appearance: none;
   border: 1px solid rgba(248, 113, 113, 0.35);
@@ -6865,15 +6892,34 @@ body.light-mode .nav-lane--ops .ops-nav-standby { opacity: 0.78; }
   .ops-page .ops-hero.fq-hero {
     grid-template-columns: 1fr;
   }
-  .ops-help--hero { order: 2; }
+  .ops-help--hero {
+    order: 2;
+    max-width: none;
+  }
   .ops-page .ops-hero .fq-badge-stack { order: 3; justify-self: start; }
   .ops-board {
     flex-direction: column;
+    height: auto;
+    min-height: 0;
+    max-height: none;
+  }
+  .ops-board.is-vault-open {
+    height: auto;
+    min-height: 0;
+    max-height: none;
+  }
+  .ops-board-live {
+    height: auto;
+  }
+  .ops-board-live .ops-card {
+    height: auto;
+    min-height: 88px;
   }
   .ops-board-vault {
     flex: 0 0 auto;
     width: 100%;
     max-width: none;
+    height: auto;
   }
   .ops-board.is-vault-open .ops-board-live,
   .ops-board.is-vault-open .ops-board-vault {
@@ -6882,6 +6928,7 @@ body.light-mode .nav-lane--ops .ops-nav-standby { opacity: 0.78; }
   .ops-vault-rail {
     flex: 0 0 auto;
     width: 100%;
+    height: auto;
     flex-direction: row;
     justify-content: space-between;
     padding: 10px 14px;
@@ -6900,11 +6947,13 @@ body.light-mode .nav-lane--ops .ops-nav-standby { opacity: 0.78; }
     width: 100%;
     max-width: none;
     max-height: 0;
+    height: auto;
   }
   .ops-board.is-vault-open .ops-vault-panel {
     flex: 1 1 auto;
-    max-height: 640px;
+    max-height: 480px;
     width: 100%;
+    overflow: auto;
   }
   .ops-grid--vault,
   .ops-board-live {
