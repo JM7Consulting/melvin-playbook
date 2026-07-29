@@ -1022,6 +1022,36 @@
 			--text-main: #0F172A;          /* Texto principal em azul ardósia escuro */
 			--text-muted: #475569;         /* Texto secundário com leitura confortável */
 			--border: rgba(15, 23, 42, 0.08); /* Bordas escuras suaves */
+			/* Ciano de marca legível em fundo branco (evita #64FCD8 “apagado”) */
+			--melvin-cyan: #0f766e;
+			--melvin-cyan-dim: rgba(15, 118, 110, 0.08);
+		}
+
+		/* Títulos de seção com cores pastel inline → versões escuras no claro */
+		body.light-mode .matrix-title[style*="#10b981"],
+		body.light-mode .matrix-title[style*="#34d399"],
+		body.light-mode .matrix-title[style*="#6ee7b7"] { color: #047857 !important; }
+		body.light-mode .matrix-title[style*="#f87171"],
+		body.light-mode .matrix-title[style*="#ef4444"] { color: #b91c1c !important; }
+		body.light-mode .matrix-title[style*="#38bdf8"],
+		body.light-mode .matrix-title[style*="#60a5fa"] { color: #0369a1 !important; }
+		body.light-mode .matrix-title[style*="#fbbf24"],
+		body.light-mode .matrix-title[style*="#f59e0b"],
+		body.light-mode .matrix-title[style*="#FFD700"] { color: #b45309 !important; }
+		body.light-mode .matrix-title[style*="#c4b5fd"],
+		body.light-mode .matrix-title[style*="#e9d5ff"],
+		body.light-mode .matrix-title[style*="#c084fc"],
+		body.light-mode .matrix-title[style*="#a78bfa"] { color: #6d28d9 !important; }
+		body.light-mode .matrix-title[style*="#94a3b8"] { color: #334155 !important; }
+		body.light-mode .matrix-title[style*="#64FCD8"],
+		body.light-mode .matrix-title[style*="#64fcd8"] { color: #0f766e !important; }
+		body.light-mode .matrix-title[style*="#0066FF"] { color: #1d4ed8 !important; }
+
+		/* Links com ciano inline / var — contraste forte no claro */
+		body.light-mode a[style*="melvin-cyan"],
+		body.light-mode a[style*="#64FCD8"],
+		body.light-mode a[style*="#64fcd8"] {
+			color: #0f766e !important;
 		}
 
 		/* Ajustes finos de Contraste para o Modo Claro */
@@ -6478,3 +6508,98 @@ body.light-mode .ops-card {
 body.light-mode .ops-card strong { color: #0f172a; }
 body.light-mode .ops-help { background: #f8fafc; }
 body.light-mode .ops-help p { color: #0f172a; }
+
+/* =========================================================
+   Plano de Ação · legibilidade no modo claro
+   ========================================================= */
+body.light-mode #plano-acao {
+  background: #FFFFFF;
+  color: #0f172a;
+}
+body.light-mode #plano-acao .cadencia-subtitle {
+  color: #334155;
+  line-height: 1.65;
+}
+body.light-mode #plano-acao .cadencia-subtitle strong {
+  color: #0f172a;
+}
+body.light-mode #plano-acao .h-card {
+  background: #FFFFFF;
+  border-color: rgba(15, 23, 42, 0.12);
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.04);
+}
+body.light-mode #plano-acao .h-card h4 {
+  color: #0f172a !important;
+}
+body.light-mode #plano-acao .h-card p {
+  color: #475569;
+}
+body.light-mode #plano-acao .matrix-widget.dash-matrix {
+  background: #FFFFFF !important;
+  border-color: rgba(15, 23, 42, 0.12) !important;
+  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.04);
+}
+body.light-mode #plano-acao .matrix-header {
+  border-bottom-color: rgba(15, 23, 42, 0.08) !important;
+}
+/* Restaura tintas de fase (o reset global apagava o contexto visual) */
+body.light-mode #plano-acao .matrix-header[style*="16, 185, 129"] {
+  background: rgba(16, 185, 129, 0.1) !important;
+}
+body.light-mode #plano-acao .matrix-header[style*="239, 68, 68"] {
+  background: rgba(239, 68, 68, 0.08) !important;
+}
+body.light-mode #plano-acao .matrix-header[style*="56, 189, 248"] {
+  background: rgba(14, 165, 233, 0.1) !important;
+}
+body.light-mode #plano-acao .matrix-header[style*="245, 158, 11"] {
+  background: rgba(245, 158, 11, 0.12) !important;
+}
+body.light-mode #plano-acao .matrix-header[style*="167, 139, 250"] {
+  background: rgba(109, 40, 217, 0.08) !important;
+}
+body.light-mode #plano-acao .matrix-header[style*="52, 211, 153"] {
+  background: rgba(16, 185, 129, 0.1) !important;
+}
+body.light-mode #plano-acao .matrix-header[style*="192, 132, 252"] {
+  background: rgba(109, 40, 217, 0.08) !important;
+}
+body.light-mode #plano-acao .matrix-header[style*="100, 116, 139"] {
+  background: rgba(100, 116, 139, 0.1) !important;
+}
+body.light-mode #plano-acao .matrix-content {
+  color: #334155;
+}
+body.light-mode #plano-acao .matrix-content strong {
+  color: #0f172a !important;
+}
+body.light-mode #plano-acao .matrix-content p,
+body.light-mode #plano-acao .matrix-content li {
+  color: #475569 !important;
+}
+body.light-mode #plano-acao .matrix-content em {
+  color: #334155;
+}
+body.light-mode #plano-acao a {
+  color: #0f766e !important;
+  text-decoration: underline;
+  text-decoration-color: rgba(15, 118, 110, 0.35);
+  text-underline-offset: 2px;
+}
+body.light-mode #plano-acao a:hover {
+  color: #115e59 !important;
+}
+/* Box “Ordem correta” */
+body.light-mode #plano-acao > div[style*="245, 158, 11"] {
+  background: rgba(245, 158, 11, 0.1) !important;
+  border-color: rgba(180, 83, 9, 0.35) !important;
+}
+body.light-mode #plano-acao > div[style*="245, 158, 11"] h4 {
+  color: #b45309 !important;
+}
+body.light-mode #plano-acao > div[style*="245, 158, 11"] p {
+  color: #334155 !important;
+}
+body.light-mode #plano-acao > div[style*="245, 158, 11"] p strong {
+  color: #0f172a !important;
+}
