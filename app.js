@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', () => {
+﻿document.addEventListener('DOMContentLoaded', () => {
     const menuToggleFull = document.getElementById('menuToggleFull');
     const menuToggleMini = document.getElementById('menuToggleMini');
     const sidebar = document.getElementById('sidebar');
@@ -213,6 +213,92 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     })();
 
+// Ops · hidden menu unlock (#ops or 5 clicks on sidebar ©)
+    (function initOpsUnlock() {
+        const STORAGE_KEY = 'melvinOpsUnlock';
+        const lane = document.getElementById('opsNavLane');
+        const exitBtn = document.getElementById('opsExitBtn');
+        const taps = [
+            document.getElementById('opsUnlockTapFull'),
+            document.getElementById('opsUnlockTapMini')
+        ].filter(Boolean);
+
+        function isUnlocked() {
+            return localStorage.getItem(STORAGE_KEY) === '1';
+        }
+
+        function setOpsVisible(on) {
+            if (!lane) return;
+            if (on) lane.removeAttribute('hidden');
+            else lane.setAttribute('hidden', '');
+        }
+
+        function unlockOps(navigate) {
+            localStorage.setItem(STORAGE_KEY, '1');
+            setOpsVisible(true);
+            if (navigate && typeof forceScreenChange === 'function') {
+                forceScreenChange('#ops');
+                history.pushState(null, '', '#ops');
+            }
+        }
+
+        function lockOps() {
+            localStorage.removeItem(STORAGE_KEY);
+            setOpsVisible(false);
+            if (typeof forceScreenChange === 'function') {
+                forceScreenChange('#home-dashboard');
+                history.pushState(null, '', '#home-dashboard');
+            }
+        }
+
+        setOpsVisible(isUnlocked());
+
+        // Visiting #ops always unlocks this browser
+        const unlockIfOpsHash = () => {
+            if ((window.location.hash || '') === '#ops') unlockOps(false);
+        };
+        unlockIfOpsHash();
+        window.addEventListener('hashchange', unlockIfOpsHash);
+
+        // 5 clicks on footer © (not logo — logo toggles collapse)
+        let clickCount = 0;
+        let clickTimer = null;
+        taps.forEach((el) => {
+            el.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                clickCount += 1;
+                el.classList.add('is-tapping');
+                clearTimeout(clickTimer);
+                clickTimer = setTimeout(() => {
+                    clickCount = 0;
+                    taps.forEach((t) => t.classList.remove('is-tapping'));
+                }, 1800);
+                if (clickCount >= 5) {
+                    clickCount = 0;
+                    taps.forEach((t) => t.classList.remove('is-tapping'));
+                    unlockOps(true);
+                }
+            });
+        });
+
+        if (exitBtn) {
+            exitBtn.addEventListener('click', () => lockOps());
+        }
+
+        // Expose for SPA nav: unlock when landing on #ops via in-app links
+        window.__melvinUnlockOpsIfNeeded = function (hash) {
+            if (!hash) return;
+            if (hash === '#ops') {
+                unlockOps(false);
+                return;
+            }
+            const el = document.querySelector(hash);
+            const section = el && (el.matches('main > section') ? el : el.closest('main > section'));
+            if (section && section.hasAttribute('data-hidden-nav')) unlockOps(false);
+        };
+    })();
+
     // Cronograma de Trabalho · tabs
     const cronoTabs = document.querySelectorAll('[data-crono-tab]');
     const cronoPanels = document.querySelectorAll('[data-crono-panel]');
@@ -284,6 +370,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         targetSection.style.display = 'block';
         targetSection.classList.add('page-active');
+        if (typeof window.__melvinUnlockOpsIfNeeded === 'function') window.__melvinUnlockOpsIfNeeded(pageHash);
 
         if (breadcrumbText) {
             if (pageHash === '#home-dashboard') {
@@ -323,6 +410,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     window.addEventListener('popstate', () => {
         const hash = window.location.hash || '#home-dashboard';
+        if (typeof window.__melvinUnlockOpsIfNeeded === 'function') window.__melvinUnlockOpsIfNeeded(hash);
         if (!forceScreenChange(hash) && document.getElementById('home-dashboard')) {
             forceScreenChange('#home-dashboard');
         }

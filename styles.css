@@ -6392,3 +6392,89 @@ body.light-mode .jd-doc h2,
 body.light-mode .jd-doc h3 { color: #0f172a; }
 body.light-mode .jd-doc p,
 body.light-mode .jd-doc li { color: #334155; }
+
+/* === Ops Hub + hidden sidebar lane === */
+.nav-lane--ops {
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px dashed rgba(148, 163, 184, 0.25);
+}
+.nav-lane--ops .nav-lane-chip {
+  background: rgba(245, 158, 11, 0.18);
+  color: #fbbf24;
+  border-color: rgba(245, 158, 11, 0.35);
+}
+.ops-unlock-tap {
+  cursor: default;
+  user-select: none;
+  -webkit-user-select: none;
+}
+.ops-unlock-tap.is-tapping {
+  color: #fbbf24 !important;
+}
+.ops-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.ops-card {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 16px 18px;
+  border-radius: 14px;
+  text-decoration: none;
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  background: rgba(2, 8, 16, 0.4);
+  transition: transform 0.15s ease, border-color 0.15s ease, background 0.15s ease;
+}
+.ops-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(245, 158, 11, 0.45);
+  background: rgba(245, 158, 11, 0.08);
+}
+.ops-card-ico { font-size: 1.2rem; }
+.ops-card strong {
+  font-family: "Sora", Manrope, sans-serif;
+  font-size: 0.92rem;
+  color: #f1f5f9;
+}
+.ops-card small { font-size: 0.75rem; color: #64748b; }
+.ops-help {
+  padding: 16px 18px;
+  border-radius: 12px;
+  border: 1px dashed rgba(148, 163, 184, 0.28);
+  background: rgba(15, 23, 42, 0.35);
+}
+.ops-help p { margin: 0 0 8px; color: #e2e8f0; font-size: 0.88rem; }
+.ops-help ul { margin: 0 0 14px; padding-left: 1.1rem; color: #94a3b8; font-size: 0.85rem; line-height: 1.55; }
+.ops-help code {
+  color: #fbbf24;
+  background: rgba(245, 158, 11, 0.1);
+  padding: 1px 6px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+}
+.ops-exit-btn {
+  appearance: none;
+  border: 1px solid rgba(248, 113, 113, 0.35);
+  background: rgba(239, 68, 68, 0.1);
+  color: #fca5a5;
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.ops-exit-btn:hover {
+  background: rgba(239, 68, 68, 0.18);
+  color: #fecaca;
+}
+body.light-mode .ops-card {
+  background: #fff;
+  border-color: rgba(15, 23, 42, 0.1);
+}
+body.light-mode .ops-card strong { color: #0f172a; }
+body.light-mode .ops-help { background: #f8fafc; }
+body.light-mode .ops-help p { color: #0f172a; }

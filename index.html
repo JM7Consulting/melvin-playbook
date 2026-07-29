@@ -205,6 +205,26 @@
                 </div>
                 </div>
 
+
+                <!-- OPS · só aparece após unlock (#ops ou 5× © rodapé) -->
+                <div class="nav-lane nav-lane--ops" id="opsNavLane" hidden>
+                <div class="sidebar-section-title"><span class="nav-lane-chip">OPS</span> Interno</div>
+                <div class="menu-group active">
+                    <div class="menu-trigger">
+                        <div class="menu-trigger-left"><span class="nav-ico">🔒</span><span class="text">Ops JM7</span></div>
+                        <span class="arrow">▲</span>
+                    </div>
+                    <div class="submenu">
+                        <div class="submenu-label">Páginas ocultas</div>
+                        <a href="#ops"><span style="display:flex; gap:10px;"><span>🗂️</span> Hub Ops</span><span class="dot dot-active"></span></a>
+                        <a href="#plano-acao"><span style="display:flex; gap:10px;"><span>⚡</span> Plano de Ação</span><span class="dot dot-active"></span></a>
+                        <a href="#job-bdr"><span style="display:flex; gap:10px;"><span>👔</span> JD · BDR</span><span class="dot dot-active"></span></a>
+                        <a href="#presales-inbound"><span style="display:flex; gap:10px;"><span>📥</span> Presales SDR</span><span class="dot dot-active"></span></a>
+                        <a href="#presales-outbound"><span style="display:flex; gap:10px;"><span>🎯</span> Presales BDR</span><span class="dot dot-active"></span></a>
+                        <a href="#rotina-closer"><span style="display:flex; gap:10px;"><span>💼</span> Rotina Closer</span><span class="dot dot-active"></span></a>
+                    </div>
+                </div>
+                </div>
             </nav>
 	   </div>
 
@@ -212,11 +232,11 @@
         <div class="sidebar-footer">
             <div class="footer-info-full">
                 <p class="book-title">Revenue Operations Book</p>
-                <p>&copy; 2026 Melvin</p>
+                <p class="ops-unlock-tap" id="opsUnlockTapFull" title="">&copy; 2026 Melvin</p>
             </div>
             <div class="footer-info-mini">
                 <p class="book-title">RevOps Books</p>
-                <p>&copy; Melvin</p>
+                <p class="ops-unlock-tap" id="opsUnlockTapMini" title="">&copy; Melvin</p>
             </div>
         </div>
     </aside>
@@ -459,6 +479,59 @@
         </section>
 
 
+
+
+        <!-- Ops Hub: oculto do menu público — #ops ou 5 cliques no © do rodapé -->
+        <section id="ops" class="blueprint-page ops-page" style="padding: 40px; border-radius: 16px;" data-hidden-nav="true">
+            <div class="fq-hero fq-hero--gim">
+                <div class="fq-hero-copy">
+                    <div class="fq-kicker">JM7 · Interno</div>
+                    <div class="cadencia-title-line fq-hero-title">Ops · Menu interno</div>
+                    <p class="cadencia-subtitle" style="padding-left:0;max-width:56ch;">Páginas fora do menu público. Neste browser o bloco <strong>Ops</strong> fica liberado no rodapé da sidebar. Sem senha — só obscuridade.</p>
+                </div>
+                <div class="fq-badge-stack" aria-hidden="true">
+                    <div class="fq-badge-orb fq-badge-orb--gim"><span>OPS</span><small>JM7</small></div>
+                    <p class="fq-badge-cap">Hash · localStorage</p>
+                </div>
+            </div>
+
+            <div class="ops-grid">
+                <a class="ops-card" href="#plano-acao">
+                    <span class="ops-card-ico">⚡</span>
+                    <strong>Plano de Ação</strong>
+                    <small>Go-live RevOps · Fases A–D</small>
+                </a>
+                <a class="ops-card" href="#job-bdr">
+                    <span class="ops-card-ico">👔</span>
+                    <strong>Job Description · BDR</strong>
+                    <small>Big Tech · Startup</small>
+                </a>
+                <a class="ops-card" href="#presales-inbound">
+                    <span class="ops-card-ico">📥</span>
+                    <strong>Presales SDR</strong>
+                    <small>Rotina Inbound</small>
+                </a>
+                <a class="ops-card" href="#presales-outbound">
+                    <span class="ops-card-ico">🎯</span>
+                    <strong>Presales BDR</strong>
+                    <small>Rotina Outbound</small>
+                </a>
+                <a class="ops-card" href="#rotina-closer">
+                    <span class="ops-card-ico">💼</span>
+                    <strong>Rotina Closer</strong>
+                    <small>Playbook de fechamento</small>
+                </a>
+            </div>
+
+            <div class="ops-help">
+                <p><strong>Como abrir de novo</strong></p>
+                <ul>
+                    <li>Bookmark: <code>#ops</code></li>
+                    <li>Atalho: <strong>5 cliques</strong> no texto <em>© Melvin</em> no rodapé da sidebar (não na logo — a logo recolhe o menu)</li>
+                </ul>
+                <button type="button" class="ops-exit-btn" id="opsExitBtn">Sair do modo Ops neste browser</button>
+            </div>
+        </section>
 
         <!-- Job Description BDR: oculto do menu — abrir com #job-bdr -->
         <section id="job-bdr" class="blueprint-page jd-page" style="padding: 40px; border-radius: 16px;" data-hidden-nav="true">
