@@ -215,13 +215,14 @@
                         <span class="arrow">▲</span>
                     </div>
                     <div class="submenu">
-                        <div class="submenu-label">Páginas ocultas</div>
+                        <div class="submenu-label">Ativo</div>
                         <a href="#ops"><span style="display:flex; gap:10px;"><span>🗂️</span> Hub Ops</span><span class="dot dot-active"></span></a>
                         <a href="#plano-acao"><span style="display:flex; gap:10px;"><span>⚡</span> Plano de Ação</span><span class="dot dot-active"></span></a>
                         <a href="#job-bdr"><span style="display:flex; gap:10px;"><span>👔</span> JD · BDR</span><span class="dot dot-active"></span></a>
-                        <a href="#presales-inbound"><span style="display:flex; gap:10px;"><span>📥</span> Presales SDR</span><span class="dot dot-active"></span></a>
-                        <a href="#presales-outbound"><span style="display:flex; gap:10px;"><span>🎯</span> Presales BDR</span><span class="dot dot-active"></span></a>
-                        <a href="#rotina-closer"><span style="display:flex; gap:10px;"><span>💼</span> Rotina Closer</span><span class="dot dot-active"></span></a>
+                        <div class="submenu-label">Stand-by · rotinas</div>
+                        <a href="#presales-inbound" class="ops-nav-standby"><span style="display:flex; gap:10px;"><span>📥</span> Presales SDR</span><span class="dot"></span></a>
+                        <a href="#presales-outbound" class="ops-nav-standby"><span style="display:flex; gap:10px;"><span>🎯</span> Presales BDR</span><span class="dot"></span></a>
+                        <a href="#rotina-closer" class="ops-nav-standby"><span style="display:flex; gap:10px;"><span>💼</span> Rotina Closer</span><span class="dot"></span></a>
                     </div>
                 </div>
                 </div>
@@ -736,7 +737,7 @@
                 <div class="fq-hero-copy">
                     <div class="fq-kicker">JM7 · Interno</div>
                     <div class="cadencia-title-line fq-hero-title">Ops · Menu interno</div>
-                    <p class="cadencia-subtitle" style="padding-left:0;max-width:56ch;">Páginas fora do menu público. Neste browser o bloco <strong>Ops</strong> fica liberado no rodapé da sidebar. Sem senha — só obscuridade.</p>
+                    <p class="cadencia-subtitle" style="padding-left:0;max-width:58ch;">Cockpit JM7: páginas ativas fora do menu público + rotinas em stand-by (tiradas do menu até a próxima rodada). Liberação neste browser via <strong>#ops</strong> ou 5 cliques no ©.</p>
                 </div>
                 <div class="fq-badge-stack" aria-hidden="true">
                     <div class="fq-badge-orb fq-badge-orb--gim"><span>OPS</span><small>JM7</small></div>
@@ -744,32 +745,71 @@
                 </div>
             </div>
 
-            <div class="ops-grid">
-                <a class="ops-card" href="#plano-acao">
-                    <span class="ops-card-ico">⚡</span>
-                    <strong>Plano de Ação</strong>
-                    <small>Fases 1–11 · alinhado ao Cronograma</small>
-                </a>
-                <a class="ops-card" href="#job-bdr">
-                    <span class="ops-card-ico">👔</span>
-                    <strong>Job Description · BDR</strong>
-                    <small>Big Tech · Startup</small>
-                </a>
-                <a class="ops-card" href="#presales-inbound">
-                    <span class="ops-card-ico">📥</span>
-                    <strong>Presales SDR</strong>
-                    <small>Rotina Inbound</small>
-                </a>
-                <a class="ops-card" href="#presales-outbound">
-                    <span class="ops-card-ico">🎯</span>
-                    <strong>Presales BDR</strong>
-                    <small>Rotina Outbound</small>
-                </a>
-                <a class="ops-card" href="#rotina-closer">
-                    <span class="ops-card-ico">💼</span>
-                    <strong>Rotina Closer</strong>
-                    <small>Playbook de fechamento</small>
-                </a>
+            <!-- MENU ATIVO -->
+            <div class="ops-section ops-section--live">
+                <div class="ops-section-head">
+                    <div>
+                        <span class="ops-section-chip ops-section-chip--live">ATIVO</span>
+                        <h3 class="ops-section-title">Hub interno</h3>
+                        <p class="ops-section-desc">Itens em uso agora. Espaço aberto — vamos incluir mais coisas aqui em breve.</p>
+                    </div>
+                    <span class="ops-section-count">2 ativos</span>
+                </div>
+                <div class="ops-grid ops-grid--live">
+                    <a class="ops-card ops-card--live" href="#plano-acao">
+                        <span class="ops-card-ico">⚡</span>
+                        <strong>Plano de Ação</strong>
+                        <small>Fases 1–11 · alinhado ao Cronograma</small>
+                    </a>
+                    <a class="ops-card ops-card--live" href="#job-bdr">
+                        <span class="ops-card-ico">👔</span>
+                        <strong>Job Description · BDR</strong>
+                        <small>Big Tech · Startup</small>
+                    </a>
+                    <div class="ops-card ops-card--slot" aria-hidden="true">
+                        <span class="ops-card-ico">＋</span>
+                        <strong>Próximo item</strong>
+                        <small>Slot reservado · em breve</small>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DOCUMENTOS FUTUROS / STAND-BY -->
+            <div class="ops-section ops-section--vault">
+                <div class="ops-section-head">
+                    <div>
+                        <span class="ops-section-chip ops-section-chip--vault">STAND-BY</span>
+                        <h3 class="ops-section-title">Rotinas · documentos futuros</h3>
+                        <p class="ops-section-desc">Tiramos do menu público por enquanto. Continuam acessíveis aqui; quando fecharmos a revisão, voltam aos menus Inbound / Outbound / Vendas.</p>
+                    </div>
+                    <span class="ops-section-count">3 no cofre</span>
+                </div>
+                <div class="ops-vault">
+                    <div class="ops-vault-rail" aria-hidden="true">
+                        <span>FUTURO</span>
+                        <span>MENU</span>
+                    </div>
+                    <div class="ops-grid ops-grid--vault">
+                        <a class="ops-card ops-card--vault" href="#presales-inbound">
+                            <span class="ops-vault-badge">Depois · Inbound</span>
+                            <span class="ops-card-ico">📥</span>
+                            <strong>Presales SDR</strong>
+                            <small>Rotina diária · volta ao menu Inbound</small>
+                        </a>
+                        <a class="ops-card ops-card--vault" href="#presales-outbound">
+                            <span class="ops-vault-badge">Depois · Outbound</span>
+                            <span class="ops-card-ico">🎯</span>
+                            <strong>Presales BDR</strong>
+                            <small>Rotina diária · volta ao menu Outbound</small>
+                        </a>
+                        <a class="ops-card ops-card--vault" href="#rotina-closer">
+                            <span class="ops-vault-badge">Depois · Vendas</span>
+                            <span class="ops-card-ico">💼</span>
+                            <strong>Rotina Closer</strong>
+                            <small>Playbook de fechamento · volta ao menu Vendas</small>
+                        </a>
+                    </div>
+                </div>
             </div>
 
             <div class="ops-help">

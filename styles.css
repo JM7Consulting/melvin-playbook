@@ -6442,11 +6442,76 @@ body.light-mode .jd-doc li { color: #334155; }
 .ops-unlock-tap.is-tapping {
   color: #fbbf24 !important;
 }
+
+/* Sidebar · stand-by rotinas */
+.nav-lane--ops .ops-nav-standby {
+  opacity: 0.72;
+}
+.nav-lane--ops .ops-nav-standby .dot {
+  background: rgba(148, 163, 184, 0.35) !important;
+  box-shadow: none !important;
+}
+
+/* ---- Ops hub layout ---- */
+.ops-section {
+  margin-bottom: 28px;
+}
+.ops-section-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 14px;
+}
+.ops-section-chip {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 4px 9px;
+  border-radius: 999px;
+  margin-bottom: 8px;
+}
+.ops-section-chip--live {
+  color: #042f2e;
+  background: linear-gradient(135deg, #5eead4, #14b8a6);
+}
+.ops-section-chip--vault {
+  color: #92400e;
+  background: rgba(245, 158, 11, 0.16);
+  border: 1px solid rgba(245, 158, 11, 0.28);
+}
+.ops-section-title {
+  margin: 0 0 4px;
+  font-family: "Sora", Manrope, sans-serif;
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: #f1f5f9;
+}
+.ops-section-desc {
+  margin: 0;
+  max-width: 62ch;
+  font-size: 0.86rem;
+  line-height: 1.55;
+  color: #94a3b8;
+}
+.ops-section-count {
+  flex: 0 0 auto;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #64748b;
+  padding-top: 6px;
+}
+
 .ops-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 12px;
-  margin-bottom: 24px;
+  margin-bottom: 0;
 }
 .ops-card {
   display: flex;
@@ -6457,7 +6522,8 @@ body.light-mode .jd-doc li { color: #334155; }
   text-decoration: none;
   border: 1px solid rgba(148, 163, 184, 0.18);
   background: rgba(2, 8, 16, 0.4);
-  transition: transform 0.15s ease, border-color 0.15s ease, background 0.15s ease;
+  transition: transform 0.15s ease, border-color 0.15s ease, background 0.15s ease, opacity 0.15s ease;
+  position: relative;
 }
 .ops-card:hover {
   transform: translateY(-2px);
@@ -6470,7 +6536,98 @@ body.light-mode .jd-doc li { color: #334155; }
   font-size: 0.92rem;
   color: #f1f5f9;
 }
-.ops-card small { font-size: 0.75rem; color: #64748b; }
+.ops-card small { font-size: 0.75rem; color: #64748b; line-height: 1.4; }
+
+.ops-card--live {
+  border-color: rgba(45, 212, 191, 0.28);
+  background:
+    linear-gradient(160deg, rgba(20, 184, 166, 0.1), transparent 55%),
+    rgba(2, 8, 16, 0.45);
+}
+.ops-card--live:hover {
+  border-color: rgba(45, 212, 191, 0.55);
+  background:
+    linear-gradient(160deg, rgba(20, 184, 166, 0.16), transparent 55%),
+    rgba(2, 8, 16, 0.5);
+}
+
+.ops-card--slot {
+  border-style: dashed;
+  border-color: rgba(148, 163, 184, 0.28);
+  background: transparent;
+  opacity: 0.7;
+  cursor: default;
+  pointer-events: none;
+}
+.ops-card--slot strong { color: #94a3b8; }
+.ops-card--slot .ops-card-ico { color: #64748b; opacity: 0.85; }
+
+/* Vault · documentos futuros */
+.ops-vault {
+  display: grid;
+  grid-template-columns: 44px 1fr;
+  gap: 12px;
+  align-items: stretch;
+  padding: 14px;
+  border-radius: 18px;
+  border: 1px dashed rgba(245, 158, 11, 0.28);
+  background:
+    repeating-linear-gradient(
+      -12deg,
+      transparent,
+      transparent 10px,
+      rgba(245, 158, 11, 0.03) 10px,
+      rgba(245, 158, 11, 0.03) 20px
+    ),
+    rgba(15, 23, 42, 0.35);
+}
+.ops-vault-rail {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.22em;
+  color: #fbbf24;
+  border-radius: 10px;
+  background: rgba(245, 158, 11, 0.08);
+  border: 1px solid rgba(245, 158, 11, 0.2);
+}
+.ops-grid--vault {
+  margin: 0;
+}
+.ops-card--vault {
+  background: rgba(2, 8, 16, 0.28);
+  border-color: rgba(148, 163, 184, 0.16);
+  border-style: dashed;
+  padding-top: 28px;
+}
+.ops-card--vault:hover {
+  border-style: solid;
+  border-color: rgba(245, 158, 11, 0.4);
+  background: rgba(245, 158, 11, 0.07);
+}
+.ops-card--vault strong {
+  color: #cbd5e1;
+}
+.ops-vault-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 0.6rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #fbbf24;
+  background: rgba(245, 158, 11, 0.12);
+  border: 1px solid rgba(245, 158, 11, 0.25);
+  padding: 3px 7px;
+  border-radius: 999px;
+}
+
 .ops-help {
   padding: 16px 18px;
   border-radius: 12px;
@@ -6501,13 +6658,76 @@ body.light-mode .jd-doc li { color: #334155; }
   background: rgba(239, 68, 68, 0.18);
   color: #fecaca;
 }
+
+body.light-mode .ops-section-title { color: #0f172a; }
+body.light-mode .ops-section-desc { color: #475569; }
+body.light-mode .ops-section-count { color: #64748b; }
+body.light-mode .ops-section-chip--vault {
+  color: #92400e;
+  background: rgba(245, 158, 11, 0.14);
+}
 body.light-mode .ops-card {
   background: #fff;
   border-color: rgba(15, 23, 42, 0.1);
 }
 body.light-mode .ops-card strong { color: #0f172a; }
+body.light-mode .ops-card small { color: #64748b; }
+body.light-mode .ops-card--live {
+  background: linear-gradient(160deg, rgba(20, 184, 166, 0.08), #fff 50%);
+  border-color: rgba(13, 148, 136, 0.28);
+}
+body.light-mode .ops-card--slot {
+  background: #f8fafc;
+  border-color: rgba(15, 23, 42, 0.14);
+}
+body.light-mode .ops-card--slot strong { color: #64748b; }
+body.light-mode .ops-vault {
+  background:
+    repeating-linear-gradient(
+      -12deg,
+      transparent,
+      transparent 10px,
+      rgba(245, 158, 11, 0.04) 10px,
+      rgba(245, 158, 11, 0.04) 20px
+    ),
+    #fff7ed;
+  border-color: rgba(180, 83, 9, 0.28);
+}
+body.light-mode .ops-vault-rail {
+  color: #b45309;
+  background: rgba(245, 158, 11, 0.1);
+  border-color: rgba(180, 83, 9, 0.22);
+}
+body.light-mode .ops-card--vault {
+  background: #fff;
+  border-color: rgba(15, 23, 42, 0.12);
+}
+body.light-mode .ops-card--vault strong { color: #334155; }
+body.light-mode .ops-vault-badge {
+  color: #b45309;
+  background: rgba(245, 158, 11, 0.12);
+  border-color: rgba(180, 83, 9, 0.25);
+}
 body.light-mode .ops-help { background: #f8fafc; }
 body.light-mode .ops-help p { color: #0f172a; }
+body.light-mode .nav-lane--ops .ops-nav-standby { opacity: 0.78; }
+
+@media (max-width: 720px) {
+  .ops-vault {
+    grid-template-columns: 1fr;
+  }
+  .ops-vault-rail {
+    writing-mode: horizontal-tb;
+    transform: none;
+    flex-direction: row;
+    padding: 8px 10px;
+    letter-spacing: 0.14em;
+  }
+  .ops-section-head {
+    flex-direction: column;
+    gap: 6px;
+  }
+}
 
 /* =========================================================
    Plano de Ação · legibilidade no modo claro
