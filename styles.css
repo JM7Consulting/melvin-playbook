@@ -6452,15 +6452,8 @@ body.light-mode .jd-doc li { color: #334155; }
   box-shadow: none !important;
 }
 
-/* ---- Ops hub layout ---- */
-.ops-section {
-  margin-bottom: 28px;
-}
-.ops-section-head {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 16px;
+/* ---- Ops hub layout · board + sanfona lateral ---- */
+.ops-board-head {
   margin-bottom: 14px;
 }
 .ops-section-chip {
@@ -6472,7 +6465,7 @@ body.light-mode .jd-doc li { color: #334155; }
   text-transform: uppercase;
   padding: 4px 9px;
   border-radius: 999px;
-  margin-bottom: 8px;
+  margin: 0 8px 8px 0;
 }
 .ops-section-chip--live {
   color: #042f2e;
@@ -6492,51 +6485,184 @@ body.light-mode .jd-doc li { color: #334155; }
 }
 .ops-section-desc {
   margin: 0;
-  max-width: 62ch;
+  max-width: 68ch;
   font-size: 0.86rem;
   line-height: 1.55;
   color: #94a3b8;
 }
-.ops-section-count {
-  flex: 0 0 auto;
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: #64748b;
-  padding-top: 6px;
+
+.ops-board {
+  display: flex;
+  align-items: stretch;
+  gap: 12px;
+  margin-bottom: 24px;
+  min-height: 168px;
+}
+.ops-board-live {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  transition: flex-basis 0.35s ease;
+}
+.ops-board.is-vault-open .ops-board-live {
+  flex: 1 1 38%;
 }
 
-.ops-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 12px;
-  margin-bottom: 0;
+.ops-board-vault {
+  display: flex;
+  flex-direction: row;
+  flex: 0 0 auto;
+  align-items: stretch;
+  gap: 0;
+  min-width: 48px;
+  border-radius: 16px;
+  border: 1px dashed rgba(245, 158, 11, 0.28);
+  background: rgba(15, 23, 42, 0.28);
+  overflow: hidden;
+  transition: flex-basis 0.35s ease, background 0.25s ease, border-color 0.25s ease;
 }
+.ops-board.is-vault-open .ops-board-vault {
+  flex: 1 1 58%;
+  min-width: 0;
+  background:
+    repeating-linear-gradient(
+      -12deg,
+      transparent,
+      transparent 10px,
+      rgba(245, 158, 11, 0.03) 10px,
+      rgba(245, 158, 11, 0.03) 20px
+    ),
+    rgba(15, 23, 42, 0.4);
+  border-color: rgba(245, 158, 11, 0.4);
+}
+
+.ops-vault-panel {
+  flex: 1 1 auto;
+  min-width: 0;
+  max-width: 0;
+  max-height: none;
+  opacity: 0;
+  overflow: hidden;
+  padding: 0;
+  pointer-events: none;
+  transition: max-width 0.35s ease, max-height 0.35s ease, opacity 0.25s ease, padding 0.35s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: center;
+}
+.ops-board.is-vault-open .ops-vault-panel {
+  max-width: 1200px;
+  opacity: 1;
+  padding: 12px 12px 12px 14px;
+  pointer-events: auto;
+}
+
+.ops-vault-panel-intro {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.ops-vault-panel-intro strong {
+  font-size: 0.78rem;
+  font-weight: 800;
+  color: #fbbf24;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.ops-vault-panel-intro span {
+  font-size: 0.72rem;
+  color: #94a3b8;
+  line-height: 1.4;
+}
+
+.ops-grid--vault {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin: 0;
+}
+
+.ops-vault-rail {
+  appearance: none;
+  flex: 0 0 48px;
+  width: 48px;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 12px 0;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+  color: #fbbf24;
+  background: rgba(245, 158, 11, 0.1);
+  border: none;
+  border-left: 1px solid rgba(245, 158, 11, 0.22);
+  transition: background 0.2s ease, color 0.2s ease;
+}
+.ops-vault-rail:hover {
+  background: rgba(245, 158, 11, 0.18);
+}
+.ops-board.is-vault-open .ops-vault-rail {
+  background: rgba(245, 158, 11, 0.2);
+}
+.ops-vault-rail-label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+.ops-vault-rail-hint {
+  font-size: 0.58rem;
+  letter-spacing: 0.14em;
+  color: #fdba74;
+  opacity: 0.9;
+}
+
 .ops-card {
   display: flex;
   flex-direction: column;
   gap: 4px;
-  padding: 16px 18px;
+  padding: 14px 14px;
   border-radius: 14px;
   text-decoration: none;
   border: 1px solid rgba(148, 163, 184, 0.18);
   background: rgba(2, 8, 16, 0.4);
-  transition: transform 0.15s ease, border-color 0.15s ease, background 0.15s ease, opacity 0.15s ease;
+  transition: transform 0.15s ease, border-color 0.15s ease, background 0.15s ease, padding 0.25s ease;
   position: relative;
+  min-width: 0;
 }
 .ops-card:hover {
   transform: translateY(-2px);
   border-color: rgba(245, 158, 11, 0.45);
   background: rgba(245, 158, 11, 0.08);
 }
-.ops-card-ico { font-size: 1.2rem; }
+.ops-card-ico { font-size: 1.1rem; }
 .ops-card strong {
   font-family: "Sora", Manrope, sans-serif;
-  font-size: 0.92rem;
+  font-size: 0.88rem;
   color: #f1f5f9;
+  line-height: 1.25;
 }
-.ops-card small { font-size: 0.75rem; color: #64748b; line-height: 1.4; }
+.ops-card small { font-size: 0.72rem; color: #64748b; line-height: 1.35; }
+
+.ops-board.is-vault-open .ops-card {
+  padding: 12px 11px;
+}
+.ops-board.is-vault-open .ops-card strong {
+  font-size: 0.8rem;
+}
+.ops-board.is-vault-open .ops-card small {
+  font-size: 0.68rem;
+}
 
 .ops-card--live {
   border-color: rgba(45, 212, 191, 0.28);
@@ -6562,43 +6688,6 @@ body.light-mode .jd-doc li { color: #334155; }
 .ops-card--slot strong { color: #94a3b8; }
 .ops-card--slot .ops-card-ico { color: #64748b; opacity: 0.85; }
 
-/* Vault · documentos futuros */
-.ops-vault {
-  display: grid;
-  grid-template-columns: 44px 1fr;
-  gap: 12px;
-  align-items: stretch;
-  padding: 14px;
-  border-radius: 18px;
-  border: 1px dashed rgba(245, 158, 11, 0.28);
-  background:
-    repeating-linear-gradient(
-      -12deg,
-      transparent,
-      transparent 10px,
-      rgba(245, 158, 11, 0.03) 10px,
-      rgba(245, 158, 11, 0.03) 20px
-    ),
-    rgba(15, 23, 42, 0.35);
-}
-.ops-vault-rail {
-  writing-mode: vertical-rl;
-  transform: rotate(180deg);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  font-size: 0.62rem;
-  font-weight: 800;
-  letter-spacing: 0.22em;
-  color: #fbbf24;
-  border-radius: 10px;
-  background: rgba(245, 158, 11, 0.08);
-  border: 1px solid rgba(245, 158, 11, 0.2);
-}
-.ops-grid--vault {
-  margin: 0;
-}
 .ops-card--vault {
   background: rgba(2, 8, 16, 0.28);
   border-color: rgba(148, 163, 184, 0.16);
@@ -6610,21 +6699,19 @@ body.light-mode .jd-doc li { color: #334155; }
   border-color: rgba(245, 158, 11, 0.4);
   background: rgba(245, 158, 11, 0.07);
 }
-.ops-card--vault strong {
-  color: #cbd5e1;
-}
+.ops-card--vault strong { color: #cbd5e1; }
 .ops-vault-badge {
   position: absolute;
-  top: 10px;
-  right: 10px;
-  font-size: 0.6rem;
+  top: 8px;
+  right: 8px;
+  font-size: 0.58rem;
   font-weight: 800;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: #fbbf24;
   background: rgba(245, 158, 11, 0.12);
   border: 1px solid rgba(245, 158, 11, 0.25);
-  padding: 3px 7px;
+  padding: 2px 6px;
   border-radius: 999px;
 }
 
@@ -6661,7 +6748,6 @@ body.light-mode .jd-doc li { color: #334155; }
 
 body.light-mode .ops-section-title { color: #0f172a; }
 body.light-mode .ops-section-desc { color: #475569; }
-body.light-mode .ops-section-count { color: #64748b; }
 body.light-mode .ops-section-chip--vault {
   color: #92400e;
   background: rgba(245, 158, 11, 0.14);
@@ -6681,7 +6767,11 @@ body.light-mode .ops-card--slot {
   border-color: rgba(15, 23, 42, 0.14);
 }
 body.light-mode .ops-card--slot strong { color: #64748b; }
-body.light-mode .ops-vault {
+body.light-mode .ops-board-vault {
+  background: #fff7ed;
+  border-color: rgba(180, 83, 9, 0.28);
+}
+body.light-mode .ops-board.is-vault-open .ops-board-vault {
   background:
     repeating-linear-gradient(
       -12deg,
@@ -6691,13 +6781,15 @@ body.light-mode .ops-vault {
       rgba(245, 158, 11, 0.04) 20px
     ),
     #fff7ed;
-  border-color: rgba(180, 83, 9, 0.28);
 }
 body.light-mode .ops-vault-rail {
   color: #b45309;
-  background: rgba(245, 158, 11, 0.1);
-  border-color: rgba(180, 83, 9, 0.22);
+  background: rgba(245, 158, 11, 0.12);
+  border-left-color: rgba(180, 83, 9, 0.22);
 }
+body.light-mode .ops-vault-rail-hint { color: #c2410c; }
+body.light-mode .ops-vault-panel-intro strong { color: #b45309; }
+body.light-mode .ops-vault-panel-intro span { color: #64748b; }
 body.light-mode .ops-card--vault {
   background: #fff;
   border-color: rgba(15, 23, 42, 0.12);
@@ -6712,20 +6804,44 @@ body.light-mode .ops-help { background: #f8fafc; }
 body.light-mode .ops-help p { color: #0f172a; }
 body.light-mode .nav-lane--ops .ops-nav-standby { opacity: 0.78; }
 
-@media (max-width: 720px) {
-  .ops-vault {
-    grid-template-columns: 1fr;
+@media (max-width: 980px) {
+  .ops-board {
+    flex-direction: column;
+  }
+  .ops-board.is-vault-open .ops-board-live,
+  .ops-board.is-vault-open .ops-board-vault {
+    flex: 1 1 auto;
   }
   .ops-vault-rail {
     writing-mode: horizontal-tb;
     transform: none;
+    flex: 0 0 auto;
+    width: 100%;
     flex-direction: row;
-    padding: 8px 10px;
-    letter-spacing: 0.14em;
+    justify-content: space-between;
+    padding: 10px 14px;
+    border-left: none;
+    border-bottom: 1px solid rgba(245, 158, 11, 0.22);
   }
-  .ops-section-head {
-    flex-direction: column;
-    gap: 6px;
+  .ops-vault-rail-label {
+    flex-direction: row;
+    gap: 8px;
+    letter-spacing: 0.16em;
+  }
+  .ops-board-vault {
+    flex-direction: column-reverse;
+  }
+  .ops-vault-panel {
+    max-width: none;
+    max-height: 0;
+  }
+  .ops-board.is-vault-open .ops-vault-panel {
+    max-width: none;
+    max-height: 640px;
+  }
+  .ops-grid--vault,
+  .ops-board-live {
+    grid-template-columns: 1fr;
   }
 }
 

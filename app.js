@@ -299,6 +299,33 @@
         };
     })();
 
+    // Ops · sanfona lateral FUTURO MENU
+    (function initOpsVaultAccordion() {
+        const board = document.getElementById('opsBoard');
+        const toggle = document.getElementById('opsVaultToggle');
+        const panel = document.getElementById('opsVaultPanel');
+        if (!board || !toggle || !panel) return;
+
+        const hint = toggle.querySelector('[data-ops-vault-hint]');
+        const KEY = 'melvinOpsVaultOpen';
+
+        function setOpen(open) {
+            board.classList.toggle('is-vault-open', open);
+            toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+            panel.setAttribute('aria-hidden', open ? 'false' : 'true');
+            if (hint) hint.textContent = open ? 'Fechar' : 'Abrir';
+            try { localStorage.setItem(KEY, open ? '1' : '0'); } catch (e) {}
+        }
+
+        let open = false;
+        try { open = localStorage.getItem(KEY) === '1'; } catch (e) {}
+        setOpen(open);
+
+        toggle.addEventListener('click', () => {
+            setOpen(!board.classList.contains('is-vault-open'));
+        });
+    })();
+
     // Cronograma de Trabalho · tabs
     const cronoTabs = document.querySelectorAll('[data-crono-tab]');
     const cronoPanels = document.querySelectorAll('[data-crono-panel]');
