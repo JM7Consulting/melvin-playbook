@@ -6492,90 +6492,104 @@ body.light-mode .jd-doc li { color: #334155; }
 }
 
 .ops-board {
-  display: flex;
+  --ops-ease: cubic-bezier(0.4, 0, 0.2, 1);
+  --ops-dur: 0.48s;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 52px;
   align-items: stretch;
   gap: 12px;
   margin-bottom: 24px;
-  /* Altura FIXA: aberta = fechada (não “pula” ao abrir a sanfona) */
+  /* Altura FIXA: aberta = fechada */
   height: 200px;
   min-height: 200px;
   max-height: 200px;
+  transition: grid-template-columns var(--ops-dur) var(--ops-ease);
 }
 .ops-board.is-vault-open {
+  grid-template-columns: minmax(0, 0.88fr) minmax(0, 1.2fr);
   height: 200px;
   min-height: 200px;
   max-height: 200px;
 }
 .ops-board-live {
-  flex: 1 1 auto;
   min-width: 0;
   height: 100%;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 12px;
-  transition: flex-basis 0.35s ease;
-}
-.ops-board.is-vault-open .ops-board-live {
-  flex: 1 1 38%;
 }
 
-/* Cofre: fechado = só o trilho; aberto = sanfona — mesma altura do board */
+/* Cofre: sanfona lateral — abrir e fechar com a mesma curva */
 .ops-board-vault {
+  position: relative;
   display: flex;
   flex-direction: row;
-  flex: 0 0 52px;
-  width: 52px;
-  max-width: 52px;
+  min-width: 0;
+  width: 100%;
   height: 100%;
   align-items: stretch;
   gap: 0;
   border-radius: 14px;
   border: 1px solid rgba(245, 158, 11, 0.32);
-  background: transparent;
+  background: rgba(245, 158, 11, 0.06);
   overflow: hidden;
-  transition: flex-basis 0.35s ease, max-width 0.35s ease, background 0.25s ease, border-color 0.25s ease, width 0.35s ease;
+  transition:
+    border-color var(--ops-dur) var(--ops-ease),
+    background-color var(--ops-dur) var(--ops-ease);
 }
-.ops-board.is-vault-open .ops-board-vault {
-  flex: 1 1 58%;
-  width: auto;
-  max-width: none;
-  border-style: dashed;
-  border-color: rgba(245, 158, 11, 0.4);
+.ops-board-vault::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
   background:
     repeating-linear-gradient(
       -12deg,
       transparent,
       transparent 10px,
-      rgba(245, 158, 11, 0.03) 10px,
-      rgba(245, 158, 11, 0.03) 20px
-    ),
-    rgba(15, 23, 42, 0.4);
+      rgba(245, 158, 11, 0.035) 10px,
+      rgba(245, 158, 11, 0.035) 20px
+    );
+  transition: opacity var(--ops-dur) var(--ops-ease);
+}
+.ops-board.is-vault-open .ops-board-vault {
+  border-style: dashed;
+  border-color: rgba(245, 158, 11, 0.4);
+  background: rgba(15, 23, 42, 0.4);
+}
+.ops-board.is-vault-open .ops-board-vault::before {
+  opacity: 1;
 }
 
 .ops-vault-panel {
-  flex: 0 0 0;
-  width: 0;
+  position: relative;
+  z-index: 1;
+  flex: 1 1 auto;
   min-width: 0;
-  max-width: 0;
+  width: 0;
   height: 100%;
   opacity: 0;
   overflow: hidden;
-  padding: 0;
+  padding: 8px 0;
   pointer-events: none;
-  transition: flex-basis 0.35s ease, max-width 0.35s ease, opacity 0.25s ease, padding 0.35s ease;
   display: flex;
   flex-direction: column;
   gap: 6px;
   justify-content: stretch;
+  transform: translateX(14px);
+  transition:
+    opacity var(--ops-dur) var(--ops-ease),
+    transform var(--ops-dur) var(--ops-ease),
+    padding var(--ops-dur) var(--ops-ease);
 }
 .ops-board.is-vault-open .ops-vault-panel {
-  flex: 1 1 auto;
   width: auto;
-  max-width: none;
-  min-width: 0;
   opacity: 1;
   padding: 8px 10px;
   pointer-events: auto;
+  transform: translateX(0);
   overflow: hidden;
 }
 
@@ -6608,9 +6622,11 @@ body.light-mode .jd-doc li { color: #334155; }
   align-items: stretch;
 }
 
-/* Trilho: uma linha vertical limpa + hint horizontal — altura = board */
+/* Trilho */
 .ops-vault-rail {
   appearance: none;
+  position: relative;
+  z-index: 2;
   flex: 0 0 52px;
   width: 52px;
   height: 100%;
@@ -6626,7 +6642,7 @@ body.light-mode .jd-doc li { color: #334155; }
   color: #fbbf24;
   background: rgba(245, 158, 11, 0.12);
   border: none;
-  transition: background 0.2s ease, color 0.2s ease;
+  transition: background var(--ops-dur) var(--ops-ease);
 }
 .ops-vault-rail:hover {
   background: rgba(245, 158, 11, 0.2);
@@ -6843,20 +6859,22 @@ body.light-mode .ops-card--slot {
 }
 body.light-mode .ops-card--slot strong { color: #64748b; }
 body.light-mode .ops-board-vault {
-  background: transparent;
+  background: rgba(245, 158, 11, 0.06);
   border-color: rgba(180, 83, 9, 0.3);
 }
 body.light-mode .ops-board.is-vault-open .ops-board-vault {
+  background: #fff7ed;
+  border-color: rgba(180, 83, 9, 0.32);
+}
+body.light-mode .ops-board-vault::before {
   background:
     repeating-linear-gradient(
       -12deg,
       transparent,
       transparent 10px,
-      rgba(245, 158, 11, 0.04) 10px,
-      rgba(245, 158, 11, 0.04) 20px
-    ),
-    #fff7ed;
-  border-color: rgba(180, 83, 9, 0.32);
+      rgba(245, 158, 11, 0.045) 10px,
+      rgba(245, 158, 11, 0.045) 20px
+    );
 }
 body.light-mode .ops-vault-rail {
   color: #b45309;
@@ -6898,12 +6916,13 @@ body.light-mode .nav-lane--ops .ops-nav-standby { opacity: 0.78; }
   }
   .ops-page .ops-hero .fq-badge-stack { order: 3; justify-self: start; }
   .ops-board {
-    flex-direction: column;
+    grid-template-columns: 1fr;
     height: auto;
     min-height: 0;
     max-height: none;
   }
   .ops-board.is-vault-open {
+    grid-template-columns: 1fr;
     height: auto;
     min-height: 0;
     max-height: none;
@@ -6916,14 +6935,10 @@ body.light-mode .nav-lane--ops .ops-nav-standby { opacity: 0.78; }
     min-height: 88px;
   }
   .ops-board-vault {
-    flex: 0 0 auto;
     width: 100%;
-    max-width: none;
     height: auto;
-  }
-  .ops-board.is-vault-open .ops-board-live,
-  .ops-board.is-vault-open .ops-board-vault {
-    flex: 1 1 auto;
+    flex-direction: column-reverse;
+    min-height: 48px;
   }
   .ops-vault-rail {
     flex: 0 0 auto;
@@ -6939,21 +6954,19 @@ body.light-mode .nav-lane--ops .ops-nav-standby { opacity: 0.78; }
     transform: none;
     letter-spacing: 0.16em;
   }
-  .ops-board-vault {
-    flex-direction: column-reverse;
-  }
   .ops-vault-panel {
-    flex: 0 0 0;
     width: 100%;
-    max-width: none;
     max-height: 0;
     height: auto;
+    transform: translateY(-6px);
+    padding: 0 10px;
   }
   .ops-board.is-vault-open .ops-vault-panel {
-    flex: 1 1 auto;
     max-height: 480px;
     width: 100%;
     overflow: auto;
+    transform: translateY(0);
+    padding: 8px 10px;
   }
   .ops-grid--vault,
   .ops-board-live {
