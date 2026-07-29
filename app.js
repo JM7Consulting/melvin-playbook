@@ -190,6 +190,29 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     })();
 
+// Job Description BDR · tabs (hash-only page #job-bdr)
+    (function initJdTabs() {
+        const root = document.getElementById('job-bdr');
+        if (!root) return;
+        const tabs = root.querySelectorAll('[data-jd-tab]');
+        const panels = root.querySelectorAll('[data-jd-panel]');
+        tabs.forEach((tab) => {
+            tab.addEventListener('click', () => {
+                const id = tab.getAttribute('data-jd-tab');
+                tabs.forEach((t) => {
+                    t.classList.toggle('is-active', t === tab);
+                    t.setAttribute('aria-selected', t === tab ? 'true' : 'false');
+                });
+                panels.forEach((panel) => {
+                    const match = panel.getAttribute('data-jd-panel') === id;
+                    panel.classList.toggle('is-active', match);
+                    if (match) panel.removeAttribute('hidden');
+                    else panel.setAttribute('hidden', '');
+                });
+            });
+        });
+    })();
+
     // Cronograma de Trabalho · tabs
     const cronoTabs = document.querySelectorAll('[data-crono-tab]');
     const cronoPanels = document.querySelectorAll('[data-crono-panel]');
