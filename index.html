@@ -733,12 +733,22 @@
 
         <!-- Ops Hub: oculto do menu público — #ops ou 5 cliques no © do rodapé -->
         <section id="ops" class="blueprint-page ops-page" style="padding: 40px; border-radius: 16px;" data-hidden-nav="true">
-            <div class="fq-hero fq-hero--gim">
+            <div class="fq-hero fq-hero--gim ops-hero">
                 <div class="fq-hero-copy">
                     <div class="fq-kicker">JM7 · Interno</div>
                     <div class="cadencia-title-line fq-hero-title">Ops · Menu interno</div>
-                    <p class="cadencia-subtitle" style="padding-left:0;max-width:58ch;">Cockpit JM7: páginas ativas fora do menu público + rotinas em stand-by. Clique em <strong>FUTURO MENU</strong> para abrir o cofre lateral. Liberação via <strong>#ops</strong> ou 5 cliques no ©.</p>
+                    <p class="cadencia-subtitle" style="padding-left:0;max-width:42ch;">Cockpit JM7 · páginas ativas + rotinas em stand-by. Clique em <strong>FUTURO MENU</strong> para abrir o cofre.</p>
                 </div>
+
+                <div class="ops-help ops-help--hero">
+                    <p><strong>Como abrir de novo</strong></p>
+                    <ul>
+                        <li>Bookmark: <code>#ops</code></li>
+                        <li>Atalho: <strong>5 cliques</strong> no texto <em>© Melvin</em> no rodapé da sidebar (não na logo)</li>
+                    </ul>
+                    <button type="button" class="ops-exit-btn" id="opsExitBtn">Sair do modo Ops neste browser</button>
+                </div>
+
                 <div class="fq-badge-stack" aria-hidden="true">
                     <div class="fq-badge-orb fq-badge-orb--gim"><span>OPS</span><small>JM7</small></div>
                     <p class="fq-badge-cap">Hash · localStorage</p>
@@ -805,14 +815,6 @@
                         <span class="ops-vault-rail-hint" data-ops-vault-hint>Abrir</span>
                     </button>
                 </div>
-
-            <div class="ops-help">
-                <p><strong>Como abrir de novo</strong></p>
-                <ul>
-                    <li>Bookmark: <code>#ops</code></li>
-                    <li>Atalho: <strong>5 cliques</strong> no texto <em>© Melvin</em> no rodapé da sidebar (não na logo — a logo recolhe o menu)</li>
-                </ul>
-                <button type="button" class="ops-exit-btn" id="opsExitBtn">Sair do modo Ops neste browser</button>
             </div>
         </section>
 

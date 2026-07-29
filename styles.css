@@ -6745,6 +6745,39 @@ body.light-mode .jd-doc li { color: #334155; }
   border-radius: 4px;
   font-size: 0.8rem;
 }
+
+/* Info no hero (espaço do meio) */
+.ops-page .ops-hero.fq-hero {
+  grid-template-columns: minmax(200px, 1.1fr) minmax(240px, 1.15fr) auto;
+  gap: 18px;
+  align-items: stretch;
+}
+.ops-help--hero {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  padding: 14px 16px;
+  align-self: center;
+  background: rgba(15, 23, 42, 0.45);
+  border-color: rgba(148, 163, 184, 0.22);
+}
+.ops-help--hero p { margin: 0 0 6px; font-size: 0.82rem; }
+.ops-help--hero ul {
+  margin: 0 0 10px;
+  padding-left: 1rem;
+  font-size: 0.78rem;
+  line-height: 1.45;
+}
+.ops-help--hero .ops-exit-btn {
+  width: 100%;
+  text-align: center;
+}
+
+/* Fechado: trilho com a mesma altura dos cards */
+.ops-board:not(.is-vault-open) .ops-board-vault,
+.ops-board:not(.is-vault-open) .ops-vault-rail {
+  min-height: 100%;
+}
 .ops-exit-btn {
   appearance: none;
   border: 1px solid rgba(248, 113, 113, 0.35);
@@ -6821,9 +6854,19 @@ body.light-mode .ops-vault-badge {
 }
 body.light-mode .ops-help { background: #f8fafc; }
 body.light-mode .ops-help p { color: #0f172a; }
+body.light-mode .ops-help--hero {
+  background: rgba(255, 255, 255, 0.92);
+  border-color: rgba(15, 23, 42, 0.12);
+  box-shadow: 0 6px 16px rgba(15, 23, 42, 0.05);
+}
 body.light-mode .nav-lane--ops .ops-nav-standby { opacity: 0.78; }
 
 @media (max-width: 980px) {
+  .ops-page .ops-hero.fq-hero {
+    grid-template-columns: 1fr;
+  }
+  .ops-help--hero { order: 2; }
+  .ops-page .ops-hero .fq-badge-stack { order: 3; justify-self: start; }
   .ops-board {
     flex-direction: column;
   }
