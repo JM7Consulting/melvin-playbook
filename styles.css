@@ -118,20 +118,58 @@
             object-fit: contain;
         }
 
-        aside .logo-full { display: block; max-width: 180px; max-height: 50px; }
+        aside .logo-full {
+            display: block;
+            width: 180px;
+            height: 54px;
+            padding: 0;
+            border: 0;
+            background: transparent;
+        }
         aside .logo-mini { display: none; width: 45px; height: 45px; }
 
         aside.collapsed .logo-full { display: none; }
         aside.collapsed .logo-mini { display: block; }
 
-        /* Logo azul-escura some no aside escuro → versão clara no dark mode */
+        /*
+         * Lockup oficial: mantém o degradê do símbolo e aplica uma capa
+         * somente sobre o wordmark (dark #C5C6C7 · light #0B0C10).
+         */
+        .melvin-logo-lockup {
+            --melvin-wordmark: #C5C6C7;
+            position: relative;
+            display: block;
+            width: 100%;
+            aspect-ratio: 377 / 112;
+        }
+        .melvin-logo-lockup::before {
+            content: '';
+            position: absolute;
+            inset: 0 auto 0 0;
+            width: 30%;
+            background: url("logo_simples_removebcg.png") center / contain no-repeat;
+            pointer-events: none;
+        }
+        .melvin-logo-lockup::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: var(--melvin-wordmark);
+            -webkit-mask: url("logo_completa-removebg.png") center / contain no-repeat;
+            mask: url("logo_completa-removebg.png") center / contain no-repeat;
+            clip-path: inset(0 0 0 30%);
+            pointer-events: none;
+        }
+        body.light-mode .melvin-logo-lockup {
+            --melvin-wordmark: #0B0C10;
+        }
         aside .logo-toggle {
-            filter: brightness(0) invert(1);
+            filter: none;
             opacity: 0.96;
         }
         aside .logo-toggle:hover {
             transform: scale(1.03);
-            filter: brightness(0) invert(1) drop-shadow(0 0 10px rgba(100, 252, 216, 0.65));
+            filter: drop-shadow(0 0 10px rgba(100, 252, 216, 0.42));
             opacity: 1;
         }
         body.light-mode aside .logo-toggle {
@@ -3749,7 +3787,7 @@ body.light-mode .vh-day .d {
   border-radius: 18px;
   overflow: hidden;
   border: 1px solid var(--border);
-  background: #F7F8F6;
+  background: #0B0C10;
   box-shadow: 0 18px 40px rgba(0, 0, 0, 0.28);
 }
 .welcome-hero {
@@ -3758,49 +3796,47 @@ body.light-mode .vh-day .d {
   align-items: center;
   justify-content: center;
   background:
-    radial-gradient(ellipse 70% 90% at 55% 40%, rgba(100, 252, 216, 0.14), transparent 60%),
-    linear-gradient(105deg, #E8F4F1 0%, #F3F7F6 45%, #EEF5F3 100%);
+    radial-gradient(ellipse 70% 90% at 55% 40%, rgba(102, 252, 241, 0.1), transparent 60%),
+    #0B0C10;
   padding: 48px 24px;
 }
 .welcome-logo-frame {
-  background: #FFFFFF;
-  border: 1px solid rgba(15, 118, 110, 0.14);
+  background: rgba(17, 23, 29, 0.72);
+  border: 1px solid rgba(102, 252, 241, 0.14);
   border-radius: 16px;
   padding: 20px 40px;
   box-shadow:
-    0 1px 0 rgba(255, 255, 255, 0.9),
-    0 10px 28px rgba(15, 23, 42, 0.08);
+    0 1px 0 rgba(255, 255, 255, 0.03),
+    0 10px 28px rgba(0, 0, 0, 0.24);
 }
 .welcome-logo {
   display: block;
   height: 56px;
-  width: auto;
+  width: min(340px, 72vw);
   max-width: min(340px, 72vw);
-  object-fit: contain;
-  image-rendering: -webkit-optimize-contrast;
 }
 .welcome-body {
   padding: 56px 40px 64px;
   text-align: center;
-  background: #F7F8F6;
+  background: #0B0C10;
 }
 .welcome-heading {
   font-size: clamp(1.55rem, 2.6vw, 2.15rem);
   font-weight: 800;
   letter-spacing: -0.03em;
-  color: #111827;
+  color: #F1F5F9;
   margin: 0 0 18px;
   line-height: 1.25;
 }
 .welcome-heading span {
-  color: #0F766E;
+  color: #66FCF1;
 }
 .welcome-lead {
   max-width: 62ch;
   margin: 0 auto 36px;
   font-size: 1.02rem;
   line-height: 1.65;
-  color: #64748B;
+  color: #94A3B8;
 }
 .welcome-pills {
   display: flex;
@@ -3828,6 +3864,7 @@ body.light-mode .vh-day .d {
   transform: translateY(-1px);
 }
 body.light-mode .welcome-shell {
+  background: #F7F8F6;
   box-shadow: 0 12px 32px rgba(15, 23, 42, 0.08);
   border-color: rgba(15, 23, 42, 0.08);
 }
@@ -3837,9 +3874,14 @@ body.light-mode .welcome-hero {
     linear-gradient(105deg, #EAF3F1 0%, #F7FAF9 50%, #EEF4F2 100%);
 }
 body.light-mode .welcome-logo-frame {
+  background: #FFFFFF;
   border-color: rgba(15, 118, 110, 0.12);
   box-shadow: 0 8px 22px rgba(15, 23, 42, 0.06);
 }
+body.light-mode .welcome-body { background: #F7F8F6; }
+body.light-mode .welcome-heading { color: #111827; }
+body.light-mode .welcome-heading span { color: #0F766E; }
+body.light-mode .welcome-lead { color: #64748B; }
 @media (max-width: 720px) {
   .welcome-hero { min-height: 180px; padding: 36px 16px; }
   .welcome-logo { height: 44px; }
