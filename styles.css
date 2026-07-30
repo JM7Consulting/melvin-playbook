@@ -800,6 +800,58 @@
         .section-toggle-btn:hover { border-color: var(--melvin-cyan); color: var(--melvin-cyan); }
         .matrix-content { width: 100%; overflow-x: auto; transition: max-height 0.3s ease; }
         .matrix-table { width: 100%; border-collapse: collapse; font-size: 0.82rem; text-align: center; min-width: 900px; }
+
+        /* Plano de Ação · fases em accordion */
+        #plano-acao .plano-fase > .matrix-header {
+            cursor: pointer;
+            user-select: none;
+            gap: 12px;
+        }
+        #plano-acao .plano-fase > .matrix-header:hover {
+            filter: brightness(1.08);
+        }
+        #plano-acao .plano-fase-chevron {
+            margin-left: auto;
+            flex-shrink: 0;
+            width: 28px;
+            height: 28px;
+            border-radius: 999px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(148, 163, 184, 0.28);
+            color: #94a3b8;
+            font-size: 0.75rem;
+            line-height: 1;
+            transition: transform 0.2s ease, color 0.15s ease, border-color 0.15s ease;
+        }
+        #plano-acao .plano-fase-chevron::before { content: '▾'; }
+        #plano-acao .plano-fase.is-collapsed > .matrix-content { display: none; }
+        #plano-acao .plano-fase.is-collapsed .plano-fase-chevron::before { content: '▸'; }
+        #plano-acao .plano-fase:not(.is-collapsed) .plano-fase-chevron {
+            color: var(--melvin-cyan);
+            border-color: rgba(100, 252, 216, 0.35);
+        }
+        body.light-mode #plano-acao .plano-fase-chevron {
+            border-color: rgba(15, 23, 42, 0.12);
+            color: #64748b;
+        }
+        body.light-mode #plano-acao .plano-fase:not(.is-collapsed) .plano-fase-chevron {
+            color: #0f766e;
+            border-color: rgba(15, 118, 110, 0.28);
+        }
+
+        .crono-delivery--task {
+            align-items: start;
+        }
+        .crono-delivery--task .ops-pend-item {
+            width: 100%;
+            grid-template-columns: 20px auto 1fr;
+        }
+        .crono-delivery--task .crono-delivery-day {
+            text-align: right;
+            line-height: 1.35;
+        }
         .matrix-table th, .matrix-table td { padding: 12px 8px; border: 1px solid var(--border); }
         .matrix-table th { background: #0D1217; color: var(--text-muted); font-weight: 700; }
         .matrix-table th.col-channel { background: #0A0F14; color: white; text-align: left; padding-left: 15px; width: 180px; }

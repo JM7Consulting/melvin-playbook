@@ -309,8 +309,33 @@
         });
     })();
 
-    // Ops · Pendências / Ata — abas + checkboxes no localStorage
+    // Ops · Pendências — checkboxes sincronizados em Ata / Plano / Cronograma
     (function initOpsPendencias() {
+        const KEY = 'melvinOpsPendencias.v1';
+        let state = {};
+        try { state = JSON.parse(localStorage.getItem(KEY) || '{}') || {}; } catch (e) { state = {}; }
+
+        function applyState(id, on) {
+            document.querySelectorAll(`input[data-pend-id="${id}"]`).forEach((input) => {
+                input.checked = on;
+                const item = input.closest('.ops-pend-item');
+                if (item) item.classList.toggle('is-done', on);
+            });
+        }
+
+        Object.keys(state).forEach((id) => applyState(id, !!state[id]));
+
+        document.querySelectorAll('input[data-pend-id]').forEach((input) => {
+            if (input.dataset.pendBound) return;
+            input.dataset.pendBound = '1';
+            input.addEventListener('change', () => {
+                const id = input.getAttribute('data-pend-id');
+                state[id] = input.checked;
+                applyState(id, input.checked);
+                try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {}
+            });
+        });
+
         const root = document.getElementById('ops-pendencias');
         if (!root) return;
 
@@ -345,21 +370,36 @@
             if (saved && root.querySelector(`[data-ops-pend-panel="${saved}"]`)) startTab = saved;
         } catch (e) {}
         setTab(startTab);
+    })();
 
-        const KEY = 'melvinOpsPendencias.v1';
-        let state = {};
-        try { state = JSON.parse(localStorage.getItem(KEY) || '{}') || {}; } catch (e) { state = {}; }
-
-        root.querySelectorAll('input[data-pend-id]').forEach((input) => {
-            const id = input.getAttribute('data-pend-id');
-            const item = input.closest('.ops-pend-item');
-            const on = !!state[id];
-            input.checked = on;
-            if (item) item.classList.toggle('is-done', on);
-            input.addEventListener('change', () => {
-                state[id] = input.checked;
-                if (item) item.classList.toggle('is-done', input.checked);
-                try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {}
+    // Plano de Ação · fases em accordion (fechadas por padrão)
+    (function initPlanoFaseAccordion() {
+        const root = document.getElementById('plano-acao');
+        if (!root) return;
+        root.querySelectorAll('.matrix-widget.dash-matrix').forEach((card) => {
+            const header = card.querySelector(':scope > .matrix-header');
+            const content = card.querySelector(':scope > .matrix-content');
+            if (!header || !content) return;
+            card.classList.add('plano-fase', 'is-collapsed');
+            header.setAttribute('role', 'button');
+            header.setAttribute('tabindex', '0');
+            header.setAttribute('aria-expanded', 'false');
+            if (!header.querySelector('.plano-fase-chevron')) {
+                const chev = document.createElement('span');
+                chev.className = 'plano-fase-chevron';
+                chev.setAttribute('aria-hidden', 'true');
+                header.appendChild(chev);
+            }
+            const toggle = () => {
+                const collapsed = card.classList.toggle('is-collapsed');
+                header.setAttribute('aria-expanded', collapsed ? 'false' : 'true');
+            };
+            header.addEventListener('click', toggle);
+            header.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    toggle();
+                }
             });
         });
     })();
