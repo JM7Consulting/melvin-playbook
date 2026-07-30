@@ -157,7 +157,8 @@
             background: var(--melvin-wordmark);
             -webkit-mask: url("logo_completa-removebg.png") center / contain no-repeat;
             mask: url("logo_completa-removebg.png") center / contain no-repeat;
-            clip-path: inset(0 0 0 30%);
+            /* O wordmark começa após 34% do lockup; antes disso é só o ícone. */
+            clip-path: inset(0 0 0 34%);
             pointer-events: none;
         }
         body.light-mode .melvin-logo-lockup {
