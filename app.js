@@ -213,9 +213,11 @@
         });
     })();
 
-// Ops · hidden menu unlock (#ops or 5 clicks on sidebar ©)
+// Ops · hidden menu unlock (somente 5 cliques no © do rodapé)
     (function initOpsUnlock() {
-        const STORAGE_KEY = 'melvinOpsUnlock';
+        const STORAGE_KEY = 'melvinOpsUnlock.v2';
+        // Chave antiga liberava o menu ao abrir qualquer página oculta
+        try { localStorage.removeItem('melvinOpsUnlock'); } catch (e) {}
         const lane = document.getElementById('opsNavLane');
         const exitBtn = document.getElementById('opsExitBtn');
         const taps = [
@@ -253,13 +255,6 @@
 
         setOpsVisible(isUnlocked());
 
-        // Visiting #ops always unlocks this browser
-        const unlockIfOpsHash = () => {
-            if ((window.location.hash || '') === '#ops') unlockOps(false);
-        };
-        unlockIfOpsHash();
-        window.addEventListener('hashchange', unlockIfOpsHash);
-
         // 5 clicks on footer © (not logo — logo toggles collapse)
         let clickCount = 0;
         let clickTimer = null;
@@ -285,18 +280,6 @@
         if (exitBtn) {
             exitBtn.addEventListener('click', () => lockOps());
         }
-
-        // Expose for SPA nav: unlock when landing on #ops via in-app links
-        window.__melvinUnlockOpsIfNeeded = function (hash) {
-            if (!hash) return;
-            if (hash === '#ops') {
-                unlockOps(false);
-                return;
-            }
-            const el = document.querySelector(hash);
-            const section = el && (el.matches('main > section') ? el : el.closest('main > section'));
-            if (section && section.hasAttribute('data-hidden-nav')) unlockOps(false);
-        };
     })();
 
     // Ops · sanfona lateral FUTURO MENU
@@ -397,7 +380,6 @@
         });
         targetSection.style.display = 'block';
         targetSection.classList.add('page-active');
-        if (typeof window.__melvinUnlockOpsIfNeeded === 'function') window.__melvinUnlockOpsIfNeeded(pageHash);
 
         if (breadcrumbText) {
             if (pageHash === '#home-dashboard') {
@@ -437,7 +419,6 @@
 
     window.addEventListener('popstate', () => {
         const hash = window.location.hash || '#home-dashboard';
-        if (typeof window.__melvinUnlockOpsIfNeeded === 'function') window.__melvinUnlockOpsIfNeeded(hash);
         if (!forceScreenChange(hash) && document.getElementById('home-dashboard')) {
             forceScreenChange('#home-dashboard');
         }
