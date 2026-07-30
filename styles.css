@@ -3812,9 +3812,8 @@ body.light-mode .vh-day .d {
 }
 .welcome-logo {
   display: block;
-  height: 56px;
-  width: min(340px, 72vw);
-  max-width: min(340px, 72vw);
+  width: min(300px, 72vw);
+  height: auto;
 }
 .welcome-body {
   padding: 56px 40px 64px;
@@ -3885,7 +3884,7 @@ body.light-mode .welcome-heading span { color: #0F766E; }
 body.light-mode .welcome-lead { color: #64748B; }
 @media (max-width: 720px) {
   .welcome-hero { min-height: 180px; padding: 36px 16px; }
-  .welcome-logo { height: 44px; }
+  .welcome-logo { width: min(240px, 68vw); }
   .welcome-logo-frame { padding: 14px 24px; }
   .welcome-body { padding: 40px 20px 48px; }
   .welcome-pill { width: 100%; max-width: 280px; }
