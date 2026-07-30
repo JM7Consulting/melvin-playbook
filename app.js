@@ -309,10 +309,43 @@
         });
     })();
 
-    // Ops · Pendências / Ata — checkboxes no localStorage
+    // Ops · Pendências / Ata — abas + checkboxes no localStorage
     (function initOpsPendencias() {
         const root = document.getElementById('ops-pendencias');
         if (!root) return;
+
+        const tabs = root.querySelectorAll('[data-ops-pend-tab]');
+        const panels = root.querySelectorAll('[data-ops-pend-panel]');
+        const TAB_KEY = 'melvinOpsPendTab.v1';
+
+        function setTab(id) {
+            tabs.forEach((tab) => {
+                const on = tab.getAttribute('data-ops-pend-tab') === id;
+                tab.classList.toggle('is-active', on);
+                tab.setAttribute('aria-selected', on ? 'true' : 'false');
+            });
+            panels.forEach((panel) => {
+                const on = panel.getAttribute('data-ops-pend-panel') === id;
+                panel.classList.toggle('is-active', on);
+                if (on) panel.removeAttribute('hidden');
+                else panel.setAttribute('hidden', '');
+            });
+            try { localStorage.setItem(TAB_KEY, id); } catch (e) {}
+        }
+
+        tabs.forEach((tab) => {
+            tab.addEventListener('click', () => {
+                setTab(tab.getAttribute('data-ops-pend-tab'));
+            });
+        });
+
+        let startTab = 'ata';
+        try {
+            const saved = localStorage.getItem(TAB_KEY);
+            if (saved && root.querySelector(`[data-ops-pend-panel="${saved}"]`)) startTab = saved;
+        } catch (e) {}
+        setTab(startTab);
+
         const KEY = 'melvinOpsPendencias.v1';
         let state = {};
         try { state = JSON.parse(localStorage.getItem(KEY) || '{}') || {}; } catch (e) { state = {}; }

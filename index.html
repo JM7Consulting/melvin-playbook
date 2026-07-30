@@ -825,7 +825,7 @@
                 <div class="fq-hero-copy">
                     <div class="fq-kicker">JM7 · Interno · 30/07/2026</div>
                     <div class="cadencia-title-line fq-hero-title">Pendências · Ata Melvin</div>
-                    <p class="cadencia-subtitle" style="padding-left:0;max-width:52ch;">Checklist da reunião RevOps Book com Igor Silveira. Resumo acima · tarefas abaixo em três blocos: fazer · já respondido · desenvolver.</p>
+                    <p class="cadencia-subtitle" style="padding-left:0;max-width:52ch;">Aba <strong>Ata</strong> = resumo da reunião. Os cards abaixo abrem as listas: fazer · já respondido · desenvolver.</p>
                 </div>
                 <div class="fq-badge-stack" aria-hidden="true">
                     <div class="fq-badge-orb fq-badge-orb--gim"><span>ATA</span><small>30/07</small></div>
@@ -833,174 +833,185 @@
                 </div>
             </div>
 
-            <div class="ops-pend-stats" aria-label="Contagem de itens">
-                <div class="ops-pend-stat ops-pend-stat--fazer">
+            <div class="ops-pend-tabs" role="tablist" aria-label="Pendências da ata">
+                <button type="button" class="ops-pend-tab ops-pend-tab--ata is-active" role="tab" aria-selected="true" data-ops-pend-tab="ata">
+                    <strong>Ata</strong>
+                    <span>Resumo da reunião</span>
+                </button>
+                <button type="button" class="ops-pend-stat ops-pend-stat--fazer" role="tab" aria-selected="false" data-ops-pend-tab="fazer">
                     <strong>15</strong>
                     <span>Fazer agora</span>
-                </div>
-                <div class="ops-pend-stat ops-pend-stat--ok">
+                </button>
+                <button type="button" class="ops-pend-stat ops-pend-stat--ok" role="tab" aria-selected="false" data-ops-pend-tab="resposta">
                     <strong>11</strong>
                     <span>Já tem resposta</span>
-                </div>
-                <div class="ops-pend-stat ops-pend-stat--dev">
+                </button>
+                <button type="button" class="ops-pend-stat ops-pend-stat--dev" role="tab" aria-selected="false" data-ops-pend-tab="dev">
                     <strong>12</strong>
                     <span>Desenvolver</span>
-                </div>
+                </button>
             </div>
 
-            <div class="ops-pend-priority">
-                <strong>Prioridade imediata (7–14 dias)</strong>
-                <p>Logo oficial · reunião Outbound com Vinícius · revisão de templates em grupo · personas (Supervisor / Gerente / Planejador) · concorrentes faltantes · calculadora · cronograma semanal · seguir contratação do BDR.</p>
-            </div>
-
-            <!-- RESUMO DA REUNIÃO -->
-            <div class="ops-pend-block">
-                <div class="ops-pend-block-head">
-                    <span class="ops-section-chip">RESUMO</span>
-                    <h3 class="ops-section-title">Reunião · RevOps Book</h3>
-                    <p class="ops-section-desc">Convidados: Jailson Martins · Igor Silveira. Fonte: transcrição Gemini (revisada).</p>
+            <!-- ABA: ATA -->
+            <div class="ops-pend-panel is-active" data-ops-pend-panel="ata" role="tabpanel">
+                <div class="ops-pend-priority">
+                    <strong>Prioridade imediata (7–14 dias)</strong>
+                    <p>Logo oficial · reunião Outbound com Vinícius · revisão de templates em grupo · personas (Supervisor / Gerente / Planejador) · concorrentes faltantes · calculadora · cronograma semanal · seguir contratação do BDR.</p>
                 </div>
 
-                <div class="ops-pend-resumo-grid">
+                <div class="ops-pend-block">
+                    <div class="ops-pend-block-head">
+                        <span class="ops-section-chip">RESUMO</span>
+                        <h3 class="ops-section-title">Reunião · RevOps Book</h3>
+                        <p class="ops-section-desc">Convidados: Jailson Martins · Igor Silveira. Fonte: transcrição Gemini (revisada).</p>
+                    </div>
+
+                    <div class="ops-pend-resumo-grid">
+                        <article class="ops-pend-card">
+                            <h4>Gestão e metas financeiras</h4>
+                            <p>Documentos centralizados na intranet / Book. Meta de recuperação de <strong>R$ 38.000/mês</strong> nos próximos <strong>90 dias</strong> (Inspeção Noturna: perda estimada ~R$ 130 mil/mês). Infraestrutura de dados unificada para controle gerencial. Resultados esperados rumo a janeiro via reestruturação comercial.</p>
+                        </article>
+                        <article class="ops-pend-card">
+                            <h4>Refinamento das operações comerciais</h4>
+                            <p>Rigor no CRM (Lost com motivo) e automatização via IA priorizados para otimizar leads. Fluxo de vendas ajustado para conversão. Cadência preferida <strong>D1–D35</strong>. Tom: dor do cliente, sem linguagem “de vendedor”. Latência alta fora do horário → IA no 1º contato + qualificação (ex.: CNPJ).</p>
+                        </article>
+                        <article class="ops-pend-card">
+                            <h4>Contratação estratégica</h4>
+                            <p>Decisão: <strong>contratar BDR externo</strong> — não treinar membros internos (ex.: Gabi). Mitiga dependência técnica &gt;50% (Gabi / Fabrício). Testes de atividade com Vinícius começam imediatamente enquanto o processo seletivo anda.</p>
+                        </article>
+                    </div>
+
+                    <div class="ops-pend-resumo-more">
+                        <details class="ops-pend-details" open>
+                            <summary>Detalhes da ata (pontos discutidos)</summary>
+                            <ul class="ops-pend-bullets">
+                                <li><strong>Menu oculto:</strong> 5 cliques no © do rodapé · Hub Ops com plano de ação, JD e cronograma (atualizar ≥1×/semana).</li>
+                                <li><strong>Identidade visual:</strong> logo do projeto desatualizada — usar pasta <em>Identidade Visual</em> no Google Drive. Falta diretriz formal de Tom de Voz (comercial + marketing).</li>
+                                <li><strong>Propriedade / GitHub:</strong> códigos no GitHub (Jailson). Docs são da Melvin → destino futuro: intranet Melvin Gestão (acessos/permissões).</li>
+                                <li><strong>Outbound:</strong> revisão da esteira com Vinícius; metodologia dele mais direta/assertiva que abordagens “spam”.</li>
+                                <li><strong>Lead scoring:</strong> pesos por função, indústria, nº de PCM · classificação A/B · funil pré-SDR conforme volume. Igor envia a planilha.</li>
+                                <li><strong>Produtos:</strong> alinhar hierarquia software / hardware / módulos com Fabrício (Bitrix).</li>
+                                <li><strong>Concorrência incompleta:</strong> SW Traction + Fractal · HW Dynamox, Traction, TEB, BBX.</li>
+                                <li><strong>CS:</strong> fluxo com TI · registro no Bitrix já configurado para Fabrício. Entrevistas de sucesso a cada 15 dias (como Pedro fazia).</li>
+                                <li><strong>Mensagens:</strong> revisar templates com Jonatas, Fabrício e Heimar · testes A/B · evitar frases corporativas.</li>
+                                <li><strong>CX weekend:</strong> nutrir leads com conteúdo educativo (blog/notícia) no fim de semana até a reunião de segunda.</li>
+                                <li><strong>Indicadores:</strong> Igor desenvolve plataforma zoom out / zoom in (operacional · tático · gerencial).</li>
+                                <li><strong>Metodologia:</strong> “Inspeção Noturna” / Bridge Mapping inspirados em Neemias — inspecionar fissuras + conversar + plano de ação.</li>
+                            </ul>
+                        </details>
+                        <details class="ops-pend-details">
+                            <summary>Próximas etapas (como saíram do Gemini)</summary>
+                            <ul class="ops-pend-bullets">
+                                <li>[Jailson] Atualizar Cronograma ≥1×/semana</li>
+                                <li>[Jailson] Finalizar Outbound — reunião com Vinícius</li>
+                                <li>[Jailson] Revisar Calculadora de Soberania</li>
+                                <li>[Jailson] Ajustar Personas (supervisor · gerente · planejador)</li>
+                                <li>[Jailson] Alinhar hierarquia de produtos com Fabrício (Bitrix)</li>
+                                <li>[Jailson] Entrevistas de sucesso a cada 15 dias</li>
+                                <li>[Jailson] Revisar mensagens da cadência (evitar repulsão)</li>
+                                <li>[Igor] Enviar arquivo da planilha (lead scoring)</li>
+                                <li>[Jailson, Jonatas, Fabrício, Heimar] Revisar templates Outbound</li>
+                                <li>[Jailson, Vinícius] Testar nova metodologia de prospecção</li>
+                            </ul>
+                        </details>
+                    </div>
+                </div>
+
+                <div class="ops-pend-footer-grid">
                     <article class="ops-pend-card">
-                        <h4>Gestão e metas financeiras</h4>
-                        <p>Documentos centralizados na intranet / Book. Meta de recuperação de <strong>R$ 38.000/mês</strong> nos próximos <strong>90 dias</strong> (Inspeção Noturna: perda estimada ~R$ 130 mil/mês). Infraestrutura de dados unificada para controle gerencial. Resultados esperados rumo a janeiro via reestruturação comercial.</p>
+                        <h4>Ordem sugerida de ataque</h4>
+                        <p><strong>Sprint A — rápido:</strong> logo · personas · concorrentes · cronograma · mensagens (com time)</p>
+                        <p><strong>Sprint B — alinhamento:</strong> Outbound com Vinícius · hierarquia com Fabrício · planilha Igor · processo BDR</p>
+                        <p><strong>Sprint C — construir:</strong> calculadora · tom de voz · IA latência · nutrição weekend · SOPs · análise competitiva completa</p>
                     </article>
                     <article class="ops-pend-card">
-                        <h4>Refinamento das operações comerciais</h4>
-                        <p>Rigor no CRM (Lost com motivo) e automatização via IA priorizados para otimizar leads. Fluxo de vendas ajustado para conversão. Cadência preferida <strong>D1–D35</strong>. Tom: dor do cliente, sem linguagem “de vendedor”. Latência alta fora do horário → IA no 1º contato + qualificação (ex.: CNPJ).</p>
+                        <h4>Dependências fora do seu controle</h4>
+                        <p><strong>Igor:</strong> planilha lead scoring · plataforma de indicadores · pasta Identidade Visual · intranet Melvin Gestão</p>
+                        <p><strong>Vinícius:</strong> revisão + testes Outbound · apoio na contratação BDR</p>
+                        <p><strong>Fabrício:</strong> Bitrix (produtos) + CS · templates</p>
+                        <p><strong>Jonatas / Heimar:</strong> revisão coletiva dos modelos de mensagem</p>
                     </article>
-                    <article class="ops-pend-card">
-                        <h4>Contratação estratégica</h4>
-                        <p>Decisão: <strong>contratar BDR externo</strong> — não treinar membros internos (ex.: Gabi). Mitiga dependência técnica &gt;50% (Gabi / Fabrício). Testes de atividade com Vinícius começam imediatamente enquanto o processo seletivo anda.</p>
-                    </article>
                 </div>
 
-                <div class="ops-pend-resumo-more">
-                    <details class="ops-pend-details" open>
-                        <summary>Detalhes da ata (pontos discutidos)</summary>
-                        <ul class="ops-pend-bullets">
-                            <li><strong>Menu oculto:</strong> 5 cliques no © do rodapé · Hub Ops com plano de ação, JD e cronograma (atualizar ≥1×/semana).</li>
-                            <li><strong>Identidade visual:</strong> logo do projeto desatualizada — usar pasta <em>Identidade Visual</em> no Google Drive. Falta diretriz formal de Tom de Voz (comercial + marketing).</li>
-                            <li><strong>Propriedade / GitHub:</strong> códigos no GitHub (Jailson). Docs são da Melvin → destino futuro: intranet Melvin Gestão (acessos/permissões).</li>
-                            <li><strong>Outbound:</strong> revisão da esteira com Vinícius; metodologia dele mais direta/assertiva que abordagens “spam”.</li>
-                            <li><strong>Lead scoring:</strong> pesos por função, indústria, nº de PCM · classificação A/B · funil pré-SDR conforme volume. Igor envia a planilha.</li>
-                            <li><strong>Produtos:</strong> alinhar hierarquia software / hardware / módulos com Fabrício (Bitrix).</li>
-                            <li><strong>Concorrência incompleta:</strong> SW Traction + Fractal · HW Dynamox, Traction, TEB, BBX.</li>
-                            <li><strong>CS:</strong> fluxo com TI · registro no Bitrix já configurado para Fabrício. Entrevistas de sucesso a cada 15 dias (como Pedro fazia).</li>
-                            <li><strong>Mensagens:</strong> revisar templates com Jonatas, Fabrício e Heimar · testes A/B · evitar frases corporativas.</li>
-                            <li><strong>CX weekend:</strong> nutrir leads com conteúdo educativo (blog/notícia) no fim de semana até a reunião de segunda.</li>
-                            <li><strong>Indicadores:</strong> Igor desenvolve plataforma zoom out / zoom in (operacional · tático · gerencial).</li>
-                            <li><strong>Metodologia:</strong> “Inspeção Noturna” / Bridge Mapping inspirados em Neemias — inspecionar fissuras + conversar + plano de ação.</li>
-                        </ul>
-                    </details>
-                    <details class="ops-pend-details">
-                        <summary>Próximas etapas (como saíram do Gemini)</summary>
-                        <ul class="ops-pend-bullets">
-                            <li>[Jailson] Atualizar Cronograma ≥1×/semana</li>
-                            <li>[Jailson] Finalizar Outbound — reunião com Vinícius</li>
-                            <li>[Jailson] Revisar Calculadora de Soberania</li>
-                            <li>[Jailson] Ajustar Personas (supervisor · gerente · planejador)</li>
-                            <li>[Jailson] Alinhar hierarquia de produtos com Fabrício (Bitrix)</li>
-                            <li>[Jailson] Entrevistas de sucesso a cada 15 dias</li>
-                            <li>[Jailson] Revisar mensagens da cadência (evitar repulsão)</li>
-                            <li>[Igor] Enviar arquivo da planilha (lead scoring)</li>
-                            <li>[Jailson, Jonatas, Fabrício, Heimar] Revisar templates Outbound</li>
-                            <li>[Jailson, Vinícius] Testar nova metodologia de prospecção</li>
-                        </ul>
-                    </details>
+                <p class="ops-pend-note">Nota: o resumo automático do Gemini acertou o grosso (meta 38k, BDR externo, Outbound, CRM, IA), mas omitiu logo/identidade, concorrentes, personas Supervisor/Gerente/Planejador, entrevistas a cada 15 dias e a Calculadora de Soberania — por isso esta página usa a ata completa, não só o resumo.</p>
+            </div>
+
+            <!-- ABA: FAZER -->
+            <div class="ops-pend-panel" data-ops-pend-panel="fazer" role="tabpanel" hidden>
+                <div class="ops-pend-block" id="opsPendFazer">
+                    <div class="ops-pend-block-head">
+                        <span class="ops-section-chip ops-section-chip--live">1 · FAZER AGORA</span>
+                        <h3 class="ops-section-title">O que você tem que fazer</h3>
+                        <p class="ops-section-desc">Marque conforme avançar — o estado fica salvo neste browser.</p>
+                    </div>
+                    <div class="ops-pend-list" data-ops-pend-list="fazer">
+                        <label class="ops-pend-item"><input type="checkbox" data-pend-id="t01"><span class="ops-pend-tag">Cronograma</span><span class="ops-pend-body"><strong>Atualizar o Cronograma ≥ 1× por semana</strong><small>Manter andamento visível no Hub Ops / Plano de Ação.</small></span></label>
+                        <label class="ops-pend-item"><input type="checkbox" data-pend-id="t02"><span class="ops-pend-tag">Outbound</span><span class="ops-pend-body"><strong>Agendar / realizar reunião de revisão da esteira Outbound</strong><small>Com Vinícius — formalizar atualizações e práticas que já funcionam.</small></span></label>
+                        <label class="ops-pend-item"><input type="checkbox" data-pend-id="t03"><span class="ops-pend-tag">Outbound</span><span class="ops-pend-body"><strong>Testar a nova metodologia de prospecção</strong><small>Abordagem mais direta (estilo Vinícius) vs. cadência convencional. Começa já, em paralelo à contratação.</small></span></label>
+                        <label class="ops-pend-item"><input type="checkbox" data-pend-id="t04"><span class="ops-pend-tag">Mensagens</span><span class="ops-pend-body"><strong>Revisar templates Outbound em grupo</strong><small>Com Jonatas, Fabrício e Heimar. Priorizar dor do interlocutor.</small></span></label>
+                        <label class="ops-pend-item"><input type="checkbox" data-pend-id="t05"><span class="ops-pend-tag">Mensagens</span><span class="ops-pend-body"><strong>Refinar textos / comentários da cadência comercial</strong><small>Limpar frases que causam repulsão; reconhecer rotina corrida de manutenção.</small></span></label>
+                        <label class="ops-pend-item"><input type="checkbox" data-pend-id="t06"><span class="ops-pend-tag">Identidade</span><span class="ops-pend-body"><strong>Trocar logo pela versão da pasta Identidade Visual (Drive)</strong><small>Igor: logo atual do projeto está desatualizada.</small></span></label>
+                        <label class="ops-pend-item"><input type="checkbox" data-pend-id="t07"><span class="ops-pend-tag">Personas</span><span class="ops-pend-body"><strong>Atualizar lista de personas no material</strong><small>Estrutura correta: Supervisor · Gerente · Planejador.</small></span></label>
+                        <label class="ops-pend-item"><input type="checkbox" data-pend-id="t08"><span class="ops-pend-tag">Produtos</span><span class="ops-pend-body"><strong>Validar hierarquia de produtos/módulos no Bitrix</strong><small>Conversar com Fabrício e espelhar na documentação.</small></span></label>
+                        <label class="ops-pend-item"><input type="checkbox" data-pend-id="t09"><span class="ops-pend-tag">Calculadora</span><span class="ops-pend-body"><strong>Revisar lógica da Calculadora de Soberania</strong><small>Corrigir métricas de conversão apontadas na reunião.</small></span></label>
+                        <label class="ops-pend-item"><input type="checkbox" data-pend-id="t10"><span class="ops-pend-tag">Concorrência</span><span class="ops-pend-body"><strong>Completar análise competitiva no Book</strong><small>SW: Traction, Fractal · HW: Dynamox, Traction, TEB, BBX.</small></span></label>
+                        <label class="ops-pend-item"><input type="checkbox" data-pend-id="t11"><span class="ops-pend-tag">CS</span><span class="ops-pend-body"><strong>Entrevista de caso de sucesso a cada 15 dias</strong><small>Renovar compreensão das dores — processo que Pedro fazia com bom resultado.</small></span></label>
+                        <label class="ops-pend-item"><input type="checkbox" data-pend-id="t12"><span class="ops-pend-tag">Processos</span><span class="ops-pend-body"><strong>Procedimentar conhecimento crítico (Gabi / Fabrício)</strong><small>Risco &gt;50% de dependência — SOPs para novos membros.</small></span></label>
+                        <label class="ops-pend-item"><input type="checkbox" data-pend-id="t13"><span class="ops-pend-tag">CRM</span><span class="ops-pend-body"><strong>Reforçar rigor de preenchimento no CRM (Lost com motivo)</strong><small>Sem motivo de Lost não há análise. Carregar cultura no onboarding do BDR.</small></span></label>
+                        <label class="ops-pend-item"><input type="checkbox" data-pend-id="t14"><span class="ops-pend-tag">Lead scoring</span><span class="ops-pend-body"><strong>Receber planilha de lead scoring do Igor</strong><small>Incorporar no fluxo / documentação (pesos A/B).</small></span></label>
+                        <label class="ops-pend-item"><input type="checkbox" data-pend-id="t15"><span class="ops-pend-tag">Contratação</span><span class="ops-pend-body"><strong>Seguir processo seletivo do BDR (já decidido)</strong><small>Externo — não treinar Gabi. Testes de atividade em paralelo.</small></span></label>
+                    </div>
                 </div>
             </div>
 
-            <!-- CHECKLIST: FAZER -->
-            <div class="ops-pend-block" id="opsPendFazer">
-                <div class="ops-pend-block-head">
-                    <span class="ops-section-chip ops-section-chip--live">1 · FAZER AGORA</span>
-                    <h3 class="ops-section-title">O que você tem que fazer</h3>
-                    <p class="ops-section-desc">Marque conforme avançar — o estado fica salvo neste browser.</p>
-                </div>
-                <div class="ops-pend-list" data-ops-pend-list="fazer">
-                    <label class="ops-pend-item"><input type="checkbox" data-pend-id="t01"><span class="ops-pend-tag">Cronograma</span><span class="ops-pend-body"><strong>Atualizar o Cronograma ≥ 1× por semana</strong><small>Manter andamento visível no Hub Ops / Plano de Ação.</small></span></label>
-                    <label class="ops-pend-item"><input type="checkbox" data-pend-id="t02"><span class="ops-pend-tag">Outbound</span><span class="ops-pend-body"><strong>Agendar / realizar reunião de revisão da esteira Outbound</strong><small>Com Vinícius — formalizar atualizações e práticas que já funcionam.</small></span></label>
-                    <label class="ops-pend-item"><input type="checkbox" data-pend-id="t03"><span class="ops-pend-tag">Outbound</span><span class="ops-pend-body"><strong>Testar a nova metodologia de prospecção</strong><small>Abordagem mais direta (estilo Vinícius) vs. cadência convencional. Começa já, em paralelo à contratação.</small></span></label>
-                    <label class="ops-pend-item"><input type="checkbox" data-pend-id="t04"><span class="ops-pend-tag">Mensagens</span><span class="ops-pend-body"><strong>Revisar templates Outbound em grupo</strong><small>Com Jonatas, Fabrício e Heimar. Priorizar dor do interlocutor.</small></span></label>
-                    <label class="ops-pend-item"><input type="checkbox" data-pend-id="t05"><span class="ops-pend-tag">Mensagens</span><span class="ops-pend-body"><strong>Refinar textos / comentários da cadência comercial</strong><small>Limpar frases que causam repulsão; reconhecer rotina corrida de manutenção.</small></span></label>
-                    <label class="ops-pend-item"><input type="checkbox" data-pend-id="t06"><span class="ops-pend-tag">Identidade</span><span class="ops-pend-body"><strong>Trocar logo pela versão da pasta Identidade Visual (Drive)</strong><small>Igor: logo atual do projeto está desatualizada.</small></span></label>
-                    <label class="ops-pend-item"><input type="checkbox" data-pend-id="t07"><span class="ops-pend-tag">Personas</span><span class="ops-pend-body"><strong>Atualizar lista de personas no material</strong><small>Estrutura correta: Supervisor · Gerente · Planejador.</small></span></label>
-                    <label class="ops-pend-item"><input type="checkbox" data-pend-id="t08"><span class="ops-pend-tag">Produtos</span><span class="ops-pend-body"><strong>Validar hierarquia de produtos/módulos no Bitrix</strong><small>Conversar com Fabrício e espelhar na documentação.</small></span></label>
-                    <label class="ops-pend-item"><input type="checkbox" data-pend-id="t09"><span class="ops-pend-tag">Calculadora</span><span class="ops-pend-body"><strong>Revisar lógica da Calculadora de Soberania</strong><small>Corrigir métricas de conversão apontadas na reunião.</small></span></label>
-                    <label class="ops-pend-item"><input type="checkbox" data-pend-id="t10"><span class="ops-pend-tag">Concorrência</span><span class="ops-pend-body"><strong>Completar análise competitiva no Book</strong><small>SW: Traction, Fractal · HW: Dynamox, Traction, TEB, BBX.</small></span></label>
-                    <label class="ops-pend-item"><input type="checkbox" data-pend-id="t11"><span class="ops-pend-tag">CS</span><span class="ops-pend-body"><strong>Entrevista de caso de sucesso a cada 15 dias</strong><small>Renovar compreensão das dores — processo que Pedro fazia com bom resultado.</small></span></label>
-                    <label class="ops-pend-item"><input type="checkbox" data-pend-id="t12"><span class="ops-pend-tag">Processos</span><span class="ops-pend-body"><strong>Procedimentar conhecimento crítico (Gabi / Fabrício)</strong><small>Risco &gt;50% de dependência — SOPs para novos membros.</small></span></label>
-                    <label class="ops-pend-item"><input type="checkbox" data-pend-id="t13"><span class="ops-pend-tag">CRM</span><span class="ops-pend-body"><strong>Reforçar rigor de preenchimento no CRM (Lost com motivo)</strong><small>Sem motivo de Lost não há análise. Carregar cultura no onboarding do BDR.</small></span></label>
-                    <label class="ops-pend-item"><input type="checkbox" data-pend-id="t14"><span class="ops-pend-tag">Lead scoring</span><span class="ops-pend-body"><strong>Receber planilha de lead scoring do Igor</strong><small>Incorporar no fluxo / documentação (pesos A/B).</small></span></label>
-                    <label class="ops-pend-item"><input type="checkbox" data-pend-id="t15"><span class="ops-pend-tag">Contratação</span><span class="ops-pend-body"><strong>Seguir processo seletivo do BDR (já decidido)</strong><small>Externo — não treinar Gabi. Testes de atividade em paralelo.</small></span></label>
+            <!-- ABA: JÁ TEM RESPOSTA -->
+            <div class="ops-pend-panel" data-ops-pend-panel="resposta" role="tabpanel" hidden>
+                <div class="ops-pend-block" id="opsPendResposta">
+                    <div class="ops-pend-block-head">
+                        <span class="ops-section-chip ops-section-chip--ok">2 · JÁ TEM RESPOSTA</span>
+                        <h3 class="ops-section-title">O que a própria reunião já fechou</h3>
+                        <p class="ops-section-desc">Não reinventar — use como referência ao executar os itens de “Fazer agora”.</p>
+                    </div>
+                    <div class="ops-pend-answers">
+                        <article class="ops-pend-answer"><span class="ops-pend-tag">Contratação</span><strong>BDR externo, não capacitação interna da Gabi</strong><p>Confirmado Jailson + Igor. Mitiga dependência e acelera Outbound.</p></article>
+                        <article class="ops-pend-answer"><span class="ops-pend-tag">Financeiro</span><strong>Meta: R$ 38 mil/mês em até 90 dias</strong><p>Inspeção Noturna: perda estimada ~R$ 130 mil/mês. Reestruturação comercial rumo a janeiro.</p></article>
+                        <article class="ops-pend-answer"><span class="ops-pend-tag">Personas</span><strong>Supervisor · Gerente · Planejador</strong><p>Estrutura correta citada na ata — falta só aplicar no Book.</p></article>
+                        <article class="ops-pend-answer"><span class="ops-pend-tag">Concorrência</span><strong>Lista explícita a incluir</strong><p>SW: Traction, Fractal · HW: Dynamox, Traction, TEB, BBX.</p></article>
+                        <article class="ops-pend-answer"><span class="ops-pend-tag">Cadência</span><strong>Preferência D1–D35</strong><p>Fases densas e espaçadas para a reunião não esfriar.</p></article>
+                        <article class="ops-pend-answer"><span class="ops-pend-tag">Tom</span><strong>Dor do cliente &gt; linguagem corporativa</strong><p>Critério claro para revisão de pitches e templates.</p></article>
+                        <article class="ops-pend-answer"><span class="ops-pend-tag">Lead scoring</span><strong>Lógica A/B verbalizada</strong><p>Pesos: função, indústria, nº de PCM · funil pré-SDR conforme volume.</p></article>
+                        <article class="ops-pend-answer"><span class="ops-pend-tag">Identidade</span><strong>Logo certa = pasta Identidade Visual (Drive)</strong><p>Não inventar asset — usar arquivo oficial indicado pelo Igor.</p></article>
+                        <article class="ops-pend-answer"><span class="ops-pend-tag">Metodologia</span><strong>Inspeção Noturna / Bridge Mapping = Neemias</strong><p>Inspecionar fissuras + conversar com envolvidos + plano de ação.</p></article>
+                        <article class="ops-pend-answer"><span class="ops-pend-tag">CS</span><strong>Fluxo CS + Bitrix já configurado p/ Fabrício</strong><p>Necessidade do cliente com TI; registro no Bitrix é o ponto de acompanhamento.</p></article>
+                        <article class="ops-pend-answer"><span class="ops-pend-tag">Ops</span><strong>Menu oculto (5 cliques) + Hub Ops já apresentado</strong><p>Ferramenta de gestão interna já existe no site.</p></article>
+                    </div>
                 </div>
             </div>
 
-            <!-- JÁ TEM RESPOSTA -->
-            <div class="ops-pend-block" id="opsPendResposta">
-                <div class="ops-pend-block-head">
-                    <span class="ops-section-chip ops-section-chip--ok">2 · JÁ TEM RESPOSTA</span>
-                    <h3 class="ops-section-title">O que a própria reunião já fechou</h3>
-                    <p class="ops-section-desc">Não reinventar — use como referência ao executar os itens acima.</p>
-                </div>
-                <div class="ops-pend-answers">
-                    <article class="ops-pend-answer"><span class="ops-pend-tag">Contratação</span><strong>BDR externo, não capacitação interna da Gabi</strong><p>Confirmado Jailson + Igor. Mitiga dependência e acelera Outbound.</p></article>
-                    <article class="ops-pend-answer"><span class="ops-pend-tag">Financeiro</span><strong>Meta: R$ 38 mil/mês em até 90 dias</strong><p>Inspeção Noturna: perda estimada ~R$ 130 mil/mês. Reestruturação comercial rumo a janeiro.</p></article>
-                    <article class="ops-pend-answer"><span class="ops-pend-tag">Personas</span><strong>Supervisor · Gerente · Planejador</strong><p>Estrutura correta citada na ata — falta só aplicar no Book.</p></article>
-                    <article class="ops-pend-answer"><span class="ops-pend-tag">Concorrência</span><strong>Lista explícita a incluir</strong><p>SW: Traction, Fractal · HW: Dynamox, Traction, TEB, BBX.</p></article>
-                    <article class="ops-pend-answer"><span class="ops-pend-tag">Cadência</span><strong>Preferência D1–D35</strong><p>Fases densas e espaçadas para a reunião não esfriar.</p></article>
-                    <article class="ops-pend-answer"><span class="ops-pend-tag">Tom</span><strong>Dor do cliente &gt; linguagem corporativa</strong><p>Critério claro para revisão de pitches e templates.</p></article>
-                    <article class="ops-pend-answer"><span class="ops-pend-tag">Lead scoring</span><strong>Lógica A/B verbalizada</strong><p>Pesos: função, indústria, nº de PCM · funil pré-SDR conforme volume.</p></article>
-                    <article class="ops-pend-answer"><span class="ops-pend-tag">Identidade</span><strong>Logo certa = pasta Identidade Visual (Drive)</strong><p>Não inventar asset — usar arquivo oficial indicado pelo Igor.</p></article>
-                    <article class="ops-pend-answer"><span class="ops-pend-tag">Metodologia</span><strong>Inspeção Noturna / Bridge Mapping = Neemias</strong><p>Inspecionar fissuras + conversar com envolvidos + plano de ação.</p></article>
-                    <article class="ops-pend-answer"><span class="ops-pend-tag">CS</span><strong>Fluxo CS + Bitrix já configurado p/ Fabrício</strong><p>Necessidade do cliente com TI; registro no Bitrix é o ponto de acompanhamento.</p></article>
-                    <article class="ops-pend-answer"><span class="ops-pend-tag">Ops</span><strong>Menu oculto (5 cliques) + Hub Ops já apresentado</strong><p>Ferramenta de gestão interna já existe no site.</p></article>
-                </div>
-            </div>
-
-            <!-- DESENVOLVER -->
-            <div class="ops-pend-block" id="opsPendDev">
-                <div class="ops-pend-block-head">
-                    <span class="ops-section-chip ops-section-chip--vault">3 · DESENVOLVER</span>
-                    <h3 class="ops-section-title">O que ainda precisa ser construído</h3>
-                    <p class="ops-section-desc">Entregas novas ou incompletas. Alguns são seus; outros dependem da Melvin (Igor / intranet).</p>
-                </div>
-                <div class="ops-pend-list" data-ops-pend-list="dev">
-                    <label class="ops-pend-item"><input type="checkbox" data-pend-id="d01"><span class="ops-pend-tag">IA / Latência</span><span class="ops-pend-body"><strong>Contato inicial com IA fora do horário comercial</strong><small>1º contato + qualificação com dados públicos (ex.: CNPJ).</small></span></label>
-                    <label class="ops-pend-item"><input type="checkbox" data-pend-id="d02"><span class="ops-pend-tag">CX</span><span class="ops-pend-body"><strong>Nutrição de fim de semana com conteúdo educativo</strong><small>Blog/notícia útil no sábado/domingo até a reunião de segunda.</small></span></label>
-                    <label class="ops-pend-item"><input type="checkbox" data-pend-id="d03"><span class="ops-pend-tag">Tom de voz</span><span class="ops-pend-body"><strong>Diretrizes formais de Tom de Voz (comercial + marketing)</strong><small>Hoje há orientação verbal; falta documento/padrão no Book.</small></span></label>
-                    <label class="ops-pend-item"><input type="checkbox" data-pend-id="d04"><span class="ops-pend-tag">Calculadora</span><span class="ops-pend-body"><strong>Corrigir / reescrever métricas da Calculadora de Soberania</strong><small>Desenvolver a lógica certa de conversão e republicar.</small></span></label>
-                    <label class="ops-pend-item"><input type="checkbox" data-pend-id="d05"><span class="ops-pend-tag">Concorrência</span><span class="ops-pend-body"><strong>Página/seção de análise competitiva completa</strong><small>Incluir concorrentes listados + lacunas apontadas pelo Igor.</small></span></label>
-                    <label class="ops-pend-item"><input type="checkbox" data-pend-id="d06"><span class="ops-pend-tag">Mensagens</span><span class="ops-pend-body"><strong>Bateria de testes A/B das mensagens Outbound</strong><small>Com experiência de Fabrício, Jonatas/Jonathan e Heimar.</small></span></label>
-                    <label class="ops-pend-item"><input type="checkbox" data-pend-id="d07"><span class="ops-pend-tag">Playbooks</span><span class="ops-pend-body"><strong>SOPs dos processos críticos (anti-dependência)</strong><small>Tirar da cabeça de Gabi/Fabrício e colocar no Book/intranet.</small></span></label>
-                    <label class="ops-pend-item"><input type="checkbox" data-pend-id="d08"><span class="ops-pend-tag">Lead scoring</span><span class="ops-pend-body"><strong>Integrar lead scoring A/B no fluxo / documentação</strong><small>Após receber planilha do Igor: pesos + funil pré-SDR.</small></span></label>
-                    <label class="ops-pend-item"><input type="checkbox" data-pend-id="d09"><span class="ops-pend-tag">Produtos</span><span class="ops-pend-body"><strong>Documentar hierarquia real de produtos no Book</strong><small>Depois da validação no Bitrix: software / hardware / módulos.</small></span></label>
-                    <label class="ops-pend-item"><input type="checkbox" data-pend-id="d10"><span class="ops-pend-tag">Plataforma</span><span class="ops-pend-body"><strong>Plataforma de indicadores (zoom out / zoom in) — Igor</strong><small>Operacional · tático · gerencial. Acompanhar integração futura.</small></span></label>
-                    <label class="ops-pend-item"><input type="checkbox" data-pend-id="d11"><span class="ops-pend-tag">Intranet</span><span class="ops-pend-body"><strong>Mover documentos do projeto para intranet Melvin Gestão</strong><small>GitHub + Book atuais; destino com acessos/permissões.</small></span></label>
-                    <label class="ops-pend-item"><input type="checkbox" data-pend-id="d12"><span class="ops-pend-tag">Automação</span><span class="ops-pend-body"><strong>Avaliar automação de mensagens utilitárias (WA / Meta)</strong><small>Fechar o que automatizar vs. humano no fluxo e-mail + call + WhatsApp.</small></span></label>
+            <!-- ABA: DESENVOLVER -->
+            <div class="ops-pend-panel" data-ops-pend-panel="dev" role="tabpanel" hidden>
+                <div class="ops-pend-block" id="opsPendDev">
+                    <div class="ops-pend-block-head">
+                        <span class="ops-section-chip ops-section-chip--vault">3 · DESENVOLVER</span>
+                        <h3 class="ops-section-title">O que ainda precisa ser construído</h3>
+                        <p class="ops-section-desc">Entregas novas ou incompletas. Alguns são seus; outros dependem da Melvin (Igor / intranet).</p>
+                    </div>
+                    <div class="ops-pend-list" data-ops-pend-list="dev">
+                        <label class="ops-pend-item"><input type="checkbox" data-pend-id="d01"><span class="ops-pend-tag">IA / Latência</span><span class="ops-pend-body"><strong>Contato inicial com IA fora do horário comercial</strong><small>1º contato + qualificação com dados públicos (ex.: CNPJ).</small></span></label>
+                        <label class="ops-pend-item"><input type="checkbox" data-pend-id="d02"><span class="ops-pend-tag">CX</span><span class="ops-pend-body"><strong>Nutrição de fim de semana com conteúdo educativo</strong><small>Blog/notícia útil no sábado/domingo até a reunião de segunda.</small></span></label>
+                        <label class="ops-pend-item"><input type="checkbox" data-pend-id="d03"><span class="ops-pend-tag">Tom de voz</span><span class="ops-pend-body"><strong>Diretrizes formais de Tom de Voz (comercial + marketing)</strong><small>Hoje há orientação verbal; falta documento/padrão no Book.</small></span></label>
+                        <label class="ops-pend-item"><input type="checkbox" data-pend-id="d04"><span class="ops-pend-tag">Calculadora</span><span class="ops-pend-body"><strong>Corrigir / reescrever métricas da Calculadora de Soberania</strong><small>Desenvolver a lógica certa de conversão e republicar.</small></span></label>
+                        <label class="ops-pend-item"><input type="checkbox" data-pend-id="d05"><span class="ops-pend-tag">Concorrência</span><span class="ops-pend-body"><strong>Página/seção de análise competitiva completa</strong><small>Incluir concorrentes listados + lacunas apontadas pelo Igor.</small></span></label>
+                        <label class="ops-pend-item"><input type="checkbox" data-pend-id="d06"><span class="ops-pend-tag">Mensagens</span><span class="ops-pend-body"><strong>Bateria de testes A/B das mensagens Outbound</strong><small>Com experiência de Fabrício, Jonatas/Jonathan e Heimar.</small></span></label>
+                        <label class="ops-pend-item"><input type="checkbox" data-pend-id="d07"><span class="ops-pend-tag">Playbooks</span><span class="ops-pend-body"><strong>SOPs dos processos críticos (anti-dependência)</strong><small>Tirar da cabeça de Gabi/Fabrício e colocar no Book/intranet.</small></span></label>
+                        <label class="ops-pend-item"><input type="checkbox" data-pend-id="d08"><span class="ops-pend-tag">Lead scoring</span><span class="ops-pend-body"><strong>Integrar lead scoring A/B no fluxo / documentação</strong><small>Após receber planilha do Igor: pesos + funil pré-SDR.</small></span></label>
+                        <label class="ops-pend-item"><input type="checkbox" data-pend-id="d09"><span class="ops-pend-tag">Produtos</span><span class="ops-pend-body"><strong>Documentar hierarquia real de produtos no Book</strong><small>Depois da validação no Bitrix: software / hardware / módulos.</small></span></label>
+                        <label class="ops-pend-item"><input type="checkbox" data-pend-id="d10"><span class="ops-pend-tag">Plataforma</span><span class="ops-pend-body"><strong>Plataforma de indicadores (zoom out / zoom in) — Igor</strong><small>Operacional · tático · gerencial. Acompanhar integração futura.</small></span></label>
+                        <label class="ops-pend-item"><input type="checkbox" data-pend-id="d11"><span class="ops-pend-tag">Intranet</span><span class="ops-pend-body"><strong>Mover documentos do projeto para intranet Melvin Gestão</strong><small>GitHub + Book atuais; destino com acessos/permissões.</small></span></label>
+                        <label class="ops-pend-item"><input type="checkbox" data-pend-id="d12"><span class="ops-pend-tag">Automação</span><span class="ops-pend-body"><strong>Avaliar automação de mensagens utilitárias (WA / Meta)</strong><small>Fechar o que automatizar vs. humano no fluxo e-mail + call + WhatsApp.</small></span></label>
+                    </div>
                 </div>
             </div>
-
-            <!-- ORDEM + DEPENDÊNCIAS -->
-            <div class="ops-pend-footer-grid">
-                <article class="ops-pend-card">
-                    <h4>Ordem sugerida de ataque</h4>
-                    <p><strong>Sprint A — rápido:</strong> logo · personas · concorrentes · cronograma · mensagens (com time)</p>
-                    <p><strong>Sprint B — alinhamento:</strong> Outbound com Vinícius · hierarquia com Fabrício · planilha Igor · processo BDR</p>
-                    <p><strong>Sprint C — construir:</strong> calculadora · tom de voz · IA latência · nutrição weekend · SOPs · análise competitiva completa</p>
-                </article>
-                <article class="ops-pend-card">
-                    <h4>Dependências fora do seu controle</h4>
-                    <p><strong>Igor:</strong> planilha lead scoring · plataforma de indicadores · pasta Identidade Visual · intranet Melvin Gestão</p>
-                    <p><strong>Vinícius:</strong> revisão + testes Outbound · apoio na contratação BDR</p>
-                    <p><strong>Fabrício:</strong> Bitrix (produtos) + CS · templates</p>
-                    <p><strong>Jonatas / Heimar:</strong> revisão coletiva dos modelos de mensagem</p>
-                </article>
-            </div>
-
-            <p class="ops-pend-note">Nota: o resumo automático do Gemini acertou o grosso (meta 38k, BDR externo, Outbound, CRM, IA), mas omitiu logo/identidade, concorrentes, personas Supervisor/Gerente/Planejador, entrevistas a cada 15 dias e a Calculadora de Soberania — por isso esta página usa a ata completa, não só o resumo.</p>
         </section>
 
         <!-- Job Description BDR: oculto do menu — abrir com #job-bdr -->
