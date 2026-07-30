@@ -6424,6 +6424,8 @@ body.light-mode .jd-doc p,
 body.light-mode .jd-doc li { color: #334155; }
 
 /* === Ops Hub + hidden sidebar lane === */
+/* display:flex da .nav-lane sobrescreve [hidden] do browser */
+.nav-lane[hidden] { display: none !important; }
 .nav-lane--ops {
   margin-top: 8px;
   padding-top: 8px;
