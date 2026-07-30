@@ -309,6 +309,28 @@
         });
     })();
 
+    // Ops · Pendências / Ata — checkboxes no localStorage
+    (function initOpsPendencias() {
+        const root = document.getElementById('ops-pendencias');
+        if (!root) return;
+        const KEY = 'melvinOpsPendencias.v1';
+        let state = {};
+        try { state = JSON.parse(localStorage.getItem(KEY) || '{}') || {}; } catch (e) { state = {}; }
+
+        root.querySelectorAll('input[data-pend-id]').forEach((input) => {
+            const id = input.getAttribute('data-pend-id');
+            const item = input.closest('.ops-pend-item');
+            const on = !!state[id];
+            input.checked = on;
+            if (item) item.classList.toggle('is-done', on);
+            input.addEventListener('change', () => {
+                state[id] = input.checked;
+                if (item) item.classList.toggle('is-done', input.checked);
+                try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {}
+            });
+        });
+    })();
+
     // Cronograma de Trabalho · tabs
     const cronoTabs = document.querySelectorAll('[data-crono-tab]');
     const cronoPanels = document.querySelectorAll('[data-crono-panel]');
