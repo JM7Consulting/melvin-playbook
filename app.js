@@ -518,6 +518,41 @@
         });
     })();
 
+    (function initAbmPaperTabs() {
+        const root = document.getElementById('abm-paper');
+        if (!root) return;
+        const tabs = Array.from(root.querySelectorAll('[data-paper-tab]'));
+        const panels = root.querySelectorAll('[data-paper-panel]');
+        function activate(id) {
+            const sid = String(id);
+            tabs.forEach((t) => {
+                const on = t.getAttribute('data-paper-tab') === sid;
+                t.classList.toggle('is-active', on);
+                t.setAttribute('aria-selected', on ? 'true' : 'false');
+            });
+            panels.forEach((panel) => {
+                const on = panel.getAttribute('data-paper-panel') === sid;
+                panel.classList.toggle('is-active', on);
+                if (on) panel.removeAttribute('hidden');
+                else panel.setAttribute('hidden', '');
+            });
+        }
+        tabs.forEach((tab) => {
+            tab.addEventListener('click', () => activate(tab.getAttribute('data-paper-tab')));
+        });
+        root.addEventListener('keydown', (e) => {
+            if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+            const active = tabs.findIndex((t) => t.classList.contains('is-active'));
+            if (active < 0) return;
+            const next = e.key === 'ArrowRight'
+                ? Math.min(tabs.length - 1, active + 1)
+                : Math.max(0, active - 1);
+            activate(tabs[next].getAttribute('data-paper-tab'));
+            tabs[next].focus();
+            e.preventDefault();
+        });
+    })();
+
 // Ops · hidden menu unlock (somente 5 cliques no © do rodapé)
     (function initOpsUnlock() {
         const STORAGE_KEY = 'melvinOpsUnlock.v2';
