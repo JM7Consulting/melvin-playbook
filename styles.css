@@ -8198,6 +8198,8 @@ body.light-mode .ops-pend-answer .ops-pend-tag {
   border-color: rgba(22, 163, 74, 0.22);
   background: rgba(22, 163, 74, 0.08);
 }
+body.light-mode .ops-pend-done-at { color: #0f766e; }
+body.light-mode .ops-pend-handle { color: #94a3b8; }
 body.light-mode .ops-section-chip--ok {
   color: #15803d;
   background: rgba(22, 163, 74, 0.1);
