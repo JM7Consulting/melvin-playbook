@@ -27,7 +27,8 @@
             color: var(--text-main);
             display: flex;
             min-height: 100vh;
-            overflow-x: hidden;
+            /* clip evita scroll container — sticky do card Qualificação precisa disso */
+            overflow-x: clip;
         }
 
         /* --- MENU LATERAL (HIGH-LEVEL DEPTH UX) --- */
@@ -2343,7 +2344,7 @@ body.light-mode .gim-block.gim-danger h4 { color: #B91C1C; }
   grid-template-columns: minmax(0, 1fr) 300px;
   gap: 16px;
   margin-bottom: 22px;
-  align-items: stretch;
+  align-items: start;
 }
 .ls-board-main {
   border: 1px solid rgba(148, 163, 184, 0.2);
@@ -2505,17 +2506,17 @@ body.light-mode .gim-block.gim-danger h4 { color: #B91C1C; }
 
 .ls-side {
   display: block;
-  position: relative;
+  position: sticky;
+  top: 76px;
   left: auto;
-  top: auto;
   bottom: auto;
   right: auto;
-  z-index: 1;
-  align-self: stretch;
+  z-index: 20;
+  align-self: start;
   width: 300px;
   max-width: 100%;
-  height: auto;
-  min-height: 100%;
+  height: fit-content;
+  min-height: 0;
   padding: 0;
   margin: 0;
   border: 0;
@@ -2524,8 +2525,7 @@ body.light-mode .gim-block.gim-danger h4 { color: #B91C1C; }
   overflow: visible;
 }
 .ls-side-sticky {
-  position: sticky;
-  top: 76px;
+  position: static;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -2780,8 +2780,11 @@ body.light-mode .ls-ladder-step {
     grid-template-columns: 1fr;
   }
   .ls-side {
+    position: sticky;
+    top: 76px;
     width: 100%;
     order: -1;
+    z-index: 20;
   }
   .ls-side-sticky { position: static; }
 }
