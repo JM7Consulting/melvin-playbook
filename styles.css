@@ -2343,7 +2343,7 @@ body.light-mode .gim-block.gim-danger h4 { color: #B91C1C; }
   grid-template-columns: minmax(0, 1fr) 300px;
   gap: 16px;
   margin-bottom: 22px;
-  align-items: start;
+  align-items: stretch;
 }
 .ls-board-main {
   border: 1px solid rgba(148, 163, 184, 0.2);
@@ -2511,11 +2511,11 @@ body.light-mode .gim-block.gim-danger h4 { color: #B91C1C; }
   bottom: auto;
   right: auto;
   z-index: 1;
-  align-self: start;
+  align-self: stretch;
   width: 300px;
   max-width: 100%;
   height: auto;
-  min-height: 0;
+  min-height: 100%;
   padding: 0;
   margin: 0;
   border: 0;
@@ -2525,7 +2525,7 @@ body.light-mode .gim-block.gim-danger h4 { color: #B91C1C; }
 }
 .ls-side-sticky {
   position: sticky;
-  top: 88px;
+  top: 76px;
   display: flex;
   flex-direction: column;
   gap: 10px;
