@@ -9704,13 +9704,8 @@ Um abraço!"
                     <div class="ls-board-main">
                         <div class="ls-board-head">
                             <div class="ls-board-head-text">
-                                <strong>Planilha ao vivo</strong>
+                                <strong>Qualificação</strong>
                                 <span class="ls-board-hint">Clique na linha para marcar o “x” · 1 opção por bloco</span>
-                            </div>
-                            <div class="ls-board-soma" aria-live="polite">
-                                <span class="ls-board-soma-label">SOMA</span>
-                                <span class="ls-soma-value" id="lsSomaValue">10,0</span>
-                                <span class="ls-soma-tipo ls-tipo-a" id="lsSomaTipo">Tipo A</span>
                             </div>
                         </div>
                         <div class="ls-matrix-wrap">
@@ -9883,12 +9878,15 @@ Um abraço!"
                         <p class="ls-formula">Fórmula: Σ (nota × peso) · Função 0,1 · Executantes / Indústria / PCM 0,3 cada · máx. teórico 10.</p>
                     </div>
 
-                    <aside class="ls-side" aria-label="Categoria do lead">
+                    <aside class="ls-side" aria-label="Qualificação do lead">
                         <div class="ls-side-sticky">
-                            <div class="ls-side-card" id="lsResultCard" data-ls-tipo="A">
-                                <span class="ls-side-label">Categoria ao vivo</span>
-                                <strong class="ls-side-score" id="lsSideScore">10,0</strong>
-                                <span class="ls-side-badge" id="lsSideBadge">Tipo A · Principal</span>
+                            <div class="ls-side-card" id="lsResultCard" data-ls-tipo="A" aria-live="polite">
+                                <span class="ls-side-label">Qualificação</span>
+                                <div class="ls-side-soma-row">
+                                    <span class="ls-side-soma-kicker">SOMA</span>
+                                    <strong class="ls-side-score" id="lsSideScore">10,0</strong>
+                                </div>
+                                <span class="ls-soma-tipo ls-tipo-a" id="lsSideBadge">Tipo A · Principal</span>
                                 <p id="lsSideCopy">Prioridade máxima. Conta e persona quentes — avançar para SQL / cadência ativa.</p>
                                 <div class="ls-ladder" id="lsLadder" aria-hidden="true">
                                     <span class="ls-ladder-step is-on" data-ls-ladder="A">A</span>

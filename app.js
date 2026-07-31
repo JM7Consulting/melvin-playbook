@@ -240,8 +240,6 @@
         const matrix = document.getElementById('leadScoreMatrix');
         if (!matrix) return;
 
-        const somaValue = document.getElementById('lsSomaValue');
-        const somaTipo = document.getElementById('lsSomaTipo');
         const sideScore = document.getElementById('lsSideScore');
         const sideBadge = document.getElementById('lsSideBadge');
         const sideCopy = document.getElementById('lsSideCopy');
@@ -313,13 +311,11 @@
 
             const info = classify(total);
             const scoreTxt = fmt(total);
-            if (somaValue) somaValue.textContent = scoreTxt;
-            if (somaTipo) {
-                somaTipo.textContent = 'Tipo ' + info.tipo;
-                somaTipo.className = 'ls-soma-tipo ' + info.className;
-            }
             if (sideScore) sideScore.textContent = scoreTxt;
-            if (sideBadge) sideBadge.textContent = info.label;
+            if (sideBadge) {
+                sideBadge.textContent = info.label;
+                sideBadge.className = 'ls-soma-tipo ' + info.className;
+            }
             if (sideCopy) sideCopy.textContent = info.copy;
             if (resultCard) resultCard.setAttribute('data-ls-tipo', info.tipo);
 
