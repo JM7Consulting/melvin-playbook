@@ -213,6 +213,164 @@
         });
     })();
 
+    // Personas · tabs + Lead Scoring matrix
+    (function initPersonaLeadScoring() {
+        const root = document.getElementById('gim-personas');
+        if (!root) return;
+
+        const tabs = root.querySelectorAll('[data-persona-tab]');
+        const panels = root.querySelectorAll('[data-persona-panel]');
+        tabs.forEach((tab) => {
+            tab.addEventListener('click', () => {
+                const id = tab.getAttribute('data-persona-tab');
+                tabs.forEach((t) => {
+                    const on = t === tab;
+                    t.classList.toggle('is-active', on);
+                    t.setAttribute('aria-selected', on ? 'true' : 'false');
+                });
+                panels.forEach((panel) => {
+                    const on = panel.getAttribute('data-persona-panel') === id;
+                    panel.classList.toggle('is-active', on);
+                    if (on) panel.removeAttribute('hidden');
+                    else panel.setAttribute('hidden', '');
+                });
+            });
+        });
+
+        const matrix = document.getElementById('leadScoreMatrix');
+        if (!matrix) return;
+
+        const somaValue = document.getElementById('lsSomaValue');
+        const somaTipo = document.getElementById('lsSomaTipo');
+        const sideScore = document.getElementById('lsSideScore');
+        const sideBadge = document.getElementById('lsSideBadge');
+        const sideCopy = document.getElementById('lsSideCopy');
+        const resultCard = document.getElementById('lsResultCard');
+
+        function classify(score) {
+            if (score >= 7.5) {
+                return {
+                    tipo: 'A',
+                    label: 'Tipo A · Principal',
+                    copy: 'Prioridade máxima. Conta e persona quentes — avançar para SQL / cadência ativa.',
+                    className: 'ls-tipo-a'
+                };
+            }
+            if (score >= 5) {
+                return {
+                    tipo: 'B',
+                    label: 'Tipo B · Importante',
+                    copy: 'Vale esforço com disciplina. Nutrir, multithread e confirmar fit antes de escalar.',
+                    className: 'ls-tipo-b'
+                };
+            }
+            if (score >= 2.5) {
+                return {
+                    tipo: 'C',
+                    label: 'Tipo C · Desqualificada',
+                    copy: 'Baixo retorno. Não priorizar agenda — só se houver sinal excepcional.',
+                    className: 'ls-tipo-c'
+                };
+            }
+            return {
+                tipo: 'D',
+                label: 'Tipo D · Desqualificada',
+                copy: 'Fora do ICP operacional. Arquivar ou nurturing genérico no máximo.',
+                className: 'ls-tipo-d'
+            };
+        }
+
+        function fmt(n) {
+            return n.toFixed(1).replace('.', ',');
+        }
+
+        function recalc() {
+            let total = 0;
+            matrix.querySelectorAll('.ls-row').forEach((row) => {
+                const ptsCell = row.querySelector('.ls-pts');
+                if (!row.classList.contains('is-on')) {
+                    if (ptsCell) ptsCell.textContent = '—';
+                    return;
+                }
+                const note = Number(row.getAttribute('data-ls-note') || 0);
+                const weight = Number(row.getAttribute('data-ls-weight') || 0);
+                const pts = note * weight;
+                total += pts;
+                if (ptsCell) ptsCell.textContent = fmt(pts);
+            });
+
+            const info = classify(total);
+            const scoreTxt = fmt(total);
+            if (somaValue) somaValue.textContent = scoreTxt;
+            if (somaTipo) {
+                somaTipo.textContent = 'Tipo ' + info.tipo;
+                somaTipo.className = 'ls-soma-tipo ' + info.className;
+            }
+            if (sideScore) sideScore.textContent = scoreTxt;
+            if (sideBadge) sideBadge.textContent = info.label;
+            if (sideCopy) sideCopy.textContent = info.copy;
+            if (resultCard) resultCard.setAttribute('data-ls-tipo', info.tipo);
+        }
+
+        function selectRow(row) {
+            const group = row.getAttribute('data-ls-group');
+            matrix.querySelectorAll(`.ls-row[data-ls-group="${group}"]`).forEach((r) => {
+                r.classList.remove('is-on');
+                const btn = r.querySelector('.ls-x');
+                if (btn) {
+                    btn.classList.remove('is-on');
+                    btn.setAttribute('aria-pressed', 'false');
+                }
+            });
+            row.classList.add('is-on');
+            const btn = row.querySelector('.ls-x');
+            if (btn) {
+                btn.classList.add('is-on');
+                btn.setAttribute('aria-pressed', 'true');
+            }
+            recalc();
+        }
+
+        matrix.querySelectorAll('.ls-row').forEach((row) => {
+            row.addEventListener('click', (e) => {
+                e.preventDefault();
+                selectRow(row);
+            });
+        });
+
+        const presets = {
+            'a-gerente': { funcao: 'Gerente PCM', exec: '10–20', industria: 'Sim', pcm: '2' },
+            'a-eng': { funcao: 'Engenheiro de Manutenção', exec: '21–39', industria: 'Sim', pcm: '3+' },
+            'b-planej': { funcao: 'Planejador PCM', exec: '1–9', industria: 'Sim', pcm: '1' },
+            'c-fora': { funcao: 'Gerente PCM', exec: '1–9', industria: 'Não', pcm: '0' },
+            'd-ruido': { funcao: 'Estudante', exec: '1–9', industria: 'Não', pcm: '0' }
+        };
+
+        root.querySelectorAll('[data-ls-preset]').forEach((btn) => {
+            btn.addEventListener('click', () => {
+                const key = btn.getAttribute('data-ls-preset');
+                const preset = presets[key];
+                if (!preset) return;
+                Object.entries(preset).forEach(([group, label]) => {
+                    const row = Array.from(matrix.querySelectorAll(`.ls-row[data-ls-group="${group}"]`))
+                        .find((r) => {
+                            const optTd = Array.from(r.children).find((td) =>
+                                !td.classList.contains('ls-block-cell') &&
+                                !td.classList.contains('ls-w') &&
+                                !td.classList.contains('ls-mark-cell') &&
+                                !td.classList.contains('ls-pts') &&
+                                !td.querySelector('.ls-note')
+                            );
+                            return optTd && optTd.textContent.trim() === label;
+                        });
+                    if (row) selectRow(row);
+                });
+            });
+        });
+
+        recalc();
+    })();
+
 // Ops · hidden menu unlock (somente 5 cliques no © do rodapé)
     (function initOpsUnlock() {
         const STORAGE_KEY = 'melvinOpsUnlock.v2';
