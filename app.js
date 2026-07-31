@@ -246,6 +246,10 @@
         const sideBadge = document.getElementById('lsSideBadge');
         const sideCopy = document.getElementById('lsSideCopy');
         const resultCard = document.getElementById('lsResultCard');
+        const progressBar = document.getElementById('lsProgressBar');
+        const progressCap = document.getElementById('lsProgressCap');
+        const tierCards = root.querySelectorAll('[data-ls-tier]');
+        const ladderSteps = root.querySelectorAll('[data-ls-ladder]');
 
         function classify(score) {
             if (score >= 7.5) {
@@ -253,7 +257,9 @@
                     tipo: 'A',
                     label: 'Tipo A · Principal',
                     copy: 'Prioridade máxima. Conta e persona quentes — avançar para SQL / cadência ativa.',
-                    className: 'ls-tipo-a'
+                    className: 'ls-tipo-a',
+                    nextCut: null,
+                    nextLabel: 'No teto Tipo A'
                 };
             }
             if (score >= 5) {
@@ -261,7 +267,9 @@
                     tipo: 'B',
                     label: 'Tipo B · Importante',
                     copy: 'Vale esforço com disciplina. Nutrir, multithread e confirmar fit antes de escalar.',
-                    className: 'ls-tipo-b'
+                    className: 'ls-tipo-b',
+                    nextCut: 7.5,
+                    nextLabel: 'Faltam {gap} p/ Tipo A'
                 };
             }
             if (score >= 2.5) {
@@ -269,14 +277,18 @@
                     tipo: 'C',
                     label: 'Tipo C · Desqualificada',
                     copy: 'Baixo retorno. Não priorizar agenda — só se houver sinal excepcional.',
-                    className: 'ls-tipo-c'
+                    className: 'ls-tipo-c',
+                    nextCut: 5,
+                    nextLabel: 'Faltam {gap} p/ Tipo B'
                 };
             }
             return {
                 tipo: 'D',
                 label: 'Tipo D · Desqualificada',
                 copy: 'Fora do ICP operacional. Arquivar ou nurturing genérico no máximo.',
-                className: 'ls-tipo-d'
+                className: 'ls-tipo-d',
+                nextCut: 2.5,
+                nextLabel: 'Faltam {gap} p/ Tipo C'
             };
         }
 
@@ -310,6 +322,25 @@
             if (sideBadge) sideBadge.textContent = info.label;
             if (sideCopy) sideCopy.textContent = info.copy;
             if (resultCard) resultCard.setAttribute('data-ls-tipo', info.tipo);
+
+            tierCards.forEach((card) => {
+                card.classList.toggle('is-current', card.getAttribute('data-ls-tier') === info.tipo);
+            });
+            ladderSteps.forEach((step) => {
+                step.classList.toggle('is-on', step.getAttribute('data-ls-ladder') === info.tipo);
+            });
+
+            if (progressBar && progressCap) {
+                if (info.nextCut == null) {
+                    progressBar.style.width = '100%';
+                    progressCap.textContent = info.nextLabel;
+                } else {
+                    const pct = Math.max(0, Math.min(100, (total / info.nextCut) * 100));
+                    progressBar.style.width = pct + '%';
+                    const gap = Math.max(0, info.nextCut - total);
+                    progressCap.textContent = info.nextLabel.replace('{gap}', fmt(gap));
+                }
+            }
         }
 
         function selectRow(row) {

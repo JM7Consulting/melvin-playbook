@@ -9677,34 +9677,41 @@ Um abraço!"
                     <p class="ops-section-desc">Mesma lógica da planilha oficial: marque <strong>uma opção por bloco</strong> (como o “x”). A soma define Tipo A–D. <strong>A = principais (quentes)</strong> · <strong>B = importantes</strong> · <strong>C e D = desqualificadas</strong>.</p>
                 </div>
 
-                <div class="ls-tier-grid" aria-label="Classificação de leads">
-                    <article class="ls-tier ls-tier--a">
+                <div class="ls-tier-grid" aria-label="Classificação de leads" id="lsTierGrid">
+                    <article class="ls-tier ls-tier--a is-current" data-ls-tier="A">
                         <div class="ls-tier-top"><span class="ls-tier-letter">A</span><strong>Principais</strong></div>
-                        <p class="ls-tier-cut">Score ≥ <b>7,5</b></p>
-                        <p>Leads mais quentes. Prioridade máxima de contato, SQL e fila BDR/SDR.</p>
+                        <p class="ls-tier-cut">Score ≥ <b>7,5</b> · quentes</p>
+                        <p>Gerente PCM · Engenheiro · Supervisor em indústria com ≥10 executantes e PCM. Fila 1.</p>
                     </article>
-                    <article class="ls-tier ls-tier--b">
+                    <article class="ls-tier ls-tier--b" data-ls-tier="B">
                         <div class="ls-tier-top"><span class="ls-tier-letter">B</span><strong>Importantes</strong></div>
                         <p class="ls-tier-cut">Score ≥ <b>5,0</b></p>
-                        <p>Valem esforço, com disciplina. Nutrir, multithread e qualificar fit.</p>
+                        <p>Planejador / Analista com fit, ou Gerente em firma parcial. Cadência com multithread.</p>
                     </article>
-                    <article class="ls-tier ls-tier--c">
+                    <article class="ls-tier ls-tier--c" data-ls-tier="C">
                         <div class="ls-tier-top"><span class="ls-tier-letter">C</span><strong>Desqualificadas</strong></div>
                         <p class="ls-tier-cut">Score ≥ <b>2,5</b></p>
-                        <p>Baixo retorno. Não priorizar agenda — só se houver sinal excepcional.</p>
+                        <p>Fit fraco (sem indústria / sem PCM / time pequeno). Não queimar agenda de Closer.</p>
                     </article>
-                    <article class="ls-tier ls-tier--d">
+                    <article class="ls-tier ls-tier--d" data-ls-tier="D">
                         <div class="ls-tier-top"><span class="ls-tier-letter">D</span><strong>Desqualificadas</strong></div>
                         <p class="ls-tier-cut">Score ≥ <b>0,0</b></p>
-                        <p>Fora do ICP operacional. Arquivar / nurturing genérico no máximo.</p>
+                        <p>Estudante, recolocação, mecânico isolado, fora de ICP. Arquivar.</p>
                     </article>
                 </div>
 
                 <div class="ls-board">
                     <div class="ls-board-main">
                         <div class="ls-board-head">
-                            <strong>Planilha ao vivo</strong>
-                            <span class="ls-board-hint">Clique na linha para marcar o “x” · 1 opção por bloco</span>
+                            <div class="ls-board-head-text">
+                                <strong>Planilha ao vivo</strong>
+                                <span class="ls-board-hint">Clique na linha para marcar o “x” · 1 opção por bloco</span>
+                            </div>
+                            <div class="ls-board-soma" aria-live="polite">
+                                <span class="ls-board-soma-label">SOMA</span>
+                                <span class="ls-soma-value" id="lsSomaValue">10,0</span>
+                                <span class="ls-soma-tipo ls-tipo-a" id="lsSomaTipo">Tipo A</span>
+                            </div>
                         </div>
                         <div class="ls-matrix-wrap">
                             <table class="ls-matrix" id="leadScoreMatrix">
@@ -9871,63 +9878,48 @@ Um abraço!"
                                         <td class="ls-pts">—</td>
                                     </tr>
                                 </tbody>
-                                <tfoot>
-                                    <tr class="ls-soma-row">
-                                        <td colspan="4"><strong>SOMA</strong></td>
-                                        <td colspan="2"><span class="ls-soma-value" id="lsSomaValue">10,0</span> <span class="ls-soma-tipo ls-tipo-a" id="lsSomaTipo">Tipo A</span></td>
-                                    </tr>
-                                </tfoot>
                             </table>
                         </div>
                         <p class="ls-formula">Fórmula: Σ (nota × peso) · Função 0,1 · Executantes / Indústria / PCM 0,3 cada · máx. teórico 10.</p>
                     </div>
 
-                    <aside class="ls-side">
-                        <div class="ls-side-card" id="lsResultCard" data-ls-tipo="A">
-                            <span class="ls-side-label">Resultado do lead</span>
-                            <strong class="ls-side-score" id="lsSideScore">10,0</strong>
-                            <span class="ls-side-badge" id="lsSideBadge">Tipo A · Principal</span>
-                            <p id="lsSideCopy">Prioridade máxima. Conta e persona quentes — avançar para SQL / cadência ativa.</p>
-                        </div>
-                        <div class="ls-side-card ls-side-card--muted">
-                            <span class="ls-side-label">Como usar</span>
-                            <ul>
-                                <li>Marque 1 opção em cada bloco.</li>
-                                <li>Verde = nota alta · Amarelo = média · Vermelho = baixa.</li>
-                                <li>Tipo A/B trabalham · Tipo C/D saem da fila quente.</li>
-                            </ul>
-                        </div>
-                        <div class="ls-presets">
-                            <span class="ls-side-label">Atalhos de exemplo</span>
-                            <button type="button" class="ls-preset" data-ls-preset="a-gerente">Tipo A · Gerente ICP</button>
-                            <button type="button" class="ls-preset" data-ls-preset="a-eng">Tipo A · Engenheiro ICP</button>
-                            <button type="button" class="ls-preset" data-ls-preset="b-planej">Tipo B · Planejador parcial</button>
-                            <button type="button" class="ls-preset" data-ls-preset="c-fora">Tipo C · Fora de indústria</button>
-                            <button type="button" class="ls-preset" data-ls-preset="d-ruido">Tipo D · Ruído</button>
+                    <aside class="ls-side" aria-label="Categoria do lead">
+                        <div class="ls-side-sticky">
+                            <div class="ls-side-card" id="lsResultCard" data-ls-tipo="A">
+                                <span class="ls-side-label">Categoria ao vivo</span>
+                                <strong class="ls-side-score" id="lsSideScore">10,0</strong>
+                                <span class="ls-side-badge" id="lsSideBadge">Tipo A · Principal</span>
+                                <p id="lsSideCopy">Prioridade máxima. Conta e persona quentes — avançar para SQL / cadência ativa.</p>
+                                <div class="ls-ladder" id="lsLadder" aria-hidden="true">
+                                    <span class="ls-ladder-step is-on" data-ls-ladder="A">A</span>
+                                    <span class="ls-ladder-step" data-ls-ladder="B">B</span>
+                                    <span class="ls-ladder-step" data-ls-ladder="C">C</span>
+                                    <span class="ls-ladder-step" data-ls-ladder="D">D</span>
+                                </div>
+                                <div class="ls-progress" id="lsProgressWrap">
+                                    <div class="ls-progress-bar"><i id="lsProgressBar" style="width:100%"></i></div>
+                                    <span class="ls-progress-cap" id="lsProgressCap">No teto Tipo A</span>
+                                </div>
+                            </div>
+                            <details class="ls-side-details">
+                                <summary>Como usar · atalhos</summary>
+                                <div class="ls-side-card ls-side-card--muted">
+                                    <ul>
+                                        <li>Marque 1 opção em cada bloco.</li>
+                                        <li>Verde = nota alta · Amarelo = média · Vermelho = baixa.</li>
+                                        <li>Tipo A/B trabalham · Tipo C/D saem da fila quente.</li>
+                                    </ul>
+                                </div>
+                                <div class="ls-presets">
+                                    <button type="button" class="ls-preset" data-ls-preset="a-gerente">Tipo A · Gerente ICP</button>
+                                    <button type="button" class="ls-preset" data-ls-preset="a-eng">Tipo A · Engenheiro ICP</button>
+                                    <button type="button" class="ls-preset" data-ls-preset="b-planej">Tipo B · Planejador parcial</button>
+                                    <button type="button" class="ls-preset" data-ls-preset="c-fora">Tipo C · Fora de indústria</button>
+                                    <button type="button" class="ls-preset" data-ls-preset="d-ruido">Tipo D · Ruído</button>
+                                </div>
+                            </details>
                         </div>
                     </aside>
-                </div>
-
-                <div class="ls-examples">
-                    <h3 class="ops-section-title" style="margin-bottom:10px;">Do mais quente ao mais frio</h3>
-                    <div class="ls-example-grid">
-                        <article class="ls-example ls-example--a">
-                            <header><span>A</span><strong>Principais (quentes)</strong></header>
-                            <p>Gerente PCM · Engenheiro · Supervisor em indústria com ≥10 executantes e PCM estruturado. Fila 1.</p>
-                        </article>
-                        <article class="ls-example ls-example--b">
-                            <header><span>B</span><strong>Importantes</strong></header>
-                            <p>Planejador / Analista com fit de conta, ou Gerente em firma parcial. Cadência com multithread.</p>
-                        </article>
-                        <article class="ls-example ls-example--c">
-                            <header><span>C</span><strong>Desqualificadas</strong></header>
-                            <p>Fit fraco (sem indústria / sem PCM / time pequeno). Não queimar agenda de Closer.</p>
-                        </article>
-                        <article class="ls-example ls-example--d">
-                            <header><span>D</span><strong>Desqualificadas</strong></header>
-                            <p>Estudante, recolocação, mecânico isolado, fora de ICP. Arquivar.</p>
-                        </article>
-                    </div>
                 </div>
             </div>
         </section>
