@@ -2409,6 +2409,60 @@ body.light-mode .gim-block.gim-danger h4 { color: #B91C1C; }
   width: 150px;
   border-right: 1px solid rgba(148, 163, 184, 0.18);
 }
+
+/* Blocos alternados — fácil de achar no scroll */
+.ls-row[data-ls-group="funcao"] td:not(.ls-block-cell):not(.ls-w) {
+  background: rgba(15, 23, 42, 0.35);
+}
+.ls-row[data-ls-group="funcao"] .ls-block-cell {
+  background: #1a2740;
+  box-shadow: inset 3px 0 0 #38bdf8;
+}
+.ls-row[data-ls-group="exec"] td:not(.ls-block-cell):not(.ls-w) {
+  background: rgba(100, 252, 216, 0.06);
+}
+.ls-row[data-ls-group="exec"] .ls-block-cell {
+  background: #16352f;
+  box-shadow: inset 3px 0 0 #64FCD8;
+}
+.ls-row[data-ls-group="industria"] td:not(.ls-block-cell):not(.ls-w) {
+  background: rgba(99, 102, 241, 0.08);
+}
+.ls-row[data-ls-group="industria"] .ls-block-cell {
+  background: #1f2448;
+  box-shadow: inset 3px 0 0 #818cf8;
+}
+.ls-row[data-ls-group="pcm"] td:not(.ls-block-cell):not(.ls-w) {
+  background: rgba(245, 158, 11, 0.07);
+}
+.ls-row[data-ls-group="pcm"] .ls-block-cell {
+  background: #3a2c14;
+  box-shadow: inset 3px 0 0 #f59e0b;
+}
+.ls-row[data-ls-group="funcao"]:hover td:not(.ls-block-cell):not(.ls-w) {
+  background: rgba(56, 189, 248, 0.1);
+}
+.ls-row[data-ls-group="exec"]:hover td:not(.ls-block-cell):not(.ls-w) {
+  background: rgba(100, 252, 216, 0.12);
+}
+.ls-row[data-ls-group="industria"]:hover td:not(.ls-block-cell):not(.ls-w) {
+  background: rgba(129, 140, 248, 0.14);
+}
+.ls-row[data-ls-group="pcm"]:hover td:not(.ls-block-cell):not(.ls-w) {
+  background: rgba(245, 158, 11, 0.14);
+}
+.ls-row.is-on[data-ls-group="funcao"] td:not(.ls-block-cell):not(.ls-w) {
+  background: rgba(56, 189, 248, 0.12);
+}
+.ls-row.is-on[data-ls-group="exec"] td:not(.ls-block-cell):not(.ls-w) {
+  background: rgba(100, 252, 216, 0.14);
+}
+.ls-row.is-on[data-ls-group="industria"] td:not(.ls-block-cell):not(.ls-w) {
+  background: rgba(129, 140, 248, 0.16);
+}
+.ls-row.is-on[data-ls-group="pcm"] td:not(.ls-block-cell):not(.ls-w) {
+  background: rgba(245, 158, 11, 0.16);
+}
 .ls-w {
   background: rgba(245, 158, 11, 0.18);
   color: #fbbf24 !important;
@@ -2440,8 +2494,8 @@ body.light-mode .gim-block.gim-danger h4 { color: #B91C1C; }
   transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
 }
 .ls-row { cursor: pointer; }
-.ls-row:hover { background: rgba(100, 252, 216, 0.05); }
-.ls-row.is-on { background: rgba(100, 252, 216, 0.07); }
+.ls-row:hover { background: transparent; }
+.ls-row.is-on { background: transparent; }
 .ls-row.is-on .ls-x,
 .ls-x.is-on {
   color: #0b0c10;
@@ -2756,9 +2810,37 @@ body.light-mode .ls-block-cell {
   color: #0f172a !important;
   border-right-color: rgba(15, 23, 42, 0.08);
 }
+body.light-mode .ls-row[data-ls-group="funcao"] td:not(.ls-block-cell):not(.ls-w) {
+  background: #f8fafc;
+}
+body.light-mode .ls-row[data-ls-group="funcao"] .ls-block-cell {
+  background: #e2e8f0;
+  box-shadow: inset 3px 0 0 #0284c7;
+}
+body.light-mode .ls-row[data-ls-group="exec"] td:not(.ls-block-cell):not(.ls-w) {
+  background: #f0fdfa;
+}
+body.light-mode .ls-row[data-ls-group="exec"] .ls-block-cell {
+  background: #ccfbf1;
+  box-shadow: inset 3px 0 0 #0d9488;
+}
+body.light-mode .ls-row[data-ls-group="industria"] td:not(.ls-block-cell):not(.ls-w) {
+  background: #eef2ff;
+}
+body.light-mode .ls-row[data-ls-group="industria"] .ls-block-cell {
+  background: #e0e7ff;
+  box-shadow: inset 3px 0 0 #6366f1;
+}
+body.light-mode .ls-row[data-ls-group="pcm"] td:not(.ls-block-cell):not(.ls-w) {
+  background: #fffbeb;
+}
+body.light-mode .ls-row[data-ls-group="pcm"] .ls-block-cell {
+  background: #fef3c7;
+  box-shadow: inset 3px 0 0 #d97706;
+}
 body.light-mode .ls-x { background: #ffffff; border-color: rgba(15, 23, 42, 0.18); }
 body.light-mode .ls-row:hover,
-body.light-mode .ls-row.is-on { background: rgba(13, 148, 136, 0.05); }
+body.light-mode .ls-row.is-on { background: transparent; }
 body.light-mode .ls-soma-row td { background: #f1f5f9; }
 body.light-mode .ls-preset { color: #334155; }
 body.light-mode .ls-note--high { background: rgba(22, 163, 74, 0.12); color: #15803d; }
