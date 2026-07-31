@@ -8002,8 +8002,33 @@ body.light-mode .nav-lane--ops .ops-nav-standby { opacity: 0.78; }
   border: 1px solid rgba(148, 163, 184, 0.14);
   background: rgba(2, 8, 16, 0.36);
   cursor: pointer;
-  transition: border-color 0.15s ease, background 0.15s ease;
+  transition: border-color 0.15s ease, background 0.15s ease, opacity 0.15s ease;
 }
+.ops-pend-list > .ops-pend-item {
+  grid-template-columns: 16px 20px auto 1fr;
+}
+.ops-pend-item[draggable="true"] { cursor: grab; }
+.ops-pend-item.is-dragging {
+  opacity: 0.45;
+  border-color: rgba(100, 252, 216, 0.45);
+}
+.ops-pend-item.is-drag-over {
+  border-color: rgba(100, 252, 216, 0.55);
+  background: rgba(100, 252, 216, 0.06);
+}
+.ops-pend-handle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2px;
+  color: #64748b;
+  font-size: 0.72rem;
+  letter-spacing: -0.08em;
+  user-select: none;
+  cursor: grab;
+}
+.ops-pend-item.is-done { opacity: 0.55; cursor: default; }
+.ops-pend-item.is-done .ops-pend-handle { visibility: hidden; }
 .ops-pend-item:hover {
   border-color: rgba(148, 163, 184, 0.32);
   background: rgba(2, 8, 16, 0.5);
@@ -8046,7 +8071,13 @@ body.light-mode .nav-lane--ops .ops-nav-standby { opacity: 0.78; }
   color: #64748b;
   line-height: 1.45;
 }
-.ops-pend-item.is-done { opacity: 0.55; }
+.ops-pend-done-at {
+  margin-top: 4px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: #14b8a6;
+}
 .ops-pend-item.is-done .ops-pend-body strong {
   text-decoration: line-through;
   color: #94a3b8;

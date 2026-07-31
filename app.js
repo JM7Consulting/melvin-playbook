@@ -517,30 +517,173 @@
         });
     })();
 
-    // Ops · Pendências — checkboxes sincronizados em Ata / Plano / Cronograma
+    // Ops · Pendências — checkboxes sincronizados + ordem + concluídas no fim
     (function initOpsPendencias() {
-        const KEY = 'melvinOpsPendencias.v1';
-        let state = {};
-        try { state = JSON.parse(localStorage.getItem(KEY) || '{}') || {}; } catch (e) { state = {}; }
+        const KEY_V1 = 'melvinOpsPendencias.v1';
+        const KEY = 'melvinOpsPendencias.v2';
+        let store = { checks: {}, completedAt: {}, order: {} };
 
-        function applyState(id, on) {
+        try {
+            const rawV2 = localStorage.getItem(KEY);
+            if (rawV2) {
+                store = Object.assign({ checks: {}, completedAt: {}, order: {} }, JSON.parse(rawV2) || {});
+                store.checks = store.checks || {};
+                store.completedAt = store.completedAt || {};
+                store.order = store.order || {};
+            } else {
+                const rawV1 = JSON.parse(localStorage.getItem(KEY_V1) || '{}') || {};
+                Object.keys(rawV1).forEach((id) => {
+                    if (rawV1[id]) {
+                        store.checks[id] = true;
+                        // Sem horário histórico — fica no bloco concluídas sem stamp
+                        store.completedAt[id] = null;
+                    }
+                });
+            }
+        } catch (e) {
+            store = { checks: {}, completedAt: {}, order: {} };
+        }
+
+        function persist() {
+            try { localStorage.setItem(KEY, JSON.stringify(store)); } catch (e) {}
+        }
+
+        function fmtDoneAt(ts) {
+            if (!ts) return '';
+            try {
+                const d = new Date(ts);
+                if (Number.isNaN(d.getTime())) return '';
+                return d.toLocaleString('pt-BR', {
+                    day: '2-digit', month: '2-digit', year: 'numeric',
+                    hour: '2-digit', minute: '2-digit'
+                });
+            } catch (e) { return ''; }
+        }
+
+        function applyVisual(id, on) {
             document.querySelectorAll(`input[data-pend-id="${id}"]`).forEach((input) => {
                 input.checked = on;
                 const item = input.closest('.ops-pend-item');
-                if (item) item.classList.toggle('is-done', on);
+                if (!item) return;
+                item.classList.toggle('is-done', on);
+                const stamp = item.querySelector('.ops-pend-done-at');
+                if (stamp) {
+                    const label = fmtDoneAt(store.completedAt[id]);
+                    if (on && label) {
+                        stamp.hidden = false;
+                        stamp.textContent = 'Concluída · ' + label;
+                    } else if (on) {
+                        stamp.hidden = false;
+                        stamp.textContent = 'Concluída';
+                    } else {
+                        stamp.hidden = true;
+                        stamp.textContent = '';
+                    }
+                }
             });
         }
 
-        Object.keys(state).forEach((id) => applyState(id, !!state[id]));
+        function sortList(list) {
+            const items = Array.from(list.querySelectorAll(':scope > .ops-pend-item'));
+            if (!items.length) return;
+            const listId = list.getAttribute('data-ops-pend-list') || 'default';
+            const savedOrder = store.order[listId] || [];
+            const rank = (id) => {
+                const i = savedOrder.indexOf(id);
+                return i === -1 ? 9999 : i;
+            };
+
+            items.sort((a, b) => {
+                const idA = a.getAttribute('data-pend-item') || a.querySelector('[data-pend-id]')?.getAttribute('data-pend-id');
+                const idB = b.getAttribute('data-pend-item') || b.querySelector('[data-pend-id]')?.getAttribute('data-pend-id');
+                const doneA = !!store.checks[idA];
+                const doneB = !!store.checks[idB];
+                if (doneA !== doneB) return doneA ? 1 : -1;
+                if (!doneA && !doneB) return rank(idA) - rank(idB);
+                const tA = store.completedAt[idA];
+                const tB = store.completedAt[idB];
+                if (tA == null && tB == null) return rank(idA) - rank(idB);
+                if (tA == null) return -1;
+                if (tB == null) return 1;
+                return tA - tB;
+            });
+
+            items.forEach((el) => list.appendChild(el));
+
+            // Persistir ordem só das abertas (usuário controla)
+            const openIds = items
+                .map((el) => el.getAttribute('data-pend-item') || el.querySelector('[data-pend-id]')?.getAttribute('data-pend-id'))
+                .filter((id) => id && !store.checks[id]);
+            if (openIds.length) store.order[listId] = openIds;
+        }
+
+        function sortAllLists() {
+            document.querySelectorAll('.ops-pend-list').forEach(sortList);
+            persist();
+        }
+
+        function setChecked(id, on) {
+            store.checks[id] = on;
+            if (on) {
+                if (store.completedAt[id] == null) store.completedAt[id] = Date.now();
+            } else {
+                delete store.completedAt[id];
+            }
+            applyVisual(id, on);
+            sortAllLists();
+        }
+
+        Object.keys(store.checks).forEach((id) => applyVisual(id, !!store.checks[id]));
+        sortAllLists();
 
         document.querySelectorAll('input[data-pend-id]').forEach((input) => {
             if (input.dataset.pendBound) return;
             input.dataset.pendBound = '1';
             input.addEventListener('change', () => {
                 const id = input.getAttribute('data-pend-id');
-                state[id] = input.checked;
-                applyState(id, input.checked);
-                try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {}
+                setChecked(id, input.checked);
+            });
+        });
+
+        // Drag & drop dentro de cada .ops-pend-list
+        document.querySelectorAll('.ops-pend-list').forEach((list) => {
+            let dragEl = null;
+            list.querySelectorAll(':scope > .ops-pend-item[draggable="true"]').forEach((item) => {
+                item.addEventListener('dragstart', (e) => {
+                    if (item.classList.contains('is-done')) {
+                        e.preventDefault();
+                        return;
+                    }
+                    dragEl = item;
+                    item.classList.add('is-dragging');
+                    e.dataTransfer.effectAllowed = 'move';
+                    try { e.dataTransfer.setData('text/plain', item.getAttribute('data-pend-item') || ''); } catch (err) {}
+                });
+                item.addEventListener('dragend', () => {
+                    item.classList.remove('is-dragging');
+                    list.querySelectorAll('.is-drag-over').forEach((el) => el.classList.remove('is-drag-over'));
+                    dragEl = null;
+                    const listId = list.getAttribute('data-ops-pend-list') || 'default';
+                    store.order[listId] = Array.from(list.querySelectorAll(':scope > .ops-pend-item'))
+                        .map((el) => el.getAttribute('data-pend-item'))
+                        .filter((id) => id && !store.checks[id]);
+                    sortList(list);
+                    persist();
+                });
+                item.addEventListener('dragover', (e) => {
+                    e.preventDefault();
+                    if (!dragEl || dragEl === item || item.classList.contains('is-done')) return;
+                    item.classList.add('is-drag-over');
+                    const rect = item.getBoundingClientRect();
+                    const before = (e.clientY - rect.top) < rect.height / 2;
+                    if (before) list.insertBefore(dragEl, item);
+                    else list.insertBefore(dragEl, item.nextSibling);
+                });
+                item.addEventListener('dragleave', () => item.classList.remove('is-drag-over'));
+                item.addEventListener('drop', (e) => {
+                    e.preventDefault();
+                    item.classList.remove('is-drag-over');
+                });
             });
         });
 
