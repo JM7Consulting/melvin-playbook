@@ -9928,18 +9928,25 @@ Um abraço!"
             <div class="fq-hero fq-hero--gim">
                 <div class="fq-hero-copy">
                     <div class="fq-kicker">GIM · Portfólio</div>
-                    <div class="cadencia-title-line fq-hero-title">📦 Produtos & Soluções • GIM Melvin</div>
-                    <p class="cadencia-subtitle" style="padding-left:0;max-width:54ch;">Portfólio Melvin e Manutenção & Ação — o que vendemos e o que cada linha resolve.</p>
+                    <div class="cadencia-title-line fq-hero-title">📦 Produtos & Soluções</div>
+                    <p class="cadencia-subtitle" style="padding-left:0;max-width:54ch;">Duas linhas: software/hardware Melvin e educação/serviços Manutenção em Ação.</p>
                 </div>
                 <div class="fq-badge-stack" aria-hidden="true">
                     <div class="fq-badge-orb fq-badge-orb--gim"><span>SKU</span><small>MEL</small></div>
-                    <p class="fq-badge-cap">Produtos e soluções</p>
+                    <p class="fq-badge-cap">Melvin · M&amp;A</p>
                 </div>
             </div>
 
-            <div class="fq-header-extras">
-                <div class="gim-source-chip">Fonte: GIM Melvin</div>
-            </div><div class="gim-card-grid gim-card-grid-3">
+            <div class="crono-tabs produto-tabs" role="tablist" aria-label="Linhas de produto">
+                <button type="button" class="crono-tab is-active" role="tab" aria-selected="true" data-produto-tab="melvin">Melvin</button>
+                <button type="button" class="crono-tab" role="tab" aria-selected="false" data-produto-tab="ma">Manutenção em Ação</button>
+            </div>
+
+            <div class="produto-panel is-active" data-produto-panel="melvin" role="tabpanel">
+                <div class="fq-header-extras">
+                    <div class="gim-source-chip">Melvin · Software &amp; Hardware</div>
+                </div>
+                <div class="gim-card-grid gim-card-grid-3">
                 <article class="gim-profile-card">
                     <div class="gim-profile-top">
                         <h3>Gestão de Manutenção</h3>
@@ -9985,10 +9992,18 @@ Um abraço!"
                 <article class="gim-profile-card">
                     <div class="gim-profile-top">
                         <h3>Hardware (Sensores)</h3>
-                        <span class="gim-badge gim-badge-ok">Software</span>
+                        <span class="gim-badge gim-badge-ok">Hardware</span>
                     </div>
                     <p>Dispositivo capaz de medir parâmetros como temperatura, vibração, inclinação, dentre outros, e disparar ações através de Ordens de Serviços dentro do Melvin.</p>
                 </article>
+                </div>
+            </div>
+
+            <div class="produto-panel" data-produto-panel="ma" role="tabpanel" hidden>
+                <div class="fq-header-extras">
+                    <div class="gim-source-chip">Manutenção em Ação · Cursos &amp; Serviços</div>
+                </div>
+                <div class="gim-card-grid gim-card-grid-3">
                 <article class="gim-profile-card">
                     <div class="gim-profile-top">
                         <h3>M&amp;A EAD Curso de PCM</h3>
@@ -10079,7 +10094,9 @@ Um abraço!"
                         <span class="gim-badge gim-badge-info">M&A / Serviços</span>
                     </div>
                     <p>Serviços personalizados de consultoria em manutenção.</p>
-                </article></div>
+                </article>
+                </div>
+            </div>
         </section>
                                 <!-- GIM: dores ocultas + sangrentas (layout pain-map) -->
 <div id="gim-dores" hidden aria-hidden="true"></div>

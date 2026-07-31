@@ -2256,25 +2256,37 @@ body.light-mode .gim-block.gim-danger h4 { color: #B91C1C; }
   background: rgba(15, 23, 42, 0.55);
   border-color: rgba(148, 163, 184, 0.22);
 }
-.persona-tabs .crono-tab {
+.produto-tabs {
+  margin: 8px 0 22px;
+  gap: 10px;
+  padding: 8px;
+  background: rgba(15, 23, 42, 0.55);
+  border-color: rgba(148, 163, 184, 0.22);
+}
+.persona-tabs .crono-tab,
+.produto-tabs .crono-tab {
   border: 1px solid rgba(148, 163, 184, 0.28);
   background: rgba(2, 8, 16, 0.35);
   color: #cbd5e1;
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
 }
-.persona-tabs .crono-tab:hover {
+.persona-tabs .crono-tab:hover,
+.produto-tabs .crono-tab:hover {
   border-color: rgba(100, 252, 216, 0.45);
   color: #e2e8f0;
   background: rgba(100, 252, 216, 0.06);
 }
-.persona-tabs .crono-tab.is-active {
+.persona-tabs .crono-tab.is-active,
+.produto-tabs .crono-tab.is-active {
   border-color: transparent;
   color: #042f2e;
   background: linear-gradient(135deg, #64FCD8, #2dd4bf);
   box-shadow: 0 6px 18px rgba(100, 252, 216, 0.22);
 }
-.persona-panel[hidden] { display: none !important; }
-.persona-panel.is-active { display: block; }
+.persona-panel[hidden],
+.produto-panel[hidden] { display: none !important; }
+.persona-panel.is-active,
+.produto-panel.is-active { display: block; }
 
 .ls-intro { margin-bottom: 18px; }
 .ls-tier-grid {
@@ -2760,22 +2772,26 @@ body.light-mode .gim-block.gim-danger h4 { color: #B91C1C; }
   color: #5eead4;
 }
 
-body.light-mode .persona-tabs {
+body.light-mode .persona-tabs,
+body.light-mode .produto-tabs {
   background: #f1f5f9;
   border-color: rgba(15, 23, 42, 0.1);
 }
-body.light-mode .persona-tabs .crono-tab {
+body.light-mode .persona-tabs .crono-tab,
+body.light-mode .produto-tabs .crono-tab {
   background: #ffffff;
   border-color: rgba(15, 23, 42, 0.14);
   color: #475569;
   box-shadow: none;
 }
-body.light-mode .persona-tabs .crono-tab:hover {
+body.light-mode .persona-tabs .crono-tab:hover,
+body.light-mode .produto-tabs .crono-tab:hover {
   border-color: rgba(13, 148, 136, 0.4);
   color: #0f172a;
   background: rgba(13, 148, 136, 0.06);
 }
-body.light-mode .persona-tabs .crono-tab.is-active {
+body.light-mode .persona-tabs .crono-tab.is-active,
+body.light-mode .produto-tabs .crono-tab.is-active {
   color: #042f2e;
   background: linear-gradient(135deg, #64FCD8, #2dd4bf);
   border-color: transparent;

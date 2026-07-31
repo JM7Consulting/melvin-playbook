@@ -398,6 +398,29 @@
         recalc();
     })();
 
+    (function initProdutoTabs() {
+        const root = document.getElementById('gim-produtos');
+        if (!root) return;
+        const tabs = root.querySelectorAll('[data-produto-tab]');
+        const panels = root.querySelectorAll('[data-produto-panel]');
+        tabs.forEach((tab) => {
+            tab.addEventListener('click', () => {
+                const id = tab.getAttribute('data-produto-tab');
+                tabs.forEach((t) => {
+                    const on = t === tab;
+                    t.classList.toggle('is-active', on);
+                    t.setAttribute('aria-selected', on ? 'true' : 'false');
+                });
+                panels.forEach((panel) => {
+                    const on = panel.getAttribute('data-produto-panel') === id;
+                    panel.classList.toggle('is-active', on);
+                    if (on) panel.removeAttribute('hidden');
+                    else panel.setAttribute('hidden', '');
+                });
+            });
+        });
+    })();
+
 // Ops · hidden menu unlock (somente 5 cliques no © do rodapé)
     (function initOpsUnlock() {
         const STORAGE_KEY = 'melvinOpsUnlock.v2';
