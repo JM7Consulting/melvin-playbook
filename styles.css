@@ -2505,9 +2505,23 @@ body.light-mode .gim-block.gim-danger h4 { color: #B91C1C; }
 
 .ls-side {
   display: block;
+  position: relative;
+  left: auto;
+  top: auto;
+  bottom: auto;
+  right: auto;
+  z-index: 1;
   align-self: start;
   width: 300px;
   max-width: 100%;
+  height: auto;
+  min-height: 0;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  box-shadow: none;
+  background: transparent;
+  overflow: visible;
 }
 .ls-side-sticky {
   position: sticky;
