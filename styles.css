@@ -27,7 +27,7 @@
             color: var(--text-main);
             display: flex;
             min-height: 100vh;
-            /* clip evita scroll container — sticky do card Qualificação precisa disso */
+            /* clip evita scroll container ? sticky do card Qualifica??o precisa disso */
             overflow-x: clip;
         }
 
@@ -133,8 +133,8 @@
         aside.collapsed .logo-mini { display: block; }
 
         /*
-         * Lockup oficial: mantém o degradê do símbolo e aplica uma capa
-         * somente sobre o wordmark (dark #C5C6C7 · light #0B0C10).
+         * Lockup oficial: mant?m o degrad? do s?mbolo e aplica uma capa
+         * somente sobre o wordmark (dark #C5C6C7 ? light #0B0C10).
          */
         .melvin-logo-lockup {
             --melvin-wordmark: #C5C6C7;
@@ -158,7 +158,7 @@
             background: var(--melvin-wordmark);
             -webkit-mask: url("logo_completa-removebg.png") center / contain no-repeat;
             mask: url("logo_completa-removebg.png") center / contain no-repeat;
-            /* O wordmark começa após 34% do lockup; antes disso é só o ícone. */
+            /* O wordmark come?a ap?s 34% do lockup; antes disso ? s? o ?cone. */
             clip-path: inset(0 0 0 34%);
             pointer-events: none;
         }
@@ -182,7 +182,7 @@
             filter: drop-shadow(0 0 8px rgba(15, 118, 110, 0.35));
         }
 
-        /* Busca rápida */
+        /* Busca r?pida */
         .nav-search-wrap { margin: 0 2px 12px; }
         .nav-search {
             display: flex;
@@ -247,7 +247,7 @@
             width: 100%;
         }
 
-        /* Faixas coloridas por domínio */
+        /* Faixas coloridas por dom?nio */
         .nav-lane {
             display: flex;
             flex-direction: column;
@@ -506,7 +506,7 @@
         
         aside.collapsed .sidebar-section-title { display: none !important; }
 
-        /* Standalone (Cronograma) — peça em relevo */
+        /* Standalone (Cronograma) ? pe?a em relevo */
         .menu-standalone {
             color: #F3F6F9;
             text-decoration: none;
@@ -627,7 +627,7 @@
             border-color: rgba(15, 23, 42, 0.15);
         }
 
-        /* --- RODAPÉ DA SIDEBAR --- */
+        /* --- RODAP? DA SIDEBAR --- */
         .sidebar-footer {
             flex: 0 0 auto;
             position: relative;
@@ -699,7 +699,7 @@
             background: rgba(15, 118, 110, 0.28);
         }
 
-        /* --- CONTEÚDO PRINCIPAL --- */
+        /* --- CONTE?DO PRINCIPAL --- */
         main {
             flex: 1;
             margin-left: var(--sidebar-expanded-width);
@@ -741,9 +741,9 @@
             margin-top: 2px;
         }
 
-        /* --- LÓGICA DE PÁGINAS INDEPENDENTES --- */
+        /* --- L?GICA DE P?GINAS INDEPENDENTES --- */
         section {
-            display: none; /* Oculta todas por padrão */
+            display: none; /* Oculta todas por padr?o */
             background: var(--melvin-bg-card);
             border: 1px solid var(--border);
             border-radius: 14px;
@@ -752,7 +752,7 @@
         }
 
         section.page-active {
-            display: block; /* Exibe apenas a página ativa selecionada */
+            display: block; /* Exibe apenas a p?gina ativa selecionada */
             animation: fadeIn 0.2s ease-in-out;
         }
 
@@ -779,7 +779,7 @@
             border-radius: 4px;
         }
 
-        /* --- CABEÇALHO DA CADÊNCIA --- */
+        /* --- CABE?ALHO DA CAD?NCIA --- */
         .cadencia-header-block { margin-bottom: 30px; }
         .cadencia-title-line { display: flex; align-items: center; gap: 12px; font-size: 1.6rem; font-weight: 800; color: white; margin-bottom: 8px; }
         .cadencia-title-line::before { content: ''; display: inline-block; width: 4px; height: 24px; background: var(--melvin-cyan); border-radius: 4px; }
@@ -803,7 +803,7 @@
         .matrix-content { width: 100%; overflow-x: auto; transition: max-height 0.3s ease; }
         .matrix-table { width: 100%; border-collapse: collapse; font-size: 0.82rem; text-align: center; min-width: 900px; }
 
-        /* Plano de Ação · fases em accordion */
+        /* Plano de A??o ? fases em accordion */
         #plano-acao .plano-fase > .matrix-header {
             cursor: pointer;
             user-select: none;
@@ -827,9 +827,9 @@
             line-height: 1;
             transition: transform 0.2s ease, color 0.15s ease, border-color 0.15s ease;
         }
-        #plano-acao .plano-fase-chevron::before { content: '▾'; }
+        #plano-acao .plano-fase-chevron::before { content: '?'; }
         #plano-acao .plano-fase.is-collapsed > .matrix-content { display: none; }
-        #plano-acao .plano-fase.is-collapsed .plano-fase-chevron::before { content: '▸'; }
+        #plano-acao .plano-fase.is-collapsed .plano-fase-chevron::before { content: '?'; }
         #plano-acao .plano-fase:not(.is-collapsed) .plano-fase-chevron {
             color: var(--melvin-cyan);
             border-color: rgba(100, 252, 216, 0.35);
@@ -889,7 +889,7 @@
         
         .placeholder-section { background: repeating-linear-gradient(45deg, rgba(100,252,216,0.01), rgba(100,252,216,0.01) 10px, rgba(0,0,0,0.1) 10px, rgba(0,0,0,0.1) 20px); border: 1px dashed rgba(100, 252, 216, 0.15); border-radius: 12px; padding: 50px; text-align: center; color: var(--text-muted); }
 		
-		/* --- ESTILIZAÇÃO DO FUNIL DE ETAPAS (KANBAN REVOPS) --- */
+		/* --- ESTILIZA??O DO FUNIL DE ETAPAS (KANBAN REVOPS) --- */
 		.funil-container-scroll {
 			width: 100%;
 			overflow-x: auto;
@@ -1112,15 +1112,15 @@
 		body.light-mode {
 			--melvin-bg-dark: #F1F5F9;     /* Fundo cinza claro industrial limpo */
 			--melvin-bg-card: #FFFFFF;     /* Cards 100% brancos com alto contraste */
-			--text-main: #0F172A;          /* Texto principal em azul ardósia escuro */
-			--text-muted: #475569;         /* Texto secundário com leitura confortável */
+			--text-main: #0F172A;          /* Texto principal em azul ard?sia escuro */
+			--text-muted: #475569;         /* Texto secund?rio com leitura confort?vel */
 			--border: rgba(15, 23, 42, 0.08); /* Bordas escuras suaves */
-			/* Ciano de marca legível em fundo branco (evita #64FCD8 “apagado”) */
+			/* Ciano de marca leg?vel em fundo branco (evita #64FCD8 ?apagado?) */
 			--melvin-cyan: #0f766e;
 			--melvin-cyan-dim: rgba(15, 118, 110, 0.08);
 		}
 
-		/* Títulos de seção com cores pastel inline → versões escuras no claro */
+		/* T?tulos de se??o com cores pastel inline ? vers?es escuras no claro */
 		body.light-mode .matrix-title[style*="#10b981"],
 		body.light-mode .matrix-title[style*="#34d399"],
 		body.light-mode .matrix-title[style*="#6ee7b7"] { color: #047857 !important; }
@@ -1140,7 +1140,7 @@
 		body.light-mode .matrix-title[style*="#64fcd8"] { color: #0f766e !important; }
 		body.light-mode .matrix-title[style*="#0066FF"] { color: #1d4ed8 !important; }
 
-		/* Links com ciano inline / var — contraste forte no claro */
+		/* Links com ciano inline / var ? contraste forte no claro */
 		body.light-mode a[style*="melvin-cyan"],
 		body.light-mode a[style*="#64FCD8"],
 		body.light-mode a[style*="#64fcd8"] {
@@ -1161,7 +1161,7 @@
 			color: #0F172A !important;
 		}
 
-		/* Forçar reset de tabelas que usavam cores chapadas escuras nos cabeçalhos e colunas */
+		/* For?ar reset de tabelas que usavam cores chapadas escuras nos cabe?alhos e colunas */
 		body.light-mode .matrix-widget,
 		body.light-mode .table-container {
 			background: #FFFFFF !important;
@@ -1184,24 +1184,24 @@
 		body.light-mode table td {
 			border: 1px solid rgba(15, 23, 42, 0.08) !important;
 			color: #334155 !important;
-			background: #FFFFFF !important; /* Força o fundo da célula a ser branco no claro */
+			background: #FFFFFF !important; /* For?a o fundo da c?lula a ser branco no claro */
 		}
 
 		body.light-mode .matrix-table td.row-title,
 		body.light-mode table td.row-title,
 		body.light-mode table tr td:first-child {
-			background: #F8FAFC !important; /* Destaca a primeira coluna de títulos com cinza bem claro */
+			background: #F8FAFC !important; /* Destaca a primeira coluna de t?tulos com cinza bem claro */
 			color: #0F172A !important;
 			font-weight: 700;
 		}
 
-		/* Força as linhas de sumário/SLA da matriz a mudarem de cor no modo claro */
+		/* For?a as linhas de sum?rio/SLA da matriz a mudarem de cor no modo claro */
 		body.light-mode .matrix-table td[colspan] {
 			background: #F1F5F9 !important;
 			color: #0284c7 !important;
 		}
 
-		/* Correção de fundos fixos escuros que sumiam com o texto */
+		/* Corre??o de fundos fixos escuros que sumiam com o texto */
 		body.light-mode .inner-step-card,
 		body.light-mode .script-box {
 			background: #F8FAFC !important;
@@ -1214,7 +1214,7 @@
 			border-color: var(--border) !important;
 		}
 
-		/* Correção visual das Badges/Botões para leitura perfeita */
+		/* Corre??o visual das Badges/Bot?es para leitura perfeita */
 		body.light-mode .m-badge {
 			border-width: 1px;
 		}
@@ -1345,7 +1345,7 @@ body.light-mode .mb-gim { background: rgba(99, 102, 241, 0.12) !important; color
         .card-link-wrapper:hover { transform: translateY(-4px); }
         .card-link-wrapper .in-card-premium:hover { transform: none; /* Evita duplo hover */ }
 		
-		/* --- TABELA DE CADÊNCIA MODERNA (ESTILO REVOPS) --- */
+		/* --- TABELA DE CAD?NCIA MODERNA (ESTILO REVOPS) --- */
         .cadence-table-modern { width: 100%; border-collapse: collapse; background: var(--melvin-bg-card); font-size: 0.85rem; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
         .cadence-table-modern th { background: #0A0F14; color: white; font-weight: 800; padding: 14px 12px; text-transform: uppercase; border: 1px solid var(--border); font-size: 0.7rem; letter-spacing: 0.5px; text-align: left; }
         .cadence-table-modern td { padding: 16px 12px; border: 1px solid var(--border); vertical-align: top; color: var(--text-main); }
@@ -1434,7 +1434,7 @@ body.light-mode .mb-gim { background: rgba(99, 102, 241, 0.12) !important; color
 
 
 
-/* --- ESTILOS DE COMPONENTES (antes inline nas seções) --- */
+/* --- ESTILOS DE COMPONENTES (antes inline nas se??es) --- */
 .in-metric-grid {
                     display: grid;
                     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -1550,7 +1550,7 @@ body.light-mode .mb-gim { background: rgba(99, 102, 241, 0.12) !important; color
                 body.light-mode .m-value { color: #0F172A; }
                 body.light-mode .m-label { color: #64748B; }
 
-                /* Tabelas Específicas do Dashboard */
+                /* Tabelas Espec?ficas do Dashboard */
                 .dash-matrix { margin: 0; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15); border-radius: 12px; overflow: hidden; }
 				.dash-matrix .matrix-table { min-width: 100% !important; }
                 body.light-mode .dash-matrix { box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04); }
@@ -1586,7 +1586,7 @@ body.light-mode .mb-gim { background: rgba(99, 102, 241, 0.12) !important; color
                 .sig-name { font-size: 1.1rem; font-weight: 800; color: var(--text-main); text-transform: uppercase; letter-spacing: 1px; }
                 .sig-role { font-size: 0.85rem; color: var(--melvin-cyan); font-weight: 600; text-transform: uppercase; }
 
-                /* 🌗 AJUSTES DE ALTO CONTRASTE PARA LIGHT MODE */
+                /* ?? AJUSTES DE ALTO CONTRASTE PARA LIGHT MODE */
                 body.light-mode .neemias-card { background: #FFFFFF; border-color: rgba(15,23,42,0.12); box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
                 body.light-mode .neemias-card h3 { color: #0F172A !important; }
                 body.light-mode .n-value, body.light-mode .sig-name { color: #0F172A; }
@@ -1638,7 +1638,7 @@ body.light-mode .mb-gim { background: rgba(99, 102, 241, 0.12) !important; color
 .swot-letter { font-size: 3rem; font-weight: 900; opacity: 0.18; line-height: 1; }
 .swot-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 12px; position: relative; z-index: 1; }
 .swot-list li { font-size: 0.9rem; color: var(--text-muted); padding-left: 20px; position: relative; line-height: 1.5; }
-.swot-list li::before { content: '■'; position: absolute; left: 0; top: 2px; font-size: 0.7rem; }
+.swot-list li::before { content: '?'; position: absolute; left: 0; top: 2px; font-size: 0.7rem; }
 .swot-s .swot-list li::before { color: #34d399; }
 .swot-w .swot-list li::before { color: #f87171; }
 .swot-o .swot-list li::before { color: #38bdf8; }
@@ -1692,7 +1692,7 @@ body.light-mode .swot-highlight { color: #0F172A; }
 .tows-subtitle { font-size: 0.8rem; color: var(--text-muted); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
 .tows-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 12px; position: relative; z-index: 1; }
 .tows-list li { font-size: 0.9rem; color: var(--text-muted); padding-left: 20px; position: relative; line-height: 1.5; }
-.tows-list li::before { content: '➔'; position: absolute; left: 0; top: 1px; font-size: 0.8rem; }
+.tows-list li::before { content: '?'; position: absolute; left: 0; top: 1px; font-size: 0.8rem; }
 .tows-so .tows-list li::before { color: #34d399; }
 .tows-st .tows-list li::before { color: #38bdf8; }
 .tows-wo .tows-list li::before { color: #fbbf24; }
@@ -1708,7 +1708,7 @@ body.light-mode .tows-subtitle, body.light-mode .tows-list li { color: #475569; 
 body.light-mode .tows-header { border-bottom-color: rgba(15,23,42,0.1); }
 @media (max-width: 900px) { .tows-grid { grid-template-columns: 1fr; } }
 
-/* --- PÁGINA DE ESPERA (EM CONSTRUÇÃO) --- */
+/* --- P?GINA DE ESPERA (EM CONSTRU??O) --- */
 .waiting-page {
     display: flex;
     flex-direction: column;
@@ -1927,7 +1927,7 @@ aside {
     pointer-events: none;
 }
 
-/* Paleta cíclica moderna — ICP / Personas / Produtos / Cases */
+/* Paleta c?clica moderna ? ICP / Personas / Produtos / Cases */
 .gim-card-grid > .gim-profile-card:nth-child(8n+1) {
     background: linear-gradient(155deg, rgba(6, 182, 212, 0.32) 0%, rgba(8, 47, 73, 0.45) 42%, rgba(15, 23, 42, 0.96) 100%);
     border-color: rgba(34, 211, 238, 0.4);
@@ -2249,7 +2249,7 @@ body.light-mode .gim-block.gim-results h4 { color: #047857; }
 body.light-mode .gim-block.gim-quotes h4 { color: #0369A1; }
 body.light-mode .gim-block.gim-danger h4 { color: #B91C1C; }
 
-/* ===== Personas · Lead Scoring A–D ===== */
+/* ===== Personas ? Lead Scoring A?D ===== */
 .persona-tabs {
   margin: 8px 0 22px;
   gap: 10px;
@@ -2423,7 +2423,7 @@ body.light-mode .gim-block.gim-danger h4 { color: #B91C1C; }
   border-right: 1px solid rgba(148, 163, 184, 0.18);
 }
 
-/* Blocos alternados — fácil de achar no scroll */
+/* Blocos alternados ? f?cil de achar no scroll */
 .ls-row[data-ls-group="funcao"] td:not(.ls-block-cell):not(.ls-w) {
   background: rgba(15, 23, 42, 0.35);
 }
@@ -2753,10 +2753,10 @@ body.light-mode .gim-block.gim-danger h4 { color: #B91C1C; }
 }
 .ls-side-details summary::-webkit-details-marker { display: none; }
 .ls-side-details summary::after {
-  content: " ▾";
+  content: " ?";
   color: #64748b;
 }
-.ls-side-details[open] summary::after { content: " ▴"; }
+.ls-side-details[open] summary::after { content: " ?"; }
 .ls-presets { display: flex; flex-direction: column; gap: 8px; margin-top: 8px; }
 .ls-preset {
   text-align: left;
@@ -3271,7 +3271,7 @@ body.light-mode .gim-accordion.gim-dor-oculta {
     opacity: 0.35;
     cursor: not-allowed;
 }
-/* display:flex nos componentes sobrescreve [hidden] — forçar ocultação */
+/* display:flex nos componentes sobrescreve [hidden] ? for?ar oculta??o */
 .waiting-page[hidden],
 .fluxo-path-strip[hidden],
 .fluxo-pdf-wrap[hidden],
@@ -3657,7 +3657,7 @@ body.light-mode .fluxo-links-bar {
     border-color: rgba(16, 185, 129, 0.3);
 }
 
-/* Matriz de Dores — bloco GIM */
+/* Matriz de Dores ? bloco GIM */
 .pain-gim-widget {
     border-left: 4px solid #818cf8;
 }
@@ -3669,7 +3669,7 @@ body.light-mode .pain-gim-widget .matrix-header {
 }
 
 /* =========================================================
-   Pain Map pages · Inbound / Outbound
+   Pain Map pages ? Inbound / Outbound
    ========================================================= */
 .pain-map-page {
     position: relative;
@@ -3726,11 +3726,11 @@ body.light-mode .pain-gim-widget .matrix-header {
 }
 .pain-card details.pain-card-block > summary::-webkit-details-marker { display: none; }
 .pain-card details.pain-card-block > summary::after {
-    content: '▾';
+    content: '?';
     font-size: 0.75rem;
     opacity: 0.7;
 }
-.pain-card details.pain-card-block[open] > summary::after { content: '▴'; }
+.pain-card details.pain-card-block[open] > summary::after { content: '?'; }
 .pain-card details.pain-card-block > p {
     margin-top: 8px;
 }
@@ -4018,8 +4018,8 @@ body.light-mode .pain-map-page::before {
 }
 
 /* =========================================================
-   Vendas Hardcore docs · BDR Copilot / Cadência / Jornada
-   Tema dual (claro/escuro) — só .vh-doc-page
+   Vendas Hardcore docs ? BDR Copilot / Cad?ncia / Jornada
+   Tema dual (claro/escuro) ? s? .vh-doc-page
    ========================================================= */
 .vh-doc-page {
   --vh-accent: #a78bfa;
@@ -4577,7 +4577,7 @@ body.light-mode .vh-day .d {
   color: #FFFFFF;
 }
 
-/* ===== LANDING · RevOps Book MELVIN ===== */
+/* ===== LANDING ? RevOps Book MELVIN ===== */
 .welcome-page {
   padding: 0 !important;
   margin: 0 !important;
@@ -4694,7 +4694,7 @@ body.light-mode .welcome-lead { color: #64748B; }
   .welcome-pill { width: 100%; max-width: 280px; }
 }
 
-/* ===== CRONOGRAMA DE TRABALHO · HIGH-LEVEL DASHBOARD ===== */
+/* ===== CRONOGRAMA DE TRABALHO ? HIGH-LEVEL DASHBOARD ===== */
 .crono-page {
   padding: 28px 8px 48px !important;
 }
@@ -5328,7 +5328,7 @@ body.light-mode .crono-risk strong { color: #b91c1c; }
   .crono-bar-row { grid-template-columns: 72px 1fr 36px; }
 }
 
-/* ===== OBJEÇÕES KIT · PRESALES UX ===== */
+/* ===== OBJE??ES KIT ? PRESALES UX ===== */
 .obj-kit-page { position: relative; }
 .obj-kit-hero {
   display: grid;
@@ -5647,8 +5647,8 @@ body.light-mode .obj-card.is-jump-target {
   color: var(--text-muted);
 }
 .obj-more > summary::-webkit-details-marker { display: none; }
-.obj-more > summary::after { content: " ▾"; opacity: 0.7; }
-.obj-more[open] > summary::after { content: " ▴"; }
+.obj-more > summary::after { content: " ?"; opacity: 0.7; }
+.obj-more[open] > summary::after { content: " ?"; }
 .obj-more p {
   margin: 10px 0 0;
   font-size: 0.84rem;
@@ -5797,7 +5797,7 @@ body.light-mode .obj-jump:hover {
   background: rgba(15, 118, 110, 0.06);
 }
 
-/* —— Concorrentes / Battlecards —— */
+/* ?? Concorrentes / Battlecards ?? */
 .battle-ata-callout {
   padding: 16px 18px;
   border-radius: 14px;
@@ -5916,7 +5916,7 @@ body.light-mode .obj-jump:hover {
     0 14px 34px rgba(0, 0, 0, 0.22);
 }
 
-/* Paletas por concorrente · dark */
+/* Paletas por concorrente ? dark */
 #battle-fracttal {
   --battle-glow-a: rgba(45, 212, 191, 0.22);
   --battle-glow-b: rgba(14, 165, 233, 0.16);
@@ -6268,7 +6268,7 @@ body.light-mode .battle-talk {
 body.light-mode .battle-talk .battle-col-label { color: #0369A1; }
 body.light-mode .battle-section-title { color: #0F172A; }
 
-/* Paletas por concorrente · light */
+/* Paletas por concorrente ? light */
 body.light-mode #battle-fracttal {
   --battle-glow-a: rgba(13, 148, 136, 0.16);
   --battle-glow-b: rgba(14, 165, 233, 0.12);
@@ -6430,7 +6430,7 @@ body.light-mode #battle-modular {
   --battle-site: #be185d;
 }
 
-/* === Feedback de Reunião (auditoria In / Out) === */
+/* === Feedback de Reuni?o (auditoria In / Out) === */
 .fb-audit-page { padding: 36px 40px 48px; border-radius: 16px; }
 .fb-hero {
   display: grid;
@@ -6733,7 +6733,7 @@ body.light-mode .fb-notes {
   color: #64748b;
 }
 
-/* === Filtros Qualificação (layout In / Out) === */
+/* === Filtros Qualifica??o (layout In / Out) === */
 .fq-page { padding: 36px 40px 48px; border-radius: 16px; }
 .fq-hero {
   display: grid;
@@ -7007,7 +7007,7 @@ body.light-mode .fb-notes {
   margin-bottom: 16px !important;
 }
 
-/* Case / route cards already inline — polish */
+/* Case / route cards already inline ? polish */
 .fq-page .matrix-content > div[style*="border-radius: 8px"] {
   border-radius: 12px !important;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
@@ -7047,7 +7047,7 @@ body.light-mode .fq-page .matrix-table thead th {
 }
 body.light-mode .fq-badge-orb span { color: #064e3b; }
 body.light-mode .fq-badge-orb--out span { color: #4c1d95; }
-/* fq-hero lane variants (Closer / CS / GIM / Diagnóstico) */
+/* fq-hero lane variants (Closer / CS / GIM / Diagn?stico) */
 .fq-hero--close {
   border-color: rgba(251, 191, 36, 0.3);
   background:
@@ -7157,7 +7157,7 @@ body.light-mode .fq-badge-orb--diag span { color: #991b1b; }
 
 
 /* =========================================================
-   PROTOTYPE · Cadence Runway (Outbound D1–D35 only)
+   PROTOTYPE ? Cadence Runway (Outbound D1?D35 only)
    Rollback: remove .cx-runway shell classes + this block
    ========================================================= */
 .cx-runway {
@@ -7450,7 +7450,7 @@ body.light-mode .fq-badge-orb--diag span { color: #991b1b; }
   position: relative;
 }
 .cx-runway .cx-regua .matrix-content::before {
-  content: 'D1 ──────── runway ──────── D35';
+  content: 'D1 ???????? runway ???????? D35';
   display: block;
   padding: 8px 14px 0;
   font-size: 0.65rem;
@@ -7630,7 +7630,7 @@ body.light-mode .cx-runway .cx-regua {
 }
 body.light-mode .cx-runway .cx-regua-title { color: #0f172a !important; }
 
-/* Inbound runway variant · emerald / melvin cyan */
+/* Inbound runway variant ? emerald / melvin cyan */
 .cx-runway--in {
   --cx-hot: #34d399;
   --cx-cold: #22d3ee;
@@ -7759,7 +7759,7 @@ body.light-mode .jd-doc li { color: #334155; }
   color: #fbbf24 !important;
 }
 
-/* Sidebar · stand-by rotinas */
+/* Sidebar ? stand-by rotinas */
 .nav-lane--ops .ops-nav-standby {
   opacity: 0.72;
 }
@@ -7768,7 +7768,7 @@ body.light-mode .jd-doc li { color: #334155; }
   box-shadow: none !important;
 }
 
-/* ---- Ops hub layout · board + sanfona lateral ---- */
+/* ---- Ops hub layout ? board + sanfona lateral ---- */
 .ops-board-head {
   margin-bottom: 14px;
 }
@@ -7835,7 +7835,7 @@ body.light-mode .jd-doc li { color: #334155; }
   gap: 12px;
 }
 
-/* Cofre: sanfona lateral — abrir e fechar com a mesma curva */
+/* Cofre: sanfona lateral ? abrir e fechar com a mesma curva */
 .ops-board-vault {
   position: relative;
   display: flex;
@@ -8099,7 +8099,7 @@ body.light-mode .jd-doc li { color: #334155; }
   font-size: 0.8rem;
 }
 
-/* Info no hero — compacto */
+/* Info no hero ? compacto */
 .ops-page .ops-hero.fq-hero {
   grid-template-columns: minmax(180px, 1.2fr) minmax(200px, 0.85fr) auto;
   gap: 14px;
@@ -8290,7 +8290,7 @@ body.light-mode .nav-lane--ops .ops-nav-standby { opacity: 0.78; }
   }
 }
 
-/* === Ops · Pendências / Ata === */
+/* === Ops ? Pend?ncias / Ata === */
 .ops-section-chip--ok {
   color: #86efac;
   background: rgba(34, 197, 94, 0.12);
@@ -8442,10 +8442,10 @@ body.light-mode .nav-lane--ops .ops-nav-standby { opacity: 0.78; }
 }
 .ops-pend-details summary::-webkit-details-marker { display: none; }
 .ops-pend-details summary::before {
-  content: "▸ ";
+  content: "? ";
   color: #64748b;
 }
-.ops-pend-details[open] summary::before { content: "▾ "; }
+.ops-pend-details[open] summary::before { content: "? "; }
 .ops-pend-bullets {
   margin: 0 0 8px;
   padding-left: 18px;
@@ -8690,7 +8690,7 @@ body.light-mode .ops-section-chip--ok {
 }
 
 /* =========================================================
-   Plano de Ação · legibilidade no modo claro
+   Plano de A??o ? legibilidade no modo claro
    ========================================================= */
 body.light-mode #plano-acao {
   background: #FFFFFF;
@@ -8769,7 +8769,7 @@ body.light-mode #plano-acao a {
 body.light-mode #plano-acao a:hover {
   color: #115e59 !important;
 }
-/* Box “Ordem correta” */
+/* Box ?Ordem correta? */
 body.light-mode #plano-acao > div[style*="245, 158, 11"] {
   background: rgba(245, 158, 11, 0.1) !important;
   border-color: rgba(180, 83, 9, 0.35) !important;
@@ -8784,7 +8784,7 @@ body.light-mode #plano-acao > div[style*="245, 158, 11"] p strong {
   color: #0f172a !important;
 }
 
-/* �� ABM � documentos-fonte (PPT + Paper) �� */
+/* ?? ABM ? documentos-fonte (PPT + Paper) ?? */
 .abm-page {
   font-family: Carlito, Calibri, "Segoe UI", Manrope, sans-serif;
 }
@@ -8805,51 +8805,69 @@ body.light-mode #plano-acao > div[style*="245, 158, 11"] p strong {
 }
 .abm-jump { margin-bottom: 18px; }
 
-.abm-deck {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
+/* Deck visual ? reprodu??o PPT */
+.deck-tabs {
+  margin: 0 0 16px;
+  flex-wrap: wrap;
 }
-.abm-slide {
-  border: 1px solid rgba(255,255,255,0.08);
-  border-radius: 16px;
+.deck-tabs .deck-tab {
+  min-width: 2.6rem;
+  justify-content: center;
+  font-variant-numeric: tabular-nums;
+}
+.deck-viewport {
+  width: 100%;
+}
+.deck-slide[hidden] { display: none !important; }
+.deck-slide.is-active { display: block; }
+.deck-stage {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 12192000 / 6858000;
+  container-type: inline-size;
+  container-name: deck;
   overflow: hidden;
-  background:
-    radial-gradient(120% 80% at 0% 0%, rgba(68, 114, 196, 0.14), transparent 50%),
-    radial-gradient(90% 70% at 100% 100%, rgba(237, 125, 49, 0.10), transparent 50%),
-    linear-gradient(160deg, rgba(18, 22, 30, 0.96), rgba(10, 12, 18, 0.98));
-  scroll-margin-top: 96px;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,0.1);
+  box-shadow:
+    0 18px 40px rgba(0, 0, 0, 0.28),
+    inset 0 1px 0 rgba(255,255,255,0.04);
 }
-.abm-slide-num {
-  padding: 10px 16px;
-  font-size: 0.72rem;
-  font-weight: 800;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: #fda4af;
-  border-bottom: 1px solid rgba(255,255,255,0.06);
-  background: rgba(0,0,0,0.18);
+.deck-shape,
+.deck-text {
+  position: absolute;
+  box-sizing: border-box;
 }
-.abm-slide-body {
-  padding: 18px 20px 20px;
+.deck-shape {
+  pointer-events: none;
+}
+.deck-shape--roundRect {
+  box-shadow: 0 0.4cqw 1.2cqw rgba(33, 28, 25, 0.08);
+}
+.deck-text {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  justify-content: flex-start;
+  overflow: hidden;
+  line-height: 1.25;
+  z-index: 2;
 }
-.abm-slide-line {
-  font-size: 0.98rem;
-  line-height: 1.5;
-  color: var(--text-main);
+.deck-line {
+  margin: 0;
+  padding: 0;
+  line-height: 1.28;
+}
+.deck-line + .deck-line { margin-top: 0.15em; }
+.deck-text span {
   white-space: pre-wrap;
 }
-.abm-slide-line:first-child {
-  font-family: Carlito, Calibri, Manrope, sans-serif;
-  font-size: 1.2rem;
-  font-weight: 700;
-  color: #fecdd3;
-  margin-bottom: 4px;
+
+body.light-mode .deck-stage {
+  border-color: rgba(15, 23, 42, 0.12);
+  box-shadow:
+    0 14px 34px rgba(15, 23, 42, 0.1),
+    inset 0 1px 0 rgba(255,255,255,0.8);
 }
-.abm-slide-gap { height: 6px; }
 
 .abm-paper-body {
   max-width: 920px;
@@ -8985,21 +9003,6 @@ body.light-mode .abm-source-bar {
   border-color: rgba(190, 18, 60, 0.25);
   color: #64748b;
 }
-body.light-mode .abm-slide {
-  background:
-    radial-gradient(120% 80% at 0% 0%, rgba(68, 114, 196, 0.08), transparent 50%),
-    radial-gradient(90% 70% at 100% 100%, rgba(237, 125, 49, 0.06), transparent 50%),
-    linear-gradient(160deg, #ffffff, #f8fafc);
-  border-color: rgba(15, 23, 42, 0.1);
-  box-shadow: 0 8px 22px rgba(15, 23, 42, 0.05);
-}
-body.light-mode .abm-slide-num {
-  background: #fff1f2;
-  color: #9f1239;
-  border-bottom-color: rgba(15, 23, 42, 0.06);
-}
-body.light-mode .abm-slide-line { color: #0f172a; }
-body.light-mode .abm-slide-line:first-child { color: #be123c; }
 body.light-mode .abm-doc-header { color: #be123c; }
 body.light-mode .abm-cover {
   background: linear-gradient(135deg, #fff1f2, #f8fafc);
