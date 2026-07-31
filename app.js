@@ -421,6 +421,68 @@
         });
     })();
 
+    (function initBattleTabs() {
+        const root = document.getElementById('gim-concorrentes');
+        if (!root) return;
+        const tabs = root.querySelectorAll('[data-battle-tab]');
+        const panels = root.querySelectorAll('[data-battle-panel]');
+
+        function activate(id, opts) {
+            const options = opts || {};
+            tabs.forEach((t) => {
+                const on = t.getAttribute('data-battle-tab') === id;
+                t.classList.toggle('is-active', on);
+                t.setAttribute('aria-selected', on ? 'true' : 'false');
+            });
+            panels.forEach((panel) => {
+                const on = panel.getAttribute('data-battle-panel') === id;
+                panel.classList.toggle('is-active', on);
+                if (on) panel.removeAttribute('hidden');
+                else panel.setAttribute('hidden', '');
+            });
+            if (options.scrollToId) {
+                const el = document.getElementById(options.scrollToId);
+                if (el) {
+                    requestAnimationFrame(() => {
+                        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        el.classList.add('is-flash');
+                        setTimeout(() => el.classList.remove('is-flash'), 1600);
+                    });
+                }
+            }
+        }
+
+        tabs.forEach((tab) => {
+            tab.addEventListener('click', () => {
+                activate(tab.getAttribute('data-battle-tab'));
+            });
+        });
+
+        root.querySelectorAll('a[href^="#battle-"]').forEach((link) => {
+            link.addEventListener('click', (e) => {
+                const id = (link.getAttribute('href') || '').slice(1);
+                const card = id ? document.getElementById(id) : null;
+                if (!card) return;
+                const panel = card.closest('[data-battle-panel]');
+                const lane = panel && panel.getAttribute('data-battle-panel');
+                if (!lane) return;
+                e.preventDefault();
+                activate(lane, { scrollToId: id });
+                if (history.replaceState) history.replaceState(null, '', '#' + id);
+            });
+        });
+
+        const hash = (location.hash || '').slice(1);
+        if (hash) {
+            const card = document.getElementById(hash);
+            if (card && root.contains(card)) {
+                const panel = card.closest('[data-battle-panel]');
+                const lane = panel && panel.getAttribute('data-battle-panel');
+                if (lane) activate(lane, { scrollToId: hash });
+            }
+        }
+    })();
+
 // Ops · hidden menu unlock (somente 5 cliques no © do rodapé)
     (function initOpsUnlock() {
         const STORAGE_KEY = 'melvinOpsUnlock.v2';
