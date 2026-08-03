@@ -220,6 +220,7 @@
         const tabs = root.querySelectorAll('[data-outcad-tab]');
         const panels = root.querySelectorAll('[data-outcad-panel]');
         const detailsRoot = root.querySelector('#outSigDetails');
+        const TAB_KEY = 'melvinOutCadTab.v1';
         const phaseMap = {
             'out-fase-quente': { btn: 'toggleOutFase1Btn', box: 'outFase1Container' },
             'out-fase-frio': { btn: 'toggleOutFase2Btn', box: 'outFase2Container' },
@@ -278,6 +279,7 @@
                 if (on) panel.removeAttribute('hidden');
                 else panel.setAttribute('hidden', '');
             });
+            try { localStorage.setItem(TAB_KEY, id); } catch (e) {}
             if (id === 'regua') {
                 closeDetails();
                 root.querySelectorAll('[data-sig-go].is-active').forEach((el) => {
@@ -351,6 +353,10 @@
         const hash = (location.hash || '').slice(1);
         if (hash === 'out-fase-quente' || hash === 'out-fase-frio' || hash === 'out-fase-nutricao') {
             activate('regua', hash);
+        } else {
+            let savedTab = 'fluxo';
+            try { savedTab = localStorage.getItem(TAB_KEY) || 'fluxo'; } catch (e) {}
+            if (savedTab === 'regua' || savedTab === 'fluxo') activate(savedTab);
         }
     })();
 
@@ -1074,7 +1080,29 @@
         if (arrow) arrow.textContent = '▲';
     }
 
-    function forceScreenChange(hash) {
+    // Mantém a mesma página + scroll ao atualizar (F5 / Ctrl+R)
+    const VIEW_KEY = 'melvinView.v1';
+    try { if ('scrollRestoration' in history) history.scrollRestoration = 'manual'; } catch (e) {}
+
+    function readSavedView() {
+        try { return JSON.parse(sessionStorage.getItem(VIEW_KEY) || 'null'); } catch (e) { return null; }
+    }
+    function saveView(hash, scrollY) {
+        try {
+            const h = hash || window.location.hash || '#home-dashboard';
+            const y = typeof scrollY === 'number' ? scrollY : (window.scrollY || window.pageYOffset || 0);
+            sessionStorage.setItem(VIEW_KEY, JSON.stringify({ hash: h, scrollY: y, ts: Date.now() }));
+        } catch (e) {}
+    }
+    let saveViewTimer = null;
+    function scheduleSaveView() {
+        if (saveViewTimer) clearTimeout(saveViewTimer);
+        saveViewTimer = setTimeout(() => saveView(window.location.hash), 120);
+    }
+    window.addEventListener('scroll', scheduleSaveView, { passive: true });
+    window.addEventListener('beforeunload', () => saveView(window.location.hash));
+
+    function forceScreenChange(hash, options = {}) {
         const targetEl = document.querySelector(hash);
         if (!targetEl) return false;
 
@@ -1085,6 +1113,8 @@
         if (!targetSection) return false;
 
         const pageHash = targetSection.id ? `#${targetSection.id}` : hash;
+        const restoreY = typeof options.restoreScrollY === 'number' ? options.restoreScrollY : null;
+        const skipScroll = options.skipScroll === true;
 
         document.querySelectorAll('.nav-container a').forEach((l) => l.classList.remove('active'));
         const activeMenuLink =
@@ -1111,14 +1141,25 @@
             }
         }
 
-        if (targetEl !== targetSection) {
-            requestAnimationFrame(() => {
-                targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                targetEl.classList.add('is-jump-target');
-                setTimeout(() => targetEl.classList.remove('is-jump-target'), 1400);
-            });
+        if (!skipScroll) {
+            if (restoreY !== null) {
+                requestAnimationFrame(() => {
+                    window.scrollTo({ top: restoreY, behavior: 'auto' });
+                    saveView(hash, restoreY);
+                });
+            } else if (targetEl !== targetSection) {
+                requestAnimationFrame(() => {
+                    targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    targetEl.classList.add('is-jump-target');
+                    setTimeout(() => targetEl.classList.remove('is-jump-target'), 1400);
+                    scheduleSaveView();
+                });
+            } else {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                saveView(hash, 0);
+            }
         } else {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            saveView(hash);
         }
         closeMobileSidebar();
         return true;
@@ -1132,6 +1173,7 @@
                 e.preventDefault();
                 forceScreenChange(hash);
                 history.pushState(null, '', hash);
+                saveView(hash, 0);
             }
         });
     });
@@ -1144,9 +1186,25 @@
     });
 
     setTimeout(() => {
-        if (window.location.hash && document.querySelector(window.location.hash)) {
-            forceScreenChange(window.location.hash);
-        } else if (document.getElementById('home-dashboard')) {
+        const saved = readSavedView();
+        const urlHash = window.location.hash;
+        let hash = urlHash;
+        let restoreY = null;
+
+        if (hash && document.querySelector(hash)) {
+            // Refresh na mesma URL: restaura o scroll guardado dessa página
+            if (saved && saved.hash === hash && typeof saved.scrollY === 'number') {
+                restoreY = saved.scrollY;
+            }
+        } else if (saved && saved.hash && document.querySelector(saved.hash)) {
+            hash = saved.hash;
+            restoreY = typeof saved.scrollY === 'number' ? saved.scrollY : 0;
+            history.replaceState(null, '', hash);
+        } else {
+            hash = '#home-dashboard';
+        }
+
+        if (!forceScreenChange(hash, { restoreScrollY: restoreY }) && document.getElementById('home-dashboard')) {
             forceScreenChange('#home-dashboard');
         }
     }, 50);
