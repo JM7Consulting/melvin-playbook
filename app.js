@@ -259,7 +259,8 @@
             });
             if (id === 'regua' && dock) {
                 dock.classList.remove('is-open');
-                dock.setAttribute('hidden', '');
+                delete dock.dataset.activeStage;
+                dock.style.display = '';
                 root.querySelectorAll('[data-sig-stage].is-active, [data-sig-go].is-active').forEach((el) => {
                     el.classList.remove('is-active');
                     if (el.hasAttribute('aria-pressed')) el.setAttribute('aria-pressed', 'false');
@@ -294,11 +295,24 @@
             const src = root.querySelector(`[data-sig-panel="${stage}"]`);
             if (!src) return;
 
+            // Clique no mesmo estágio já aberto → fecha
+            if (dock.classList.contains('is-open') && dock.dataset.activeStage === stage) {
+                dock.classList.remove('is-open');
+                delete dock.dataset.activeStage;
+                root.querySelectorAll('[data-sig-stage].is-active').forEach((el) => {
+                    el.classList.remove('is-active');
+                    if (el.hasAttribute('aria-pressed')) el.setAttribute('aria-pressed', 'false');
+                });
+                return;
+            }
+
             dockKicker.textContent = meta.kicker;
             dockTitle.textContent = meta.title;
             dockBody.innerHTML = src.innerHTML;
+            dock.dataset.activeStage = stage;
             dock.classList.add('is-open');
             dock.removeAttribute('hidden');
+            dock.style.display = 'block';
 
             root.querySelectorAll('[data-sig-stage], [data-sig-go]').forEach((el) => {
                 const on = el.getAttribute('data-sig-stage') === stage;
@@ -308,11 +322,18 @@
                 }
             });
 
-            dock.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            requestAnimationFrame(() => {
+                dock.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            });
             bindDockActions();
         }
 
         function goToCadence(anchorId, node) {
+            if (dock) {
+                dock.classList.remove('is-open');
+                delete dock.dataset.activeStage;
+                dock.style.display = '';
+            }
             root.querySelectorAll('[data-sig-stage], [data-sig-go]').forEach((el) => {
                 const on = el === node;
                 el.classList.toggle('is-active', on);
@@ -365,7 +386,8 @@
         if (closeBtn) {
             closeBtn.addEventListener('click', () => {
                 dock.classList.remove('is-open');
-                dock.setAttribute('hidden', '');
+                delete dock.dataset.activeStage;
+                dock.style.display = '';
                 root.querySelectorAll('[data-sig-stage].is-active').forEach((el) => {
                     el.classList.remove('is-active');
                     if (el.hasAttribute('aria-pressed')) el.setAttribute('aria-pressed', 'false');
