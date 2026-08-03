@@ -213,6 +213,59 @@
         });
     })();
 
+    // D1–D35 Outbound · Fluxo Sinais / Régua tabs
+    (function initOutCadTabs() {
+        const root = document.getElementById('wf-contato-nutricao-out');
+        if (!root) return;
+        const tabs = root.querySelectorAll('[data-outcad-tab]');
+        const panels = root.querySelectorAll('[data-outcad-panel]');
+
+        function activate(id, anchorId) {
+            tabs.forEach((t) => {
+                const on = t.getAttribute('data-outcad-tab') === id;
+                t.classList.toggle('is-active', on);
+                t.setAttribute('aria-selected', on ? 'true' : 'false');
+            });
+            panels.forEach((panel) => {
+                const on = panel.getAttribute('data-outcad-panel') === id;
+                panel.classList.toggle('is-active', on);
+                if (on) panel.removeAttribute('hidden');
+                else panel.setAttribute('hidden', '');
+            });
+            if (anchorId) {
+                const el = document.getElementById(anchorId);
+                if (el) {
+                    requestAnimationFrame(() => {
+                        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    });
+                }
+            }
+        }
+
+        tabs.forEach((tab) => {
+            tab.addEventListener('click', () => activate(tab.getAttribute('data-outcad-tab')));
+        });
+
+        root.querySelectorAll('[data-outcad-goto]').forEach((btn) => {
+            btn.addEventListener('click', () => {
+                activate(btn.getAttribute('data-outcad-goto'), btn.getAttribute('data-outcad-anchor'));
+            });
+        });
+
+        // Deep-links to phase anchors open Régua tab first
+        root.querySelectorAll('a[href="#out-fase-quente"], a[href="#out-fase-frio"], a[href="#out-fase-nutricao"]').forEach((a) => {
+            a.addEventListener('click', () => {
+                const id = (a.getAttribute('href') || '').slice(1);
+                activate('regua', id);
+            });
+        });
+
+        const hash = (location.hash || '').slice(1);
+        if (hash === 'out-fase-quente' || hash === 'out-fase-frio' || hash === 'out-fase-nutricao') {
+            activate('regua', hash);
+        }
+    })();
+
     // Personas · tabs + Lead Scoring matrix
     (function initPersonaLeadScoring() {
         const root = document.getElementById('gim-personas');
