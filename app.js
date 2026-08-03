@@ -226,11 +226,24 @@
         const stageMeta = {
             listen: { kicker: 'Estágio 0 · Escuta', title: 'Escuta · antes do 1º toque' },
             probe: { kicker: 'Estágio 1 · Probe', title: 'Probe · caminho único (4 toques)' },
-            gate: { kicker: 'Estágio 2 · Gate (losango)', title: 'Gate · análise de sinais' },
-            hot: { kicker: 'Trilho HOT', title: 'HOT · D11–D25 · sinal' },
-            cold: { kicker: 'Trilho COLD', title: 'COLD · D11–D25 · fit' },
-            warm: { kicker: 'Estágio 3 · Nutrição', title: 'Nutrição · D26–D35 → 60–90d' }
+            gate: { kicker: 'Estágio 2 · Gate (losango)', title: 'Gate · análise de sinais' }
         };
+        const phaseMap = {
+            'out-fase-quente': { btn: 'toggleOutFase1Btn', box: 'outFase1Container' },
+            'out-fase-frio': { btn: 'toggleOutFase2Btn', box: 'outFase2Container' },
+            'out-fase-nutricao': { btn: 'toggleOutFase3Btn', box: 'outFase3Container' }
+        };
+
+        function expandPhase(anchorId) {
+            const map = phaseMap[anchorId];
+            if (!map) return;
+            const box = document.getElementById(map.box);
+            const btn = document.getElementById(map.btn);
+            if (box && box.style.display === 'none') {
+                box.style.display = 'block';
+                if (btn) btn.textContent = 'Recolher';
+            }
+        }
 
         function activate(id, anchorId) {
             tabs.forEach((t) => {
@@ -244,14 +257,35 @@
                 if (on) panel.removeAttribute('hidden');
                 else panel.setAttribute('hidden', '');
             });
+            if (id === 'regua' && dock) {
+                dock.classList.remove('is-open');
+                dock.setAttribute('hidden', '');
+                root.querySelectorAll('[data-sig-stage].is-active, [data-sig-go].is-active').forEach((el) => {
+                    el.classList.remove('is-active');
+                    if (el.hasAttribute('aria-pressed')) el.setAttribute('aria-pressed', 'false');
+                });
+            }
             if (anchorId) {
+                expandPhase(anchorId);
                 const el = document.getElementById(anchorId);
                 if (el) {
                     requestAnimationFrame(() => {
-                        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        setTimeout(() => {
+                            el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        }, 50);
                     });
                 }
             }
+        }
+
+        function bindDockActions() {
+            if (!dockBody) return;
+            dockBody.querySelectorAll('[data-outcad-goto]').forEach((btn) => {
+                btn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    activate(btn.getAttribute('data-outcad-goto'), btn.getAttribute('data-outcad-anchor'));
+                });
+            });
         }
 
         function openStage(stage) {
@@ -266,7 +300,7 @@
             dock.classList.add('is-open');
             dock.removeAttribute('hidden');
 
-            root.querySelectorAll('[data-sig-stage]').forEach((el) => {
+            root.querySelectorAll('[data-sig-stage], [data-sig-go]').forEach((el) => {
                 const on = el.getAttribute('data-sig-stage') === stage;
                 el.classList.toggle('is-active', on);
                 if (el.hasAttribute('aria-pressed')) {
@@ -275,20 +309,18 @@
             });
 
             dock.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            bindDockActions();
+        }
 
-            // Re-bind actions inside freshly injected dock body
-            dockBody.querySelectorAll('[data-outcad-goto]').forEach((btn) => {
-                btn.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    activate(btn.getAttribute('data-outcad-goto'), btn.getAttribute('data-outcad-anchor'));
-                });
+        function goToCadence(anchorId, node) {
+            root.querySelectorAll('[data-sig-stage], [data-sig-go]').forEach((el) => {
+                const on = el === node;
+                el.classList.toggle('is-active', on);
+                if (el.hasAttribute('aria-pressed')) {
+                    el.setAttribute('aria-pressed', on ? 'true' : 'false');
+                }
             });
-            dockBody.querySelectorAll('[data-sig-jump]').forEach((btn) => {
-                btn.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    openStage(btn.getAttribute('data-sig-jump'));
-                });
-            });
+            activate('regua', anchorId);
         }
 
         tabs.forEach((tab) => {
@@ -302,6 +334,7 @@
             });
         });
 
+        // Escuta / Probe / Gate → painel de detalhe
         root.querySelectorAll('[data-sig-stage]').forEach((el) => {
             el.addEventListener('click', (e) => {
                 if (e.target.closest('[data-outcad-goto]')) return;
@@ -315,10 +348,24 @@
             });
         });
 
+        // HOT / COLD / Nutrição → aba Régua + fase
+        root.querySelectorAll('[data-sig-go]').forEach((el) => {
+            el.addEventListener('click', () => {
+                goToCadence(el.getAttribute('data-sig-anchor'), el);
+            });
+            el.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    goToCadence(el.getAttribute('data-sig-anchor'), el);
+                }
+            });
+        });
+
         const closeBtn = root.querySelector('#outSigDockClose');
         if (closeBtn) {
             closeBtn.addEventListener('click', () => {
                 dock.classList.remove('is-open');
+                dock.setAttribute('hidden', '');
                 root.querySelectorAll('[data-sig-stage].is-active').forEach((el) => {
                     el.classList.remove('is-active');
                     if (el.hasAttribute('aria-pressed')) el.setAttribute('aria-pressed', 'false');
@@ -326,7 +373,6 @@
             });
         }
 
-        // Deep-links to phase anchors open Régua tab first
         root.querySelectorAll('a[href="#out-fase-quente"], a[href="#out-fase-frio"], a[href="#out-fase-nutricao"]').forEach((a) => {
             a.addEventListener('click', () => {
                 const id = (a.getAttribute('href') || '').slice(1);
@@ -337,8 +383,6 @@
         const hash = (location.hash || '').slice(1);
         if (hash === 'out-fase-quente' || hash === 'out-fase-frio' || hash === 'out-fase-nutricao') {
             activate('regua', hash);
-        } else {
-            openStage('listen');
         }
     })();
 
