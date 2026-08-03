@@ -7706,60 +7706,6 @@ body.light-mode .fq-badge-orb--diag span { color: #991b1b; }
   min-width: 130px;
 }
 
-/* Gate · losango */
-.out-sig-node--diamond {
-  position: relative;
-  width: 132px;
-  min-width: 132px;
-  height: 132px;
-  flex: 0 0 132px;
-  padding: 0;
-  border: none;
-  background: transparent;
-  box-shadow: none;
-  border-radius: 0;
-  outline: none;
-}
-.out-sig-node--diamond::before {
-  content: '';
-  position: absolute;
-  inset: 14px;
-  background: #fffbeb;
-  border: 2px solid #f59e0b;
-  transform: rotate(45deg);
-  border-radius: 12px;
-  box-shadow: 0 4px 14px rgba(245, 158, 11, 0.18);
-  transition: transform 0.22s ease, box-shadow 0.22s ease, background 0.22s ease;
-  pointer-events: none;
-}
-.out-sig-node--diamond:hover,
-.out-sig-node--diamond.is-active {
-  transform: none;
-  box-shadow: none;
-  outline: none;
-}
-.out-sig-node--diamond:hover::before,
-.out-sig-node--diamond.is-active::before {
-  transform: rotate(45deg) scale(1.06);
-  box-shadow: 0 12px 28px rgba(245, 158, 11, 0.28);
-  background: #fef3c7;
-}
-.out-sig-node--diamond.is-active::before {
-  box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.35), 0 12px 28px rgba(245, 158, 11, 0.28);
-}
-.out-sig-diamond-inner {
-  position: relative;
-  z-index: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-  padding: 18px 10px 10px;
-  text-align: center;
-}
-.out-sig-node--diamond .out-sig-click { margin-top: 4px; font-size: 0.62rem; }
-
 .out-sig-node--listen { border-color: #ddd6fe; background: #faf5ff; }
 .out-sig-node--listen .out-sig-step { background: #ede9fe; color: var(--sig-violet); }
 .out-sig-node--listen:hover,
@@ -7768,7 +7714,41 @@ body.light-mode .fq-badge-orb--diag span { color: #991b1b; }
 .out-sig-node--probe .out-sig-step { background: #e0f2fe; color: var(--sig-sky); }
 .out-sig-node--probe:hover,
 .out-sig-node--probe.is-active { border-color: #38bdf8; background: #e0f2fe; }
-.out-sig-node--gate .out-sig-step { background: #fef3c7; color: var(--sig-amber); }
+
+/* Gate · card de decisão (mesma família visual dos outros nós) */
+.out-sig-node--gate {
+  position: relative;
+  border-color: #f59e0b;
+  background: linear-gradient(165deg, #fffbeb 0%, #fef3c7 100%);
+  box-shadow: 0 2px 10px rgba(245, 158, 11, 0.12);
+}
+.out-sig-node--gate::after {
+  content: '';
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 10px;
+  height: 10px;
+  background: #f59e0b;
+  transform: rotate(45deg);
+  border-radius: 2px;
+  opacity: 0.85;
+  pointer-events: none;
+}
+.out-sig-node--gate .out-sig-step {
+  background: #fef3c7;
+  color: #b45309;
+  border: 1px solid #fcd34d;
+}
+.out-sig-node--gate:hover,
+.out-sig-node--gate.is-active {
+  border-color: #d97706;
+  background: linear-gradient(165deg, #fef3c7 0%, #fde68a 100%);
+  box-shadow: 0 12px 28px rgba(245, 158, 11, 0.22);
+}
+.out-sig-node--gate.is-active::after {
+  box-shadow: 0 0 0 2px rgba(14, 165, 233, 0.35);
+}
 .out-sig-node--hot { border-color: #fcd34d; background: #fff7ed; }
 .out-sig-node--hot:hover,
 .out-sig-node--hot.is-active { border-color: #f59e0b; box-shadow: 0 12px 28px rgba(245, 158, 11, 0.2); }
