@@ -7730,6 +7730,7 @@ body.light-mode .fq-badge-orb--diag span { color: #991b1b; }
   border-radius: 12px;
   box-shadow: 0 4px 14px rgba(245, 158, 11, 0.18);
   transition: transform 0.22s ease, box-shadow 0.22s ease, background 0.22s ease;
+  pointer-events: none;
 }
 .out-sig-node--diamond:hover,
 .out-sig-node--diamond.is-active {
@@ -7780,14 +7781,41 @@ body.light-mode .fq-badge-orb--diag span { color: #991b1b; }
 .out-sig-node--warm.is-active { border-color: #34d399; box-shadow: 0 12px 28px rgba(52, 211, 153, 0.18); }
 
 /* Dock interativo */
-.out-sig-dock {
-  display: none !important;
+/* Dock / detalhe abaixo do fluxo */
+.out-sig-details {
   margin: 0 0 22px;
+}
+.out-sig-detail {
+  display: none;
   border-radius: 16px;
   border: 1px solid #cbd5e1;
   background: #fff;
   box-shadow: 0 12px 32px rgba(15, 23, 42, 0.1);
   overflow: hidden;
+  animation: out-sig-dock-in 0.28s ease;
+}
+.out-sig-detail.is-open {
+  display: block !important;
+}
+.out-sig-detail-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 16px 18px;
+  background: linear-gradient(135deg, #f8fafc, #eff6ff);
+  border-bottom: 1px solid #e2e8f0;
+}
+.out-sig-detail-head h3 {
+  margin: 0;
+  font-family: "Sora", Manrope, sans-serif;
+  font-size: 1.15rem;
+  color: #0f172a;
+}
+.out-sig-detail-body { padding: 16px 18px 18px; }
+
+.out-sig-dock {
+  display: none !important;
 }
 .out-sig-dock.is-open {
   display: block !important;

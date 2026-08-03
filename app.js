@@ -219,15 +219,7 @@
         if (!root) return;
         const tabs = root.querySelectorAll('[data-outcad-tab]');
         const panels = root.querySelectorAll('[data-outcad-panel]');
-        const dock = root.querySelector('#outSigDock');
-        const dockBody = root.querySelector('[data-sig-dock-body]');
-        const dockTitle = root.querySelector('[data-sig-dock-title]');
-        const dockKicker = root.querySelector('[data-sig-dock-kicker]');
-        const stageMeta = {
-            listen: { kicker: 'Estágio 0 · Escuta', title: 'Escuta · antes do 1º toque' },
-            probe: { kicker: 'Estágio 1 · Probe', title: 'Probe · caminho único (4 toques)' },
-            gate: { kicker: 'Estágio 2 · Gate (losango)', title: 'Gate · análise de sinais' }
-        };
+        const detailsRoot = root.querySelector('#outSigDetails');
         const phaseMap = {
             'out-fase-quente': { btn: 'toggleOutFase1Btn', box: 'outFase1Container' },
             'out-fase-frio': { btn: 'toggleOutFase2Btn', box: 'outFase2Container' },
@@ -245,6 +237,35 @@
             }
         }
 
+        function closeDetails() {
+            if (!detailsRoot) return;
+            detailsRoot.querySelectorAll('.out-sig-detail.is-open').forEach((el) => el.classList.remove('is-open'));
+            root.querySelectorAll('[data-sig-stage].is-active').forEach((el) => {
+                el.classList.remove('is-active');
+                if (el.hasAttribute('aria-pressed')) el.setAttribute('aria-pressed', 'false');
+            });
+        }
+
+        function openDetail(stage) {
+            if (!detailsRoot || !stage) return;
+            const panel = detailsRoot.querySelector(`[data-sig-detail="${stage}"]`);
+            if (!panel) return;
+
+            const alreadyOpen = panel.classList.contains('is-open');
+            closeDetails();
+            if (alreadyOpen) return;
+
+            panel.classList.add('is-open');
+            root.querySelectorAll('[data-sig-stage], [data-sig-go]').forEach((el) => {
+                const on = el.getAttribute('data-sig-stage') === stage;
+                el.classList.toggle('is-active', on);
+                if (el.hasAttribute('aria-pressed')) el.setAttribute('aria-pressed', on ? 'true' : 'false');
+            });
+            requestAnimationFrame(() => {
+                panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            });
+        }
+
         function activate(id, anchorId) {
             tabs.forEach((t) => {
                 const on = t.getAttribute('data-outcad-tab') === id;
@@ -257,11 +278,9 @@
                 if (on) panel.removeAttribute('hidden');
                 else panel.setAttribute('hidden', '');
             });
-            if (id === 'regua' && dock) {
-                dock.classList.remove('is-open');
-                delete dock.dataset.activeStage;
-                dock.style.display = '';
-                root.querySelectorAll('[data-sig-stage].is-active, [data-sig-go].is-active').forEach((el) => {
+            if (id === 'regua') {
+                closeDetails();
+                root.querySelectorAll('[data-sig-go].is-active').forEach((el) => {
                     el.classList.remove('is-active');
                     if (el.hasAttribute('aria-pressed')) el.setAttribute('aria-pressed', 'false');
                 });
@@ -271,75 +290,18 @@
                 const el = document.getElementById(anchorId);
                 if (el) {
                     requestAnimationFrame(() => {
-                        setTimeout(() => {
-                            el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                        }, 50);
+                        setTimeout(() => el.scrollIntoView({ behavior: 'smooth', block: 'start' }), 50);
                     });
                 }
             }
         }
 
-        function bindDockActions() {
-            if (!dockBody) return;
-            dockBody.querySelectorAll('[data-outcad-goto]').forEach((btn) => {
-                btn.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    activate(btn.getAttribute('data-outcad-goto'), btn.getAttribute('data-outcad-anchor'));
-                });
-            });
-        }
-
-        function openStage(stage) {
-            if (!stage || !stageMeta[stage] || !dock || !dockBody) return;
-            const meta = stageMeta[stage];
-            const src = root.querySelector(`[data-sig-panel="${stage}"]`);
-            if (!src) return;
-
-            // Clique no mesmo estágio já aberto → fecha
-            if (dock.classList.contains('is-open') && dock.dataset.activeStage === stage) {
-                dock.classList.remove('is-open');
-                delete dock.dataset.activeStage;
-                root.querySelectorAll('[data-sig-stage].is-active').forEach((el) => {
-                    el.classList.remove('is-active');
-                    if (el.hasAttribute('aria-pressed')) el.setAttribute('aria-pressed', 'false');
-                });
-                return;
-            }
-
-            dockKicker.textContent = meta.kicker;
-            dockTitle.textContent = meta.title;
-            dockBody.innerHTML = src.innerHTML;
-            dock.dataset.activeStage = stage;
-            dock.classList.add('is-open');
-            dock.removeAttribute('hidden');
-            dock.style.display = 'block';
-
-            root.querySelectorAll('[data-sig-stage], [data-sig-go]').forEach((el) => {
-                const on = el.getAttribute('data-sig-stage') === stage;
-                el.classList.toggle('is-active', on);
-                if (el.hasAttribute('aria-pressed')) {
-                    el.setAttribute('aria-pressed', on ? 'true' : 'false');
-                }
-            });
-
-            requestAnimationFrame(() => {
-                dock.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-            });
-            bindDockActions();
-        }
-
         function goToCadence(anchorId, node) {
-            if (dock) {
-                dock.classList.remove('is-open');
-                delete dock.dataset.activeStage;
-                dock.style.display = '';
-            }
+            closeDetails();
             root.querySelectorAll('[data-sig-stage], [data-sig-go]').forEach((el) => {
                 const on = el === node;
                 el.classList.toggle('is-active', on);
-                if (el.hasAttribute('aria-pressed')) {
-                    el.setAttribute('aria-pressed', on ? 'true' : 'false');
-                }
+                if (el.hasAttribute('aria-pressed')) el.setAttribute('aria-pressed', on ? 'true' : 'false');
             });
             activate('regua', anchorId);
         }
@@ -348,52 +310,36 @@
             tab.addEventListener('click', () => activate(tab.getAttribute('data-outcad-tab')));
         });
 
-        root.querySelectorAll('[data-outcad-goto]').forEach((btn) => {
-            btn.addEventListener('click', (e) => {
+        // Delegação: cliques nos nós do fluxo
+        root.addEventListener('click', (e) => {
+            const closeBtn = e.target.closest('[data-sig-detail-close]');
+            if (closeBtn) {
+                e.preventDefault();
+                closeDetails();
+                return;
+            }
+
+            const gotoBtn = e.target.closest('[data-outcad-goto]');
+            if (gotoBtn && root.contains(gotoBtn)) {
+                e.preventDefault();
                 e.stopPropagation();
-                activate(btn.getAttribute('data-outcad-goto'), btn.getAttribute('data-outcad-anchor'));
-            });
-        });
+                activate(gotoBtn.getAttribute('data-outcad-goto'), gotoBtn.getAttribute('data-outcad-anchor'));
+                return;
+            }
 
-        // Escuta / Probe / Gate → painel de detalhe
-        root.querySelectorAll('[data-sig-stage]').forEach((el) => {
-            el.addEventListener('click', (e) => {
-                if (e.target.closest('[data-outcad-goto]')) return;
-                openStage(el.getAttribute('data-sig-stage'));
-            });
-            el.addEventListener('keydown', (e) => {
-                if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    openStage(el.getAttribute('data-sig-stage'));
-                }
-            });
-        });
+            const stageBtn = e.target.closest('[data-sig-stage]');
+            if (stageBtn && root.contains(stageBtn)) {
+                e.preventDefault();
+                openDetail(stageBtn.getAttribute('data-sig-stage'));
+                return;
+            }
 
-        // HOT / COLD / Nutrição → aba Régua + fase
-        root.querySelectorAll('[data-sig-go]').forEach((el) => {
-            el.addEventListener('click', () => {
-                goToCadence(el.getAttribute('data-sig-anchor'), el);
-            });
-            el.addEventListener('keydown', (e) => {
-                if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    goToCadence(el.getAttribute('data-sig-anchor'), el);
-                }
-            });
+            const goBtn = e.target.closest('[data-sig-go]');
+            if (goBtn && root.contains(goBtn)) {
+                e.preventDefault();
+                goToCadence(goBtn.getAttribute('data-sig-anchor'), goBtn);
+            }
         });
-
-        const closeBtn = root.querySelector('#outSigDockClose');
-        if (closeBtn) {
-            closeBtn.addEventListener('click', () => {
-                dock.classList.remove('is-open');
-                delete dock.dataset.activeStage;
-                dock.style.display = '';
-                root.querySelectorAll('[data-sig-stage].is-active').forEach((el) => {
-                    el.classList.remove('is-active');
-                    if (el.hasAttribute('aria-pressed')) el.setAttribute('aria-pressed', 'false');
-                });
-            });
-        }
 
         root.querySelectorAll('a[href="#out-fase-quente"], a[href="#out-fase-frio"], a[href="#out-fase-nutricao"]').forEach((a) => {
             a.addEventListener('click', () => {
