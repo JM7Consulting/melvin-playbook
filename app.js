@@ -219,6 +219,18 @@
         if (!root) return;
         const tabs = root.querySelectorAll('[data-outcad-tab]');
         const panels = root.querySelectorAll('[data-outcad-panel]');
+        const dock = root.querySelector('#outSigDock');
+        const dockBody = root.querySelector('[data-sig-dock-body]');
+        const dockTitle = root.querySelector('[data-sig-dock-title]');
+        const dockKicker = root.querySelector('[data-sig-dock-kicker]');
+        const stageMeta = {
+            listen: { kicker: 'Estágio 0 · Escuta', title: 'Escuta · antes do 1º toque' },
+            probe: { kicker: 'Estágio 1 · Probe', title: 'Probe · caminho único (4 toques)' },
+            gate: { kicker: 'Estágio 2 · Gate (losango)', title: 'Gate · análise de sinais' },
+            hot: { kicker: 'Trilho HOT', title: 'HOT · D11–D25 · sinal' },
+            cold: { kicker: 'Trilho COLD', title: 'COLD · D11–D25 · fit' },
+            warm: { kicker: 'Estágio 3 · Nutrição', title: 'Nutrição · D26–D35 → 60–90d' }
+        };
 
         function activate(id, anchorId) {
             tabs.forEach((t) => {
@@ -242,15 +254,77 @@
             }
         }
 
+        function openStage(stage) {
+            if (!stage || !stageMeta[stage] || !dock || !dockBody) return;
+            const meta = stageMeta[stage];
+            const src = root.querySelector(`[data-sig-panel="${stage}"]`);
+            if (!src) return;
+
+            dockKicker.textContent = meta.kicker;
+            dockTitle.textContent = meta.title;
+            dockBody.innerHTML = src.innerHTML;
+            dock.classList.add('is-open');
+            dock.removeAttribute('hidden');
+
+            root.querySelectorAll('[data-sig-stage]').forEach((el) => {
+                const on = el.getAttribute('data-sig-stage') === stage;
+                el.classList.toggle('is-active', on);
+                if (el.hasAttribute('aria-pressed')) {
+                    el.setAttribute('aria-pressed', on ? 'true' : 'false');
+                }
+            });
+
+            dock.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+            // Re-bind actions inside freshly injected dock body
+            dockBody.querySelectorAll('[data-outcad-goto]').forEach((btn) => {
+                btn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    activate(btn.getAttribute('data-outcad-goto'), btn.getAttribute('data-outcad-anchor'));
+                });
+            });
+            dockBody.querySelectorAll('[data-sig-jump]').forEach((btn) => {
+                btn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    openStage(btn.getAttribute('data-sig-jump'));
+                });
+            });
+        }
+
         tabs.forEach((tab) => {
             tab.addEventListener('click', () => activate(tab.getAttribute('data-outcad-tab')));
         });
 
         root.querySelectorAll('[data-outcad-goto]').forEach((btn) => {
-            btn.addEventListener('click', () => {
+            btn.addEventListener('click', (e) => {
+                e.stopPropagation();
                 activate(btn.getAttribute('data-outcad-goto'), btn.getAttribute('data-outcad-anchor'));
             });
         });
+
+        root.querySelectorAll('[data-sig-stage]').forEach((el) => {
+            el.addEventListener('click', (e) => {
+                if (e.target.closest('[data-outcad-goto]')) return;
+                openStage(el.getAttribute('data-sig-stage'));
+            });
+            el.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    openStage(el.getAttribute('data-sig-stage'));
+                }
+            });
+        });
+
+        const closeBtn = root.querySelector('#outSigDockClose');
+        if (closeBtn) {
+            closeBtn.addEventListener('click', () => {
+                dock.classList.remove('is-open');
+                root.querySelectorAll('[data-sig-stage].is-active').forEach((el) => {
+                    el.classList.remove('is-active');
+                    if (el.hasAttribute('aria-pressed')) el.setAttribute('aria-pressed', 'false');
+                });
+            });
+        }
 
         // Deep-links to phase anchors open Régua tab first
         root.querySelectorAll('a[href="#out-fase-quente"], a[href="#out-fase-frio"], a[href="#out-fase-nutricao"]').forEach((a) => {
@@ -263,6 +337,8 @@
         const hash = (location.hash || '').slice(1);
         if (hash === 'out-fase-quente' || hash === 'out-fase-frio' || hash === 'out-fase-nutricao') {
             activate('regua', hash);
+        } else {
+            openStage('listen');
         }
     })();
 
