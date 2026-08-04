@@ -2234,7 +2234,7 @@ initFluxoPdfUX({
     edges: { v2: FLUXO_OUTBOUND_PDF_EDGES, v1: [] }
 });
 
-/* CS: v2 = PDF final; v1 = original histórico. Path UX após calibração. */
+/* CS: somente v1 no ar (v2 ocultada). */
 const FLUXO_CS_PDF_HOTS = [];
 const FLUXO_CS_PDF_EDGES = [];
 
@@ -2248,15 +2248,14 @@ initFluxoPdfUX({
     toolbarId: 'fluxoCsToolbar',
     stripId: 'fluxoCsPathStrip',
     stripTextId: 'fluxoCsPathText',
-    defaultVer: 'v2',
+    defaultVer: 'v1',
     liveId: 'fluxoCsLive',
     readyHint: 'Arraste para navegar · zoom na imagem oficial',
     sources: {
-        v2: 'assets/fluxo-cs-oficial.png',
         v1: 'assets/fluxo-cs-oficial-v1.png'
     },
-    hots: { v2: FLUXO_CS_PDF_HOTS, v1: [] },
-    edges: { v2: FLUXO_CS_PDF_EDGES, v1: [] }
+    hots: { v1: FLUXO_CS_PDF_HOTS },
+    edges: { v1: FLUXO_CS_PDF_EDGES }
 });
 
 /* Objeções kit: busca + filtros por página */
