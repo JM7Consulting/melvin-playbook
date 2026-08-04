@@ -2297,6 +2297,30 @@ function initObjKit(root) {
 
 document.querySelectorAll('.obj-kit-page').forEach(initObjKit);
 
+/* Dores × Soluções · filtros */
+(() => {
+    const root = document.getElementById('gim-dores-solucoes');
+    if (!root) return;
+    const filters = root.querySelectorAll('[data-dxs-filter]');
+    const cards = root.querySelectorAll('.dxs-card');
+    filters.forEach((btn) => {
+        btn.addEventListener('click', () => {
+            const key = btn.getAttribute('data-dxs-filter') || 'all';
+            filters.forEach((b) => b.classList.toggle('is-active', b === btn));
+            cards.forEach((card) => {
+                const type = card.getAttribute('data-dxs-type') || '';
+                const anchor = card.getAttribute('data-dxs-anchor') || '';
+                let show = true;
+                if (key === 'oculta') show = type === 'oculta';
+                else if (key === 'sangrenta') show = type === 'sangrenta';
+                else if (key === 'melvin') show = anchor === 'melvin';
+                else if (key === 'ma') show = anchor === 'ma';
+                card.classList.toggle('is-hidden', !show);
+            });
+        });
+    });
+})();
+
 /* Funil Inbound: prévia enxuta (ocultar etapas candidatas) */
 (() => {
     const btn = document.getElementById('funilInboundSlimToggle');
