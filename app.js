@@ -1034,22 +1034,38 @@
         });
     })();
 
-    // Cronograma de Trabalho · tabs
+    // Roadmap RevOps · tabs (+ deep-link data-crono-goto)
     const cronoTabs = document.querySelectorAll('[data-crono-tab]');
     const cronoPanels = document.querySelectorAll('[data-crono-panel]');
+    function activateCronoTab(id) {
+        if (!id) return;
+        cronoTabs.forEach((t) => {
+            const on = t.getAttribute('data-crono-tab') === id;
+            t.classList.toggle('is-active', on);
+            t.setAttribute('aria-selected', on ? 'true' : 'false');
+        });
+        cronoPanels.forEach((panel) => {
+            const match = panel.getAttribute('data-crono-panel') === id;
+            panel.classList.toggle('is-active', match);
+            if (match) panel.removeAttribute('hidden');
+            else panel.setAttribute('hidden', '');
+        });
+    }
     cronoTabs.forEach((tab) => {
-        tab.addEventListener('click', () => {
-            const id = tab.getAttribute('data-crono-tab');
-            cronoTabs.forEach((t) => {
-                t.classList.toggle('is-active', t === tab);
-                t.setAttribute('aria-selected', t === tab ? 'true' : 'false');
-            });
-            cronoPanels.forEach((panel) => {
-                const match = panel.getAttribute('data-crono-panel') === id;
-                panel.classList.toggle('is-active', match);
-                if (match) panel.removeAttribute('hidden');
-                else panel.setAttribute('hidden', '');
-            });
+        tab.addEventListener('click', () => activateCronoTab(tab.getAttribute('data-crono-tab')));
+    });
+    document.querySelectorAll('[data-crono-goto]').forEach((el) => {
+        el.addEventListener('click', (e) => {
+            const id = el.getAttribute('data-crono-goto');
+            if (!id) return;
+            e.preventDefault();
+            if (typeof forceScreenChange === 'function') {
+                forceScreenChange('#agenda-entregas', { skipScroll: true });
+                history.pushState(null, '', '#agenda-entregas');
+            }
+            activateCronoTab(id);
+            const panel = document.querySelector(`[data-crono-panel="${id}"]`);
+            if (panel) requestAnimationFrame(() => panel.scrollIntoView({ behavior: 'smooth', block: 'start' }));
         });
     });
 
@@ -1103,6 +1119,13 @@
     window.addEventListener('beforeunload', () => saveView(window.location.hash));
 
     function forceScreenChange(hash, options = {}) {
+        // Plano de Ação unificado no Roadmap
+        let openCronoTab = null;
+        if (hash === '#plano-acao') {
+            hash = '#agenda-entregas';
+            openCronoTab = 'seq';
+        }
+
         const targetEl = document.querySelector(hash);
         if (!targetEl) return false;
 
@@ -1161,17 +1184,21 @@
         } else {
             saveView(hash);
         }
+        if (openCronoTab && typeof activateCronoTab === 'function') {
+            activateCronoTab(openCronoTab);
+        }
         closeMobileSidebar();
         return true;
     }
 
     document.querySelectorAll('a[href^="#"]').forEach((link) => {
         link.addEventListener('click', (e) => {
-            const hash = link.getAttribute('href');
+            let hash = link.getAttribute('href');
             if (!hash || hash === '#') return;
-            if (document.querySelector(hash)) {
+            if (hash === '#plano-acao') hash = '#agenda-entregas';
+            if (document.querySelector(hash) || hash === '#agenda-entregas') {
                 e.preventDefault();
-                forceScreenChange(hash);
+                forceScreenChange(link.getAttribute('href') === '#plano-acao' ? '#plano-acao' : hash);
                 history.pushState(null, '', hash);
                 saveView(hash, 0);
             }
