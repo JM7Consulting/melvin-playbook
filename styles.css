@@ -5154,28 +5154,28 @@ body.light-mode .welcome-lead { color: #64748B; }
   box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.55);
   animation: cronoPulse 1.8s ease-out infinite;
 }
-.crono-now-flag--pink {
-  border-color: rgba(244, 114, 182, 0.5);
-  background: rgba(244, 114, 182, 0.12);
-  color: #f9a8d4;
+.crono-now-flag--violet {
+  border-color: rgba(196, 181, 253, 0.5);
+  background: rgba(196, 181, 253, 0.12);
+  color: #c4b5fd;
 }
-.crono-now-flag--pink strong {
-  color: #fbcfe8;
+.crono-now-flag--violet strong {
+  color: #ddd6fe;
 }
-.crono-now-pulse--pink {
-  background: #f472b6;
-  box-shadow: 0 0 0 0 rgba(244, 114, 182, 0.55);
-  animation: cronoPulsePink 1.8s ease-out infinite;
+.crono-now-pulse--violet {
+  background: #c4b5fd;
+  box-shadow: 0 0 0 0 rgba(196, 181, 253, 0.55);
+  animation: cronoPulseViolet 1.8s ease-out infinite;
 }
 @keyframes cronoPulse {
   0% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.55); }
   70% { box-shadow: 0 0 0 10px rgba(245, 158, 11, 0); }
   100% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0); }
 }
-@keyframes cronoPulsePink {
-  0% { box-shadow: 0 0 0 0 rgba(244, 114, 182, 0.55); }
-  70% { box-shadow: 0 0 0 10px rgba(244, 114, 182, 0); }
-  100% { box-shadow: 0 0 0 0 rgba(244, 114, 182, 0); }
+@keyframes cronoPulseViolet {
+  0% { box-shadow: 0 0 0 0 rgba(196, 181, 253, 0.55); }
+  70% { box-shadow: 0 0 0 10px rgba(196, 181, 253, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(196, 181, 253, 0); }
 }
 
 .crono-kpi-grid {
@@ -5697,12 +5697,12 @@ body.light-mode .crono-now-flag {
   color: #b45309;
 }
 body.light-mode .crono-now-flag strong { color: #92400e; }
-body.light-mode .crono-now-flag--pink {
-  background: rgba(244, 114, 182, 0.12);
-  border-color: rgba(219, 39, 119, 0.28);
-  color: #be185d;
+body.light-mode .crono-now-flag--violet {
+  background: rgba(196, 181, 253, 0.14);
+  border-color: rgba(139, 92, 246, 0.28);
+  color: #7c3aed;
 }
-body.light-mode .crono-now-flag--pink strong { color: #9d174d; }
+body.light-mode .crono-now-flag--violet strong { color: #6d28d9; }
 body.light-mode .flag-done {
   color: #047857;
   background: rgba(16, 185, 129, 0.12);
